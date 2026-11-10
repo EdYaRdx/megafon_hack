@@ -1,0 +1,129 @@
+# Qualification-only project configuration. No global changes. Supervised writes.
+modelRoleStorage: project
+modelRoles:
+  default: openai-codex/gpt-6.1-sol:high
+  task: openai-codex/gpt-6.1-sol:high
+  slow: openai-codex/gpt-6.1-sol:high
+  smol: openai-codex/gpt-6.1-sol:high
+  tiny: openai-codex/gpt-6.1-sol:high
+  advisor: openai-codex/gpt-6.1-sol:high
+enabledProviders: [openai-codex]
+enabledModels: [openai-codex/gpt-6.1-sol]
+defaultThinkingLevel: high
+update:
+  auto: false
+  channel: stable
+startup:
+  checkUpdate: false
+  quiet: true
+  setupWizard: false
+advisor:
+  enabled: false
+autoResume: false
+plan:
+  defaultOnStartup: false
+prewalk:
+  enabled: false
+  auto: off
+async:
+  enabled: false
+providers:
+  cacheWarming: off
+  maxInFlightRequests:
+    openai-codex: 1
+retry:
+  maxRetries: 1
+  maxDelayMs: 5000
+  modelFallback: false
+  fallbackChains: {}
+  waitForUsageReset: false
+  usageAwareFallback: false
+session:
+  warnCost: 3
+  maxCost: 5
+task:
+  batch: true
+  maxConcurrency: 1
+  workerThreads: 0
+  maxRecursionDepth: 1
+  maxRuntimeMs: 180000
+  softRequestBudget: 12
+  perCallModel: off
+  structured: false
+  speculativeLaunch: false
+  completionProbe: false
+  showResolvedModelBadge: true
+  agentModelOverrides:
+    task: openai-codex/gpt-6.1-sol:high
+    scout: openai-codex/gpt-6.1-sol:high
+    reviewer: openai-codex/gpt-6.1-sol:high
+  isolation:
+    enabled: false
+    apply: false
+  enableLsp: false
+  agentAdvisor: {}
+worktree:
+  cleanSource: false
+  clone: false
+  onStart: off
+  onExit: keep
+tools:
+  approvalMode: always-ask
+  approval:
+    read: prompt
+    write: prompt
+    edit: prompt
+    task: prompt
+    bash: deny
+    eval: deny
+    browser: deny
+    web_search: deny
+    mcp__open_design_start_run: deny
+    mcp__open_design_write_file: deny
+    mcp__open_design_delete_file: deny
+    mcp__open_design_delete_project: deny
+  restrictedFolders:
+    - C:/Projects/mgimo-qualification-20261110-p1/protected
+    - C:/Projects/mgimo-qualification-20261110-p1/control
+    - C:/Projects/mgimo-qualification-20261110-p1/evidence
+    - C:/Projects/GitHub/megafon_hack
+    - C:/Users/Эдуард/.omp
+  maxTimeout: 60
+  xdev: false
+bash:
+  gitGuard: true
+  direnv: off
+  allowCompoundCommands: false
+  patterns: []
+eval:
+  js: false
+  py: false
+lsp:
+  enabled: false
+skills:
+  enabled: false
+extensions: []
+mcp:
+  enableProjectConfig: true
+  startupTimeoutMs: 1000
+collab:
+  autoStart: off
+secrets:
+  enabled: true
+memory:
+  backend: off
+memories:
+  enabled: false
+autolearn:
+  enabled: false
+compaction:
+  enabled: true
+  autoContinue: false
+ttsr:
+  judge: off
+find:
+  enabled: off
+recap:
+  enabled: false
+telemetry:
+  otlpExportEnabled: false
