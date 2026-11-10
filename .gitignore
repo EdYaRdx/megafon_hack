@@ -1,0 +1,52 @@
+# Real secrets: examples/templates may be versioned, values never are.
+.env
+.env.*
+!.env.example
+!.env.template
+**/secrets.yml
+**/secrets.yaml
+**/auth.json
+**/auth.yml
+**/auth.yaml
+**/credentials.json
+**/credentials.yml
+**/credentials.yaml
+*.key
+*.pem
+.pypirc
+.npmrc.local
+
+# Local OMP state, private sessions, caches and per-machine overrides.
+.omp/sessions/
+.omp/artifacts/
+.omp/cache/
+.omp/logs/
+.omp/*.db
+.omp/*.db-*
+.omp/secret-placeholder.key
+.omp/*.local.*
+.omp/profiles/*.local.*
+
+# Keep raw evidence private; commit only reviewed/sanitized research summaries.
+.local/
+.artifacts/
+/sessions/
+/logs/
+/tmp/
+/temp/
+research/**/raw-sessions/
+research/**/session-dumps/
+omp-session-*.html
+omp-dump-*.zip
+omp-llm-request-*.json
+*.log
+*.log.*
+*.tmp
+*.temp
+*.bak
+
+# Tool-generated local dependencies and OS metadata, not product deliverables.
+node_modules/
+__pycache__/
+.DS_Store
+Thumbs.db

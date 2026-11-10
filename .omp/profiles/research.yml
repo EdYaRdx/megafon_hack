@@ -1,0 +1,212 @@
+# CANDIDATE for OMP 18.18.6: no scout/web/runtime qualification yet.
+# Explicit overlay only: --config .omp/profiles/research.yml
+# Pair with the documented --tools/--no-extensions/--no-skills launch flags.
+modelRoleStorage: project
+modelRoles:
+  default: openai-codex/gpt-6.1-sol:high
+  plan: openai-codex/gpt-6.1-sol:high
+  task: openai-codex/gpt-6.1-sol:high
+  slow: openai-codex/gpt-6.1-sol:high
+  smol: openai-codex/gpt-6.1-sol:high
+  tiny: openai-codex/gpt-6.1-sol:high
+  advisor: openai-codex/gpt-6.1-sol:high
+  web: openai-codex/gpt-6.1-sol
+defaultThinkingLevel: high
+enabledModels: [openai-codex/gpt-6.1-sol]
+# enabledProviders is discovery opt-in, NOT a model transport firewall.
+enabledProviders: [openai-codex]
+# Native project configuration/instructions only; no ambient integration sources.
+# xAI backends disabled to prevent X-only search query auto-promotion.
+disabledProviders:
+  - claude
+  - codex
+  - gemini
+  - opencode
+  - github
+  - cursor
+  - windsurf
+  - cline
+  - vscode
+  - agents
+  - agents-md
+  - claude-md
+  - custom-context
+  - omp-plugins
+  - claude-plugins
+  - agent-plugins
+  - mcp-json
+  - ssh-json
+  - xai
+  - xai-oauth
+contextFiles:
+  extra: []
+update:
+  auto: false
+startup:
+  checkUpdate: false
+  setupWizard: false
+marketplace:
+  autoUpdate: notify
+autoResume: false
+plan:
+  defaultOnStartup: false
+advisor:
+  enabled: false
+prewalk:
+  enabled: false
+  auto: "off"
+async:
+  enabled: true
+  printWake: true
+providers:
+  cacheWarming: "off"
+  fetch: native
+  webSearchTimeoutSeconds: 60
+  maxInFlightRequests:
+    openai-codex: 3
+retry:
+  maxRetries: 1
+  maxDelayMs: 5000
+  modelFallback: false
+  # web_search has an independent provider chain; {} would retain defaults.
+  fallbackChains:
+    web: []
+  waitForUsageReset: false
+  usageAwareFallback: false
+contextPromotion:
+  enabled: false
+session:
+  # Catalog-cost guards, NOT actual subscription charges or API spending approval.
+  warnCost: 3
+  maxCost: 5
+task:
+  batch: true
+  maxConcurrency: 3
+  workerThreads: 0
+  maxRecursionDepth: 1
+  maxRuntimeMs: 600000
+  softRequestBudget: 60
+  maxEffort: high
+  perCallModel: "off"
+  perCallModelAllow: []
+  structured: false
+  speculativeLaunch: false
+  completionProbe: false
+  showResolvedModelBadge: true
+  enableLsp: false
+  prewalk: false
+  disabledAgents: [task, sonic, seance]
+  agentModelOverrides:
+    scout: openai-codex/gpt-6.1-sol:high
+    reviewer: openai-codex/gpt-6.1-sol:high
+    security-reviewer: openai-codex/gpt-6.1-sol:high
+  agentAdvisor: {}
+  agentPrewalk: {}
+  isolation:
+    enabled: false
+    apply: false
+worktree:
+  cleanSource: false
+  clone: false
+  onStart: "off"
+  onExit: keep
+tools:
+  approvalMode: always-ask
+  approval:
+    read: allow
+    grep: allow
+    glob: allow
+    web_search: allow
+    task: prompt
+    todo: allow
+    wait: allow
+    write: deny
+    edit: deny
+    bash: deny
+    eval: deny
+    ast_edit: deny
+    lsp: deny
+    debug: deny
+    github: deny
+    browser: deny
+    computer: deny
+    generate_image: deny
+    mcp__open_design_start_run: deny
+    mcp__open_design_write_file: deny
+    mcp__open_design_delete_file: deny
+    mcp__open_design_delete_project: deny
+  # Prompts, NOT a sandbox; no secrets may exist in the accessible workspace.
+  restrictedFolders:
+    - .git
+    - .omp
+    - .local
+    - ~/.omp
+    - ~/.ssh
+    - ~/.aws
+    - ~/.azure
+    - ~/.codex
+    - ~/.claude
+    - ~/.copilot
+    - ~/.config/gcloud
+  maxTimeout: 120
+  xdev: false
+bash:
+  enabled: false
+  gitGuard: true
+  direnv: "off"
+eval:
+  js: false
+  py: false
+  tools:
+    enabled: false
+lsp:
+  enabled: false
+astEdit:
+  enabled: false
+astGrep:
+  enabled: false
+find:
+  enabled: "off"
+debug:
+  enabled: false
+ida:
+  enabled: false
+browser:
+  enabled: false
+computer:
+  enabled: false
+github:
+  enabled: false
+web_search:
+  enabled: true
+skills:
+  enabled: false
+extensions: []
+mcp:
+  enableProjectConfig: true
+  startupTimeoutMs: 1000
+  notifications: false
+collab:
+  autoStart: "off"
+secrets:
+  enabled: true
+memory:
+  backend: "off"
+memories:
+  enabled: false
+autolearn:
+  enabled: false
+compaction:
+  enabled: true
+  autoContinue: false
+  methodOrder: [remote, handoff, shake, soft]
+ttsr:
+  judge: "off"
+magicKeywords:
+  enabled: false
+recap:
+  enabled: false
+dev:
+  autoqa: false
+telemetry:
+  otlpExportEnabled: false
