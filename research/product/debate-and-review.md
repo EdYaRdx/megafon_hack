@@ -1,0 +1,58 @@
+# Independent research, cross-examination and revision register
+
+**Evidence of real work:** independent scout task sessions and their actual returned artifacts are named below. This record summarizes outputs; it is not a simulated transcript. Research and critiques were read-only. ProductResearch and CommunicationResearch were re-contacted with their challenges and returned author revision requests/records. Agent sessions used the same available tool/model family (agent metadata does not expose a verified cross-family provider); independence here means separate task contexts, not multi-vendor corroboration.
+
+## Actual research sessions and initial claims
+
+| Lane | Actual session ID | Initial position | Evidence artifact |
+|---|---|---|---|
+| A. Product strategy | `ProductResearch` | Frame choice around user progress/context; link outcome to opportunity/solutions; examine substitution, define retention carefully, test desirability/feasibility/viability, allow stop. No MegaFon customer/business facts inferred. | `agent://ProductResearch` initial response; `research/product/domain-research.md` synthesis. |
+| B. Communication strategy | `CommunicationResearch` | Catalog facts are observed offer merchandising, not customer needs. Candidate audience/message/channel are hypotheses; each promise requires product proof and legal/term checks; propose comprehension then controlled test, no uplift claim. | `agent://CommunicationResearch` initial response; `research/product/domain-research.md` synthesis. |
+| C. Agent architecture/reuse | `AgentArchitectureResearch` | Files-first skills/ledger/state; host enforces permission; compare minimal files, targeted tools, durable service; richer parsers only for proven need. | `agent://AgentArchitectureResearch`; `research/product/agent-design.md` and `open-source-reuse.md`. |
+| D. Quality & competition | `EvaluationResearch` | Use fixed requirements/gates, blind matched baseline, source audits, synthetic cases, user checkpoints; public regulation does not disclose partner details. | `agent://EvaluationResearch`; `research/product/evaluation-and-roadmap.md`. |
+
+## Actual cross-examination sessions
+
+| Cross-exam session | Target | Material claims challenged | Findings / status |
+|---|---|---|---|
+| `ProductClaimChallenge` | `ProductResearch` | JTBD validity/representativeness (C1); OST and 3–4 interview heuristic (C2); DOJ/FTC substitution analogy scope (C3); retention metric/event and causality (C4); CLV formula/cost boundaries (C5); generic experiment and stop thresholds (C6/C7). | Found no source contradicts the broad framework synthesis, but material overreach risk if frameworks become proof. Interview story ≠ prevalence; antitrust market ≠ product TAM; retention is measured proxy and non-causal; CLV cost boundary varies; generic frameworks do not supply stop thresholds. **All material; author revision requested.** Full source-level report: `agent://ProductClaimChallenge`. |
+| `CommsClaimChallenge` | `CommunicationResearch` | Storefront filters and plan names vs validated segments (S1); needs-led test/control baseline (S2); menu complexity vs demonstrated friction (S3); offer card vs full qualifying terms (P1); claim register evidence types (P2); archived 2025 advertising law vs current consolidation (L1); channel legal eligibility/consent (C2); test prerequisites (T1); tariff-notice rule source/status (R1). | Found catalog supports only merchandising, not segmentation, demand, confusion, channel ROI or control. Card terms need current plan conditions. Current consolidated ad law and channel obligations matter, but legal classification requires review. Critic's R1 narrative contained a material contradiction: it described Decree 59 as having a six-year life while its table and the author said it was repealed. Lead verified the discrepancy against the opened consolidated Decree 1994, which expressly repeals No. 59; see resolution below. Actual critic output: `agent://CommsClaimChallenge`. |
+
+The two critiques were separate actual scout sessions and both opened/checked peer claims against source material where accessible. They challenge more than six material claims. They are not cross-vendor independent; same-family status is **not verified** by available task output.
+
+## Author revision responses
+
+### A. ProductResearch revision (`ProductResearch`)
+
+**Actual response received.** The author addressed C1–C7 and supplied source/locator, revised implication and unresolved question for each; no repository edit. Full revision is in the `ProductResearch` follow-up response (agent session). Summary:
+
+- **Addressed:** JTBD = context-framing hypothesis generator, not universal/causal explanation; validate job frequency/value with sampled behavioral/customer evidence.
+- **Addressed:** OST's 3–4 interview cadence is not representativeness/saturation; interview stories discover opportunities, not prevalence/WTP; sampling and corroboration depend on decision.
+- **Addressed:** DOJ/FTC are merger-enforcement guidance, not product market/TAM definition; use switching as question only.
+- **Addressed:** retention is instrumented proxy, not value or causality; define meaningful event and assess construct validity; mature cohorts and causal design where feasible.
+- **Addressed:** clarify revenue/gross-profit/contribution/CAC boundary and forecast assumptions for CLV; no viability conclusion without product data.
+- **Addressed:** strategy frameworks do not supply universal stop thresholds; derive pass/reject/inconclusive rules from decision, base rates, costs, false positives/negatives and risk tolerance.
+- **Unresolved, correctly preserved:** all MegaFon/customer/product/economic/market data, segment prevalence, meaningful event, causal effect, cost assumptions and stop thresholds.
+
+### B. CommunicationResearch revision
+
+**Actual response received.** `CommunicationResearch` addressed S1–S3, P1–P2, L1, C2, T1 and R1 with source locators, revised decisions and remaining unknowns; no repo edit. Full response is the follow-up in `agent://CommunicationResearch`. Summary: (1) selectors/plan names are merchandising, not segments; (2) no actual customer-facing control/message or barrier is evidenced, so earlier “needs-led vs generic” comparison is withdrawn; (3) current offer cards are not full terms; (4) claim register separates offer-term, customer/barrier and comparative/performance evidence; (5) use current consolidated 38-FZ as a secondary reference, not archived 2025 PDF or legal clearance; (6) distinguish channel rules and review consent/labels for applicable executions; (7) test requires real product, audience, baseline, outcome and powered design; (8) do not cite Decree 59 as current.
+**Lead verification of legal disagreement:** opened current consolidated Decree 1994 text (revision 2026-04-30) and its Rule 24(e); it says 1994 repeals Decree 59 and the 10-calendar-day website notice/additional affected-mobile SMS rule remains in that current consolidated text. Opened the No. 59 page, which labels it repealed/invalid. The official publication portal fetch for No. 1994 failed; legal text is therefore documented from a secondary consolidation, and official-source/effective-date applicability remains UNKNOWN. The critic's six-year statement is rejected as applied to No. 59; the six-year validity appears in No. 1994 §4. This source/status disagreement and resolution are preserved; no legal advice is given.
+
+## Decision register: current synthesis and review state
+
+| ID | Decision | Challenge status / rationale | Reopen trigger |
+|---|---|---|---|
+| CD-01 | Keep JTBD/OST as ways to generate/organize hypotheses, not market evidence. | A critique accepted; author revised. | Representative product-specific evidence contradicts a proposed job or priority. |
+| CD-02 | Use competitor substitution as a research question, not antitrust/TAM shortcut. | A critique accepted; author revised. | Product-specific switching/constraint evidence changes relevant alternatives. |
+| CD-03 | Treat retention as an explicitly defined proxy; no causal conclusion from trend. | A critique accepted; author revised. | Event validation and causal design/data become available. |
+| CD-04 | Specify CLV metric boundary and disclose projection uncertainty. | A critique accepted; author revised. | Actual cohort margins, cost allocations, CAC and horizon supplied. |
+| CD-05 | Treat catalog-derived segment, message/control, barrier and channel-performance claims as UNKNOWN/HYPOTHESIS. | B author response addressed; critique accepted. Current catalog only documents merchandising. | Customer/usage/usability evidence and complete current terms by region. |
+| CD-06 | Use a current consolidated advertising-law reference only as secondary, dated context; do not make legal advice or campaign clearance. | B author revised and Lead opened current ConsultantPlus consolidation (2026-08-04). Official publication portal fetch failed; residual official-source/effective-date/application gap is explicit, and no recommendation depends on legal conclusion. | Official source/current effective date and qualified legal review at any campaign decision. |
+| CD-07 | Do not use Decree 59 Rule 24(e) as current; current consolidated Decree 1994 Rule 24(e) is successor and retains the notice text in version amended through 2026-04-30. | B critic's six-year statement about No. 59 conflicts with critic table and current consolidated source. Lead checked No. 1994 repeal clause and No. 59 invalid status; official portal request failed. | Verify authoritative promulgation/current applicability before any tariff notice. |
+| CD-08 | Include nine proposed synthetic cases, matched plain/structured baseline, blinding and run-cost accounting. | EvaluationResearch independent lane; fresh reviewer found plans accurately labeled and no result claimed. | Actual partner assignment/resource limits change evaluation design. |
+| CD-09 | Minimal files/skills baseline; no runtime/parser framework before demonstrated acceptance need. | AgentArchitectureResearch and source inspection; fresh reviewer found comparison and 9 concrete source-level repo reviews. | Fixture or actual official constraint proves host tools insufficient. |
+
+## Fresh whole-report review
+
+**Final independent re-review received:** `WholeResearchReviewer` re-opened all seven current reports, checked the current ConsultantPlus 38-FZ consolidation and directly opened the MegaFon Annual Report PDF. Final verdict: **no remaining material scope/accuracy issue blocks completion of the research deliverable**. It verified that B's actual response is integrated; communication claims are bounded; current legal text is clearly secondary and not legal clearance, with official-source/effective-date uncertainty retained; and historical company claims now have URL, pages and direct reviewer verification. It considered missing organizer/addendum information a submission-stage unknown, not a blocker to this public/synthetic research. Nine concrete source-level repo inspections (GPT Researcher excluded), ten repos, ≥15 sources, three architectures, nine proposed cases and two synthetic design dry runs satisfy the specified count/coverage; none are falsely reported as product execution. Same-family limitation remains explicit. The earlier PARTIAL verdict applied to the pre-correction snapshot and is superseded for this research deliverable only; this does not certify product acceptance, legal compliance or submission readiness.

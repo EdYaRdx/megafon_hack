@@ -1,0 +1,10 @@
+# ONLY after scout smoke + E02-lite show the exact route, actual read-only child inventory,
+# no write/exec and no unexpected fallback, including this final overlay.
+# Never use on a workspace containing real credentials or personal/private data.
+task:
+  maxConcurrency: 3
+  maxRuntimeMs: 1800000
+  softRequestBudget: 80
+tools:
+  approval:
+    task: allow

@@ -1,0 +1,9 @@
+# Fallback for one worker ONLY after qualifying a scout on this final effective config.
+# Never use on a workspace containing real credentials or personal/private data.
+task:
+  maxConcurrency: 1
+  maxRuntimeMs: 1800000
+  softRequestBudget: 80
+tools:
+  approval:
+    task: allow

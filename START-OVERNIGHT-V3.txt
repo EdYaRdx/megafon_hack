@@ -1,0 +1,15 @@
+1. Do NOT start a duplicate run while an OMP research process is still active.
+2. Copy overnight-product-research-v3.md to C:\Projects\GitHub\megafon_hack\prompts\overnight-product-research-v3.md
+3. Copy start-overnight-product-research-v3.cmd to C:\Projects\GitHub\megafon_hack\start-overnight-product-research-v3.cmd
+4. Ensure the machine has no secrets/private files accessible to the research agent. This is read-only by tool policy, NOT an OS sandbox.
+5. Run from PowerShell:
+   cd C:\Projects\GitHub\megafon_hack
+   .\start-overnight-product-research-v3.cmd
+6. Leave the machine awake. The CMD launcher captures streamed JSON events and stderr separately. The shell returns after OMP exits. It may finish before 4h if coverage is complete.
+7. In a SECOND PowerShell check activity:
+   Get-Item .local\omp\overnight-v3.events.jsonl | Select-Object Length, LastWriteTime
+   Get-Content .local\omp\overnight-v3.events.jsonl -Tail 5
+8. In the morning check:
+   Get-Content .local\omp\overnight-v3.exitcode.txt
+   Get-ChildItem .local\omp\sessions -Recurse -File | Sort-Object LastWriteTime -Descending | Select-Object -First 12 Name,Length,LastWriteTime
+9. Do not publish raw session files; they may contain unredacted contents.

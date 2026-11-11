@@ -1,0 +1,84 @@
+# Reduced-capability overnight research on user's regular Windows desktop.
+# NOT an OS sandbox. Agent can read ordinary files it has permission to read.
+modelRoleStorage: project
+modelRoles:
+  default: openai-codex/gpt-6-luna:high
+  plan: openai-codex/gpt-6-luna:high
+  task: openai-codex/gpt-6-luna:high
+  slow: openai-codex/gpt-6-luna:high
+  smol: openai-codex/gpt-6-luna:high
+  tiny: openai-codex/gpt-6-luna:high
+  reviewer: openai-codex/gpt-6-luna:high
+  web: openai-codex/gpt-6-luna
+defaultThinkingLevel: high
+enabledProviders: [openai-codex]
+enabledModels: [openai-codex/gpt-6-luna]
+plan:
+  defaultOnStartup: false
+goal:
+  enabled: true
+  continuationModes: [interactive]
+advisor:
+  enabled: false
+async:
+  enabled: true
+retry:
+  maxRetries: 1
+  modelFallback: false
+  fallbackChains:
+    web: []
+  waitForUsageReset: false
+  usageAwareFallback: false
+task:
+  batch: true
+  maxConcurrency: 3
+  maxRecursionDepth: 1
+  maxRuntimeMs: 1800000
+  softRequestBudget: 90
+  perCallModel: "off"
+  agentModelOverrides:
+    scout: openai-codex/gpt-6-luna:high
+    reviewer: openai-codex/gpt-6-luna:high
+    security-reviewer: openai-codex/gpt-6-luna:high
+  isolation:
+    enabled: false
+tools:
+  approvalMode: yolo
+  approval:
+    read: allow
+    grep: allow
+    glob: allow
+    web_search: allow
+    task: allow
+    wait: allow
+    todo: allow
+    write: allow
+    edit: allow
+    bash: deny
+    eval: deny
+    browser: deny
+    computer: deny
+    github: deny
+  restrictedFolders:
+    - .git
+    - .omp
+    - .local
+    - ~/.ssh
+    - ~/.aws
+    - ~/.azure
+    - ~/.codex
+    - ~/.claude
+    - ~/.config/gcloud
+bash:
+  enabled: false
+eval:
+  js: false
+  py: false
+browser:
+  enabled: false
+computer:
+  enabled: false
+github:
+  enabled: false
+mcp:
+  enableProjectConfig: false
