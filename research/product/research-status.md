@@ -38,6 +38,13 @@ All sessions were actual separate OMP contexts. Same-family vs multi-vendor inde
 - Observed search aggregate: `public`; actual internal route: **UNKNOWN**. Polza review: **NOT_RUN**. User-confirmed Polza dashboard history for the stored run has no matching rows (₽0 Polza charge); OMP model usage is **UNKNOWN_NOT_EXPOSED_TO_EXTENSION**, so total cost remains **UNKNOWN**. Current OMP usage counter is $0.076 API-equivalent across 68 requests, not an invoice; it cannot be treated as a verified charge.
 - No new paid Polza request was made during this validation. Any future paid Deep Research/review still requires a separate controlled decision and a budget check.
 
+## Supplemental direct Polza review attempt (2026-11-12)
+
+- To test the CLI's real five-stage review against the stored product report, two bounded runs were made after checking the full pre-run Polza history and the current free model/provider catalogue. Both requested GPT-6.1 Terra through `openai/flex` with `allow_fallbacks=false`, reasoning `high`, and made one call only; the response did not expose the actual provider (`UNKNOWN`).
+- Run `20261112-044023-de798d59` used `max_tokens=1800`: Reviewer A returned `finish_reason=length`, usage IN 4,125 / OUT 1,800, API-reported cost ₽0.84277317. Run `20261112-044414-af5c7f1b` used `max_tokens=2800`: Reviewer A again returned `finish_reason=length`, usage IN 4,125 / OUT 2,800, API-reported cost ₽0.84596434. Neither run sent the other four stages; there was no automatic retry.
+- Local ledger entries are `6a1a830b0d3b` and `4fcfdacb633c`, combined ₽1.68873751, with `reconciled_from_dashboard=false`. The full history provided before these calls cannot reconcile their new rows. No review verdict was produced, and these partial calls do not count as independent review of the product report. Further paid calls are paused pending updated dashboard reconciliation and a controlled decision.
+- The CLI's phase prompts now cap answer length (450 words for blind reviews/synthesis; 350 for cross-exams) while retaining the bounded token cap. This prompt change has only offline coverage; its live sufficiency is **UNKNOWN**. The existing `PASS` above applies only to the curated research deliverables and fresh OMP content review, not to the five-stage Polza review or product runtime acceptance.
+
 ## Evidence and quality counts (final review)
 
 - **Requirements:** local contest brief read in full; public official contest rules opened and §3.2/§4/§5/§6/§7 checked. The local brief's exact match to organizer source remains **UNKNOWN**; official rules say detailed assignment criteria are published with the assignment.
