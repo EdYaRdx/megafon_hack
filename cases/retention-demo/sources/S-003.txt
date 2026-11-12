@@ -1,0 +1,5 @@
+Source: Microsoft Research Experimentation Platform, Widad Machmouchi, Somit Gupta, Ruhan Zhang, “Patterns of Trustworthy Experimentation: During-Experiment Stage”
+URL: https://www.microsoft.com/en-us/research/articles/patterns-of-trustworthy-experimentation-during-experiment-stage/
+Retrieved: 2026-11-13
+Locator checked: metric taxonomy and stable segments, page lines 12–24 and 42–46.
+Paraphrase: the authors recommend data-quality, overall-goal, feature-diagnostic, and guardrail metrics; they caution that segment findings need stable segment definitions. This is practitioner guidance, not a universal standard or evidence about the fictional product.

@@ -1,0 +1,6 @@
+{"at": "2026-11-13", "event": "case_created", "status": "SYNTHETIC", "details": "Copied template to cases/retention-demo; authored fictional exercise, no real product/user data."}
+{"at": "2026-11-13", "event": "intake", "status": "PARTIAL", "details": "Recorded metric, owner, audience, completeness, economics, and approval unknowns. No real-user questions sent."}
+{"at": "2026-11-13", "event": "public_source_review", "status": "COMPLETED", "details": "Opened Amplitude retention calculations and Microsoft Research experimentation guidance; locators and limits recorded."}
+{"at": "2026-11-13", "event": "fixture_recalculation", "status": "VERIFIED", "details": "April=62%, May=38%, channel rates unchanged; June excluded due to 10 observed days."}
+{"at": "2026-11-13", "event": "recommendation_drafted", "status": "HUMAN_REVIEW_REQUIRED", "details": "Recommended measurement validation; no approval, test, external contact, or publication."}
+{"at": "2026-11-13", "event": "usage_cost", "status": "UNKNOWN", "details": "No paid model/API calls; external tool meter and exact authoring time not exposed."}
