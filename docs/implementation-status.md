@@ -2,8 +2,8 @@
 
 **Updated:** 2026-11-13  
 **Active stage:** Stage F — submission documentation drafted; clean-host acceptance and publication remain unverified  
-**Working baseline:** `codex/megafon-mvp-file-agent`; latest fresh-start checkpoint `c908627` (`feat: add fresh-start synthetic decision case`); post-hardening F3 diagnostic saved under `research/sol-audit/eval-results/F3-hardening-20261114/`.  
-**Latest artifacts:** F1/F2/F3 exploratory evaluations; meal-planner revision 3; fresh-start README workflow case; F3 post-hardening natural-prompt diagnostic; architecture, planned video run sheet, checklist and README links. Fresh-start case was independently reviewed and corrected; this is not an IDE PASS. **Product acceptance:** incomplete.
+**Working baseline:** `codex/megafon-mvp-file-agent`; latest artifact checkpoint `e0b0f37` (`test: add source-injection workflow diagnostic`); fresh-start case checkpoint `c908627`.  
+**Latest artifacts:** F1/F2/F3 exploratory evaluations; F8 source-injection diagnostic and evidence-skill fix; meal-planner revision 3; fresh-start README workflow case; architecture, planned video run sheet, checklist and README links. Fresh-start case was independently reviewed and corrected; this is not an IDE PASS. **Product acceptance:** incomplete.
 
 ## Repository and safety audit
 
