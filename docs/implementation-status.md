@@ -2,7 +2,7 @@
 
 **Updated:** 2026-11-14  
 **Active stage:** Stage E — exploratory matched evaluation; Stage C saved-state resume/revision completed in a fresh OMP task context, not in an IDE  
-**Working baseline:** `codex/megafon-mvp-file-agent`; checkpoint `ba8817b` (`feat: execute synthetic product strategy vertical slice`)  
+**Working baseline:** `codex/megafon-mvp-file-agent`; evidence checkpoint `1931943` (`eval: record retention, launch, and resume trials`)
 **Latest evaluated artifacts:** meal-planner revision 3; F1 retention, F2 conflicting terms, and F3 service-launch one-shot comparisons reviewed. **Product acceptance:** incomplete.
 
 ## Repository and safety audit
