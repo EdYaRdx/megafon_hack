@@ -2,7 +2,7 @@
 
 **Updated:** 2026-11-14  
 **Active stage:** Stage E — exploratory evaluation; final-output contracts hardened and natural-prompt F2 regression reviewed  
-**Working baseline:** `codex/megafon-mvp-file-agent`; evidence checkpoint `1931943` (`eval: record retention, launch, and resume trials`)  
+**Working baseline:** `codex/megafon-mvp-file-agent`; latest evidence checkpoint `6b71017` (`docs: harden decision memo evidence and validation rules`)
 **Latest artifacts:** meal-planner revision 3; F1/F2/F3 comparisons and F2 hardening runs 44/45/47 reviewed. Run 47 scored 6/8 in two blind reviews, no P0. **Product acceptance:** incomplete.
 
 ## Repository and safety audit
