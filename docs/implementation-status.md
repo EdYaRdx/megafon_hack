@@ -2,7 +2,7 @@
 
 **Updated:** 2026-11-14  
 **Active stage:** Stage F — submission documentation drafted; clean-host acceptance and recording remain blocked/unverified  
-**Working baseline:** `codex/megafon-mvp-file-agent`; latest evidence checkpoint `6b71017` (`docs: harden decision memo evidence and validation rules`)  
+**Working baseline:** `codex/megafon-mvp-file-agent`; latest documentation checkpoint `685566f` (`docs: prepare architecture and submission materials`)
 **Latest artifacts:** F1/F2/F3 exploratory evaluations; meal-planner revision 3; architecture, planned video run sheet, checklist, and README links drafted. **Product acceptance:** incomplete.
 
 ## Repository and safety audit
