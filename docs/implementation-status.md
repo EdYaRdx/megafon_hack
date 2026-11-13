@@ -1,14 +1,14 @@
 # Implementation status
 
 **Updated:** 2026-11-14  
-**Active stage:** Stage F — submission documentation drafted; clean-host acceptance and recording remain blocked/unverified  
-**Working baseline:** `codex/megafon-mvp-file-agent`; latest documentation checkpoint `685566f` (`docs: prepare architecture and submission materials`)
-**Latest artifacts:** F1/F2/F3 exploratory evaluations; meal-planner revision 3; architecture, planned video run sheet, checklist, and README links drafted. **Product acceptance:** incomplete.
+**Active stage:** Stage F — submission documentation drafted; clean-host acceptance and publication remain unverified  
+**Working baseline:** `codex/megafon-mvp-file-agent`; submission-document checkpoint `685566f` (`docs: prepare architecture and submission materials`)  
+**Latest artifacts:** F1/F2/F3 exploratory evaluations; meal-planner revision 3; architecture, planned video run sheet, checklist and README links drafted. **Product acceptance:** incomplete.
 
 ## Repository and safety audit
 
-- Current branch `codex/megafon-mvp-file-agent` is one commit ahead of `origin/codex/megafon-mvp-file-agent` at audit snapshot; earlier commits include product research and Sol audit. No branch switch or history rewrite was performed.
-- The previously staged `MGIMO_RESEARCH_TO_IMPLEMENTATION.md` is now present in upstream checkpoint `984b529`; it was not included in `ba8817b`. `.omp/profiles/product-build.yml` remains the user's untracked file and is excluded from this work.
+- At the repository audit snapshot, the branch was one commit ahead of `origin`; six local follow-up commits are now recorded after `ba8817b`. No force-push or branch switch occurred. These commits have **not** been pushed. No safe remote-authentication/publishing path was verified; do not access stored personal Git/SSH credentials.
+- The previously staged `MGIMO_RESEARCH_TO_IMPLEMENTATION.md` is present upstream at `984b529`; it was not included in `ba8817b`. `.omp/profiles/product-build.yml` remains user-owned and was excluded from all explicit commits.
 - `docs/contest-brief.md` was read in full as the working contract. Exact organizer provenance and the additional MegaFon demo brief remain `UNKNOWN`; neither blocks this explicitly authorized implementation.
 - No real MegaFon/customer data or secrets are used. The retention example is explicitly synthetic.
 
@@ -42,4 +42,4 @@
 3. Current tool surface provides file/read/search/task operations, but no Cursor/Codex GUI or computer-use launch. A real IDE startup and new-chat test cannot be observed in this session; manually reading the files in OMP is not an equivalent pass.
 4. No official MegaFon demo brief, real product data, observed billing, second-host run, or video package is available.
 
-Next: checkpoint the submission documentation and status. Do not mark host portability or video as passed: this session has no Cursor/Codex GUI or computer-launch capability. The video remains only a plan; actual capture, clean-host/new-chat resume, second-host run, human/time/cost measurements, and calculation-tool reproduction are still required.
+Next: actual Cursor/second-host clean launch, new-chat resume, official demo brief, measured calculation/time/cost, and video capture remain acceptance blockers. The feature branch is committed locally but unpublished; publish only through an approved safe branch-auth path. Human final review/submission remain necessary.
