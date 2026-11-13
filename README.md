@@ -4,7 +4,7 @@
 
 ## Состояние
 
-**File-based MVP with synthetic case exercises.** [`cases/meal-planner-demo/`](cases/meal-planner-demo/) covers local materials, a public method source, survey-denominator arithmetic, options and strategies. [`cases/fresh-start-demo/`](cases/fresh-start-demo/) was created in a fresh OMP context by following this README and `prompts/first-run.md`, then independently reviewed. Neither is a clean Cursor/Codex startup or real-user acceptance test. The organizer’s additional MegaFon demo brief and exact provenance remain `UNKNOWN`; do not invent either or any MegaFon data.
+**File-based MVP with synthetic case exercises.** [`cases/meal-planner-demo/`](cases/meal-planner-demo/) covers local materials, a public method source, survey-denominator arithmetic, options and strategies. [`cases/fresh-start-demo/`](cases/fresh-start-demo/) was created in a fresh OMP context by following this README and `prompts/first-run.md`, then independently reviewed. Neither is a clean Cursor/Codex startup or real-user acceptance test. The official [MGIMO AI Challenge landing page](https://challenge.mgimo.ai/) says partner assignments are in the personal cabinet; the exact MegaFon demo file and its provenance remain `UNKNOWN` until an authorized team member supplies it ([availability note](research/qualification/official-demo-brief-availability.md)). Do not invent the brief or MegaFon data.
 
 ## Быстрый запуск
 

@@ -1,6 +1,6 @@
 # Submission checklist — working draft
 
-Do not mark an item PASS without a saved artifact or observed run. Official demo brief/provenance remains `UNKNOWN` until checked on the organizer page.
+Do not mark an item PASS without a saved artifact or observed run. The official public page says partner assignments are in the personal cabinet; the exact MegaFon demo brief and its provenance remain `UNKNOWN` until an authorized team member obtains and verifies the file. See [`official-demo-brief-availability.md`](../research/qualification/official-demo-brief-availability.md).
 
 ## Repository and product
 
@@ -24,7 +24,7 @@ Do not mark an item PASS without a saved artifact or observed run. Official demo
 
 ## Demo and deliverables
 
-- [ ] Confirm organizer demo brief, exact deadline, file format, upload/link requirements and final account owner.
+- [ ] The public contest page says partner assignments are in the personal cabinet. Have the authorized team captain obtain the actual MegaFon brief through the account, verify the file/version, and share only the brief through an approved channel (never account credentials). Then confirm deadline, file/upload requirements and owner; do not replace the user-supplied working contract until verified.
 - [ ] Complete the demo case using only allowed/open materials; preserve source-to-claim locators and reviewer notes.
 - [ ] Record and watch the full video: no more than 10 minutes; includes intake, research, alternatives, strategy, validation and real pause/new-chat/resume/revision.
 - [ ] Check video link access; preserve the original capture and final link.
