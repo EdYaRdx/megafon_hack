@@ -1,6 +1,6 @@
 # Implementation status
 
-**Updated:** 2026-11-14  
+**Updated:** 2026-11-13  
 **Active stage:** Stage F — submission documentation drafted; clean-host acceptance and publication remain unverified  
 **Working baseline:** `codex/megafon-mvp-file-agent`; latest fresh-start checkpoint `c908627` (`feat: add fresh-start synthetic decision case`); post-hardening F3 diagnostic saved under `research/sol-audit/eval-results/F3-hardening-20261114/`.  
 **Latest artifacts:** F1/F2/F3 exploratory evaluations; meal-planner revision 3; fresh-start README workflow case; F3 post-hardening natural-prompt diagnostic; architecture, planned video run sheet, checklist and README links. Fresh-start case was independently reviewed and corrected; this is not an IDE PASS. **Product acceptance:** incomplete.
@@ -21,7 +21,7 @@
 | ≥3 distinct options, status quo/stop, strong objections | `cases/meal-planner-demo/options.md` | Four distinct paths: status quo, discovery/prototype, paid launch, stop; each has a counterargument and revisit condition | Independent acceptance of strategic distinctness against contest brief | P0 |
 | Product + communication strategy and validation | `strategy-product.md`, `strategy-communication.md`, `test-plan.md` | Strategies are linked; no unsupported public promise; plan states comparator, measures/denominators, time, decision gates, guardrails | Human/independent review; no real experiment is authorized or run | P0 |
 | Pause/resume/revise | `.agents/skills/resume-revise/`, case revisions and append-only journals | Fresh OMP task context resumed from saved revision-2 files; revision 2 preserved verbatim, revision-3 synthetic input linked to separate source/evidence/claims, and new decision/state/journal appended. Independent reviewer checked artifacts and flagged a source-locator defect; corrected from the input’s exact rows. | New-chat Cursor/Codex resume; actual user-supplied-data revision and IDE state recovery; final locator correction not separately re-reviewed | P0 |
-| Portability / skill discovery | root `AGENTS.md`, canonical `.agents/skills/*/SKILL.md`, README | Cursor and Codex official docs specify `.agents/skills/`; project files were opened manually in OMP tasks | GUI/IDE startup tool is unavailable here; clean Cursor and second-host skill listing/startup remain unverified | P1 |
+| Portability / skill discovery | root `AGENTS.md`, canonical `.agents/skills/*/SKILL.md`, README | Opened official Cursor *Agent Skills* docs (`https://cursor.com/docs/skills`, “Skill directories”/“SKILL.md file format”) and OpenAI Codex *Build skills* docs (`https://learn.chatgpt.com/docs/build-skills`, “Where Codex loads local skills”); no publication/version dates were displayed. Both document `.agents/skills/` project discovery. All six local skills have required `name`/`description` metadata matching folder names. | GUI/IDE startup tool unavailable here; clean Cursor and second-host skill listing/startup remain unverified | P1 |
 | Research integrity / security | `references/*`, `AGENTS.md` | Provenance, status labels, untrusted-source and human gates inspected | Adversarial fixture and observed host-permission test | P1 |
 | Reproducible calculations / state safety | CSV + claim/evidence journals | Ratios recalculated: 24/120=20%, 15/24=62.5%, 15/120=12.5%; no population extrapolation; revision history preserved | Repeat in fresh host; identify whether deterministic calculation tooling is needed | P1 |
 | Comparative evaluation | Sol/Luna protocol; F1/F2/F3 synthetic fixtures and F2 targeted hardening runs | F1 B0/B1/A 2/8, 8/8, 7/8; F2 3/8, 5/8, 5/8; F3 7/8, 7/8, 8/8. F2 run 44 integration 6/8; run 45 scored 6/8 in both reviews; natural-prompt run 47 scored 6/8 in both reviews. Post-hardening F3 natural-prompt run 44 scored 7/8 in both reviews, no P0; diagnostic only. One answer per run; exploratory only. | Human review; model/resource equivalence; calculation-tool reproduction; no causal or superiority claim |
@@ -40,7 +40,7 @@
 ## Current defects / risks
 
 1. Synthetic cases exercise file workflow but none is a clean Cursor/Codex acceptance run or real user study.
-2. Skills use documented Cursor/Codex project path `.agents/skills/`; actual host UI discovery was not exercised.
+2. Cursor and Codex documentation supports the repository’s single `.agents/skills/` tree (sources and locators in `docs/submission-architecture.md`); actual host UI discovery was not exercised.
 3. Current tool surface provides file/read/search/task operations, but no Cursor/Codex GUI or computer-use launch. A real IDE startup and new-chat test cannot be observed in this session; manually reading the files in OMP is not an equivalent pass.
 4. No official MegaFon demo brief, real product data, observed billing, second-host run, or video package is available.
 
