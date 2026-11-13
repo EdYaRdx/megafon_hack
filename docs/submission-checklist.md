@@ -14,18 +14,33 @@ Do not mark an item PASS without a saved artifact or observed run. The official 
 - [ ] Verify all claims against actual content, paths/locators, dates and denominators; independent reviewer checks the saved artifacts and response, not just the explanation.
 - [ ] Confirm status quo, close/stop, tradeoffs, strong objections, product/communication alignment, comparator, metric denominator, period, guardrails and threshold/revisit are explicit or honestly `UNKNOWN` and gated.
 
-## Prepared clean-host acceptance run
+## Manual clean-host acceptance — human-run, not yet executed
 
-**Status:** not run in Cursor or Codex. The current environment has no `cursor` command in `PATH`; `codex-cli 0.163.0` and VS Code's `code` command are present. Two detached worktrees were created from product checkpoint `1323f992c86217730435a7074d823312268862c5`, at `C:\Projects\GitHub\megafon_hack-host-acceptance-1323f99` and `C:\Projects\GitHub\megafon_hack-host-acceptance-codex-1323f99`; they are refreshed to the same docs-only checkpoint as this checklist. Run `git log -1 --oneline` in each to confirm the current SHA. Both include the six canonical skill files. GUI skill discovery and host model calls remain unobserved.
+**State:** no Cursor GUI/model run or Codex workflow run has been observed. The two detached worktrees below are test copies; do not open the populated authoring worktree. Before each host, initialize a separate run log using section 4, record the start time, and verify the worktree is clean and both hosts use the same commit. The exact commit may be read with `git rev-parse HEAD`.
 
-1. Open the prepared folder in Cursor from the Start menu (**File → Open Folder**); do not open the populated authoring worktree. In **Customize → Skills**, capture the normally discovered skill list. If Cursor is installed elsewhere, open the folder manually; do not treat a missing CLI path as proof the app is absent.
-2. In PowerShell, from the clean folder, prepare only a new case and raw synthetic inputs:
+Before any model call, use only a host entitlement already authorized for this test. If the host requires a new purchase, unapproved pay-as-you-go usage, or enabling a paid service, stop and mark `BLOCKED`; do not purchase or assume the call is free. Record any observed charge, otherwise `UNKNOWN`.
+
+**Automated tests:** the tracked-file inventory found no `tests/`, `scripts/`, `pyproject.toml`, `package.json`, `Makefile`, `tox.ini`, or `pytest.ini` runner. No code changed in this docs-only update, so do not rerun the earlier case-copy smoke checks or synthetic evaluations. This is not an automated host E2E.
+
+### 1. Cursor — clean copy, ordinary skill discovery
+
+1. In PowerShell, verify the prepared Cursor worktree before opening it:
 
    ```powershell
-   Set-Location 'C:\Projects\GitHub\megafon_hack-host-acceptance-1323f99'
-   $repo = (Get-Location).Path
+   $repo = 'C:\Projects\GitHub\megafon_hack-host-acceptance-1323f99'
+   Set-Location $repo
+   git status --short --branch
+   git rev-parse HEAD
+   if (git status --porcelain) { throw 'Worktree is not clean; stop and use a clean copy.' }
+   ```
+
+   Record the SHA and clean status. In Windows Start, launch Cursor → **File → Open Folder** → select this exact `$repo`. Do not open the authoring checkout. Record Cursor’s exact version from **Help → About**. In **Customize → Skills**, record the normally discovered list and capture a redacted screenshot. Required names: `intake`, `evidence-research`, `options-decision`, `strategy-communication`, `experiment-design`, `resume-revise`. Do not invoke `/skill` commands to make discovery pass. If Cursor cannot be opened, record `BLOCKED`; the missing CLI alone is not a host test.
+
+2. In the same PowerShell session, create an empty case containing only the brief and raw synthetic inputs:
+
+   ```powershell
    $case = Join-Path $repo 'cases\host-acceptance-smoke'
-   if (Test-Path $case) { throw "Choose a new, empty case path; do not overwrite." }
+   if (Test-Path $case) { throw 'Case path already exists; choose a new empty path, never overwrite.' }
    Copy-Item (Join-Path $repo 'cases\_template') $case -Recurse
    New-Item -ItemType Directory -Path (Join-Path $case 'input') | Out-Null
    $source = Join-Path $repo 'cases\meal-planner-demo'
@@ -34,36 +49,135 @@ Do not mark an item PASS without a saved artifact or observed run. The official 
    Copy-Item (Join-Path $source 'input\beta-survey.csv') (Join-Path $case 'input\beta-survey.csv')
    ```
 
-   Do **not** copy the populated case's sources, evidence, claims, options, decision, strategies, plan, state, activity, or revision notes into this new case. Ask the host to fetch/open the public method source `https://www.gov.uk/service-manual/user-research/user-research-in-discovery` directly. If the host cannot open it, record the failure rather than using the existing snapshot as a live fetch.
-3. In the host's chat (Cursor Chat or the active Codex CLI session), use `prompts/first-run.md` and direct the agent to work only in `cases/host-acceptance-smoke/`, follow `AGENTS.md` and the canonical skill for each step, and complete the workflow from the supplied brief. Require source locators; for the CSV ratios, have the agent use a calculation tool available in that host and save its formula/query, input rows, units, and output. If the host exposes no permitted calculation tool, record `UNKNOWN/BLOCKED`; the existing OMP jq result does not count as host evidence. Also require three distinct options including status quo and stop, aligned product/communication strategies, a gated validation plan, and an exact next action in state. Do not give the result ratios as prompt answers; check the arithmetic independently afterward. No real data, contact, spending, build, or launch.
-4. Pause after the full R1 artifacts are saved and one explicitly named case QA task remains in `state.md`. Copy the synthetic follow-up only after pausing:
+   Do not copy any populated case sources, journals, claims, options, decisions, strategies, test plan, state, activity, or revisions. Leave the copied template placeholders and empty ledgers unchanged before the first chat. The brief and inputs are wholly synthetic.
+
+3. In Cursor Chat, send this **single ordinary request**. Do not name, select, or invoke individual skills:
+
+   ```text
+   Проведи сквозную приёмку синтетического дела только в cases/host-acceptance-smoke/. Прочитай brief, исходные input-файлы, AGENTS.md и prompts/first-run.md; соблюдай проектные инструкции и штатное обнаружение возможностей. Не называй, не выбирай и не вызывай отдельные skills вручную; не подставляй готовые ответы.
+
+   Начни с решения, которое надо принять, владельца решения, аудитории, срока, цели, ограничений и неизвестного. Задай только вопросы, ответы на которые действительно меняют следующий шаг. Не придумывай отсутствующие сведения: если ответ не дан в brief, зафиксируй UNKNOWN и продолжай только до безопасного, явно ограниченного вывода; никакой реальный запуск не разрешён.
+
+   Затем исследуй предоставленные материалы и напрямую открой публичную методическую страницу https://www.gov.uk/service-manual/user-research/user-research-in-discovery через доступный host-инструмент. Запиши проверяемые источники, точные локаторы, доказательства, утверждения, знаменатели и ограничения; используй статусы OBSERVED, DOCUMENTED, CLAIMED, INFERENCE, HYPOTHESIS и UNKNOWN в соответствии с references/. Пересчитай релевантные показатели CSV доступным расчётным инструментом и сохрани формулу/запрос, входные строки, единицы и результат. Не используй в ответе заранее подставленные результаты из других дел. Если нужный инструмент или сайт недоступен, зафиксируй попытку и ошибку и не называй расчёт/источник проверенным.
+
+   Подготовь не менее трёх содержательно разных вариантов, включая status quo и остановку направления; укажи сильные возражения и условную рекомендацию. Свяжи продуктовую стратегию с коммуникационной: аудитория, проверяемое обещание, доказательства/запреты, каналы и риски должны быть согласованы. Подготовь план проверки с comparator, метриками и знаменателями, периодом, guardrails, владельцем, порогами или явными UNKNOWN и правилом решения/пересмотра.
+
+   Сохраняй результат в файлах дела и журналах по существующей структуре. Перед завершением проверь согласованность источников, evidence, claims и ссылок на файлы; обнови state.md и activity.jsonl с текущим этапом, человеческими гейтами и одним точным следующим действием. До паузы создай revisions/ и точные снимки revisions/state-r1.md и revisions/decision-r1.md. Не используй закрытые данные, не связывайся с людьми, не трать деньги, не публикуй и не запускай продукт. В конце перечисли созданные/обновлённые файлы, непроверенное, ошибки, повторы и время/расходы со статусом UNKNOWN, если телеметрия недоступна.
+   ```
+
+   If the agent asks for missing decision facts, answer `UNKNOWN — not supplied; do not invent; continue only with the bounded synthetic analysis above.` Do not supply the desired recommendation or calculated ratios.
+
+### 2. First-run stage gates and expected files
+
+| Stage | Required case files | PASS | FAIL / BLOCKED |
+|---|---|---|---|
+| Intake | `brief.md`, `state.md`, appended `activity.jsonl` | Decision, owner, audience, deadline and constraints captured; only decision-changing questions; missing answers remain `UNKNOWN`. | Fabricated facts, skipped material questions, or unsupported certainty. |
+| Evidence/research | `sources.jsonl`, `evidence.jsonl`, `claims.jsonl`; source snapshot under `sources/` when available | Direct page attempt and exact locator; source/evidence/claim references resolve; claim statuses distinguish observation, documentation, claim, inference, hypothesis and unknown; CSV calculation includes input rows, formula, numerator, denominator, units and host-tool result. | URL-only citation, wrong denominator, invented source content; tool/site unavailable is `BLOCKED`, never PASS. |
+| Alternatives/decision | `options.md`, `decision.md`, updated `claims.jsonl` and `state.md` | At least three materially different options, including status quo and stop; tradeoffs and strong objections; conditional, human-review-only recommendation. | Fewer or cosmetic options, omitted stop/status quo, no serious objection, or launch presented as approved. |
+| Strategy/validation | `strategy-product.md`, `strategy-communication.md`, `test-plan.md` | Strategies agree on audience, value, evidence, promise and limits. Plan names comparator, metric/denominator, period, guardrails, owner, decision rule and revisit trigger; unknowns remain gated. | Contradictory promise/strategy or missing comparator, metric/guardrail/decision rule. |
+| R1 pause | `revisions/state-r1.md`, `revisions/decision-r1.md`, current `state.md`, appended `activity.jsonl` | Exact snapshots saved; one named unfinished task and one exact next action; no real-world validation or launch approval claimed. | No snapshots/pending task, or case says complete despite unfinished work. |
+| New-chat resume/revise | `input/revision-2-research-note.md`, current `state.md`/`decision.md`, appended ledgers as warranted | New session reads saved state, finishes the named task, labels note synthetic, appends only justified successors/events, and preserves both R1 snapshots byte-for-byte. | Snapshot hash changes, silent repetition, lost provenance, or synthetic claims promoted to real evidence. |
+
+Missing files, invented source content, wrong denominator, forced/manual skill invocation, hand-written outputs standing in for agent work, overwritten R1 snapshots, or unlogged retries are `FAIL`. If a host tool or public page is unavailable, record `BLOCKED` with the exact attempt and error; do not report a full PASS. Verify R1 hashes before and after resume:
+
+```powershell
+Get-FileHash -Algorithm SHA256 -Path (Join-Path $case 'revisions\state-r1.md'), (Join-Path $case 'revisions\decision-r1.md')
+```
+
+Append both hash outputs, labeled “before resume” and “after resume,” to the run log.
+
+3. After the R1 gate passes, pause the first chat. Only then copy the new synthetic input:
 
    ```powershell
    Copy-Item (Join-Path $source 'input\revision-2-research-note.md') `
      (Join-Path $case 'input\revision-2-research-note.md')
    ```
 
-   Open a genuinely new chat/session in the same host (for Codex, start a new `codex` CLI session). Ask it to resume from saved files, complete the named pending task, assess the new note, append successor claims/events, and preserve exact R1 decision/state snapshots. PASS only if it reads the saved state, does not silently repeat completed work, records the new input's synthetic provenance, and leaves real-world unknowns/gates intact.
-5. For the second-host run, use the separate Codex worktree and its own case directory. In a new PowerShell session:
+   Open a genuinely new Cursor chat in the same worktree and send:
+
+   ```text
+   Continue this case from its saved files. First read state.md and identify the current revision and exact next action; do not rely on the previous chat. Complete the named pending task, inspect the new input/revision-2-research-note.md as synthetic evidence, and update only the successor evidence/claims/decision/state needed. Do not repeat completed source lookup or calculations without a recorded reason. Preserve revisions/state-r1.md and revisions/decision-r1.md byte-for-byte; append the event and record provenance, limits, errors and the next action. Do not invoke a skill explicitly or treat synthetic reports as real-world evidence.
+   ```
+
+### 3. Codex — repeat independently on its clean copy
+
+1. Open a new PowerShell session and verify the separate Codex worktree:
 
    ```powershell
-   Set-Location 'C:\Projects\GitHub\megafon_hack-host-acceptance-codex-1323f99'
+   $repo = 'C:\Projects\GitHub\megafon_hack-host-acceptance-codex-1323f99'
+   Set-Location $repo
    git status --short --branch
-   $repo = (Get-Location).Path
+   git rev-parse HEAD
+   if (git status --porcelain) { throw 'Worktree is not clean; stop and use a clean copy.' }
+   ```
+
+   Require the same commit SHA as the Cursor copy. Use the setup block below to seed a separate empty case, then run `codex --version`, start `codex`, and run `/skills`; save the ordinary listing before sending the exact first-run request. Do not type `$intake` or otherwise force a skill. Apply the same stage gates above.
+
+   ```powershell
    $case = Join-Path $repo 'cases\host-acceptance-smoke'
-   if (Test-Path $case) { throw "Choose a new, empty case path; do not overwrite." }
+   if (Test-Path $case) { throw 'Case path already exists; choose a new empty path, never overwrite.' }
    Copy-Item (Join-Path $repo 'cases\_template') $case -Recurse
    New-Item -ItemType Directory -Path (Join-Path $case 'input') | Out-Null
    $source = Join-Path $repo 'cases\meal-planner-demo'
-   Copy-Item (Join-Path $source 'brief.md') (Join-Path $case 'brief.md')
+   Copy-Item (Join-Path $source 'brief.md') $case
    Copy-Item (Join-Path $source 'input\concept-note.md') (Join-Path $case 'input\concept-note.md')
    Copy-Item (Join-Path $source 'input\beta-survey.csv') (Join-Path $case 'input\beta-survey.csv')
    ```
 
-   This seeds only raw inputs in the Codex worktree; do not reuse Cursor outputs. Start `codex`, verify `/skills` normally, and repeat steps 3–4 using this worktree and case. Do not use explicit skill invocation to mask discovery failure.
-6. For each host, record host/version, model/provider only if shown, discovered skill names, prompt, created files, source locators, one resumed incomplete task, revision/snapshot result, errors/retries, elapsed operator time, tool time, tokens/cost or `UNKNOWN`, and redacted screenshots in `research/qualification/host-acceptance/<host>-<version>/`.
+   After R1 is complete and paused, copy the same revision-2 note:
 
-**Pass gate:** both host listings and complete workflows are observed on separate clean copies of the same commit; source lookup is direct; output is newly generated; no manual writes substitute for agent work; saved-state resume and R1 preservation are verified. Missing GUI access, normal skill discovery, direct source access, or tool telemetry is a recorded FAIL/UNKNOWN, not a pass.
+   ```powershell
+   Copy-Item (Join-Path $source 'input\revision-2-research-note.md') `
+     (Join-Path $case 'input\revision-2-research-note.md')
+   ```
+
+   Save the R1 hashes, exit the current Codex session, and start a genuinely new `codex` session from the same worktree. Send the same resume request as in Cursor. Do not reuse Cursor’s case outputs.
+
+### 4. Run records, PASS/FAIL, and evidence
+
+For each host/run create `research/qualification/host-acceptance/<host>-<version>/<run-id>/run-log.md`. Record: local start/end timestamps for each stage; host/version; worktree commit SHA and clean status; normally discovered skill names; model/provider only if displayed; exact prompts; generated-file manifest; public URL plus opened locator; calculation tool/formula/output or `BLOCKED`; new-chat result; retries/errors and their resolution; operator elapsed time; tool time; tokens/charges only from host telemetry. Unavailable values are `UNKNOWN`, never guessed. Redact account identifiers and all secrets. Do not save credentials, cookies, personal information, raw OMP logs, or an unredacted desktop transcript.
+
+Use this PowerShell setup once per run. Enter the exact host version in the slug (e.g. `codex-0.163.0`; for Cursor, use the version from **Help → About**) and use only letters, digits, dot, underscore or hyphen.
+
+```powershell
+$hostKey = Read-Host 'Host and version slug, e.g. codex-0.163.0'
+if ($hostKey -notmatch '^[A-Za-z0-9._-]+$') { throw 'Use only letters, digits, dot, underscore or hyphen.' }
+$base = 'C:\Projects\GitHub\megafon_hack\research\qualification\host-acceptance'
+New-Item -ItemType Directory -Path $base -Force | Out-Null
+$runId = Get-Date -Format 'yyyyMMdd-HHmmss'
+$hostRoot = Join-Path $base $hostKey
+New-Item -ItemType Directory -Path $hostRoot -Force | Out-Null
+$runDir = Join-Path $hostRoot $runId
+if (Test-Path $runDir) { throw 'Run folder already exists; choose a new runId.' }
+New-Item -ItemType Directory -Path $runDir | Out-Null
+$repo = (Get-Location).Path
+$sha = (git rev-parse HEAD).Trim()
+$startedAt = Get-Date -Format o
+$log = Join-Path $runDir 'run-log.md'
+@"
+# Host acceptance run
+Host/version: $hostKey
+Commit: $sha
+Worktree: $repo
+Started (local ISO-8601): $startedAt
+Model/provider: UNKNOWN until displayed
+Skills shown normally:
+Stages (start/end, elapsed, PASS/FAIL/BLOCKED):
+Errors/retries (append before retry):
+Human time:
+Tool time:
+Tokens/observed charges: UNKNOWN until host telemetry is visible
+Generated file manifest and redacted evidence:
+"@ | Set-Content -Encoding utf8 $log
+Write-Output $log
+```
+
+For each stage, capture start/end with `Get-Date -Format o`; calculate elapsed with `New-TimeSpan -Start $stageStart -End $stageEnd`. Append errors, retries and any manual assistance immediately. Use application telemetry for model/provider/tokens/charges; do not estimate. Never use `Start-Transcript` around account or credential screens.
+
+
+Capture redacted screenshots of the normal skills listing and the generated case/resume evidence. Log each failure before retrying; manual edits to product outputs invalidate the “agent-generated workflow” PASS. Record the R1 SHA-256 output both before and after resume. A host-specific workflow passes only if all stage gates pass without forced skill calls or manual output substitution. Overall manual acceptance passes only when both hosts pass on separate cases at the same commit. Unknown cost remains an explicit cost limitation, not a measured cost.
+
+The Codex `debug prompt-input` diagnostic previously showed all six names in the generated prompt input; it is not a normal `/skills` listing or workflow PASS. No host E2E is claimed until the above real run is recorded.
 
 
 ## Security, costs, and limitations
