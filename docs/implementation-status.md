@@ -3,7 +3,7 @@
 **Updated:** 2026-11-13  
 **Active stage:** Stage F — submission documentation drafted; clean-host acceptance and publication remain unverified  
 **Working baseline:** `codex/megafon-mvp-file-agent`; latest artifact checkpoint `e0b0f37` (`test: add source-injection workflow diagnostic`); fresh-start case checkpoint `c908627`.  
-**Latest artifacts:** F1/F2/F3 exploratory evaluations; F8 source-injection diagnostic and evidence-skill fix; meal-planner revision 3; fresh-start README workflow case; architecture, planned video run sheet, checklist and README links. Fresh-start case was independently reviewed and corrected; this is not an IDE PASS. **Product acceptance:** incomplete.
+**Latest artifacts:** F1/F2/F3 exploratory evaluations; F8 source-injection diagnostic and evidence-skill fix; meal-planner revision 3; fresh-start README workflow case; architecture, host verification checklist, planned video run sheet, submission checklist and README links. Fresh-start case was independently reviewed and corrected; this is not an IDE PASS. **Product acceptance:** incomplete.
 
 ## Repository and safety audit
 
@@ -35,7 +35,7 @@
  - **Resume/revision evidence:** revision 1/2 preserved; revision 2 was processed in the authoring session; revision 3 was resumed and processed by a fresh OMP task context using saved files only. Revision-2 state/decision preserved verbatim; revision-3 source/evidence/claims segregated, recommendation reevaluated, and event appended. Independent reviewer found an off-by-one row-locator error; it was corrected against the opened input table (rows 7–8). No repeated public research or pooling. This is not a Cursor/Codex new-chat test.
  - **Evaluation evidence:** F1 B0/B1/A scored 2/8, 8/8, 7/8; F2 3/8, 5/8, 5/8; F3 7/8, 7/8, 8/8. F2 run 44 was integration-adjudicated 6/8 (blind 6/8 and 7/8); run 45 scored 6/8 in both reviews; natural-prompt run 47 scored 6/8 in both reviews. Post-hardening F3 natural-prompt run 44 scored 7/8 in two blind task-context reviews, no P0: explicit status quo/stop and a numerator/denominator were present; the validation plan remains non-executable because key design inputs are unknown. F8 source-injection run 1 scored 7/8 in both reviews (no P0); run 2, a targeted post-skill regression, scored 8/8 in both final reviews (no P0). Run 1 exposed an invented locator, corrected in the skill and not repeated in run 2. F8 is local Markdown/prompt-level evidence, not proof of host security. These single-response diagnostics are not controlled before/after comparisons. Model/provider equivalence, human time, tokens and billing unknown. No causal or superiority claim.
 
-- **Submission-doc review:** an independent reviewer inspected the saved README, architecture, video script, checklist, hardened skills and F2 run-45/47 evidence; no actionable documentation defect found. Reviewer did not independently open Cursor/Codex documentation and did not test any host behavior.
+- **Submission-doc review:** An independent reviewer inspected the README, architecture, video script, checklist and F2 evidence. A second reviewer checked current README/checklist host-path instructions against official Cursor/Codex docs and all six local skill names; no findings. Neither reviewer tested actual host behavior.
 
 ## Current defects / risks
 
@@ -45,4 +45,4 @@
 4. No official MegaFon demo brief, real product data, observed billing, second-host run, or video package is available.
 5. F8 tests only a synthetic local Markdown source in OMP task contexts. It does not test website/PDF ingestion, IDE behavior, or host-level permission enforcement; no security certification follows.
 
-Next: highest-value remaining acceptance work still needs unavailable host access: run a clean case and adversarial website/PDF in Cursor and a second host; test IDE new-chat resume/revision and real host permissions; safely publish the feature branch; record the demo; obtain any official demo brief. No calculation tool was run and no model/time/cost comparison is verified. Keep user-owned files intact; human review/submission required.
+Next human action when GUI access is available: follow item 11 in `docs/submission-checklist.md`—open the project in Cursor and a second host, record the actual discovered skill names and redacted host/version evidence under the specified path, and mark failures honestly. Then complete the clean-case, real new-chat resume/revision and host-permission checks; separately resolve safe branch publication, actual demo recording and official brief. No calculation tool, model/time/cost comparison, or IDE run is verified. Keep user-owned files intact; human review/submission required.
