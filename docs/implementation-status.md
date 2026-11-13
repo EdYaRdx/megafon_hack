@@ -7,7 +7,7 @@
 
 ## Repository and safety audit
 
-- At the repository audit snapshot, the branch was one commit ahead of `origin`; several local follow-up commits are now recorded after `ba8817b`. No force-push or branch switch occurred. These commits have **not** been pushed. No safe remote-authentication/publishing path was verified; do not access stored personal Git/SSH credentials.
+- At the repository audit snapshot, the branch was one commit ahead of `origin`; several local follow-up commits are now recorded after `ba8817b`. No force-push or branch switch occurred. These commits have **not** been pushed. Anonymous reads of the supplied repository URL and feature-branch URL returned HTTP 404; public availability is unverified. No safe remote-authentication/publishing path was verified; do not access stored personal Git/SSH credentials.
 - The previously staged `MGIMO_RESEARCH_TO_IMPLEMENTATION.md` is present upstream at `984b529`; it was not included in `ba8817b`. `.omp/profiles/product-build.yml` remains user-owned and was excluded from all explicit commits.
 - `docs/contest-brief.md` was read in full as the working contract. Exact organizer provenance and the additional MegaFon demo brief remain `UNKNOWN`; neither blocks this explicitly authorized implementation.
 - No real MegaFon/customer data or secrets are used. The retention example is explicitly synthetic.
