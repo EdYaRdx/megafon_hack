@@ -2,7 +2,7 @@
 
 **Updated:** 2026-11-14  
 **Active stage:** Stage F — submission documentation drafted; clean-host acceptance and publication remain unverified  
-**Working baseline:** `codex/megafon-mvp-file-agent`; submission-document checkpoint `685566f` (`docs: prepare architecture and submission materials`)  
+**Working baseline:** `codex/megafon-mvp-file-agent`; latest fresh-start checkpoint `c908627` (`feat: add fresh-start synthetic decision case`)
 **Latest artifacts:** F1/F2/F3 exploratory evaluations; meal-planner revision 3; fresh-start README workflow case; architecture, planned video run sheet, checklist and README links. Fresh-start case was independently reviewed and corrected; this is not an IDE PASS. **Product acceptance:** incomplete.
 
 ## Repository and safety audit
