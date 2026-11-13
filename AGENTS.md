@@ -6,14 +6,24 @@
 
 ## Start and resume
 
-1. Прочитай brief и `state.md` активного дела. Для нового дела сначала выполни `.agents/skills/intake/SKILL.md`.
+1. Прочитай brief и `state.md` активного дела. Для нового дела сначала выполни `.agents/skills/intake/SKILL.md`; для паузы, продолжения или новых данных в существующем деле — до изменения файлов прочитай и следуй `.agents/skills/resume-revise/SKILL.md`.
 2. Проверь текущий этап и открытые вопросы. Не повторяй завершённые действия без причины.
 3. Для паузы обнови state: сделано, файлы/ID доказательств, нерешённое, точный следующий шаг, дата.
 4. При новом сеансе перечитай state и связанные доказательства; прежний вывод агента не считай фактом.
 
 ## Workflow
 
-`intake → evidence-research → options-decision → strategy-communication → experiment-design → decision/resume`
+`intake → evidence-research → options-decision → strategy-communication → experiment-design (validation plan) → decision/resume`
+
+Перед выполнением этапа прочитай его единственный канонический skill; процедуры хранятся только там:
+- `intake` — `.agents/skills/intake/SKILL.md`
+- `evidence-research` — `.agents/skills/evidence-research/SKILL.md`
+- `options-decision` — `.agents/skills/options-decision/SKILL.md`
+- `strategy-communication` — `.agents/skills/strategy-communication/SKILL.md`
+- `experiment-design` (validation plan) — `.agents/skills/experiment-design/SKILL.md`
+- `decision/resume` — `.agents/skills/resume-revise/SKILL.md`
+
+Не копируй содержимое навыков в это руководство; прочитай нужный файл по текущему этапу.
 
 Пропускай шаг только с объяснением. Возвращайся к нему при новом противоречии или изменившемся условии.
 
