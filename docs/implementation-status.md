@@ -1,9 +1,9 @@
 # Implementation status
 
 **Updated:** 2026-11-14  
-**Active stage:** Stage E — exploratory evaluation; final-output contracts hardened and natural-prompt F2 regression reviewed  
-**Working baseline:** `codex/megafon-mvp-file-agent`; latest evidence checkpoint `6b71017` (`docs: harden decision memo evidence and validation rules`)
-**Latest artifacts:** meal-planner revision 3; F1/F2/F3 comparisons and F2 hardening runs 44/45/47 reviewed. Run 47 scored 6/8 in two blind reviews, no P0. **Product acceptance:** incomplete.
+**Active stage:** Stage F — submission documentation drafted; clean-host acceptance and recording remain blocked/unverified  
+**Working baseline:** `codex/megafon-mvp-file-agent`; latest evidence checkpoint `6b71017` (`docs: harden decision memo evidence and validation rules`)  
+**Latest artifacts:** F1/F2/F3 exploratory evaluations; meal-planner revision 3; architecture, planned video run sheet, checklist, and README links drafted. **Product acceptance:** incomplete.
 
 ## Repository and safety audit
 
@@ -25,11 +25,11 @@
 | Research integrity / security | `references/*`, `AGENTS.md` | Provenance, status labels, untrusted-source and human gates inspected | Adversarial fixture and observed host-permission test | P1 |
 | Reproducible calculations / state safety | CSV + claim/evidence journals | Ratios recalculated: 24/120=20%, 15/24=62.5%, 15/120=12.5%; no population extrapolation; revision history preserved | Repeat in fresh host; identify whether deterministic calculation tooling is needed | P1 |
 | Comparative evaluation | Sol/Luna protocol; F1/F2/F3 synthetic fixtures and F2 targeted hardening runs | F1 B0/B1/A 2/8, 8/8, 7/8; F2 3/8, 5/8, 5/8; F3 7/8, 7/8, 8/8. F2 run 44 integration 6/8; run 45 6/8 in both reviews; run 47 natural prompt 6/8 in both reviews. One answer per run; exploratory only. | Human review; model/resource equivalence; calculation-tool reproduction; no causal or superiority claim |
-| Submission package | README, two synthetic cases, research notes | New case and limitations are documented; no official partner demo, video or final architecture/cost report | Recheck official brief; clean run; write report/video script; record ≤10 min video; submission checklist | P1 |
+| Submission package | README; `docs/submission-architecture.md`, `demo-video-script.md`, `submission-checklist.md` | Architecture/limitations, a planned ≤10-minute video run sheet, checklist, and README links exist; all explicitly say not clean-host tested or recorded | Confirm official demo brief; clean IDE/second-host run; complete and record demo; measure actual cost; prepare final screenshots/document; submission still not made | P1 |
 
 ## Implemented vs. described vs. verified
 
- - **Implemented as repository files:** six skills in `.agents/skills/`; evidence/security/metrics references; reusable template; synthetic retention, meal-planner, conflicting-terms and service-launch cases; source/evidence/claim journals, options, strategies, validation plans, activity and state.
+ - **Implemented as repository files:** six skills in `.agents/skills/`; evidence/security/metrics references; reusable template; synthetic retention, meal-planner, conflicting-terms and service-launch cases; source/evidence/claim journals, options, strategies, validation plans, activity and state. Submission architecture, video run sheet, checklist and README links are drafted, not final evidence.
  - **Described but not demonstrated:** autonomous step selection; actual IDE skill loading; cancel/stop UX; new-chat IDE resume/revision; multi-format ingestion; host isolation; cost transparency; comparative benefit.
  - **Evidence presently checked:** contest brief, branch baseline, skills and source rules; GOV.UK discovery page content/locator; F2 conflicting terms and locators; F2 JSONL records and critical dates/prices/regions/caps; F3 synthetic input locators. F1 rates and F3 threshold arithmetic were checked against fixture inputs and blind reviews; no calculation tool execution was available.
  - **Resume/revision evidence:** revision 1/2 preserved; revision 2 was processed in the authoring session; revision 3 was resumed and processed by a fresh OMP task context using saved files only. Revision-2 state/decision preserved verbatim; revision-3 source/evidence/claims segregated, recommendation reevaluated, and event appended. Independent reviewer found an off-by-one row-locator error; it was corrected against the opened input table (rows 7–8). No repeated public research or pooling. This is not a Cursor/Codex new-chat test.
@@ -42,4 +42,4 @@
 3. Current tool surface provides file/read/search/task operations, but no Cursor/Codex GUI or computer-use launch. A real IDE startup and new-chat test cannot be observed in this session; manually reading the files in OMP is not an equivalent pass.
 4. No official MegaFon demo brief, real product data, observed billing, second-host run, or video package is available.
 
-Next: checkpoint the tightened Agent Skills and F2 run-47 evidence. Keep clean IDE startup/resume, human scoring, model/cost controls, calculation-tool reproduction, and video package as blockers. F1/F3 arithmetic was not run through a calculation tool; run-47's test plan correctly remains not ready pending owner-set sample, period, baseline, thresholds, and approval.
+Next: checkpoint the submission documentation and status. Do not mark host portability or video as passed: this session has no Cursor/Codex GUI or computer-launch capability. The video remains only a plan; actual capture, clean-host/new-chat resume, second-host run, human/time/cost measurements, and calculation-tool reproduction are still required.
