@@ -14,7 +14,7 @@ All users, counts, concepts, costs, and outcomes are fictional. No option is app
 
 - **Action:** first study real user goals/workarounds with consent and appropriate recruitment; prototype a narrow idea only after evidence identifies a job and safety constraints. Human approval required before contact.
 - **Value/cost:** improves decision quality while delaying paid launch; research and prototype costs, recruitment, effect, and timeline are UNKNOWN.
-- **Basis:** initial survey evidence is non-random (`C-001`, `C-002`); revision-2 fictional exercise has both positive reports and counterexamples but is not real evidence (`C-006`); discovery method source supports investigating current goals/problems (`C-004`).
+- **Basis:** initial survey evidence is non-random (`C-001`, `C-002`); distinct revision-2 and revision-3 synthetic fixtures contain both problem reports and counterexamples (`C-006`–`C-008`), not evidence of actual need; discovery method source supports investigating current goals/problems (`C-004`).
 - **Strongest objection:** discovery costs time and may be unnecessary if competitors or existing behavior already establish the need; no such evidence was supplied here.
 - **Revisit/falsifier:** discovery finds no recurring, consequential unmet need, or a safe/feasible prototype cannot be built within owner-approved constraints.
 
@@ -22,7 +22,7 @@ All users, counts, concepts, costs, and outcomes are fictional. No option is app
 
 - **Action:** commit to build, price, and promote a service on the requested date.
 - **Value/cost:** could capture an opportunity sooner; build cost, revenue, demand, safety, support, and date feasibility are all UNKNOWN.
-- **Basis:** only 15 synthetic clicks from a non-random tester cohort (`C-001`, `C-002`); a second synthetic note does not validate demand (`C-006`).
+- **Basis:** only 15 synthetic clicks from a non-random tester cohort (`C-001`, `C-002`); separate revision-2 and revision-3 fictional notes do not validate demand or product readiness (`C-006`–`C-008`).
 - **Strongest objection:** the central user need, product capability, safe dietary handling, economics, and conversion are unvalidated; this risks both a false promise and wasted delivery.
 - **Revisit/falsifier:** verified user need, capability/safety review, credible price/economic case, operational readiness, and an owner-approved launch gate.
 

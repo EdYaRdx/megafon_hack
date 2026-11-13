@@ -2,6 +2,10 @@
 
 Not an approved study or experiment. No real participants were contacted. Proposed durations and sample are planning parameters, not observed evidence; the owner/research lead must approve recruitment, consent, and scope before any contact.
 
+## Revision 3 evidence boundary
+
+The separate revision-2 (8 fictional reports) and revision-3 (10 fictional invitees) notes are scenario fixtures, not discovery-study participants. Revision 3 records 2 problem mentions and 8 adequate-routine counterexamples (`E-006`) and remains separate from revision 2 (`E-005`) and the synthetic click table (`E-002`). Neither update changes the gated study design or supplies population prevalence, demand, or success thresholds. No stage is authorized; obtain the human approvals and define criteria stated above before any contact.
+
 ## Stage 1 — problem discovery
 
 - **Question:** which users, if any, have a recurring dinner-planning job with a meaningful unmet need, and what do they do today?

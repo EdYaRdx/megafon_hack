@@ -8,7 +8,7 @@ Do not commit to a paid launch from the current survey. Proposed next step: obta
 
 - Real audience and job: `UNKNOWN`; “busy households” is not validated (`C-003`, `C-005`).
 - Current alternatives/workarounds: `UNKNOWN`; collect through approved discovery rather than inventing them.
-- Candidate capability: weekly dinner suggestions using a time limit and preferences; not built and not a commitment (`E-001`).
+- Candidate capability: return weekly dinner suggestions using a time limit and preferences; not built and not a commitment (`E-001`). Keep capability to suggestions only; no booking, purchase, or execution.
 
 ## Value, cost, and refusals
 
@@ -17,6 +17,6 @@ Do not commit to a paid launch from the current survey. Proposed next step: obta
 - Do not launch, price, or promise dietary suitability or time saved until capability and safety are reviewed.
 - Stop exploration if approved discovery identifies no consequential unmet need or no feasible safe proposition under owner-set cost limits.
 
-- Revision 2 adds only a fictional case-level signal (`C-006`): 5/8 imagined reports and 3 counterexamples. It does not change real-evidence status or establish demand; the discovery-first recommendation remains conditional.
+- Revision 3 adds a separate fictional set (`C-007`): 2/10 problem mentions and 8/10 adequate-routine counterexamples, distinct from revision 2's 5/8 and 3/8. The scenario-level signal is mixed/weaker, but neither fixture establishes real need, no-need, or demand; discovery-first remains conditional on human approval.
 
 The recommendation preserves an option to learn; it is not a claim that the add-on is valuable or commercially viable.

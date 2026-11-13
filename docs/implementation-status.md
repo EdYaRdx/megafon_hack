@@ -1,14 +1,14 @@
 # Implementation status
 
-**Updated:** 2026-11-13  
-**Active stage:** Stage A — vertical slice  
-**Working baseline:** `codex/megafon-mvp-file-agent` at `3675280` (`feat: add file-first product strategy MVP workflow`)  
-**Latest verified artifact revision:** `cases/meal-planner-demo/`, revision 2 synthetic case; reviewer and independent context-recovery check completed. **Product acceptance:** still incomplete; host runtime tests not run.
+**Updated:** 2026-11-14  
+**Active stage:** Stage E — exploratory matched evaluation; Stage C saved-state resume/revision completed in a fresh OMP task context, not in an IDE  
+**Working baseline:** `codex/megafon-mvp-file-agent`; checkpoint `ba8817b` (`feat: execute synthetic product strategy vertical slice`)  
+**Latest evaluated artifacts:** meal-planner revision 3; F1 retention, F2 conflicting terms, and F3 service-launch one-shot comparisons reviewed. **Product acceptance:** incomplete.
 
 ## Repository and safety audit
 
-- Current branch is the dedicated MVP branch and tracks `origin/codex/megafon-mvp-file-agent`; it is based on the successive `codex/sol-audit` and `codex/product-research-v4` work. These branch refs are present locally/remotely. `main` is a separate, older research snapshot; the feature branch is 67 changed paths / +2,163 −93 versus local `main` at audit time.
-- Existing user changes are preserved: staged `MGIMO_RESEARCH_TO_IMPLEMENTATION.md` and untracked `.omp/profiles/product-build.yml`. Neither is part of this implementation. No branch switch, reset, cleanup, or user-file edit performed.
+- Current branch `codex/megafon-mvp-file-agent` is one commit ahead of `origin/codex/megafon-mvp-file-agent` at audit snapshot; earlier commits include product research and Sol audit. No branch switch or history rewrite was performed.
+- The previously staged `MGIMO_RESEARCH_TO_IMPLEMENTATION.md` is now present in upstream checkpoint `984b529`; it was not included in `ba8817b`. `.omp/profiles/product-build.yml` remains the user's untracked file and is excluded from this work.
 - `docs/contest-brief.md` was read in full as the working contract. Exact organizer provenance and the additional MegaFon demo brief remain `UNKNOWN`; neither blocks this explicitly authorized implementation.
 - No real MegaFon/customer data or secrets are used. The retention example is explicitly synthetic.
 
@@ -20,25 +20,26 @@
 | Documents, tables, permitted websites; traceable evidence | `.agents/skills/evidence-research/`, `cases/meal-planner-demo/` journals/input | Read concept note and synthetic CSV; opened GOV.UK page; checked relevant content and section locator; source/evidence/claim links parsed | Clean-host replay; independently review citations and formats beyond Markdown/CSV | P0 |
 | ≥3 distinct options, status quo/stop, strong objections | `cases/meal-planner-demo/options.md` | Four distinct paths: status quo, discovery/prototype, paid launch, stop; each has a counterargument and revisit condition | Independent acceptance of strategic distinctness against contest brief | P0 |
 | Product + communication strategy and validation | `strategy-product.md`, `strategy-communication.md`, `test-plan.md` | Strategies are linked; no unsupported public promise; plan states comparator, measures/denominators, time, decision gates, guardrails | Human/independent review; no real experiment is authorized or run | P0 |
-| Pause/resume/revise | `.agents/skills/resume-revise/`, case revisions and append-only journals | Same-session revision processed; an independent read-only OMP context recovered the saved revision-2 state, next action, and unknowns without chat history | Fresh chat in a supported IDE and real new-data revision | P0 |
-| Portability / skill discovery | root `AGENTS.md`, canonical `.agents/skills/*/SKILL.md`, README | File-based workflow and skill format exist; skill source instructions reviewed | Verify discovery in supported hosts; clean launch in two hosts | P1 |
+| Pause/resume/revise | `.agents/skills/resume-revise/`, case revisions and append-only journals | Fresh OMP task context resumed from saved revision-2 files; revision 2 preserved verbatim, revision-3 synthetic input linked to separate source/evidence/claims, and new decision/state/journal appended. Independent reviewer checked artifacts and flagged a source-locator defect; corrected from the input’s exact rows. | New-chat Cursor/Codex resume; actual user-supplied-data revision and IDE state recovery; final locator correction not separately re-reviewed | P0 |
+| Portability / skill discovery | root `AGENTS.md`, canonical `.agents/skills/*/SKILL.md`, README | Cursor and Codex official docs specify `.agents/skills/`; project files were opened manually in OMP tasks | GUI/IDE startup tool is unavailable here; clean Cursor and second-host skill listing/startup remain unverified | P1 |
 | Research integrity / security | `references/*`, `AGENTS.md` | Provenance, status labels, untrusted-source and human gates inspected | Adversarial fixture and observed host-permission test | P1 |
 | Reproducible calculations / state safety | CSV + claim/evidence journals | Ratios recalculated: 24/120=20%, 15/24=62.5%, 15/120=12.5%; no population extrapolation; revision history preserved | Repeat in fresh host; identify whether deterministic calculation tooling is needed | P1 |
-| Comparative evaluation | `research/sol-audit/evaluation-plan.md`, Luna/Sol research | Protocol and constraints exist; prior product runs are not claimed | Matched B0/B1/A execution with comparable inputs, tools, telemetry and independent review | P1 |
+| Comparative evaluation | Sol/Luna protocol; F1/F2/F3 synthetic fixtures and `eval-results/` | Two blind LLM task contexts agreed on F1 scores B0/B1/A 2/8, 8/8, 7/8; F2 3/8, 5/8, 5/8; F3 7/8, 7/8, 8/8; no P0 reported. All one response per arm, exploratory; model/tool equivalence, human time, tokens and cost unknown. | New-chat IDE resume; human scoring; verify model/resource controls; tool-reproduced critical calculations; no superiority claim |
 | Submission package | README, two synthetic cases, research notes | New case and limitations are documented; no official partner demo, video or final architecture/cost report | Recheck official brief; clean run; write report/video script; record ≤10 min video; submission checklist | P1 |
 
 ## Implemented vs. described vs. verified
 
- - **Implemented as repository files:** six skills in `.agents/skills/`; evidence/security/metrics references; reusable template; synthetic retention and meal-planner cases with source/evidence/claim journals, options, decision drafts, strategies, validation plans, activity and state.
- - **Described but not demonstrated:** autonomous step selection, host UI skill loading, cancel/stop UX, new-chat resume/revision, multi-format ingestion, trustworthy host isolation, cost transparency and comparative benefit.
- - **Evidence presently checked:** contest contract, branch graph/status/diff, core skills/instructions, opened GOV.UK discovery page and relevant content, and a new synthetic case using a local concept note, CSV, exact URL/section, claim/evidence links, four alternatives, aligned strategies and gated validation plan. JSONL journals were parsed; calculations manually recomputed.
-- **Resume/revision evidence:** revision 1 decision/state preserved; revision 2 processed a new synthetic note, retained counterexamples, and left real demand UNKNOWN. An independent OMP task context reconstructed current state and exact next step from files only (PASS); that does not prove a new-chat run in Cursor/Codex.
+ - **Implemented as repository files:** six skills in `.agents/skills/`; evidence/security/metrics references; reusable template; synthetic retention, meal-planner, conflicting-terms and service-launch cases; source/evidence/claim journals, options, strategies, validation plans, activity and state.
+ - **Described but not demonstrated:** autonomous step selection; actual IDE skill loading; cancel/stop UX; new-chat IDE resume/revision; multi-format ingestion; host isolation; cost transparency; comparative benefit.
+ - **Evidence presently checked:** contest brief, branch baseline, skills and source rules; GOV.UK discovery page content/locator; F2 conflicting terms and locators; F2 JSONL records and critical dates/prices/regions/caps; F3 synthetic input locators. F1 rates and F3 threshold arithmetic were checked against fixture inputs and blind reviews; no calculation tool execution was available.
+ - **Resume/revision evidence:** revision 1/2 preserved; revision 2 was processed in the authoring session; revision 3 was resumed and processed by a fresh OMP task context using saved files only. Revision-2 state/decision preserved verbatim; revision-3 source/evidence/claims segregated, recommendation reevaluated, and event appended. Independent reviewer found an off-by-one row-locator error; it was corrected against the opened input table (rows 7–8). No repeated public research or pooling. This is not a Cursor/Codex new-chat test.
+ - **Evaluation evidence:** F1 B0/B1/A scored 2/8, 8/8, 7/8; F2 3/8, 5/8, 5/8; F3 7/8, 7/8, 8/8 by two separate LLM task contexts each. No P0 reported. One fixture/arm each; model/provider, tool/resource equivalence, human time, tokens and billing unknown. F3 B0/B1 do not clearly condition the 4,000 paid-shop-month hurdle on full-cap spend.
 
 ## Current defects / risks
 
-1. Product README now links a new case but does not imply host acceptance or real-world validity.
-2. Canonical skills have moved from root `skills/` to `.agents/skills/`, the project-level location documented by Cursor and Codex. Discovery is supported by their docs; actual IDE loading remains unverified. Do not retain duplicate copies.
-3. No runtime/CLI exists. This is not yet a defect: add one only if the slice demonstrates a concrete correctness or resume failure.
-4. No official MegaFon demo brief, actual product data, observed costs, or second host run is available.
+1. README contains a second synthetic case, not a clean host/product acceptance result.
+2. Skills use documented Cursor/Codex project path `.agents/skills/`; actual host UI discovery was not exercised.
+3. Current tool surface provides file/read/search/task operations, but no Cursor/Codex GUI or computer-use launch. A real IDE startup and new-chat test cannot be observed in this session; manually reading the files in OMP is not an equivalent pass.
+4. No official MegaFon demo brief, real product data, observed billing, second-host run, or video package is available.
 
-Next: test skill loading and state restoration in a clean new host session. Then run the matched B0/B1/A cases from the saved Sol/Luna protocol; preserve the user's staged/untracked files when checkpointing.
+Next: save a selective Git checkpoint without `.omp/profiles/product-build.yml`. Keep clean IDE startup, human scoring, model/cost controls, calculation-tool reproduction, and video package as blockers. F1/F3 arithmetic was checked from fixture inputs and blind reviews but not run through a calculation tool; the corrected revision-3 locator has not been separately re-reviewed.

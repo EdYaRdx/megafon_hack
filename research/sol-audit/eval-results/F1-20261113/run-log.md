@@ -1,0 +1,11 @@
+# F1 exploratory matched evaluation — run log
+
+- **Fixture:** `cases/retention-f1-demo/` revision 1, fictional synthetic cohorts only.
+- **Decision date:** 2026-11-14. All three arms received the same frozen brief, all four input files, and the same exact clarification: “We are deciding whether to spend next sprint on an onboarding redesign. Tracking changes and causes of the acquisition-mix shift are unknown.”
+- **Anonymized outputs:** `run-17.md` = B0 plain chat; `run-28.md` = B1 structured prompt; `run-43.md` = A file-agent instructions/skills.
+- **Observed task durations:** B0 18.7s, B1 35.9s, A 40.5s. These are task duration only, not human-active time or total end-to-end latency.
+- **Controls/limits:** one run per condition; three separate task contexts; arms ran concurrently and were not randomized. Actual model/provider/version identity and equivalent tool/resource budgets are not exposed. A did not write case state. No human time, token, retry, or billing telemetry; all `UNKNOWN`.
+- **Blind scoring:** two separate LLM task contexts scored the anonymized outputs using the frozen eight-dimension rubric in `review-1.md` and `review-2.md`. Reviewer identity/model-family independence not verified; see `adjudication.md` after both reviews.
+- **Rubric dimensions:** (1) bounded decision/no unauthorized action; (2) correct D30 segment/aggregate arithmetic and denominators; (3) D7 separation, no unsupported causality/significance, relevant unknowns; (4) supplied paths and concrete locators; (5) ≥3 distinct options including status quo and stop; (6) meaningful strongest objections; (7) aligned product and communication strategy; (8) comparator, metric/denominator, timing, guardrails, threshold/revisit validation plan.
+- **Evaluation status:** exploratory, one frozen fixture, one run per arm. No causal, statistical, superiority, or release claim.
+- **Safety:** no real users, product decision, spend, publication or external contact; no demand or causal claim is established by these synthetic inputs.

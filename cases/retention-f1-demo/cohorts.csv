@@ -1,0 +1,6 @@
+period,channel,retained,eligible,window
+old,direct,80,100,D30
+old,partner,60,100,D30
+new,direct,44,50,D30
+new,partner,93,150,D30
+latest,all,35,100,D7

@@ -1,19 +1,23 @@
-# Case state
+# Case state — revision 3
 
-- Updated at: 2026-11-13
-- Revision: 2
+- Updated at: 2026-11-13 (processing date; new input scenario date 2026-11-14)
+- Revision: 3
 - Current stage: `DECISION_DRAFT`
 - Decision status: `HUMAN_REVIEW_REQUIRED`
-- Resume performed: re-read saved brief, state, journals, source locators, and decision artifacts before processing the revision-2 test note. Revision 1 remains preserved under `revisions/`.
-- Completed: revision-1 workflow; synthetic revision-2 source/evidence/claim; checked positive reports and counterexamples; reevaluated dependent claim and option rationale; retained the conditional discovery recommendation; did not repeat public research or authorize external action.
-- Evidence/claim IDs: `S-001..S-004`; `E-001..E-005`; `C-001..C-006`.
-- Open questions: actual audience/job; survey instrument and recruitment; capability and safety; delivery costs, price and economics; launch authority/date; owner-approved research population/threshold.
-- Limitations: every product, table, and revision-2 report is synthetic; the public source is method guidance only; real-market demand is UNKNOWN; no real people contacted, no approval, no product launch, no external action.
-- Next exact action: a real owner must review whether any discovery study is authorized and define its population, consent, and decision criteria. A new host session is still required to verify cross-chat resume; this revision was processed in the current authoring session.
-- Human decision needed: yes, before research contact, product commitment, pricing, spend, test, or public communication.
-- Model/tool/cost telemetry: the host did not expose provider-call, token, or billing details; model usage and exact cost are `UNKNOWN`.
+- Resume performed: resumed from saved case files in a fresh OMP task context; re-read the brief, state, decision, strategies, options, test plan, journals, revision records, and inputs before evaluating revision 3. This is not an IDE or external-human resume test.
+- Completed before this revision: revision-1 workflow and revision-2 synthetic resume/revision; checked its 5/8 problem reports and 3/8 counterexamples, retained conditional discovery recommendation, and did not repeat public research or authorize external action.
+- Revision 3 completed: preserved revision-2 decision/state verbatim in `revisions/decision-r2.md` and `revisions/state-r2.md`; recorded separate synthetic `S-005`/`E-006` and claims `C-007`/`C-008`; revised scenario-level assessment, decision, and aligned strategy references. Revision-1 preserved unchanged.
+- Evidence/claim IDs: `S-001..S-005`; `E-001..E-006`; `C-001..C-008`.
+- What changed: the separate fictional purposive set reports 2/10 current-problem descriptions and 8/10 adequate-tool/routine counterexamples. This makes the scenario-level signal mixed and weaker than revision 2's separate reports, but does not alter real-world UNKNOWNs or the recommendation to defer launch.
+- What was not repeated: public source research and revision-2 arithmetic; no recalculation or pooling of revision-2's 8 reports with revision-3's 10 or with the synthetic 120-invitee click table.
+- Open unknowns: real audience/job and current workaround; representative recruitment and instrument; actual need; capability and safety; delivery costs, price and economics; launch authority/date; owner-approved population, consent, scope, and decision criteria.
+- Limitations/status: every product, table, and revision-2/revision-3 report is synthetic; public source is method guidance only; real demand is UNKNOWN. No real people contacted, approval obtained, product action taken, launch, spend, or publication authorized. Model, token, and cost telemetry are `UNKNOWN` because not exposed.
+- Exact next action: a human owner must decide whether to authorize a bounded discovery study and, only if approved, define target population, recruitment, consent, scope, and pre-set decision criteria. Until that approval, stop: no participant contact, experiment, build, spend, pricing, launch, or external communication.
+- Human approval gates: explicit owner approval before research contact or any product commitment, test, spend, or public communication; further launch decision requires validated user problem, safe scoped capability, credible cost/price inputs, and owner-set threshold.
+- Stop/resume status: paused pending human approval; resume only when the owner provides the authorization and study decision criteria, then proceed within that scope.
 
 ## Revision record
 
-- Revision 1: preserved in `revisions/state-r1.md` and `revisions/decision-r1.md`.
-- Revision 2: added synthetic `S-004` / `E-005`; new claim `C-006` affects scenario-level problem hypothesis only. No real-world demand conclusion changes. Option B remains conditional; option C remains unsupported.
+- Revision 1: `revisions/state-r1.md` and `revisions/decision-r1.md`.
+- Revision 2: exact state/decision snapshots preserved as `revisions/state-r2.md` and `revisions/decision-r2.md`.
+- Revision 3: separate synthetic input S-005/E-006, claims C-007/C-008; mixed scenario-level signal, no real-world conclusion or recommendation change.
