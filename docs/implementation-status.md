@@ -3,7 +3,7 @@
 **Updated:** 2026-11-14  
 **Active stage:** Stage F — submission documentation drafted; clean-host acceptance and publication remain unverified  
 **Working baseline:** `codex/megafon-mvp-file-agent`; submission-document checkpoint `685566f` (`docs: prepare architecture and submission materials`)  
-**Latest artifacts:** F1/F2/F3 exploratory evaluations; meal-planner revision 3; architecture, planned video run sheet, checklist and README links drafted. **Product acceptance:** incomplete.
+**Latest artifacts:** F1/F2/F3 exploratory evaluations; meal-planner revision 3; fresh-start README workflow case; architecture, planned video run sheet, checklist and README links. Fresh-start case was independently reviewed and corrected; this is not an IDE PASS. **Product acceptance:** incomplete.
 
 ## Repository and safety audit
 
@@ -16,7 +16,7 @@
 
 | Requirement | Existing component | Evidence checked | Missing step | Priority |
 |---|---|---|---|---|
-| Intake and decision-relevant questions | `.agents/skills/intake/`, `cases/meal-planner-demo/brief.md` | New ambiguous service-launch brief records owner/audience unknowns and four decision-changing questions | Fresh host run; collect human answers only if authorized | P0 |
+| Intake and decision-relevant questions | `.agents/skills/intake/`, `cases/fresh-start-demo/` | Fresh OMP context followed README/first-run; clarified authorization decision and documented unknown owner, constraints and fixed synthetic answer | Real IDE/new-chat replay; human answers only with authorization | P0 |
 | Documents, tables, permitted websites; traceable evidence | `.agents/skills/evidence-research/`, `cases/meal-planner-demo/` journals/input | Read concept note and synthetic CSV; opened GOV.UK page; checked relevant content and section locator; source/evidence/claim links parsed | Clean-host replay; independently review citations and formats beyond Markdown/CSV | P0 |
 | ≥3 distinct options, status quo/stop, strong objections | `cases/meal-planner-demo/options.md` | Four distinct paths: status quo, discovery/prototype, paid launch, stop; each has a counterargument and revisit condition | Independent acceptance of strategic distinctness against contest brief | P0 |
 | Product + communication strategy and validation | `strategy-product.md`, `strategy-communication.md`, `test-plan.md` | Strategies are linked; no unsupported public promise; plan states comparator, measures/denominators, time, decision gates, guardrails | Human/independent review; no real experiment is authorized or run | P0 |
@@ -29,7 +29,7 @@
 
 ## Implemented vs. described vs. verified
 
- - **Implemented as repository files:** six skills in `.agents/skills/`; evidence/security/metrics references; reusable template; synthetic retention, meal-planner, conflicting-terms and service-launch cases; source/evidence/claim journals, options, strategies, validation plans, activity and state. Submission architecture, video run sheet, checklist and README links are drafted, not final evidence.
+ - **Implemented as repository files:** six skills in `.agents/skills/`; evidence/security/metrics references; reusable template; synthetic retention, meal-planner, conflicting-terms, service-launch and fresh-start cases; source/evidence/claim journals, options, strategies, validation plans, activity and state. Submission architecture, video run sheet, checklist and README links are drafts, not final evidence.
  - **Described but not demonstrated:** autonomous step selection; actual IDE skill loading; cancel/stop UX; new-chat IDE resume/revision; multi-format ingestion; host isolation; cost transparency; comparative benefit.
  - **Evidence presently checked:** contest brief, branch baseline, skills and source rules; GOV.UK discovery page content/locator; F2 conflicting terms and locators; F2 JSONL records and critical dates/prices/regions/caps; F3 synthetic input locators. F1 rates and F3 threshold arithmetic were checked against fixture inputs and blind reviews; no calculation tool execution was available.
  - **Resume/revision evidence:** revision 1/2 preserved; revision 2 was processed in the authoring session; revision 3 was resumed and processed by a fresh OMP task context using saved files only. Revision-2 state/decision preserved verbatim; revision-3 source/evidence/claims segregated, recommendation reevaluated, and event appended. Independent reviewer found an off-by-one row-locator error; it was corrected against the opened input table (rows 7–8). No repeated public research or pooling. This is not a Cursor/Codex new-chat test.
@@ -39,9 +39,9 @@
 
 ## Current defects / risks
 
-1. README contains a second synthetic case, not a clean host/product acceptance result.
+1. Synthetic cases exercise file workflow but none is a clean Cursor/Codex acceptance run or real user study.
 2. Skills use documented Cursor/Codex project path `.agents/skills/`; actual host UI discovery was not exercised.
 3. Current tool surface provides file/read/search/task operations, but no Cursor/Codex GUI or computer-use launch. A real IDE startup and new-chat test cannot be observed in this session; manually reading the files in OMP is not an equivalent pass.
 4. No official MegaFon demo brief, real product data, observed billing, second-host run, or video package is available.
 
-Next: actual Cursor/second-host clean launch, new-chat resume, official demo brief, measured calculation/time/cost, and video capture remain acceptance blockers. The feature branch is committed locally but unpublished; publish only through an approved safe branch-auth path. Human final review/submission remain necessary.
+Next: checkpoint the fresh-start case and reviewer correction. Then continue with reachable acceptance work; Cursor/second-host launch, IDE new-chat resume, official demo brief, measured calculation/time/cost, video, and safe remote publication remain blockers. Human final review/submission required.

@@ -4,7 +4,7 @@
 
 ## Состояние
 
-**File-based MVP, now with a second synthetic end-to-end case in [`cases/meal-planner-demo/`](cases/meal-planner-demo/).** The case exercises local materials, a public source, survey-denominator calculations, options, strategies, and a handoff. This is not yet a clean-host acceptance run or independent human acceptance. The exact organizer provenance and additional MegaFon demo brief remain unknown; do not invent either or any MegaFon data.
+**File-based MVP with synthetic case exercises.** [`cases/meal-planner-demo/`](cases/meal-planner-demo/) covers local materials, a public method source, survey-denominator arithmetic, options and strategies. [`cases/fresh-start-demo/`](cases/fresh-start-demo/) was created in a fresh OMP context by following this README and `prompts/first-run.md`, then independently reviewed. Neither is a clean Cursor/Codex startup or real-user acceptance test. The organizer’s additional MegaFon demo brief and exact provenance remain `UNKNOWN`; do not invent either or any MegaFon data.
 
 ## Быстрый запуск
 
