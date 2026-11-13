@@ -4,11 +4,11 @@
 
 ## Состояние
 
-**MVP workflow подготовлен; синтетический пример workflow есть в [`cases/retention-demo/`](cases/retention-demo/), но полноценная продуктовая демонстрация и приёмочная проверка ещё не выполнены.** В репозитории есть текст задания пользователя, но его точное совпадение с публикацией организатора и дополнительный демо-бриф МегаФона не подтверждены. Не выдумывай требования демо-брифа или данные МегаФона.
+**File-based MVP, now with a second synthetic end-to-end case in [`cases/meal-planner-demo/`](cases/meal-planner-demo/).** The case exercises local materials, a public source, survey-denominator calculations, options, strategies, and a handoff. This is not yet a clean-host acceptance run or independent human acceptance. The exact organizer provenance and additional MegaFon demo brief remain unknown; do not invent either or any MegaFon data.
 
 ## Быстрый запуск
 
-1. Открой эту папку в coding assistant, который может читать локальные файлы и при необходимости искать/открывать публичные источники. Если host не подхватывает `AGENTS.md` и `skills/` автоматически, явно приложи их к контексту.
+1. Открой эту папку в coding assistant, который может читать локальные файлы и при необходимости искать/открывать публичные источники. Cursor и Codex документируют автоматическое обнаружение проектных навыков в `.agents/skills/` ([Cursor](https://cursor.com/docs/skills), [Codex](https://developers.openai.com/codex/skills)); другие hosts должны поддерживать Agent Skills или читать навык явно по его пути. Поддержка конкретной IDE/режима здесь пока не проверялась запуском.
 2. Создай дело, скопировав `cases/_template/` в `cases/<короткий-id>/`.
 3. Вставь задачу из `prompts/first-run.md` и укажи путь к brief. Если в brief не хватает сведений, агент спросит только о том, что меняет следующий шаг.
 4. Проверяй этапы по `cases/<id>/state.md`. Решение и внешние обещания утверждает человек.
@@ -22,7 +22,7 @@
 ## Что включено
 
 - `AGENTS.md` — основная инструкция агенту и гейты качества.
-- `skills/` — intake, исследование доказательств, варианты, стратегии, эксперименты и продолжение после паузы.
+- `.agents/skills/*/SKILL.md` — единственная каноническая копия intake, исследования доказательств, вариантов, стратегий, экспериментов и продолжения после паузы.
 - `references/` — статусы утверждений, правила работы с источниками и метриками.
 - `cases/_template/` — переносимый шаблон отдельного дела с раздельными фактами, гипотезами, решениями и состоянием.
 - `prompts/first-run.md` — короткая команда для первого запуска.
