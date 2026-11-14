@@ -1,11 +1,13 @@
-MGIMO Research V3 — unattended research + scoped Git publication
+Стратег Фабрики продуктов — быстрый старт
 
-Prerequisites: Windows, OMP installed/authenticated, Git push permission, private repo C:\Projects\GitHub\megafon_hack, already-qualified .omp/profiles/research.yml / research-luna.yml / research-night.yml, docs/contest-brief.md with user-provided text, no secrets accessible to agent.
+Это папка с инструкциями и файлами продуктового AI-агента. OMP и отдельный runtime для работы с делами не нужны.
 
-Unzip THIS archive to repo root. Start from ordinary PowerShell:
-  cd C:\Projects\GitHub\megafon_hack
-  .\start-overnight-product-research-v3.cmd
+1. Откройте корень репозитория в coding assistant, имеющем доступ к локальным файлам.
+2. Прочитайте `AGENTS.md` и `docs/quickstart.md`.
+3. Скопируйте `cases/_template/` в `cases/<case-id>/`, заполните `brief.md`, отметьте UNKNOWN и используйте `prompts/first-run.md`.
+4. Записывайте outputs только в новую папку дела. Не меняйте примеры и исторические кейсы.
+5. При продолжении сначала прочитайте `state.md` и `.agents/skills/resume-revise/SKILL.md`; используйте только проверенную полную ревизию.
 
-Research agent has read-only tools and cannot run arbitrary shell/git. CMD captures its final answer to research/product/overnight-research-v3.md and, only on OMP exit code 0 plus minimal report checks, commits only that report, the prompt, and docs/contest-brief.md. The remote push creates a review branch research/overnight-v3-20261111; it does NOT push to main. A successful process is not a quality certification. Review research, sources, and branch in morning before merge. No raw logs or model sessions are pushed. If existing report or staged files exist, launcher fails safely to avoid overwrites/mixed commits.
+Модель, права на файлы/сеть, инструменты и Skill discovery зависят от host. Инструкции и human approval — не sandbox и не OS enforcement. Не добавляйте секреты, закрытые данные или персональные данные.
 
-The report can be incomplete even when OMP exits 0: this is a research draft, not an accepted decision.
+`start-overnight-product-research-v3.cmd`, `.omp/` и `research/` относятся к исторической разработке и исследованию, не к запуску продукта. Не запускайте исследовательский launcher как Quick Start.
