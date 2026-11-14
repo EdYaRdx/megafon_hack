@@ -57,10 +57,9 @@ Skills — файловые процедуры, а не работающий о�
 
 ## Документы и примеры
 
-- [Документация](docs/README.md) · [Quick Start](docs/quickstart.md) · [Архитектура](docs/architecture.md)
+- [Документация](docs/README.md) · [Quick Start](docs/quickstart.md) · [Архитектура](docs/architecture.md) · [Разработка](docs/development.md)
 - [Оценка и доказательства](docs/evaluation.md) · [Submission checklist](docs/submission-checklist.md)
 - [Каталог кейсов](cases/README.md) · [Research/dev-only индекс](research/README.md)
-- [Конкурсный бриф](docs/contest-brief.md) · [Лимиты и безопасность](references/security-and-source-handling.md)
 
 ## Для разработчиков и исследователей
 

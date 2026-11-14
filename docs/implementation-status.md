@@ -1,6 +1,6 @@
 # Текущий статус реализации и приёмки
 
-**Дата среза:** 2026-11-14. **Ожидаемая основа по задаче:** baseline `98cd57ef8d0ba5e919c505466fa82f4e4653b9fe`; branch `docs/product-polish-20261114`; исходная ветка `codex/mgimo-hardening-20261114`. **Reference audit:** `audit/hardening-acceptance-20261114` at `672aa5c83616f813c7dd9dc0598a1c8e20f8e7e9`. Эти SHA/branch предоставлены пользователем; в этом worktree Git не запускался и равенство HEAD не проверялось.
+**Дата среза:** 2026-11-14. Текущая продуктовая приёмка взята из заданного baseline и сохранённых acceptance/audit reports, не из изменений документации ниже. Репозиторный baseline этой задачи: `7fd1ae68cd597c5a046de568d336f39791f25855` на `release/product-repository-20261114`; `origin/main` при старте: `7bbe59d37d4c1e13f0fd4453f7605e8d2f601d42`. Опубликованный audit reference: `672aa5c83616f813c7dd9dc0598a1c8e20f8e7e9`.
 
 ## Current acceptance snapshot
 
@@ -37,7 +37,7 @@
 6. **Найденные product P0/P1.** В рассмотренном scope подтверждённых product P0/P1 не найдено. Отдельный исторический [`docs/release/preprod-report.md`](release/preprod-report.md) фиксировал release/process gate и ограничения своего checkout/run; он не переписывается и не становится доказательством product vulnerability.
 7. **Contest.** `docs/contest-brief.md` — предоставленный рабочий текст. По заметке, публичная страница MGIMO от 2026-11-13 направляла к партнерскому заданию в личный кабинет; содержимое MegaFon-файла и provenance в доступных материалах неизвестны. Это не утверждение, что задания не было опубликовано.
 
-Источники границ: [evaluation summary](evaluation.md), [Codex synthetic acceptance review](../research/qualification/host-acceptance/codex-0.169.0/20261114-r1-r2/acceptance-review.md), [historical Sol preprod audit](../research/audits/sol-preprod-2026-11-14/final-verdict.md), [demo-brief availability note](../research/qualification/official-demo-brief-availability.md). Audit branch/commit reference указан в задаче, но его содержимое не открывалось средствами Git в этой сессии; актуальные gate states выше взяты из пользовательского baseline.
+Источники границ: [evaluation summary](evaluation.md), [Codex synthetic acceptance review](../research/qualification/host-acceptance/codex-0.169.0/20261114-r1-r2/acceptance-review.md), [historical Sol preprod audit](../research/audits/sol-preprod-2026-11-14/final-verdict.md), [demo-brief availability note](../research/qualification/official-demo-brief-availability.md), и опубликованный [hardening acceptance audit](https://github.com/EdYaRdx/megafon_hack/commit/672aa5c83616f813c7dd9dc0598a1c8e20f8e7e9). Эти материалы имеют разные scopes; audit commit не равен актуальному dynamic acceptance sign-off.
 
 ## Безопасность и воспроизводимость
 

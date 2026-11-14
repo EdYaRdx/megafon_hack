@@ -1,6 +1,6 @@
 # Evaluation и доказательства
 
-**Срез:** baseline/reference branch и commit указаны в задаче: [`98cd57e`](https://github.com/EdYaRdx/megafon_hack/commit/98cd57ef8d0ba5e919c505466fa82f4e4653b9fe); независимый audit reference — [`672aa5c`](https://github.com/EdYaRdx/megafon_hack/commit/672aa5c83616f813c7dd9dc0598a1c8e20f8e7e9) на `audit/hardening-acceptance-20261114`. Это user-provided references, не ссылки, содержимое которых было открыто или Git-сверено в этой сессии. Current gate statuses взяты из user-provided acceptance baseline.
+**Срез:** продуктовые gate statuses приведены из принятого task baseline от 2026-11-14 и сохранённых acceptance/audit reports; запись ниже не превращает изменения репозитория в product PASS. Для этой работы baseline branch/HEAD: `release/product-repository-20261114` / `7fd1ae68cd597c5a046de568d336f39791f25855`; `origin/main` на старте: `7bbe59d37d4c1e13f0fd4453f7605e8d2f601d42`. Опубликованный hardening audit: [`672aa5c`](https://github.com/EdYaRdx/megafon_hack/commit/672aa5c83616f813c7dd9dc0598a1c8e20f8e7e9). В этой задаче audit reference и локальные reports доступны, но новые dynamic/product checks не выполнялись.
 
 ## Текущий вердикт
 
@@ -30,5 +30,38 @@
 ## Ограничения исследования
 
 Примеры и прогоны основаны на synthetic/user-supplied материалах и ограниченном наборе публичных методических источников. Они не устанавливают реальный спрос, поведение клиентов, unit economics, причинность, безопасность host, полную стоимость, преимущество перед обычным чатом или production readiness. Не подтверждены полный clean-host acceptance, cross-host portability, official demo workflow, видео и подача. План теста не равен выполненному тесту.
+## Риски, дефекты и незакрытые границы
+
+### Известные product risks / findings
+
+- Независимый исторический Sol preprod audit описал ограниченные P2 product/method findings: неучёт eligible starters с abandonment в draft task-success denominator; преждевременная фиксация retention D30 semantics; неполное concise memo/source locator contract; unsupported interpretation of orders/opens as conditional conversion. Locators, caveats и reviewer challenge — в [technical findings](../research/audits/sol-preprod-2026-11-14/technical-findings.md), [product review](../research/audits/sol-preprod-2026-11-14/product-review.md) и [final verdict](../research/audits/sol-preprod-2026-11-14/final-verdict.md). Эти scoped findings не исправлялись этим repository documentation change; старые output/ledgers не менялись.
+- В reviewed scope нет подтверждённых product P0/P1. Это ограниченное наблюдение, не доказательство отсутствия дефектов вне scope или security certification.
+
+### Test infrastructure defects
+
+- Targeted F1–F5 — **NOT ACCEPTED** из-за defects test harness/checker. Сохранённые exploratory результаты не подменяют этот gate. Исправления harness и повторные accepted runs не входят в эту структуру/doc change.
+- F6 ограничен provenance; точный status и открытые границы — в [implementation status](implementation-status.md).
+- Новый `tools/check_repository.py` проверяет только синтаксис JSON/JSONL в `cases/` и existence относительных Markdown targets в указанном product/developer scope. Его PASS не говорит о продуктовой функциональности, schema correctness, hashes, semantic references или поведении host.
+
+### Непроверенное поведение
+
+- Dynamic E2E остаётся **CONDITIONAL** только в ограниченном synthetic single-host scope; H02 **BLOCKED**; latest independent Sol acceptance sign-off **PENDING**.
+- Clean-host acceptance, cross-host portability, автоматическое обнаружение/исполнение Skills, arbitrary interrupted-write recovery, общая injection resistance и enforced least privilege не сертифицированы.
+- В рамках этой repository задачи full E2E, H02, paid research, массовые agent experiments, host acceptance и fault injection не запускались.
+
+### Конкурсные blockers
+
+- Официальный supplementary MegaFon demo brief и его provenance/version не проверены; доступные project records сообщают о задании в личном кабинете, который не открывался.
+- Видео, полный submission package, human acceptance и факт подачи не подтверждены. Contest checklist остаётся отдельным gate; отсутствие этих подтверждений не означает, что organizer не публиковал brief.
+
+### Отложенные улучшения
+
+- Исправить и независимо принять F1–F5 harness/checker до новых выводов.
+- Снять F6 provenance limitation и закрыть H02; получить latest independent Sol acceptance sign-off.
+- Получить разрешённый clean-host proof; проверить cross-host только если заявляется portability.
+- Разрешить scope-specific product findings из Sol audit до изменения затронутых product contracts; не менять старые outputs задним числом.
+- Утвердить case schema/versioning and migration contract перед любым несовместимым изменением.
+
+См. [development guide](development.md) для разграничения product tests и harness checks. Ни одна из перечисленных deferred items не обозначена как завершённая этим изменением.
 
 Для актуальных gates см. [implementation status](implementation-status.md); для классификации всех исторических материалов см. [research index](../research/README.md).

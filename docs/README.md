@@ -1,28 +1,32 @@
-# Документация
+# Documentation
 
-Навигация по продукту «Стратег Фабрики продуктов». Для первого знакомства достаточно начать с README и Quick Start; research-папки не нужны для использования агента.
+Start with the [product overview](../README.md) and [Quick Start](quickstart.md). The product is a folder-based coding-assistant workflow; `research/` and OMP are not required for first use.
 
-## Пользователю
+## Product and first use
 
-- [Корневой README](../README.md) — позиционирование, пример, статус и ссылки.
-- [Quick Start](quickstart.md) — новый case в coding assistant; без OMP.
-- [Каталог синтетических кейсов](../cases/README.md) — рекомендуемый пример, QA fixtures и исторические материалы.
-- [Ограничения и безопасность](../references/security-and-source-handling.md).
+- [Product overview and GitHub entrypoint](../README.md) — purpose, synthetic example, architecture sketch, status and limits.
+- [Quick Start](quickstart.md) — create a case and start in a compatible coding assistant.
+- [Cases index](../cases/README.md) — recommended example, QA fixtures and historical cases.
+- [Architecture](architecture.md) — canonical product architecture, Skills, data flow, state/revision/approval protocol, host boundary and chosen repository layout.
+- [Source handling and safety](../references/security-and-source-handling.md).
 
-## Техническому reviewer
+## Build and evaluate
 
-- [Архитектура и file protocol](architecture.md) — поток данных, статусы, Skills, revisions/approvals.
-- [Evaluation и evidence](evaluation.md) — проверки, scope, результаты и ограничения.
-- [Текущий implementation status](implementation-status.md) — единый acceptance snapshot.
-- [Конкурсный checklist](submission-checklist.md) — внешние и human gates, без заявления о готовой подаче.
-- [Пользовательский contest brief](contest-brief.md) — рабочий договор из предоставленного материала; точная organizer provenance не установлена.
+- [Development guide](development.md) — Skills, schemas, cases, provenance, fixtures, compatibility, reviews and releases.
+- [Evaluation](evaluation.md) — evidence, checks, current known product risks, harness defects, unverified behavior and deferred work.
+- [Implementation status](implementation-status.md) — current acceptance snapshot and scope.
+- [Clean-host E2E runbook](clean-host-e2e-runbook.md) — future procedures only; NOT RUN unless evidence says otherwise.
 
-## Разработка и история
-- [Repository inventory](repository-inventory.md) — карта product/docs/research/legacy областей и выполненный hygiene план.
+## Contest
 
-- [Research/dev-only индекс](../research/README.md) — карта исследовательских материалов и historical audits.
-- [Clean-host E2E runbook](clean-host-e2e-runbook.md) — acceptance scenarios and gates; procedure text is not evidence of execution.
-- `submission-architecture.md` — сохранённый путь прежних ссылок на архитектурный документ; содержание и текущая документация согласованы с [architecture](architecture.md).
-- `demo-video-script.md` — сценарий/план записи, не готовое видео.
-- [Historical research plan](research-plan.md) — planning snapshot; его PREPARATION/CANDIDATE notes не являются текущим запретом или acceptance status.
-- `next-session-handoff.md` — исторический handoff, оставлен для происхождения; актуальный product status см. только в `implementation-status.md`.
+- [Contest submission checklist](submission-checklist.md) — human and external gates; not proof of submission.
+- [Working contest brief](contest-brief.md) — supplied text; exact organizer provenance and supplementary MegaFon demo brief are unverified.
+- [Demo video plan](demo-video-script.md) — recording plan, not a recorded video.
+
+## Research archive and historical records
+
+- [Repository architecture inventory](repository-inventory.md) — keep/improve/archive/remove decisions and audit scope.
+- [Research archive index](../research/README.md) — dated product research, evaluations, qualifications and independent audits.
+- [Historical research plan](research-plan.md) — retained planning record; PREPARATION/CANDIDATE labels are not current release status.
+- [Previous-session handoff](next-session-handoff.md) — historical chronology; current status belongs to `implementation-status.md`.
+- [`submission-architecture.md`](submission-architecture.md) — retained compatibility path to the canonical architecture above.
