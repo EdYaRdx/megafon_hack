@@ -1,0 +1,15 @@
+# Case state — R1 pause
+
+- Updated at: 2026-11-14; clock time `UNKNOWN`.
+- Revision: R1.
+- Current stage: `PAUSED — HUMAN DECISION REQUIRED`.
+- Decision status: `RECOMMENDATION_PENDING_HUMAN`; no owner decision or action authorization.
+- Completed: intake; reviewed raw inputs; opened the GOV.UK method page; calculated CSV totals/rates; recorded source/evidence/claims; reconciled the vendor conflict; drafted options, strategies and test plan. The first files named `revisions/decision-r1.md` and `state-r1.md` were blank template snapshots, not completed R1 snapshots; their exact contents are preserved as `decision-template-before-first-run.md` and `state-template-before-first-run.md`. Canonical R1 snapshots now contain the completed R1 decision/state for the resume gate.
+- Current evidence IDs: E-001–E-006.
+- Current claim IDs (active successors only): C-001–C-004, C-006–C-009.
+- Superseded claim IDs → successor IDs: C-005 → C-009 (corrected status statement; C-009 is current).
+- Open questions: who owns the decision; whether to authorize discovery; operational stockout/low-stock definition; eligible store/SKU frame; current workflow and comparator; baseline and threshold; source/permissions for any future data; duration, capacity, costs, supplier feasibility and order authority.
+- Blockers and limitations: all case data are synthetic; six stores/18 alert records are selected, non-randomized two-week pilot records; opens/orders do not prove causal stockout reduction. No stockout outcome or eligible denominator. Vendor's 14/18 opens conflicts with CSV 13/18; 40% claim unsupported. Supplier integration/automated ordering absent. External action prohibited. Glob listing failed because of restricted `.git`; native directory reader succeeded. One initial hashline edit had an anchor mismatch; no files changed on that attempt and the corrected edit succeeded once. The Node arithmetic command via bash ran before the later parent clarification prohibited shell; this deviation is recorded in `activity.jsonl`; no shell was used after clarification. Initial R1 snapshot paths were blank template files and are preserved under `*-template-before-first-run.md`; canonical R1 snapshots were corrected to match the completed R1 decision/state before resume. Host behavior and available tools are not established by this OMP task.
+- Next exact action (one unfinished task): identify the human product decision owner (currently `UNKNOWN`) and obtain that person's explicit decision on whether to authorize bounded read-only discovery/test planning; before any test or sprint commitment, the owner must resolve the definitions, comparator, eligibility, baseline/threshold, permissions and safeguards listed above. Until then do nothing externally and do not implement or launch.
+- Human decision needed: identify owner and approve/reject proposed discovery step; no consequential choice has been made.
+- Cost/time/call telemetry: model/provider `UNKNOWN`; exact duration `UNKNOWN`; cost `UNKNOWN`; one edit retry observed; no external product actions. Runtime/host limits unverified.

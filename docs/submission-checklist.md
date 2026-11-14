@@ -16,18 +16,65 @@ Do not mark an item PASS without a saved artifact or observed run. The official 
 
 ## Manual clean-host acceptance — human-run, not yet executed
 
-**State:** no Cursor GUI/model run or Codex workflow run has been observed. The two detached worktrees below are test copies; do not open the populated authoring worktree. Before each host, initialize a separate run log using section 4, record the start time, and verify the worktree is clean and both hosts use the same commit. The exact commit may be read with `git rev-parse HEAD`.
+**State:** no Cursor GUI/model run or Codex workflow run has been observed. The previously prepared detached worktrees are at commit prefix `1323f99`, older than this phase’s last verified baseline `f621e0b9f9a0401910c28c5789a3d11d6f310b72`; they do not contain the uncommitted overnight case/report/status edits. Do not treat them as acceptance copies for the current reviewed state. Before each host, create/refresh a clean copy at one exact reviewed commit and verify both hosts use that same SHA; the overnight edits have no committed SHA yet. Initialize a separate run log, record start time, verify clean status and commit. Do not open the populated authoring worktree.
 
 Before any model call, use only a host entitlement already authorized for this test. If the host requires a new purchase, unapproved pay-as-you-go usage, or enabling a paid service, stop and mark `BLOCKED`; do not purchase or assume the call is free. Record any observed charge, otherwise `UNKNOWN`.
 
 **Automated tests:** the tracked-file inventory found no `tests/`, `scripts/`, `pyproject.toml`, `package.json`, `Makefile`, `tox.ini`, or `pytest.ini` runner. No code changed in this docs-only update, so do not rerun the earlier case-copy smoke checks or synthetic evaluations. This is not an automated host E2E.
+
+### 0. Create identical clean worktrees for host acceptance
+
+The last verified committed baseline is `f621e0b9f9a0401910c28c5789a3d11d6f310b72`. The older pre-created `1323f99` worktrees do not match it. Overnight case/report/status edits remain uncommitted and are not present in either worktree; this run tests the committed product baseline, not those uncommitted artifacts. Use a separate human-reviewed commit if acceptance must include them.
+
+In PowerShell, create two new detached worktrees without overwriting existing paths:
+
+```powershell
+$source = 'C:\Projects\GitHub\megafon_hack'
+$sha = 'f621e0b9f9a0401910c28c5789a3d11d6f310b72'
+$cursorRepo = 'C:\Projects\GitHub\megafon_hack-host-acceptance-f621e0b'
+$codexRepo = 'C:\Projects\GitHub\megafon_hack-host-acceptance-codex-f621e0b'
+foreach ($path in @($cursorRepo, $codexRepo)) {
+    if (Test-Path $path) { throw "Path already exists; choose a new empty folder: $path" }
+}
+$cursorOutput = & git -C $source worktree add --detach $cursorRepo $sha 2>&1
+$cursorExit = $LASTEXITCODE
+if ($cursorExit -ne 0) {
+    $cursorOutput | Write-Output
+    throw "Cursor worktree add failed (exit code $cursorExit); record the output and stop."
+}
+$cursorOutput | Write-Output
+$codexOutput = & git -C $source worktree add --detach $codexRepo $sha 2>&1
+$codexExit = $LASTEXITCODE
+if ($codexExit -ne 0) {
+    $codexOutput | Write-Output
+    throw "Codex worktree add failed (exit code $codexExit); record the output and stop."
+}
+$codexOutput | Write-Output
+$cursorShaOutput = & git -C $cursorRepo rev-parse HEAD 2>&1
+$cursorShaExit = $LASTEXITCODE
+if ($cursorShaExit -ne 0) {
+    $cursorShaOutput | Write-Output
+    throw "Cursor worktree rev-parse failed (exit code $cursorShaExit); record the output and stop."
+}
+$cursorSha = ($cursorShaOutput -join "`n").Trim()
+$codexShaOutput = & git -C $codexRepo rev-parse HEAD 2>&1
+$codexShaExit = $LASTEXITCODE
+if ($codexShaExit -ne 0) {
+    $codexShaOutput | Write-Output
+    throw "Codex worktree rev-parse failed (exit code $codexShaExit); record the output and stop."
+}
+$codexSha = ($codexShaOutput -join "`n").Trim()
+if ($cursorSha -ne $sha -or $codexSha -ne $sha) { throw 'Worktrees do not match the intended commit.' }
+```
+
+If any Git command fails, record its exact printed output and exit code, then stop; do not run the next command, force, or overwrite. Use the same source commit in both hosts.
 
 ### 1. Cursor — clean copy, ordinary skill discovery
 
 1. In PowerShell, verify the prepared Cursor worktree before opening it:
 
    ```powershell
-   $repo = 'C:\Projects\GitHub\megafon_hack-host-acceptance-1323f99'
+   $repo = 'C:\Projects\GitHub\megafon_hack-host-acceptance-f621e0b'
    Set-Location $repo
    git status --short --branch
    git rev-parse HEAD
@@ -104,7 +151,7 @@ Append both hash outputs, labeled “before resume” and “after resume,” to
 1. Open a new PowerShell session and verify the separate Codex worktree:
 
    ```powershell
-   $repo = 'C:\Projects\GitHub\megafon_hack-host-acceptance-codex-1323f99'
+   $repo = 'C:\Projects\GitHub\megafon_hack-host-acceptance-codex-f621e0b'
    Set-Location $repo
    git status --short --branch
    git rev-parse HEAD
@@ -149,9 +196,16 @@ $hostRoot = Join-Path $base $hostKey
 New-Item -ItemType Directory -Path $hostRoot -Force | Out-Null
 $runDir = Join-Path $hostRoot $runId
 if (Test-Path $runDir) { throw 'Run folder already exists; choose a new runId.' }
-New-Item -ItemType Directory -Path $runDir | Out-Null
 $repo = (Get-Location).Path
-$sha = (git rev-parse HEAD).Trim()
+$shaOutput = & git rev-parse HEAD 2>&1
+$shaExit = $LASTEXITCODE
+if ($shaExit -ne 0) {
+    $shaOutput | Write-Output
+    throw "git rev-parse HEAD failed (exit code $shaExit); record the output and stop."
+}
+$sha = ($shaOutput -join "`n").Trim()
+if (-not $sha) { throw 'git rev-parse returned an empty commit SHA; stop.' }
+New-Item -ItemType Directory -Path $runDir | Out-Null
 $startedAt = Get-Date -Format o
 $log = Join-Path $runDir 'run-log.md'
 @"
