@@ -105,7 +105,7 @@ class CaseProtocolTests(unittest.TestCase):
 
     def test_allowlisted_legacy_snapshot_remains_readable_as_legacy(self) -> None:
         legacy = self.root / "cases" / "retention-demo"
-        legacy.mkdir()
+        legacy.mkdir(parents=True)
         (legacy / "state.md").write_text("historical state", encoding="utf-8")
         (legacy / "revisions").mkdir()
         (legacy / "revisions" / "state-r1.md").write_text("old snapshot", encoding="utf-8")
@@ -153,11 +153,12 @@ class CaseProtocolTests(unittest.TestCase):
             classify_case(self.root)
 
     def test_allowlisted_legacy_with_selector_stops(self) -> None:
-        legacy = self.root / "retention-demo"
-        legacy.mkdir()
+        legacy = self.root / "cases" / "retention-demo"
+        legacy.mkdir(parents=True)
+        self.assertEqual(classify_case(legacy, repo_root=self.root), "LEGACY")
         (legacy / "ACTIVE.json").write_text("{}", encoding="utf-8")
         with self.assertRaises(ProtocolError):
-            classify_case(legacy)
+            classify_case(legacy, repo_root=self.root)
 
 
 if __name__ == "__main__":
