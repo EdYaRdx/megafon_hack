@@ -6,12 +6,12 @@
 
 **File-based MVP with synthetic case exercises.** [`cases/meal-planner-demo/`](cases/meal-planner-demo/) covers local materials, a public method source, survey-denominator arithmetic, options and strategies. [`cases/fresh-start-demo/`](cases/fresh-start-demo/) was created in a fresh OMP context by following this README and `prompts/first-run.md`, then independently reviewed. Neither is a clean Cursor/Codex startup or real-user acceptance test. The official [MGIMO AI Challenge landing page](https://challenge.mgimo.ai/) says partner assignments are in the personal cabinet; the exact MegaFon demo file and its provenance remain `UNKNOWN` until an authorized team member supplies it ([availability note](research/qualification/official-demo-brief-availability.md)). Do not invent the brief or MegaFon data.
 
-## Быстрый запуск
+1. Открой эту папку в coding assistant с чтением локальных файлов. Начни с `AGENTS.md` и `.agents/skills/intake/SKILL.md`; OMP и отдельный runtime не нужны. Фактическое обнаружение Skills зависит от host и должно проверяться отдельно.
+2. Скопируй `cases/_template/` в `cases/<короткий-id>/`, заполни `brief.md` и используй `prompts/first-run.md`.
+3. Создавай outputs в новой папке дела. Для первого completion/revision следуй `cases/_template/README.md`; неполные revisions не восстанавливаются как текущие.
+4. Проверяй `state.md`; рекомендация, decision и scoped approval — разные статусы. Для руководителя краткая запись `decision.md` обязана сообщать выбранное направление, альтернативы, product+communication strategy, основания, UNKNOWN, проверку, решение владельца и следующий шаг.
 
-1. Открой эту папку в coding assistant, который может читать локальные файлы и при необходимости искать/открывать публичные источники. Cursor и OpenAI Codex документируют проектные навыки в `.agents/skills/` ([Cursor](https://cursor.com/docs/skills), [Codex](https://learn.chatgpt.com/docs/build-skills)); фактическое обнаружение и запуск здесь не проверены. Порядок проверки IDE, ручного вызова и сохранения результата — в [чек-листе подачи](docs/submission-checklist.md).
-2. Создай дело, скопировав `cases/_template/` в `cases/<короткий-id>/`.
-3. Вставь задачу из `prompts/first-run.md` и укажи путь к brief. Если в brief не хватает сведений, агент спросит только о том, что меняет следующий шаг.
-4. Проверяй этапы по `cases/<id>/state.md`. Решение и внешние обещания утверждает человек.
+Историческая OMP research/dev инфраструктура находится в `.omp/`, `research/` и `start-overnight-product-research-v3.cmd`; она не входит в product first-use/runtime. См. [чистый E2E runbook](docs/clean-host-e2e-runbook.md).
 
 Пример стартового запроса:
 

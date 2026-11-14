@@ -15,9 +15,12 @@ The intended flow is `intake → evidence research → options/decision → prod
 ## Persistence and evidence
 
 - Case files are the portable state; there is no hosted database, server, custom MCP service, or workflow engine.
-- Source/evidence/claim records use stable IDs and explicit locators. Statuses distinguish `OBSERVED`, `DOCUMENTED`, `CLAIMED`, `INFERENCE`, `HYPOTHESIS`, and `UNKNOWN`.
-- `state.md` records stage, completed work, blockers and next action. `activity.jsonl` is append-only. Revision snapshots retain earlier decisions when new evidence changes a case.
-- Local documents and synthetic data are clearly labeled. Public-page citations require checking the relevant content; a valid URL alone is not treated as proof.
+- New revisions use immutable IDs, one parent, complete snapshots of decision/options/strategies/test plan/state, explicit active claim IDs, and SHA-256 for every snapshot and decision dependency. `manifest.json` is written last with `COMPLETE`; root `ACTIVE.json` selects it by revision ID + manifest hash only after verification. Publish root `state.md` and `decision.md` first and `ACTIVE.json` last. Until root files change, the prior selector remains valid; any interrupted mismatch is an explicit conflict requiring manual recovery. The selector is not assumed atomically replaceable. No atomic `CURRENT` pointer or runtime helper is required.
+- Revision-specific approval is a separate append-only record bound to exact action/scope, revision ID and complete manifest hash. It does not transfer to later revisions or grant host permissions.
+- Legacy cases without manifests remain historical; missing snapshots/receipts are not reconstructed or certified retroactively.
+- Source/evidence/claim records use stable IDs and explicit locators. Statuses distinguish `OBSERVED`, `DOCUMENTED`, `CLAIMED`, `INFERENCE`, `HYPOTHESIS`, and `UNKNOWN`. Active claims are explicitly selected; `supersedes`/JSONL order never selects current claims.
+- `state.md` records stage, completed work, blockers and next action. `activity.jsonl` is append-only. Local documents and synthetic data are clearly labeled. Public-page citations require checking the relevant content; a valid URL alone is not treated as proof.
+- Full clean-host interruption, stale-approval, hash, and source-mutation checks are specified but not yet run; see [clean-host E2E runbook](clean-host-e2e-runbook.md).
 
 ## Models, services, and tools
 

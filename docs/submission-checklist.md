@@ -8,7 +8,7 @@ Do not mark an item PASS without a saved artifact or observed run. The official 
 - [ ] Publish the reviewed feature branch without force-push; verify the repository link and jury access.
 - [ ] Replace synthetic demo inputs only when an official brief is published; otherwise use clearly labeled public/open or fictional data.
 - [ ] Follow root README from a clean checkout; verify file access, skill discovery, case creation, evidence locators, options, both strategies, validation, state save and resume.
-- [ ] Open the project root in Cursor and one other compatible host. In Cursor, check **Customize → Skills**; in Codex CLI, run `codex` then `/skills`. The ordinary listing must contain all six names (`intake`, `evidence-research`, `options-decision`, `strategy-communication`, `experiment-design`, `resume-revise`). Never invoke a skill manually to make discovery pass. Verify actual use only from host-visible trace/evidence (for example, normal skill selection or the host showing relevant skill instructions loaded); model self-report or names in the listing alone are not proof. If the host exposes no way to verify use, record `UNOBSERVED`, not PASS. Save host/version, list, trace/prompt/result and redacted evidence under `research/qualification/host-acceptance/<host>-<version>/`; omit account details, notifications, credentials and personal data. Skill discovery/use does not by itself pass the clean-case or new-chat gates.
+- [ ] **Optional portability gate:** only if the product claim includes cross-host portability, test skill discovery/use in Cursor and a second compatible host. For a single-host demo, run one explicitly named host; a second host is not a general contest/demo prerequisite. In either host, distinguish normal discovery from manual fallback; names alone do not prove workflow use. If use cannot be observed, record `UNOBSERVED`, not PASS. Save host/version, trace/result and redacted evidence under `research/qualification/host-acceptance/<host>-<version>/`; omit account details, notifications, credentials and personal data.
 - [ ] Exercise a genuinely new chat/session: pause, resume from files, continue one unfinished task, then ingest new synthetic/authorized data and revise without overwriting the previous decision.
 - [ ] Reproduce any decision-critical calculation with a tool; preserve input locators, formula, units, output and narrow test. One synthetic retention calculation was executed via the internal JSON-reader jq selector and independently reviewed (`../research/sol-audit/eval-results/retention-calculation-20261113.md`); this verifies OMP/read-tool arithmetic only, not IDE/agent-tool availability. Current F1/F3 arithmetic has not been run through a calculation tool.
 - [ ] Verify all claims against actual content, paths/locators, dates and denominators; independent reviewer checks the saved artifacts and response, not just the explanation.
@@ -22,11 +22,11 @@ Before any model call, use only a host entitlement already authorized for this t
 
 - **Automated tests:** the overnight tracked-file inventory found no runnable test/build/lint harness. This checklist update changes documentation only; no application code changed and no suite was run. The PowerShell clean-worktree commands below are instructions only, not executed in this session. The prior real Codex R1/R2 run is documented separately and does not establish Cursor behavior or all gates in this runbook.
 
-### 0. Create same-commit, separate clean worktrees for host acceptance
+### 0. Optional cross-host portability runbook (Cursor + Codex)
 
 The user reports that full SHA `a7701a5e4352710df7dc86a54abb3aca22a783f3` is the published branch HEAD. The old pre-created `1323f99` worktrees do not contain it. The guarded PowerShell 5.1 procedure fetches `codex/megafon-mvp-file-agent`, checks that the remote branch tip is exactly the reported SHA, then creates new detached worktrees at that SHA. If fetch fails, the tip differs, or a destination already exists, stop and preserve all existing worktrees; do not force, overwrite, or remove anything.
 
-In PowerShell, create two new detached worktrees without overwriting existing paths:
+For a single-host product/demo acceptance, create one clean worktree for the named target host and run the single-host gates. Only if claiming cross-host portability, use the two-worktree procedure below and complete both host runs at the same full SHA:
 
 ```powershell
 $ErrorActionPreference = 'Stop'
@@ -392,9 +392,9 @@ Write-Output $log
 For each stage, capture start/end with `Get-Date -Format o`; calculate elapsed with `New-TimeSpan -Start $stageStart -End $stageEnd`. Append errors, retries and any manual assistance immediately. Use application telemetry for model/provider/tokens/charges; do not estimate. Never use `Start-Transcript` around account or credential screens.
 
 
-Capture redacted screenshots of the normal skills listing and generated case/resume evidence. Log each failure before retrying; manual edits to product outputs invalidate the “agent-generated workflow” PASS. Record R1 SHA-256 outputs before and after resume. If host-visible skill-use evidence is unavailable, record `UNOBSERVED` and do not pass the skills-use gate. A host-specific workflow passes only if all stage gates pass without forced skill calls or manual output substitution. Overall manual acceptance passes only when both hosts pass all stage gates on separate cases at the same full SHA. Unknown costs remain an explicit limitation, not a measured cost.
+Capture redacted screenshots of the normal skills listing and generated case/resume evidence. Log each failure before retrying; manual edits to product outputs invalidate the “agent-generated workflow” PASS. Record R1 SHA-256 outputs before and after resume. If host-visible skill-use evidence is unavailable, record `UNOBSERVED` and do not pass the skills-use gate. A host-specific workflow passes only if all stage gates pass without forced skill calls or manual output substitution. **Single-host acceptance** requires all stage gates to pass for one named host. **Cross-host portability** requires both hosts to pass on separate cases at the same full SHA. Unknown costs remain an explicit limitation, not a measured cost.
 
-The Codex `debug prompt-input` diagnostic previously showed all six names in the generated prompt input; it is not a normal `/skills` listing or workflow PASS. No host E2E is claimed until the above real run is recorded.
+The Codex `debug prompt-input` diagnostic previously showed all six names in the generated prompt input; it is not a normal `/skills` listing or workflow PASS. No **clean-host acceptance** is claimed until the selected host's real run is recorded; historical reported Codex R1/R2 remains `PARTIAL PASS`, not a clean-host or cross-host PASS.
 
 
 ## Security, costs, and limitations
