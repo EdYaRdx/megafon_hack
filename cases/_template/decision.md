@@ -4,6 +4,7 @@
 - **Decision owner / authority:**
 - **Status:** `NOT_MADE | RECOMMENDATION_PENDING_HUMAN | DECIDED`
 - **Revision:**
+- **Active claim IDs:**
 - **Selected direction:** state what is recommended/selected; distinguish recommendation from owner decision.
 - **Why:** strongest product-strategy basis and important UNKNOWNs.
 - **Communication strategy:** intended audience and choice moment; barrier; message; proof/limitations; channel role. If not validated, say so.

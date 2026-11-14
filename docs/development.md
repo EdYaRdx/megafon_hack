@@ -33,6 +33,8 @@ Copy only `cases/_template/` into a new `cases/<case-id>/`, preserve the templat
 
 Case JSONL records and the `manifest.json`/`ACTIVE.json` pair are interfaces, even though no generated schema package exists. Before changing them:
 
+New cases carry `case-protocol.json` from the template with `protocol_id: "checkpoint-v1"`. `UNINITIALIZED` means no checkpoint has started only when there is no selector or revision artifact; change to `CHECKPOINTING` before writing the first revision file. Missing or ambiguous identity fails closed. Legacy handling is limited to the exact pre-protocol directories listed by the resume Skill; do not infer it from missing manifests.
+
 - document the current fields, invariants, and consumer behavior in the template;
 - identify every Skill, example, fixture, and saved case that reads or writes the affected fields;
 - define migration and backward-compatibility behavior before editing historical data;
@@ -42,6 +44,8 @@ Case JSONL records and the `manifest.json`/`ACTIVE.json` pair are interfaces, ev
 - obtain independent review of the schema and migration plan.
 
 A format/documentation-only change is not proof that an agent or host correctly enforces the contract. The repository checker validates JSON syntax and relative Markdown targets only; it does not validate semantic schemas, references between IDs, hashes, active revisions, evidence entailment, or approval scope.
+
+The explicit case-protocol classifier has focused synthetic regression tests: run `py -3 -m unittest discover -s tests` (Windows) or `python3 -m unittest discover -s tests` (macOS/Linux). It checks new/legacy classification, selector and manifest integrity, snapshot hashes, and active-claim agreement; it does not prove that a coding assistant follows the Skills.
 
 ## Evidence and provenance review
 

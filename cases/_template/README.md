@@ -2,6 +2,8 @@
 
 Скопируй `_template/` в новый каталог `cases/<case-id>/`. Заполни brief известными данными и пометь неизвестное. Не помещай сюда секреты и закрытые материалы.
 
+`case-protocol.json` — обязательный явный маркер нового протокола. Сохрани `protocol_id: "checkpoint-v1"`. До первого сохранённого checkpoint состояние `checkpoint_state` равно `UNINITIALIZED`; непосредственно перед записью первого снимка измени его на `CHECKPOINTING`. Отсутствующий, повреждённый или неизвестный маркер нельзя трактовать как legacy. Legacy допустим только для перечисленных в `resume-revise` исторических папок.
+
 - `sources.jsonl` — источники и locators.
 - `evidence.jsonl` — извлечённые подтверждения и их ограничения.
 - `claims.jsonl` — тезисы, статусы и связи с evidence ID.
@@ -35,9 +37,9 @@ Example manifest shape (hash values are actual lowercase SHA-256 hex digests com
 
 This is a format illustration, not a complete revision or valid evidence; replace every example path/value with the actual complete dependency set and computed hash. Hash the final manifest bytes separately for root `ACTIVE.json`; do not include the manifest's own hash inside itself. `ACTIVE.json` is a small mutable selector and is not part of the revision manifest.
 
-Write all snapshots first. Verify the file list, active claims and hashes, then write `manifest.json` last with `status: "COMPLETE"`. The root `state.md` snapshot includes the revision ID and active claims but not the manifest hash (avoiding a self-referential hash). A missing manifest, a non-COMPLETE status, a missing/hash-mismatched file, or inconsistent claim selection means INCOMPLETE/CONFLICT; never resume by combining root files with a partial revision. Never overwrite a revision folder or manufacture a missing historical artifact.
+Write all snapshots first. Verify the file list, active claims and hashes, then write `manifest.json` last with `status: "COMPLETE"`. The root `state.md` snapshot includes the protocol ID, revision ID and active claims but not the manifest hash (avoiding a self-referential hash); `decision.md` repeats the revision ID and active claim IDs. A missing manifest, a non-COMPLETE status, a missing/hash-mismatched file, or inconsistent claim selection means INCOMPLETE/CONFLICT; never resume by combining root files with a partial revision. Never overwrite a revision folder or manufacture a missing historical artifact.
 
-Publish in this order: update root `state.md` and `decision.md` to the verified successor, then write root `ACTIVE.json` last. It contains the selected `revision_id` and SHA-256 of that revision's manifest. It is a mutable selector outside the revision manifest; atomic replacement is not assumed. Until root files begin changing, the previous selector remains usable. If a crash leaves root files and selector disagreeing, or `ACTIVE.json` is missing/torn/mismatched, stop with `CONFLICT`; manually restore the prior immutable complete snapshot or finish selection only after re-verifying all files. A verified successor is not current until selected. Do not infer a successor from timestamps or leaf order. No atomic `CURRENT` pointer or helper is required.
+For the first checkpoint, set `case-protocol.json` to `CHECKPOINTING` before writing any revision snapshot. Publish in this order: update root `state.md` and `decision.md` to the verified successor, then write root `ACTIVE.json` last. It contains the selected `revision_id` and SHA-256 of that revision's manifest. It is a mutable selector outside the revision manifest; atomic replacement is not assumed. Until root files begin changing, the previous selector remains usable. If a crash leaves root files and selector disagreeing, or `ACTIVE.json` is missing/torn/mismatched, stop with `CONFLICT`; manually restore the prior immutable complete snapshot or finish selection only after re-verifying all files. A verified successor is not current until selected. Do not infer a successor from timestamps or leaf order.
 Example `ACTIVE.json`:
 
 ```json
