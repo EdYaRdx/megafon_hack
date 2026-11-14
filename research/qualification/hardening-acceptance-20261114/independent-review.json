@@ -1,0 +1,194 @@
+{
+  "title": "Independent targeted acceptance review",
+  "date": "2026-11-14",
+  "timezone": "Europe/Moscow",
+  "result": "NOT_ACCEPTED_BLOCKED",
+  "scope": [
+    "acceptance/20261114-dynamic/verify-checkpoints.ps1",
+    "acceptance/20261114-dynamic/run-one-boundary.ps1",
+    "acceptance/20261114-dynamic/targeted-closure.ps1",
+    "acceptance/20261114-dynamic/targeted fixtures and receipts",
+    "original H02 receipts",
+    "docs/clean-host-e2e-runbook.md",
+    ".agents/skills/resume-revise/SKILL.md"
+  ],
+  "limitations": {
+    "full_e2e_run": false,
+    "raw_private_sessions_read": false,
+    "processes_stopped": false,
+    "h02_harness_rerun": false,
+    "paid_calls": false,
+    "working_tree_lock": "No lock inspected; findings describe artifacts read during this review."
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "P1",
+      "title": "T01 R2 denominator remains contradictory and not operative",
+      "locators": [
+        "acceptance/20261114-dynamic/targeted/t01-denominator/revisions/R0002/test-plan.md:13",
+        "acceptance/20261114-dynamic/targeted/t01-denominator/revisions/R0002/test-plan.md:58",
+        "acceptance/20261114-dynamic/targeted-closure.ps1:22-24"
+      ],
+      "evidence": "R2 primary section retains all eligible started attempts including abandonment/missing; appended text alone says completers only. Receipt boolean searches only for that phrase. Distinct bytes do not demonstrate changed operative denominator.",
+      "status": "BLOCKER"
+    },
+    {
+      "id": "F2",
+      "severity": "P1",
+      "title": "R2 manifest contains mismatching self-hash",
+      "locators": [
+        "acceptance/20261114-dynamic/targeted-closure.ps1:20",
+        "acceptance/20261114-dynamic/targeted/t01-denominator/revisions/R0002/manifest.json"
+      ],
+      "evidence": "Manifest files lists revisions/R0002/manifest.json with expected SHA-256 ffba21bbd8586d784fa0c14dcb5cfb78977f354ba3506c57be4d52bdc73ae130; actual current manifest SHA-256 is 42345c93ab189bd9f1d50d0faef18a381e1949b286e9629c671832e875953435. Dependencies are nested one directory too deep.",
+      "status": "BLOCKER"
+    },
+    {
+      "id": "F3",
+      "severity": "P1",
+      "title": "H02 identity check hardcodes boundary 1",
+      "locators": [
+        "acceptance/20261114-dynamic/run-one-boundary.ps1:26",
+        "acceptance/20261114-dynamic/run-one-boundary.ps1:41",
+        "acceptance/20261114-dynamic/receipts/exit-02.json",
+        "acceptance/20261114-dynamic/targeted/h02-boundary-02.json"
+      ],
+      "evidence": "Identity comparison requires -Boundary 1 for every parameter value and exception receipts are labeled boundary 1. Existing H02 receipts have identity_confirmed=false and BLOCKED_IDENTITY_UNVERIFIED; boundary 2 historical receipt points to the boundary-1 signal path.",
+      "status": "BLOCKER"
+    },
+    {
+      "id": "F4",
+      "severity": "P1",
+      "title": "Receipts are written non-atomically",
+      "locators": [
+        "acceptance/20261114-dynamic/run-one-boundary.ps1:38,42",
+        "acceptance/20261114-dynamic/verify-checkpoints.ps1:53"
+      ],
+      "evidence": "Canonical receipt paths are written directly with File.WriteAllText or Set-Content; interruption may leave a truncated receipt. Timeout policy does not terminate uncertain child processes and records BLOCKED, which is conservative but may leave a process running.",
+      "status": "BLOCKER"
+    },
+    {
+      "id": "F5",
+      "severity": "P1",
+      "title": "Checkpoint checker omits required resume invariants",
+      "locators": [
+        "acceptance/20261114-dynamic/verify-checkpoints.ps1:12-47",
+        ".agents/skills/resume-revise/SKILL.md"
+      ],
+      "evidence": "Checker does not verify parent manifest hash, unique complete-child/fork condition, exact active claim set equality, or case-root path containment. Current fixtures do not exercise these conditions.",
+      "status": "BLOCKER"
+    },
+    {
+      "id": "F6",
+      "severity": "P2",
+      "title": "T04 calculation reproduces, but receipt does not execute its recorded command",
+      "locators": [
+        "acceptance/20261114-dynamic/targeted-closure.ps1:29-40",
+        "acceptance/20261114-dynamic/targeted/t04-source-receipt.json"
+      ],
+      "evidence": "Source hash 39647f1023fb31484f0acf7db7fcadb99a605f108ccda4882a0a898f6c42d5e4; counts generated=18/opened=13/orders=6; disposable hash changed to f11bf9f8217f1a7b700cf5c04ca884e2d2628051d6605cd3d16b6ff63c777e19 with generated=19. Script stores literal executed_command but computes separately and hardcodes exit_code=0.",
+      "status": "PROVENANCE_LIMIT"
+    }
+  ],
+  "targeted_checks": {
+    "checker_operational_note": {
+      "result": "PASS",
+      "receipt": "acceptance/20261114-dynamic/receipts/checker-operational-note-final.json",
+      "receipt_exit_code": 0,
+      "checked_files": 28,
+      "current_manifest_matches": true,
+      "operational_note_present": true,
+      "independent_crosscheck_exit_code": 0
+    },
+    "checker_operative_conflict": {
+      "result": "CONFLICT",
+      "receipt": "acceptance/20261114-dynamic/receipts/checker-operative-conflict-v2.json",
+      "receipt_exit_code": 1,
+      "issue": "Root state.md does not identify selected revision R0001",
+      "checked_files": 28,
+      "current_manifest_matches": true,
+      "independent_crosscheck_exit_code": 0
+    },
+    "t01": {
+      "command_exit_code": 0,
+      "r1_sha256": "ac87df36d79e71801d2ea00099f1709761b26620ae1ef453d99c2ec24d4be547",
+      "r2_sha256": "15968547efcfe1e883c5f9487ef4d792902244c10ec65c38fab3808dafe42cc7",
+      "hashes_distinct": true,
+      "r1_all_eligible_started_clause": true,
+      "r2_completers_only_phrase": true,
+      "r2_unselected": true,
+      "operative_denominator_changed": false
+    },
+    "t04": {
+      "command_exit_code": 0,
+      "source_sha256": "39647f1023fb31484f0acf7db7fcadb99a605f108ccda4882a0a898f6c42d5e4",
+      "source_unchanged": true,
+      "generated": 18,
+      "opened": 13,
+      "orders": 6,
+      "opened_per_generated": 0.7222222222222222,
+      "orders_per_generated": 0.3333333333333333,
+      "orders_per_opened": 0.46153846153846156,
+      "disposable_sha256": "f11bf9f8217f1a7b700cf5c04ca884e2d2628051d6605cd3d16b6ff63c777e19",
+      "disposable_generated": 19
+    },
+    "h02": {
+      "status": "BLOCKED_IDENTITY_UNVERIFIED",
+      "original_boundary_01_receipt": "acceptance/20261114-dynamic/targeted/h02-boundary-01.json",
+      "original_boundary_02_receipt": "acceptance/20261114-dynamic/targeted/h02-boundary-02.json",
+      "rerun": false,
+      "process_stopped": false
+    }
+  },
+  "read_only_commands": [
+    {
+      "name": "T01 hash and wording check",
+      "exit_code": 0,
+      "command": "$ErrorActionPreference='Stop'; $t='acceptance/20261114-dynamic/targeted/t01-denominator'; $a=Get-FileHash -Algorithm SHA256 -LiteralPath \"$t/revisions/R0001/test-plan.md\"; $b=Get-FileHash -Algorithm SHA256 -LiteralPath \"$t/revisions/R0002/test-plan.md\"; $r1=Get-Content -Raw \"$t/revisions/R0001/test-plan.md\"; $r2=Get-Content -Raw \"$t/revisions/R0002/test-plan.md\"; [pscustomobject]@{R1=$a.Hash.ToLower();R2=$b.Hash.ToLower();Distinct=($a.Hash -ne $b.Hash);R1AllStarted=($r1 -match 'ALL eligible started');R2CompletersOnly=($r2 -match 'completers only');R2Unselected=((Get-Content -Raw \"$t/ACTIVE.json\") -notmatch 'R0002')} | ConvertTo-Json -Compress"
+    },
+    {
+      "name": "T04 source/disposable hash and aggregates",
+      "exit_code": 0,
+      "command": "$ErrorActionPreference='Stop'; $s='cases/unseen-shelf-alerts-20261114/input/pilot-alerts.csv'; $d='acceptance/20261114-dynamic/targeted/t04/pilot-alerts-mutated.csv'; $rows=Import-Csv -LiteralPath $s; $g=($rows|Measure-Object alerts_generated -Sum).Sum; $o=($rows|Measure-Object alerts_opened -Sum).Sum; $n=($rows|Measure-Object orders_within_7d -Sum).Sum; $m=Import-Csv -LiteralPath $d; $mg=($m|Measure-Object alerts_generated -Sum).Sum; [pscustomobject]@{Source=(Get-FileHash -Algorithm SHA256 -LiteralPath $s).Hash.ToLower();Disposable=(Get-FileHash -Algorithm SHA256 -LiteralPath $d).Hash.ToLower();Generated=$g;Opened=$o;Orders=$n;OpenedPerGenerated=($o/$g);OrdersPerGenerated=($n/$g);OrdersPerOpened=($n/$o);MutatedGenerated=$mg} | ConvertTo-Json -Compress"
+    },
+    {
+      "name": "Checker positive/negative receipt-to-fixture cross-check",
+      "exit_code": 0,
+      "command": "$ErrorActionPreference='Stop'; $base='acceptance/20261114-dynamic'; $o=Get-Content -Raw \"$base/receipts/checker-operational-note-final.json\" | ConvertFrom-Json; $n=Get-Content -Raw \"$base/receipts/checker-operative-conflict-v2.json\" | ConvertFrom-Json; $om=Get-FileHash -Algorithm SHA256 -LiteralPath \"$base/targeted/checker-operational/revisions/R0001/manifest.json\"; $nm=Get-FileHash -Algorithm SHA256 -LiteralPath \"$base/targeted/checker-operative-conflict/revisions/R0001/manifest.json\"; $os=Get-Content -Raw \"$base/targeted/checker-operational/state.md\"; $ns=Get-Content -Raw \"$base/targeted/checker-operative-conflict/state.md\"; [pscustomobject]@{PositiveReceiptPass=($o.status -eq 'PASS' -and $o.exit_code -eq 0 -and @($o.issues).Count -eq 0);PositiveManifestCurrent=($o.selector.manifest_sha256 -eq $om.Hash.ToLower());PositiveNotePresent=($os -match 'Operational note: review heartbeat');NegativeReceiptConflict=($n.status -eq 'CONFLICT' -and $n.exit_code -eq 1 -and @($n.issues).Count -gt 0);NegativeManifestCurrent=($n.selector.manifest_sha256 -eq $nm.Hash.ToLower());NegativeHasOperativeRevisionMismatch=($ns -match '(?m)^- Active complete revision ID: R0002');PositiveCheckedFiles=@($o.checked).Count;NegativeCheckedFiles=@($n.checked).Count} | ConvertTo-Json -Compress"
+    },
+    {
+      "name": "R2 manifest inventory and dependency nesting",
+      "exit_code": 0,
+      "command": "$m=Get-Content -Raw acceptance/20261114-dynamic/targeted/t01-denominator/revisions/R0002/manifest.json | ConvertFrom-Json; [pscustomobject]@{R2Files=@($m.files.path);DependencyFileCount=@($m.files | Where-Object path -Match '/dependencies/').Count;ManifestComplete=$m.status;Parent=$m.parent_revision_id;ParentHashPresent=[bool]$m.parent_manifest_sha256} | ConvertTo-Json -Depth 5"
+    },
+    {
+      "name": "R2 manifest self-hash check",
+      "exit_code": 0,
+      "command": "$m=Get-Content -Raw acceptance/20261114-dynamic/targeted/t01-denominator/revisions/R0002/manifest.json | ConvertFrom-Json; $entry=@($m.files | Where-Object path -eq 'revisions/R0002/manifest.json')[0]; $actual=(Get-FileHash -Algorithm SHA256 -LiteralPath acceptance/20261114-dynamic/targeted/t01-denominator/revisions/R0002/manifest.json).Hash.ToLower(); [pscustomobject]@{SelfEntryPresent=([bool]$entry);ExpectedSelfHash=$entry.sha256;ActualManifestHash=$actual;SelfHashMatches=($entry.sha256 -eq $actual);R2Status=$m.status} | ConvertTo-Json -Compress"
+    }
+  ],
+  "discarded_attempts": [
+    {
+      "description": "First nested PowerShell -Command T01 wrapper; parser failure due outer-shell interpolation",
+      "exit_code": 1,
+      "effect": "No files modified"
+    },
+    {
+      "description": "First nested PowerShell -Command T04 wrapper; parser failure due outer-shell interpolation",
+      "exit_code": 1,
+      "effect": "No files modified"
+    },
+    {
+      "description": "Second nested PowerShell -Command T01 wrapper; quoting removed string delimiters and parser failed",
+      "exit_code": 1,
+      "effect": "No files modified"
+    },
+    {
+      "description": "Second nested PowerShell -Command T04 wrapper; quoting/path errors were printed despite process exit status 0, so output was discarded and calculation rerun directly",
+      "exit_code": 0,
+      "effect": "No files modified; not counted as a successful check"
+    }
+  ],
+  "next_action": "Correct the operative T01 denominator and manifest construction, repair H02 identity/atomic receipt behavior, and add checkpoint fixtures for parent hashes, forks, exact active claim selection, and path containment before recording new targeted receipts."
+}

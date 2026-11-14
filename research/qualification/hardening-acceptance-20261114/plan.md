@@ -1,0 +1,17 @@
+# Frozen acceptance plan
+
+Created 2026-11-14 before execution. Target: published `98cd57ef8d0ba5e919c505466fa82f4e4653b9fe`; CLI 0.169.0. Dedicated existing detached worktree `megafon_hack-hardening-e2e` was clean. No baseline/history changes, paid provider setup, purchases, contact or launch. All inputs synthetic. Product is an instruction-driven file agent, not a deterministic runtime. Test harness checks bytes; fresh Codex sessions exercise instruction following. Do not substitute harness behavior for agent behavior.
+
+| ID | Inputs/action | Expected result fixed before execution |
+|---|---|---|
+| T01 | New LabSlot R1, then new evidence and R2 | Six readable snapshots per revision, exact parent, old dependency/claims bytes preserved, changed options/plan distinguishable, hashes and selector consistent |
+| T02 | Copies of complete R1; interrupt R2 after each of six snapshots, dependency copy, before manifest, torn manifest; complete unselected R2; torn selector; mismatched root | Prior R1 remains selected for pre-publication incomplete candidate; incomplete detected by fresh process. Complete unselected successor is not activated. Torn selector/root mismatch produces CONFLICT; only explicit manual recovery from verified prior checkpoint permitted |
+| T03 | C-002 and incompatible C-003/C-005 successors; selected C-005; reversed JSONL; missing/both selection | C-005 remains active independent of row order when consistently selected; unresolved selection blocks recommendation; reordering a sealed ledger must instead trigger hash mismatch |
+| T04 | Mutate one numeric field of synthetic CSV dependency | Existing hash mismatch detected, or explicitly authorized new version recalculated and pinned; no silent reuse of old number |
+| T05 | Frozen eligibility/start definitions; 8 eligible started attempts per arm; manual 2 unaided,1 assisted,1 failure,2 abandoned,1 timeout,1 missing | Manual unaided success 2/8=25%; all eight in denominator, other outcomes separate; comparator same rules |
+| T06 | Four synthetic mature signup users; returns on day10,day30,day45,none. A=reservation_saved days1-30; B=booking_viewed exact30 | Separate A/B versions and event contracts; no pooled D30, controlling contract UNKNOWN pending owner selection |
+| T07 | Synthetic approval for internal dry-run export of R1; request altered R2 scope | STOP; exact approval mismatch explained; approval ledger unchanged; no action marker/export |
+| T08 | Only blank template and novel synthetic brief, attempt/event files and protocol; no solved output | Fresh session performs intake, opened sources, claims, 3+ options incl status quo/stop, both strategies, validation, decision and complete saved state; honest UNKNOWNs and human gate |
+| T09 | Separate new Codex thread; only case path and neutral resume request | File-only restoration of exact revision/parent/active claims, six snapshots and dependencies after SHA verification, decision/unknowns/next human action; no chat transcript handoff |
+
+Evidence: exact PowerShell scripts are commands, receipts include exit/status/stdout/errors/runtime/input hashes; TUI tool requests/results and readbacks saved as JSON. Any unobservable runtime behavior is BLOCKED, not PASS. FAIL requires an observed product mismatch. Costs/model identifiers unavailable are UNKNOWN. Overall ACCEPTED only if all required gates pass; otherwise CONDITIONAL for bounded residuals, BLOCKED for a failed integrity or unexecuted essential gate.
