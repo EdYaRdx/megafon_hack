@@ -1,6 +1,8 @@
 # Clean-host E2E and regression runbook
 
-Status: **NOT RUN in this session**. This is an exact acceptance procedure, not evidence of a PASS. No shell, Git, host UI, model, or product runtime was available. Use a disposable copy/worktree of the reviewed feature checkpoint; never run fault injection against the only case copy. Do not use OMP or paid providers as product runtime.
+**This file's listed procedures: NOT RUN in this record.** Current dynamic acceptance is separately **CONDITIONAL** for limited single-host synthetic scope; see [current implementation status](implementation-status.md) and [evaluation](evaluation.md). The procedure below does not replace the latest independent Sol sign-off (**PENDING**), close **H02 BLOCKED**, or certify clean-host/cross-host portability. The earlier run result table is the record for these specific planned checks, not an overall product verdict.
+
+Use only a disposable copy of the exact reviewed checkpoint; never run fault injection against the only case copy. Product runtime does not require OMP or paid providers. Check that this procedure and its inputs match the current approved test scope before running it.
 
 ## Environment and evidence
 
@@ -73,6 +75,27 @@ Use two synthetic contracts: (A) any qualifying event in days 1–30 with mature
 3. Confirm the user receives a comprehensible decision memo, 3+ distinct options (status quo and stop where applicable), traced evidence/UNKNOWNs, aligned product/communication strategy, valid metric contract or honest blocker, and exact next human choice. Check created files, receipts, approvals and revision completeness from disk.
 4. Save state, start a genuinely new chat/process with no transcript handoff, and verify file-only resume. Do not call OMP-context work a clean-host PASS.
 
+## Fresh-host acceptance procedure
+
+This section preserves the former Cursor/Codex first-run, skill-discovery, evidence, calculation, pause/resume, and reporting gates in one canonical procedure. Use one named host for a single-host claim. Run separately in Cursor and Codex only when making a cross-host portability claim; both runs must use clean copies of the same reviewed commit. Do not reuse stale worktrees or populated case outputs.
+
+1. Record the exact host/version, OS, model/provider if exposed, available file/web/calculation tools, permissions, and commit SHA. Verify a clean disposable checkout of that SHA. If the host or required tool is unavailable, record `BLOCKED`/`UNOBSERVED`, not PASS.
+2. Open the repository normally in that host. Record normal Skills discovery before invoking any task. Do not manually call or name a Skill to satisfy discovery/use. Skill names alone or model self-report do not prove use; require host-visible evidence or mark use `UNOBSERVED`.
+3. Copy only `cases/_template/` to a new, unused case directory. Add a novel fictional brief and synthetic inputs; do not copy solved outputs. Follow `prompts/first-run.md` with a neutral request to complete intake, evidence, alternatives, both strategies, validation plan, and save state. No real contact, spend, launch, publication, or private data.
+4. Check the saved files: required case outputs exist; source/evidence/claim IDs and exact locators resolve; facts, inferences, hypotheses, and unknowns remain distinct; at least three materially different options include status quo and stop; recommendation and strategies agree; validation names comparator, numerator/denominator, period, guardrails and decision rule or leaves missing inputs `UNKNOWN`. For a decision-critical calculation, require an actual tool receipt with input locator/hash, formula, units, output, tool/version and exit status. An arithmetic scenario or model narration is not a receipt.
+5. Save a complete R1 checkpoint and record SHA-256 for `revisions/<R1-id>/state.md` and `revisions/<R1-id>/decision.md` (or the case's equivalent complete snapshots). Close the first conversation. Add only a new, synthetic R2 input after pausing; start a genuinely new chat/process with no transcript handoff and ask it to resume from saved files. It must preserve R1 snapshots byte-for-byte, update only justified successors and provenance, and record the next action. Recheck hashes and record the generated-file list.
+6. Review results from disk, not just the assistant's explanation. Record each stage's status, errors/retries, human assistance, elapsed time, observed tool/model/charge data, and evidence locations. Use `UNKNOWN` when telemetry is unavailable. Redact identifiers/secrets; never save credentials, cookies, personal data, or raw private session logs.
+
+| Gate | PASS evidence | Do not pass when |
+|---|---|---|
+| Clean start and Skills | Named host/version and clean reviewed SHA; normal discovery and observable use | Manual Skill invocation, listing-only, self-report-only, or unobserved use |
+| First-run artifacts | New blank case; complete, coherent files; grounded sources/locators and explicit unknowns | Copied answers, unsupported claims, missing required files or inconsistent references |
+| Calculation | Actual reproducible receipt from the host/tool | Ratio stated without a command/tool receipt; unavailable tool |
+| Resume/revision | New chat reads saved state; R1 snapshot hashes unchanged; R2 provenance and state coherent | Transcript dependence, overwritten snapshots, mixed revisions or unlogged retry |
+| Safety and telemetry | Synthetic/public inputs; no unauthorized external action; unknown costs labeled | Private/secrets exposure, guessed costs, or approval treated as OS enforcement |
+
+Store a reviewed, redacted run record under `research/qualification/host-acceptance/<host>-<version>/<run-id>/` only after privacy review; do not commit raw transcripts. Single-host acceptance requires every applicable gate to pass for one named host. Cross-host portability requires complete passing runs on both hosts at the same SHA. These criteria do not override the current CONDITIONAL dynamic E2E status or make unrun procedures evidence.
+
 ## Run result table (fill only from actual execution)
 
 | Check | Status | Artifact/command/result | Limits |
@@ -86,39 +109,6 @@ Use two synthetic contracts: (A) any qualifying event in days 1–30 with mature
 | stale approval | NOT RUN | | No host gate enforcement observed |
 | blank case/new-chat resume | NOT RUN | | No clean-host runtime available |
 
-## Git checkpoint / PR handoff (not executed here)
+## Git handoff
 
-Run from PowerShell only after independent review and local inspection. These commands do not change `main`; do not force-push. User-reported branch/start checkpoint: `codex/mgimo-hardening-20261114`, `8fc5f737bf4e506bc3683b9d468092858632ead3` (not independently verified in this session).
-
-```powershell
-$expectedBranch = 'codex/mgimo-hardening-20261114'
-$startSha = '8fc5f737bf4e506bc3683b9d468092858632ead3'
-if ((git branch --show-current) -ne $expectedBranch) { throw "Wrong branch; stop." }
-git merge-base --is-ancestor $startSha HEAD
-if ($LASTEXITCODE -ne 0) { throw "Expected start checkpoint is not an ancestor; stop." }
-git status --short --branch
-git diff --check
-```
-
-Inspect status and diffs; do not stage user-owned/unrelated changes. Stage only the reviewed files:
-
-```powershell
-git add -- AGENTS.md START-HERE.txt README.md references/evidence-and-claims.md references/metrics.md `
-  .agents/skills/resume-revise/SKILL.md .agents/skills/experiment-design/SKILL.md `
-  cases/_template/README.md cases/_template/decision.md cases/_template/state.md `
-  cases/_template/test-plan.md cases/_template/approvals.jsonl cases/retention-demo/test-plan.md `
-  docs/submission-architecture.md docs/submission-checklist.md docs/implementation-status.md docs/clean-host-e2e-runbook.md `
-  research/product/hardening-triage-2026-11-14.md
-git diff --cached --check
-git diff --cached --stat
-```
-
-Review the staged diff and staged paths. If unrelated content is staged, stop and unstage only those known unrelated paths after inspection. Then create a local checkpoint and publish the feature branch/PR only with authorized credentials:
-
-```powershell
-git commit -m "fix: harden file-agent revisions and evidence"
-git push -u origin codex/mgimo-hardening-20261114
-gh pr create --base main --head codex/mgimo-hardening-20261114 --title "Harden file-agent revisions and evidence" --body "Implements complete file checkpoints, revision-bound approvals, metric/source receipt contracts, and product first-use routing. Dynamic clean-host regressions remain pending; see docs/clean-host-e2e-runbook.md."
-```
-
-Verify actual command exit statuses and record commit/PR URLs. If Git/GitHub credentials are unavailable, preserve local files and report the exact blocker; never force-push or switch/publish to `main`.
+The previous Git commands targeted an older baseline and are intentionally not repeated here. Use the current branch, 14-file allowlist, and PowerShell handoff in [`next-session-handoff.md`](next-session-handoff.md). No commands in this file were run for this documentation task.
