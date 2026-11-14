@@ -1,4 +1,4 @@
-# Communication strategy — internal, R1
+# Communication strategy — R2, internal, pending human decision
 
 ## Audience and moment
 
@@ -10,9 +10,9 @@ The vendor digest states “40% fewer stockouts” and “14 opens out of 18 ale
 
 ## Key message and supporting proof
 
-**Internal message:** “The supplied fictional pilot is descriptive only: 13/18 alert records were opened and six orders were recorded within seven days. It does not show that alerts caused orders or reduced stockouts. Keep the next step human-gated and read-only; learn what user task, if any, merits testing before committing to automation.”
+**Internal message:** “The supplied fictional pilot is descriptive only: 13/18 alert records were opened and six orders were recorded within seven days. It does not show that alerts caused orders or reduced stockouts. Keep the next step human-gated and read-only; learn what user task, if any, merits testing before committing to automation. In this fictional R2 scenario, any future supplier-order submission requires explicit human confirmation for each order (S-007/E-007/C-010); this is not real policy or approval.”
 
-Support: CSV rows 2–7 summed deterministically in E-003; study limitations in E-002; capability boundary in E-001. This is not a claim about actual bookstore behavior.
+Support: CSV rows 2–7 summed deterministically in E-003; study limitations in E-002; capability boundary in E-001; synthetic per-order confirmation constraint in S-007/E-007/C-010. This is not a claim about actual bookstore behavior.
 
 ## Product capability / condition supporting each promise
 
