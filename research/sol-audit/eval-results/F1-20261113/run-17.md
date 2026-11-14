@@ -1,0 +1,3 @@
+# Anonymized F1 response 17
+
+I would not commit next sprint to a full onboarding redesign. The comparable D30 total slipped only from 70% to 68.5%; retention rose within both channels, while the cohort shifted toward the lower-retention partner channel. First verify tracking comparability and the acquisition-mix change; the latest 35% D7 figure is not comparable to D30. The data alone don’t establish that onboarding caused the decline.

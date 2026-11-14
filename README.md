@@ -1,44 +1,48 @@
-# megafon_hack
+# Стратег Фабрики продуктов — MVP агента
 
-Подготовка к MGIMO AI Challenge 2026, номинация «ИИ-проект», кейс МегаФона «Стратег Фабрики продуктов». Цель — качество, полезность и воспроизводимость конкурсного агента, а не развитие собственной инфраструктуры.
+Файловый AI-агент помогает руководителю цифрового продукта пройти путь от размытого вопроса до доказательной продуктовой и коммуникационной стратегии. Это папка с инструкциями, навыками, шаблоном дела и журналами доказательств; приложение, сервер, MCP и отдельный платный провайдер не требуются.
 
-## Текущая стадия
+## Состояние
 
-**Project Bootstrap & Research Preparation. Продукт не реализован; предметное исследование ещё не запускалось.**
+**File-based MVP with synthetic case exercises.** [`cases/meal-planner-demo/`](cases/meal-planner-demo/) covers local materials, a public method source, survey-denominator arithmetic, options and strategies. [`cases/fresh-start-demo/`](cases/fresh-start-demo/) was created in a fresh OMP context by following this README and `prompts/first-run.md`, then independently reviewed. Neither is a clean Cursor/Codex startup or real-user acceptance test. The official [MGIMO AI Challenge landing page](https://challenge.mgimo.ai/) says partner assignments are in the personal cabinet; the exact MegaFon demo file and its provenance remain `UNKNOWN` until an authorized team member supplies it ([availability note](research/qualification/official-demo-brief-availability.md)). Do not invent the brief or MegaFon data.
 
-- Инфраструктурное исследование принято. Phase 1 подтвердила только ограниченный supervised single-writer путь на disposable CSV fixture; это не квалификация всех режимов OMP.
-- **Полный оригинал кейса не предоставлен.** [contest-brief](docs/contest-brief.md) — явный BLOCKED status, не заполненное ТЗ. Без оригинала нельзя завершить кейс-специфичное исследование или перейти к продуктовой реализации.
-- [Research profile](.omp/profiles/research.yml) — **CANDIDATE** до отдельного read-only scout smoke. Schema/metadata validation не равна runtime qualification.
-- Default `yolo` текущего запуска не разрешение на автономные изменения. Bootstrap-файлы создаются в явно согласованном scope, не на основании permissive default.
+## Быстрый запуск
 
-## Навигация
+1. Открой эту папку в coding assistant, который может читать локальные файлы и при необходимости искать/открывать публичные источники. Cursor и OpenAI Codex документируют проектные навыки в `.agents/skills/` ([Cursor](https://cursor.com/docs/skills), [Codex](https://learn.chatgpt.com/docs/build-skills)); фактическое обнаружение и запуск здесь не проверены. Порядок проверки IDE, ручного вызова и сохранения результата — в [чек-листе подачи](docs/submission-checklist.md).
+2. Создай дело, скопировав `cases/_template/` в `cases/<короткий-id>/`.
+3. Вставь задачу из `prompts/first-run.md` и укажи путь к brief. Если в brief не хватает сведений, агент спросит только о том, что меняет следующий шаг.
+4. Проверяй этапы по `cases/<id>/state.md`. Решение и внешние обещания утверждает человек.
 
-| Файл / раздел | Назначение |
-|---|---|
-| [.omp/AGENTS.md](.omp/AGENTS.md) | Только Development System: стадии, безопасность, исследователи, review и будущая приёмка |
-| [docs/contest-brief.md](docs/contest-brief.md) | Статус отсутствующего оригинала; позже — исключительно дословный текст организаторов |
-| [docs/research-plan.md](docs/research-plan.md) | A–D workstreams, evidence/critique protocol, scout smoke, launch recipe и следующий Deep Research prompt |
-| [.omp/profiles/research.yml](.omp/profiles/research.yml) | Новый read-only CANDIDATE overlay; не активируется автоматически |
-| [.omp/profiles/qualification-supervised.yml](.omp/profiles/qualification-supervised.yml) | Неизменённый qualification baseline; другой режим, не база для бесконтрольного research |
-| [Infrastructure recommendation](research/infrastructure/recommendation.md) | Принятые решения; не повторять обзор без новой конкретной потребности |
-| [Qualification admission](research/qualification/next-step.md) | Практические результаты E10/E01 и пределы допуска |
-| [Qualification blockers](research/qualification/blockers.md) | Abort/UI failure, plaintext local logs, отсутствие OS sandbox и прочие границы |
-| [.gitignore](.gitignore) | Secrets, private sessions, logs и временные файлы; не security sandbox |
+Пример стартового запроса:
 
-## Development System ≠ Contest Product
+> Помоги решить, как снизить отток пользователей цифрового сервиса. Сначала уточни решение, срок и доступные данные. Не предполагай причину оттока. Сохраняй источники и неизвестное в `cases/churn/state.md` и журналах; до рекомендации предложи варианты, включая оставить как есть и остановить направление.
 
-`.omp/`, infrastructure/qualification reports и локальные sessions — средства разработки. Contest Product будет переносимым файловым агентом согласно будущему проверенному ТЗ, без неявной зависимости от OMP/личных accounts/MCP.
+Пример иллюстрирует workflow, а не утверждает, что у МегаФона есть такой продукт или проблема.
 
-Корневой `AGENTS.md` **не создаётся**: он зарезервирован для будущего конкурсного агента. Development instructions находятся только в `.omp/AGENTS.md`. Lead нового OMP-сеанса загружает их через native context discovery; task children получают существенные правила явно через shared `task.context`.
+## Что включено
 
-## Порядок продолжения
+- `AGENTS.md` — основная инструкция агенту и гейты качества.
+- `.agents/skills/*/SKILL.md` — единственная каноническая копия intake, исследования доказательств, вариантов, стратегий, экспериментов и продолжения после паузы.
+- `references/` — статусы утверждений, правила работы с источниками и метриками.
+- `cases/_template/` — переносимый шаблон отдельного дела с раздельными фактами, гипотезами, решениями и состоянием.
+- `prompts/first-run.md` — короткая команда для первого запуска.
+- `research/product/` — исследовательские материалы и проектные решения; это обоснование дизайна, не результат работы MVP.
 
-1. Получить полный оригинал кейса и сохранить дословно, отдельно зафиксировать provenance/полноту.
-2. По отдельному разрешению выполнить [smoke одного scout](docs/research-plan.md) в disposable environment. Проверить actual model/high, child tool inventory, один public поиск, отсутствие mutation/exec/fallback и корректный lifecycle.
-3. До допуска трёх concurrent researchers отдельно проверить read-only E02-lite; иначе работать последовательно с concurrency1 overlay.
-4. Только затем — разрешённое Deep Research по A–D. Profile намеренно запрещает и Lead-запись: результаты в ответе, curated файлы — отдельным supervised writer-проходом.
-5. Продуктовая реализация требует отдельного разрешения, утверждённых AC и независимых acceptance gates.
+## Границы MVP
 
-Команда запуска после prerequisites и полный следующий prompt сохранены в [research-plan](docs/research-plan.md). Не применять `--profile research` вместо `--config`: named profile имеет другую auth/config область. Не передавать `--yolo`, не добавлять новые extensions/MCP/providers.
+- Инструменты и доступы задаёт выбранная среда. Текст инструкций сам по себе не ограничивает права host и не является песочницей.
+- Публичные источники и материалы, предоставленные пользователем; никаких закрытых данных МегаФона и секретов.
+- Синтетические интервью и данные всегда помечаются как синтетические и не доказывают реальный спрос.
+- Если модель/host не показывает расходы или точные вызовы, записывай `UNKNOWN`.
+- Пока нет официального демо-брифа МегаФона, clean-host проверки, реальных пользовательских испытаний, измеренной полной стоимости, проверки во второй среде или записи видео. Архитектурный документ — подготовительный черновик, а не финальное измеренное описание.
 
-Реальные secrets/PII не должны быть доступны исследователям. Private sessions хранить в ignored `.local/` либо вне repo; native JSONL/export могут содержать plaintext. При pending approval сначала Deny/Cancel, затем abort/settled check. Approvals/restrictedFolders/worktrees не являются OS-песочницей.
+## Подготовка к подаче
+
+- [Архитектура и ограничения](docs/submission-architecture.md) — текущий, непрошедший чистый host acceptance снимок.
+- [Сценарий видео до 10 минут](docs/demo-video-script.md) — план, не запись; требуется реальный capture и проверка нового чата в IDE.
+- [Чек-лист подачи](docs/submission-checklist.md) — текущие проверки и блокеры.
+- [Implementation status](docs/implementation-status.md) — проверенные результаты и следующие шаги.
+
+Эти материалы не подтверждают запуск в Cursor/втором host, реальное исследование, фактическую стоимость или завершённое конкурсное видео.
+
+История разработки OMP и инфраструктуры находится в `.omp/` и `research/infrastructure/`; это не runtime и не зависимость конкурсного продукта.

@@ -1,0 +1,3 @@
+{"at":"2026-11-13","event":"fixture_created","status":"SYNTHETIC","details":"Created frozen fictional promotion mock-up and terms v2/v3 with explicit publication/effective dates; answer key stored outside evaluated case folder."}
+{"at":"2026-11-13","event":"evidence_capture","status":"VERIFIED","details":"Read supplied HTML heading/offer and both §4 records; compared terms by decision date; no external site or legal interpretation used."}
+{"at":"2026-11-13","event":"matched_evaluation","status":"COMPLETED_EXPLORATORY","details":"Three separate OMP contexts returned B0/B1/A responses; independent reviews scored 3/8, 5/8, 5/8; zero P0. Model/provider/tokens/human time/cost UNKNOWN; see eval-results/F2-20261113."}

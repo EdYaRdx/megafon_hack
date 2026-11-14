@@ -1,0 +1,8 @@
+# F2 hardening run 45 — log
+
+- Fresh task context, same frozen F2 request/clarification and fictional terms as original arms; read current root AGENT, all required skills, and case brief/state/source/evidence/claim/activity journals and inputs. No answer key, prior evaluation outputs, or edits.
+- Output: `run-45.md`; duration 39.8s. Model/provider/version, tokens, human time, retries and billing `UNKNOWN`.
+- Two separate blind LLM task contexts: 6/8 each, no P0. See `run-45-review-1.md`, `run-45-review-2.md`, `run-45-adjudication.md`. Reviewer identity/model family not independently verified.
+- Rubric (0–2 each): evidence/terms and citations; distinct options including status quo and stop; communication fields and substantiated message; validation comparator/audience/formula/denominator/period/guardrails/threshold and human gate.
+- Agreed result: evidence 2, communication 2, validation 1; options/product 1 because no explicit current status quo option. Period/threshold remain unknown and test not executable; no invented values.
+- This response followed communication/experiment skill hardening, but preceded the explicit `options-decision` skill rule that now requires a separately labelled status-quo option in the final memo. Historical run-44 reviewer scores were 6/8 and 7/8 (integration adjudication 6/8); these single responses do not establish causal improvement or statistical superiority.

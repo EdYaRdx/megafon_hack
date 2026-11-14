@@ -1,0 +1,3 @@
+item,value,unit,status
+max_validation_budget,200000,RUB,SYNTHETIC_SCENARIO
+net_contribution,50,RUB_per_paid_shop_month,SYNTHETIC_SCENARIO

@@ -1,0 +1,12 @@
+# F3 exploratory matched evaluation — run log
+
+- **Fixture:** `cases/service-launch-f3/` revision 1; fictional offers and scenario figures only.
+- **Decision date:** 2026-11-14. All three arms received the same four inputs and exact frozen clarification from `brief.md`: “We have a prototype for recording returns only. There is no evidence about willingness to pay, conversion, or retention, and no ready messaging/automation feature.”
+- **Anonymized outputs:** `run-17.md` = B0 ordinary chat; `run-28.md` = B1 structured prompt; `run-43.md` = A file-agent instructions/skills.
+- **Observed task durations:** B0 31.6s, B1 26.6s, A 39.4s. Task duration only; not human-active time or full end-to-end latency.
+- **Controls/limits:** one response per condition; three separate contexts ran concurrently and were not randomized. Actual model/provider/version and equivalent tool/resource budgets are not exposed. A read instructions/skills but did not write case state. No human time, token, retry, or billing telemetry; all `UNKNOWN`.
+- **Scoring:** two separate LLM task contexts blinded to condition mapping returned identical rubric totals: B0 7/8; B1 7/8; A 8/8; no P0. See `review-1.md`, `review-2.md`, `adjudication.md`. Reviewer model/provider identity and cross-family independence are `UNKNOWN`.
+- **Rubric dimensions:** (1) decision framing and no-action gate; (2) conditional economics, units and maximum-cap semantics; (3) traceable claims/locators and epistemic labels; (4) ≥3 distinct options including status quo and stop; (5) material objections/risks; (6) capability-aligned product/communication strategy; (7) comparator, useful metric/denominator, time, guardrails and threshold/revisit; (8) relevant unknowns, fictional competitors not treated as market proof, next state.
+- **Interpretive caveat:** B0 and B1 describe recovering 200,000 ₽ but do not explicitly state that the 4,000 paid shop-month threshold assumes spending the full maximum budget cap. They do reject the figure as forecast/demand. A clearly labels the input as a cap. Scores are exploratory and this ceiling wording remains a risk.
+- **Evaluation status:** one synthetic fixture, one response per condition; no statistical, causal, superiority, or release claim.
+- **Safety:** no real users, external contact, spend, launch, publication, or product decision.

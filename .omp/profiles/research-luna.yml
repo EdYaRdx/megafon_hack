@@ -1,0 +1,17 @@
+# Project-local overlay for OMP research.yml. Validate the exact model ID via `omp models openai-codex`.
+# Does not grant permissions; must be loaded AFTER research.yml.
+modelRoles:
+  default: openai-codex/gpt-6-luna:high
+  plan: openai-codex/gpt-6-luna:high
+  task: openai-codex/gpt-6-luna:high
+  slow: openai-codex/gpt-6-luna:high
+  smol: openai-codex/gpt-6-luna:high
+  tiny: openai-codex/gpt-6-luna:high
+  advisor: openai-codex/gpt-6-luna:high
+  web: openai-codex/gpt-6-luna
+enabledModels: [openai-codex/gpt-6-luna]
+task:
+  agentModelOverrides:
+    scout: openai-codex/gpt-6-luna:high
+    reviewer: openai-codex/gpt-6-luna:high
+    security-reviewer: openai-codex/gpt-6-luna:high

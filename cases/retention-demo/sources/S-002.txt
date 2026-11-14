@@ -1,0 +1,5 @@
+Source: Amplitude Docs, “How the Retention Analysis chart calculates retention”
+URL: https://www.amplitude.com/docs/analytics/charts/retention-analysis/retention-analysis-calculation
+Retrieved: 2026-11-13
+Locator checked: “Overall retention” and incomplete retention intervals, page lines 40–60.
+Paraphrase: overall retention uses cohorts that have reached the measured interval; incomplete intervals can change the denominator and make an in-progress curve appear to rise. This documents behavior of Amplitude's chart, not every analytics implementation.

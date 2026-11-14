@@ -1,0 +1,7 @@
+period,channel,eligible_users,d30_returned,period_mature,days_observed,synthetic
+2026-04,organic,800,560,true,30,true
+2026-04,paid,200,60,true,30,true
+2026-05,organic,200,140,true,30,true
+2026-05,paid,800,240,true,30,true
+2026-06,organic,100,,false,10,true
+2026-06,paid,900,,false,10,true

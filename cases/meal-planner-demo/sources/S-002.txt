@@ -1,0 +1,7 @@
+Source: GOV.UK Service Manual, “User research in discovery”
+URL: https://www.gov.uk/service-manual/user-research/user-research-in-discovery
+Retrieved: 2026-11-13
+Publication shown on page: 2016-11-18
+Locator checked: “User research in discovery” and “How to do user research in discovery” sections.
+Observed page content: discovery research aims to learn who likely users are, what they are trying to do, how they currently do it, and their problems/frustrations; activities include observing current behavior, interviews/visits, examining existing data, and reviewing prior research. The page advises considering end-to-end interactions and broad range of users.
+Limitations: UK government service-design guidance; not empirical evidence of demand for this fictional commercial concept, nor a mandatory universal method.

@@ -1,0 +1,13 @@
+# MGIMO OMP — pre-night read-only research qualification
+
+Ты — контролируемый Qualification Lead. Сейчас НЕ предметное исследование и НЕ разработка продукта.
+
+Окружение: `.omp/profiles/research.yml` + `.omp/profiles/research-luna.yml`, точный OMP 18.18.6, предполагаемый модельный маршрут openai-codex/gpt-6-luna High. Не доверяй предположению — проверь фактический get_state/role/inventory. Ничего не записывай и не запускай shell/eval/инсталляторы. Только read, grep, glob, web_search, task и пассивные инструменты. Любая неподтверждённая модель, иной provider, write/exec/MCP surface или отсутствие tool evidence — STOP/BLOCKED.
+
+1. Подтверди реальную версию/модель/High, effective policy, tool inventory Lead, отсутствие fallback, соответствие `docs/contest-brief.md` полноценному тексту (не BLOCKED), наличие `docs/research-plan.md`.
+2. Через `task` запусти РОВНО одного bundled `scout` с однозначной read-only задачей найти и открыть официальную публичную документацию `site:nodejs.org/api test runner` и вернуть точную ссылку + цитируемый раздел. В task.context явно передай запрет записи, исполнения, вложенных agents, секретов и приватных ссылок; только открытые источники. `solutionSpace` — простой поиск одного подтверждённого источника.
+3. После завершения, насколько позволяет инструментальный доступ, проверь фактические child session_init/tools/model/effort и реальный roundtrip web_search, lifecycle, отсутствие попыток записи, смены моделей и скрытого fallback. Один только текст агента «всё безопасно» не является доказательством. Если не можешь проверить raw metadata, пометь UNKNOWN и не повышай статус до PASS.
+4. Если одиночный scout действительно PASS, выполни E02-lite: один batch с ДВУМЯ read-only `scout`, каждый ищет разные официальные публичные источники (например, Agent Skills specification и OMP task docs). Наблюдай overlap/доставку результатов, фактические модели/permissions, отсутствие children, ошибки, остановку. Не пиши файлы. Если невозможно подтвердить именно параллельную работу, оставь concurrency1 как fallback.
+5. Проверь ограничения APPROVAL: текущий task prompt должен требовать разрешения оператора, никаких session-wide grants; при будущей автоматической task-allow политике нужен повторный quick smoke именно с финальным overlay (`research-night.yml` или `research-night-serial.yml`) перед unattended.
+
+В финале предоставь таблицу PASS/FAIL/BLOCKED/UNKNOWN для одиночного scout, веб-поиска, E02-lite, routing и permissions, краткие agent:// ссылки/session IDs, использованные источники, количество вызовов и текущие ограничения. Не утверждай OS sandbox/secret safety. Никаких изменений глобального конфига, новых API/платных routing, git push, product code или внешней публикации.
