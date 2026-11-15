@@ -4,8 +4,8 @@
 
 | Кейс | Категория | Назначение и предел |
 |---|---|---|
-| [`meal-planner-demo/`](meal-planner-demo/) | **Рекомендуемый ознакомительный пример** | Самый связный синтетический workflow с brief/input, source/evidence/claims, options, decision, двумя стратегиями, test plan и R1/R2. Не user research и не продуктовый спрос. |
-| [`retention-demo/`](retention-demo/) | Историческая демонстрация | Синтетическое дело с retention cohorts и revisions; определение D30/eligibility остаётся неопределённым в своём контексте. Не переиспользовать как одобренную метрику. |
+| [`pantrypath-week4-20261115/`](pantrypath-week4-20261115/decision.md) | **Canonical contest demo** | Synthetic, unblinded R1→R2→R3 case with complete evidence chain, alternatives, strategies, calculation receipt and checkpoint history. Read the [demo guide](../docs/pantrypath-demo.md) first; no real-user/market validation or action approval. Preserve all case files/revisions. |
+| [`meal-planner-demo/`](meal-planner-demo/) | Historical synthetic example | Earlier walkthrough, not the canonical contest demo; do not treat as live-run or real product evidence. |
 | [`unseen-shelf-alerts-20261114/`](unseen-shelf-alerts-20261114/) | Историческая демонстрация / QA | Synthetic R1/R2; ratios — агрегаты записей, не conversions/causal outcome. Не считать новым clean checkpoint. |
 | [`fresh-start-demo/`](fresh-start-demo/) | Историческая демонстрация | Созданное в OMP synthetic дело; не чистая acceptance-проверка coding assistant. |
 | [`public-source-retention-smoke/`](public-source-retention-smoke/) | QA fixture | Одна static public-page попытка и synthetic retention; reviewer caveat по источнику сохраняется. Не host/site general acceptance. |

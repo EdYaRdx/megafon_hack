@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Checkpoint and delivery receipts hash exact file bytes; preserve them on Windows.
+cases/** -text
+research/qualification/pantrypath-r2-20261115/** -text
+research/qualification/pantrypath-e2e-20261115.md -text

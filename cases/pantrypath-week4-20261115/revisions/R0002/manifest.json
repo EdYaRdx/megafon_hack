@@ -1,0 +1,26 @@
+{
+  "revision_id": "R0002",
+  "parent_revision_id": "R0001",
+  "status": "COMPLETE",
+  "active_claim_ids": ["C-01", "C-02", "C-03", "C-04", "C-05", "C-06", "C-07", "C-08", "C-09"],
+  "files": [
+    {"path": "revisions/R0002/options.md", "sha256": "15e7ffa32513f70d46d4b42c369052fc61915363196435d4f11b290b78f12549"},
+    {"path": "revisions/R0002/decision.md", "sha256": "8ec1fac3145c49677da132ada17f7a002defc983972568f2fac28a4f70a8ce5c"},
+    {"path": "revisions/R0002/strategy-product.md", "sha256": "fb6bcf9d860a44e45835b605300e20faa56cd5ab1df0e6c7753266e33357d6ff"},
+    {"path": "revisions/R0002/strategy-communication.md", "sha256": "9b396410a232d82888b7ba6f8873e6f8872a1befd449eaacb21ad8cf54e76cd2"},
+    {"path": "revisions/R0002/test-plan.md", "sha256": "57e2dc59ed14b77486c19c861a626808904cc9d2b4761fb5f352d8e12bd252fc"},
+    {"path": "revisions/R0002/state.md", "sha256": "4ca285eba6a46c5ad18ed70561432a5439c0466cc211b2d8a80efeb093d83be8"},
+    {"path": "inputs/executive-brief.md", "sha256": "51197c45225431c92c2fd8014b04b93635297dd4055a5558e7a750a0f998a70d"},
+    {"path": "inputs/ops-note.md", "sha256": "bc662861db4aed9ed266c05b095967909db7a7a78780ed916e373b1e067de10c"},
+    {"path": "inputs/pilot-summary.csv", "sha256": "ecd78a589a5f7d17fd6b131dc9331b54e39cd8ab855270a95b66a023983577a4"},
+    {"path": "sources/S-001-govuk-user-research.md", "sha256": "83e5df360b02c37eb9e5c7e0080a38addb19aeb3841d2b48a8c6d9c13983bca1"},
+    {"path": "sources/S-005-r2-addendum.md", "sha256": "e412db43c4e19b33f9b56646b5a591a49721224431627d8bda3dd3cd3d282472"},
+    {"path": "brief.md", "sha256": "f8182322c5d490bfa68c182e3e14490f17e705572e0f1d6b80ad2ae014beca91"},
+    {"path": "README.md", "sha256": "fd2d3b797db1aec350ed6bd4fa10aa186681d4146a01c8ceed568c213ea38418"},
+    {"path": "sources.jsonl", "sha256": "6730207efcc861bed731b62e032a314f3b6a0f3b7cd1f1707825d62cb865402c"},
+    {"path": "evidence.jsonl", "sha256": "87d2b2c9840bb3fe61936d234f71e4158a924f82debc9e98c8cbeb22cc970a73"},
+    {"path": "claims.jsonl", "sha256": "3c78ad67c9d6c90dbde0202dcaacb653f866b744adbdf668329dd95bcada55ef"},
+    {"path": "activity.jsonl", "sha256": "89b8caf556f0ecf4faba256a55dd3f0e7a98b41f9c6a2be8dba4c37d808855fd"},
+    {"path": "approvals.jsonl", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  ]
+}

@@ -19,46 +19,18 @@
 
 **OMP не требуется для использования продукта.** Не запускайте `start-overnight-product-research-v3.cmd`: это исторический development/research launcher.
 
-## Пример результата
+## Каноническая демонстрация
 
-В [`cases/meal-planner-demo/`](cases/meal-planner-demo/) содержится синтетический пример гипотетической функции планирования ужинов. Его CSV — вымышленные агрегаты, не оценка спроса; методическая веб-страница не доказывает потребность в продукте. Дело показывает источники и locators, evidence и claims, варианты, decision, две стратегии, test plan, activity и state. Это подготовленный кейс, не live-run и не данные МегаФона.
+[`PantryPath synthetic case`](docs/pantrypath-demo.md) — единственный рекомендуемый для оценки полный demo: brief, synthetic inputs, evidence/claim links, шесть вариантов, решение, связанные стратегии и validation design, calculation receipt и R1→R2→R3 checkpoint history. R3 is recommendation-only; no customer research, action or approval. Подробные границы и все исходные файлы — в entrypoint. Старый [`meal-planner-demo`](cases/meal-planner-demo/README.md) остаётся historical ознакомительным примером, не вторым contest demo.
 
-**Иллюстрация решения:** в синтетическом CSV указано 120 приглашённых, 24 ответа и 15 кликов. Это 24/120 = 20% ответов, 15/24 = 62,5% кликов среди ответивших и 15/120 = 12,5% от приглашённых. Набор неслучайный, формулировка вопроса неизвестна; эти доли не доказывают спрос. Поэтому synthetic case рекомендует не запускать платную функцию по этим данным, а рассматривать ограниченное исследование проблемы только после human approval; сохранить status quo и закрытие направления как альтернативы. Это иллюстрация зафиксированного дела, не новая проверка и не одобренное решение.
+## Статус и пределы
 
-| Артефакт дела | Для чего |
-|---|---|
-| `sources.jsonl`, `evidence.jsonl` | Источники, точные locators, извлечённые сведения и ограничения |
-| `claims.jsonl` | Утверждения, типы/статусы и связи с evidence |
-| `options.md`, `decision.md` | Альтернативы, сильные возражения и условное решение |
-| `strategy-product.md`, `strategy-communication.md` | Согласованные аудитория, ценность, обещание и каналы |
-| `test-plan.md` | Comparator, метрика/знаменатель, период, guardrails и правило решения |
-| `revisions/`, `ACTIVE.json`, `state.md`, `activity.jsonl`, `approvals.jsonl` | Полные снимки, выбор активной ревизии, продолжение и отдельные human approvals |
-
-## Устройство и ограничения
-
-```mermaid
-flowchart LR
-  U[Запрос и материалы] --> I[intake]
-  I --> E[evidence-research]
-  E --> O[options-decision]
-  O --> S[strategy-communication]
-  S --> X[experiment-design]
-  X --> D[decision и human gate]
-  D --> R[resume-revise]
-  R --> E
-  E -. case files .-> C[(sources / evidence / claims / revisions / state)]
-```
-
-Skills — файловые процедуры, а не работающий оркестратор. Папочная архитектура делает дело читаемым и переносимым без развёртывания сервиса, но фактические права, модель, инструменты, Skill discovery и соблюдение инструкций определяются host. Текстовые approvals — workflow gate, не техническое ограничение ОС или sandbox. См. [архитектуру и протокол](docs/architecture.md) и [ограничения и безопасность](references/security-and-source-handling.md).
-
-## Статус
-
-**Синтетический workflow; приёмка ограниченная и не завершена.** Динамический E2E имеет статус **CONDITIONAL** только в ограниченном single-host synthetic scope. Targeted F1–F5 **NOT ACCEPTED** из-за дефектов test harness/checker; F6 ограничен provenance. **H02 BLOCKED**; latest independent Sol acceptance sign-off **PENDING**. В рассмотренном scope подтверждённых product P0/P1 не найдено; это не полная security или release сертификация. Clean-host и cross-host portability не сертифицированы. Официальный демобриф МегаФона в доступных материалах отсутствует; это не доказывает, что организатор его не публиковал. Подробности и точные границы: [`docs/implementation-status.md`](docs/implementation-status.md) и [`docs/evaluation.md`](docs/evaluation.md).
+Протокол `checkpoint-v1` теперь имеет исправления для legacy identity, JSONL-prefix hashes и immutable history; смотрите [актуальный integration report](docs/release/contest-v1-integration.md) для выполненных проверок этой ветки. Это не меняет исторические acceptance gates автоматически и не является host certification: synthetic functional E2E ≠ blind evaluation, real-user research, multi-host certification, customer approval, network testing или production security. Organizer supplementary demo brief, video and completed submission remain unverified/unknown. [`Implementation status`](docs/implementation-status.md) сохраняет разные scope и evidence.
 
 ## Документы и примеры
 
 - [Документация](docs/README.md) · [Quick Start](docs/quickstart.md) · [Архитектура](docs/architecture.md) · [Разработка](docs/development.md)
-- [Оценка и доказательства](docs/evaluation.md) · [Submission checklist](docs/submission-checklist.md)
+- [Оценка и доказательства](docs/evaluation.md) · [Submission checklist](docs/submission-checklist.md) · [Integration release report](docs/release/contest-v1-integration.md)
 - [Каталог кейсов](cases/README.md) · [Research/dev-only индекс](research/README.md)
 
 ## Для разработчиков и исследователей

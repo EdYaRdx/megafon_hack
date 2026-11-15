@@ -4,12 +4,13 @@ Start with the [product overview](../README.md) and [Quick Start](quickstart.md)
 
 ## Product and first use
 
-- [Product overview and GitHub entrypoint](../README.md) — purpose, synthetic example, architecture sketch, status and limits.
-- [Quick Start](quickstart.md) — create a case and start in a compatible coding assistant.
-- [Cases index](../cases/README.md) — recommended example, QA fixtures and historical cases.
+- [Product overview and primary entrypoint](../README.md) — purpose, path, canonical synthetic demo, status limits.
+- [Quick Start](quickstart.md) — create a case, start and resume in a compatible coding assistant.
+- [First-run prompt](../prompts/first-run.md) — reusable instructions for a new or resumed case.
+- [Canonical PantryPath demo guide](pantrypath-demo.md) — one readable case walkthrough with linked evidence, memo, calculations and checkpoint history.
+- [Cases index](../cases/README.md) — template, canonical demo, QA fixtures and historical cases.
 - [Architecture](architecture.md) — canonical product architecture, Skills, data flow, state/revision/approval protocol, host boundary and chosen repository layout.
 - [Source handling and safety](../references/security-and-source-handling.md).
-
 ## Build and evaluate
 
 - [Development guide](development.md) — Skills, schemas, cases, provenance, fixtures, compatibility, reviews and releases.
@@ -22,6 +23,7 @@ Start with the [product overview](../README.md) and [Quick Start](quickstart.md)
 - [Contest submission checklist](submission-checklist.md) — human and external gates; not proof of submission.
 - [Working contest brief](contest-brief.md) — supplied text; exact organizer provenance and supplementary MegaFon demo brief are unverified.
 - [Demo video plan](demo-video-script.md) — recording plan, not a recorded video.
+- [Contest v1 integration report](release/contest-v1-integration.md) — local branch evidence, verification, unresolved gates and Windows promotion handoff.
 
 ## Research archive and historical records
 

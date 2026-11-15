@@ -1,8 +1,8 @@
 # Evaluation и доказательства
 
-**Срез:** продуктовые gate statuses приведены из принятого task baseline от 2026-11-14 и сохранённых acceptance/audit reports; запись ниже не превращает изменения репозитория в product PASS. Для этой работы baseline branch/HEAD: `release/product-repository-20261114` / `7fd1ae68cd597c5a046de568d336f39791f25855`; `origin/main` на старте: `7bbe59d37d4c1e13f0fd4453f7605e8d2f601d42`. Опубликованный hardening audit: [`672aa5c`](https://github.com/EdYaRdx/megafon_hack/commit/672aa5c83616f813c7dd9dc0598a1c8e20f8e7e9). В этой задаче audit reference и локальные reports доступны, но новые dynamic/product checks не выполнялись.
+**Границы среза:** продуктовые gate statuses ниже дословно описывают принятую evaluation snapshot от 2026-11-14, а не текущую версию branch; исходные SHA/branch/audit reference сохранены для provenance. Текущие детерминированные проверки repository и checkpoint-protocol отдельно перечислены в [contest integration report](release/contest-v1-integration.md). Их результат не переписывает прошлые F1–F5/H02/Sol/clean-host/real-user gates и не является product, security или host certification.
 
-## Текущий вердикт
+## Acceptance snapshot — 2026-11-14 baseline
 
 | Проверка | Статус | Что именно означает |
 |---|---|---|

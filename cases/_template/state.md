@@ -1,6 +1,7 @@
 # Case state
 
 - Updated at:
+- Case protocol: `checkpoint-v1` (must match root `case-protocol.json`)
 - Active complete revision ID:
 - Current stage: `INTAKE`
 - Decision status: `NOT_MADE`
