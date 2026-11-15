@@ -1,34 +1,53 @@
-# Documentation
+# Документация
 
-Start with the [product overview](../README.md) and [Quick Start](quickstart.md). The product is a folder-based coding-assistant workflow; `research/` and OMP are not required for first use.
+Здесь собраны инструкции по использованию проекта, демонстрационный пример и технические материалы. Для знакомства с продуктом начните с [главной страницы](../README.md).
 
-## Product and first use
+## Начните здесь
 
-- [Product overview and primary entrypoint](../README.md) — purpose, path, canonical synthetic demo, status limits.
-- [Quick Start](quickstart.md) — create a case, start and resume in a compatible coding assistant.
-- [First-run prompt](../prompts/first-run.md) — reusable instructions for a new or resumed case.
-- [Canonical PantryPath demo guide](pantrypath-demo.md) — one readable case walkthrough with linked evidence, memo, calculations and checkpoint history.
-- [Cases index](../cases/README.md) — template, canonical demo, QA fixtures and historical cases.
-- [Architecture](architecture.md) — canonical product architecture, Skills, data flow, state/revision/approval protocol, host boundary and chosen repository layout.
-- [Source handling and safety](../references/security-and-source-handling.md).
-## Build and evaluate
+| Раздел | Что внутри |
+|---|---|
+| [Быстрый старт](quickstart.md) | Создать первое дело, получить результат, продолжить после паузы |
+| [Демонстрация PantryPath](pantrypath-demo.md) | Исходная задача, альтернативы, стратегии, проверка расчётов и три ревизии |
+| [Архитектура](architecture.md) | Компоненты, движение данных, состояние и восстановление |
+| [Каталог кейсов](../cases/README.md) | Шаблон, демонстрационный проект и прочие примеры |
+| [Инструкция первого запуска](../prompts/first-run.md) | Рабочий текст для новой задачи |
 
-- [Development guide](development.md) — Skills, schemas, cases, provenance, fixtures, compatibility, reviews and releases.
-- [Evaluation](evaluation.md) — evidence, checks, current known product risks, harness defects, unverified behavior and deferred work.
-- [Implementation status](implementation-status.md) — current acceptance snapshot and scope.
-- [Clean-host E2E runbook](clean-host-e2e-runbook.md) — future procedures only; NOT RUN unless evidence says otherwise.
+## Правила и методика
 
-## Contest
+- [Правила процесса](../AGENTS.md) — этапы работы и требования к источникам и решениям.
+- [Шаблон дела](../cases/_template/README.md) — файлы задачи, проверяемые версии и согласование действий.
+- [Справочные материалы](../references/) — метрики, источники, проверка утверждений.
+- [Работа с внешними материалами](../references/security-and-source-handling.md) — границы использования данных.
 
-- [Contest submission checklist](submission-checklist.md) — human and external gates; not proof of submission.
-- [Working contest brief](contest-brief.md) — supplied text; exact organizer provenance and supplementary MegaFon demo brief are unverified.
-- [Demo video plan](demo-video-script.md) — recording plan, not a recorded video.
-- [Contest v1 integration report](release/contest-v1-integration.md) — release evidence, verification scope, unresolved contest gates and retained checksum-pinned whitespace findings.
+## Разработка и сопровождение
 
-## Research archive and historical records
+Эти документы **не нужны для первого использования**. Они сохраняют проверяемые результаты и техническую историю проекта.
 
-- [Repository architecture inventory](repository-inventory.md) — keep/improve/archive/remove decisions and audit scope.
-- [Research archive index](../research/README.md) — dated product research, evaluations, qualifications and independent audits.
-- [Historical research plan](research-plan.md) — retained planning record; PREPARATION/CANDIDATE labels are not current release status.
-- [Previous-session handoff](next-session-handoff.md) — historical chronology; current status belongs to `implementation-status.md`.
-- [`submission-architecture.md`](submission-architecture.md) — retained compatibility path to the canonical architecture above.
+- [Разработка и проверки](development.md).
+- [Оценка и ограничения](evaluation.md).
+- [Текущее состояние](implementation-status.md).
+- [Процедура проверки в новой среде](clean-host-e2e-runbook.md).
+
+## Конкурс и недостающие материалы
+
+- [Рабочий текст конкурсного задания](contest-brief.md).
+- [Проверочный список подачи](submission-checklist.md) и [сценарий видео](demo-video-script.md).
+- [План недостающих материалов](documentation-todo.md) — конкурсные доказательства и необязательные материалы для презентации.
+
+## Архив и служебные материалы
+
+- [Отчёт о выпуске текущей версии](release/contest-v1-integration.md) — датированный release record, а не инструкция по запуску.
+- [Исследовательский архив](../research/README.md).
+
+## Карта документов проекта
+
+| Класс | Основные материалы | Как использовать |
+|---|---|---|
+| **PRODUCT** | Корневой [README](../README.md) | Краткое описание продукта, доказанной ценности и границ возможностей. |
+| **USER GUIDE** | [Быстрый старт](quickstart.md), [PantryPath](pantrypath-demo.md), [`prompts/first-run.md`](../prompts/first-run.md) | Создание дела, просмотр подготовленного примера и начало работы. |
+| **DEVELOPER** | [Архитектура](architecture.md), [разработка](development.md), [оценка](evaluation.md), [статус реализации](implementation-status.md), [runbook новой среды](clean-host-e2e-runbook.md), `AGENTS.md`, шесть `.agents/skills/`, `references/`, `cases/_template/`, `tools/`, `tests/` | Процедуры, технический контракт, методика, границы проверок и обслуживание файлов. |
+| **CONTEST** | [Рабочий текст задания](contest-brief.md), [подача](submission-checklist.md), [сценарий видео](demo-video-script.md), [недостающие материалы](documentation-todo.md) | Подготовка конкурса. Рабочий brief не подтверждает актуальность официального задания. |
+| **HISTORICAL** | Датированные материалы `research/`; `docs/release/preprod-report.md`, `docs/release/contest-v1-integration.md`, `docs/repository-inventory.md`, `docs/next-session-handoff.md`, `docs/research-plan.md`; legacy/QA-кейсы в `cases/` | Сохраняют прежние основания и пределы проверок; не считать текущими инструкциями или доказательством текущего состояния. |
+| **INTERNAL** | `MGIMO_RESEARCH_TO_IMPLEMENTATION.md`, `prompts/overnight*`, `.omp/`, `START-OVERNIGHT-V3.txt`, `start-overnight-product-research-v3.cmd` | Внутренняя история исследований/разработки; не нужна пользователю продукта и не является его launcher. |
+
+`START-HERE.txt` — прежняя краткая инструкция; актуальный путь — README → Quick Start. `docs/submission-architecture.md` сохранён как совместимая ссылка на каноническую архитектуру. Архивные документы не переписываются задним числом и сохраняют даты и scope своих проверок.
