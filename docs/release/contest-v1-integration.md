@@ -1,6 +1,6 @@
 # MGIMO / MegaFon Track 1 — Contest v1 integration review
 
-**Record date:** 2026-11-16 (Europe/Moscow), before the integration PR was created. This is a point-in-time acceptance record; PR checks, review, and merge state are not inferred here.
+**Record date:** 2026-11-16 (Europe/Moscow). The acceptance section below records the pre-PR release review; the post-merge result is appended at the end.
 
 ## Repository and integration scope
 
@@ -33,4 +33,12 @@ No clean-host or cross-host acceptance, live model product E2E, real-user resear
 
 ## Follow-up
 
-Use the integration PR as the live source for checks, review, merge result, and final `main` SHA. Preserve the primary checkout's two untracked items. Do not rewrite or line-normalize the checksum-pinned PantryPath history.
+## Merge record — PR #6
+
+- PR [#6](https://github.com/EdYaRdx/megafon_hack/pull/6) merged on 2026-11-16 (Europe/Moscow) with merge commit `1f3b386a51e3a34ded0f8f73a33fcf34ea40f244`. Fetched `origin/main` points to that commit. Its tree is identical to the tested integration tree.
+- GitHub reported no status checks and no required review decision; the `main` branch was not protected. Merge used a normal merge commit. The final PR diff had an independent read-only review.
+- PR [#5](https://github.com/EdYaRdx/megafon_hack/pull/5) is also marked merged; its head `04a2328199ccb90055432d97220c0e7e4c640aa1` is an ancestor of merged `main`, so its checkpoint protocol changes are included.
+- Post-merge verification on the tree matching `origin/main`: unit tests **13/13 PASS**; repository checker **PASS** (153 Markdown files); PantryPath classifier **CHECKPOINTED**; case checksums **41/41 PASS**; delivery checksums **6/6 PASS**. CRLF-aware `git diff --check` still reports the same three checksum-pinned findings above and is not a full PASS.
+- The local `main` ref was fast-forwarded to `origin/main`. The primary checkout remains on its pre-existing `codex/megafon-mvp-file-agent` branch with untracked `.omp/profiles/product-build.yml` and `tatus -sb` preserved.
+
+Preserve those primary-checkout files. Do not rewrite or line-normalize checksum-pinned PantryPath history. Contest submission, jury access, real-user acceptance, clean-host/cross-host acceptance, and production security remain unverified.

@@ -23,7 +23,7 @@ Start with the [product overview](../README.md) and [Quick Start](quickstart.md)
 - [Contest submission checklist](submission-checklist.md) — human and external gates; not proof of submission.
 - [Working contest brief](contest-brief.md) — supplied text; exact organizer provenance and supplementary MegaFon demo brief are unverified.
 - [Demo video plan](demo-video-script.md) — recording plan, not a recorded video.
-- [Contest v1 integration report](release/contest-v1-integration.md) — local branch evidence, verification, unresolved gates and Windows promotion handoff.
+- [Contest v1 integration report](release/contest-v1-integration.md) — release evidence, verification scope, unresolved contest gates and retained checksum-pinned whitespace findings.
 
 ## Research archive and historical records
 
