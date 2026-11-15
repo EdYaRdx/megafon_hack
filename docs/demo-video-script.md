@@ -4,7 +4,7 @@
 
 | Time | Screen/action to capture | Narration / proof point |
 |---|---|---|
-| 0:00–0:35 | Open README and name the project as a portable, file-based Product Strategy Agent. | State the host supplies the model/tools; OMP/Docker is not a product dependency. Show the synthetic/limitations label. |
+| 0:00–0:35 | Open README and name the project as a portable, file-based Product Strategy Agent. | Объяснить, что работа происходит в среде с доступом к файлам проекта; показать отметку о синтетических материалах. |
 | 0:35–1:20 | Show the file-based architecture and the PantryPath guide, then open its brief and synthetic-input provenance. | Name the actual host/model only after checking the interface; no hidden service or MegaFon data. Explain that this is a prepared synthetic case, not a live run. |
 | 1:20–2:30 | Trace `sources.jsonl` → `evidence.jsonl` → `claims.jsonl` → `decision.md`; open one source locator and its linked claim. | Distinguish invented inputs from public method guidance. Show missing assignment, event and cohort definitions as `UNKNOWN`. |
 | 2:30–3:35 | Show all six options in `options.md` and the decision memo. | Include status quo/freeze and stop/close; explain the conditional decision and strongest objections without presenting it as approved. |
