@@ -12,11 +12,13 @@
 - `state.md` — этап и ссылка на единственную активную полную ревизию.
 - Остальные Markdown-файлы — альтернативы, решение, две связанные стратегии и план проверки.
 
-## Revision protocol (single writer)
+## Протокол ревизий (один автор записи)
 
-Revision IDs are immutable, e.g. `R0001`, `R0002`; each manifest names exactly one parent or `null`. For each revision create `revisions/<id>/` and save exact copies of `options.md`, `decision.md`, `strategy-product.md`, `strategy-communication.md`, `test-plan.md`, and `state.md`. In its `manifest.json`, list the revision ID, parent ID, `status`, explicit `active_claim_ids`, and relative path + SHA-256 for every snapshot and every decision dependency used (inputs/source snapshots and relevant ledgers). Hash JSONL dependencies as the exact bytes present when the revision is published.
-Treat `sources.jsonl`, `evidence.jsonl`, `claims.jsonl`, `activity.jsonl`, and `approvals.jsonl` as append-only: never edit, delete, reorder, or reserialize committed records. A later revision may append complete JSON objects. If an earlier ledger ended without a final line-feed, append one separator line-feed before the next object; that changes the whole-file hash but not the earlier byte prefix. Historical hashes remain valid only when they match the exact bytes through a complete JSON object, either with or without its terminal line-feed. The classifier permits this prefix rule only for these five root ledgers; mutations or truncation within the selected prefix still fail. Other dependencies require exact full-file hashes.
-Example manifest shape (hash values are actual lowercase SHA-256 hex digests computed from saved bytes; paths are relative to the case root):
+ID ревизии неизменяемы, например `R0001`, `R0002`; в каждом manifest указан ровно один родитель или `null`. Для ревизии создайте `revisions/<id>/` и сохраните точные копии `options.md`, `decision.md`, `strategy-product.md`, `strategy-communication.md`, `test-plan.md` и `state.md`. В `manifest.json` укажите ID ревизии и родителя, `status`, явный список `active_claim_ids`, относительный путь и SHA-256 каждого снимка и каждой использованной зависимости решения (входных материалов, снимков источников и нужных журналов). Хэшируйте JSONL-зависимости по точным байтам на момент публикации.
+
+Считайте `sources.jsonl`, `evidence.jsonl`, `claims.jsonl`, `activity.jsonl` и `approvals.jsonl` журналами только для добавления: не редактируйте, не удаляйте, не переставляйте и не сериализуйте заново уже записанные строки. Следующая ревизия может добавить новые полные JSON-объекты. Если предыдущий журнал завершался без финального перевода строки, добавьте разделительный перевод строки перед новым объектом; hash всего файла изменится, но прежний префикс байтов сохранится. Исторический hash действителен только если совпадает с точными байтами до границы полного JSON-объекта, включая вариант с завершающим переводом строки и без него. Классификатор применяет это правило только к пяти указанным корневым журналам; изменение или обрезка байтов внутри выбранного префикса приводит к ошибке. Остальные зависимости проверяются по полному hash файла.
+
+Пример структуры manifest (значения SHA-256 должны быть вычислены по сохранённым байтам; пути указаны относительно папки дела):
 
 ```json
 {
@@ -36,36 +38,38 @@ Example manifest shape (hash values are actual lowercase SHA-256 hex digests com
 }
 ```
 
-This is a format illustration, not a complete revision or valid evidence; replace every example path/value with the actual complete dependency set and computed hash. Hash the final manifest bytes separately for root `ACTIVE.json`; do not include the manifest's own hash inside itself. `ACTIVE.json` is a small mutable selector and is not part of the revision manifest.
+Это только иллюстрация формата, а не полная ревизия или допустимое доказательство. Замените примерные пути и значения на полный набор реальных зависимостей и вычисленные хэши. Отдельно вычислите hash окончательных байтов manifest для корневого `ACTIVE.json`; не включайте hash самого manifest внутрь него. `ACTIVE.json` — небольшой изменяемый указатель; он не входит в manifest ревизии.
 
-Write all snapshots first. Verify the file list, active claims and hashes, then write `manifest.json` last with `status: "COMPLETE"`. The root `state.md` snapshot includes the protocol ID, revision ID and active claims but not the manifest hash (avoiding a self-referential hash); `decision.md` repeats the revision ID and active claim IDs. A selector may state its parent inline as `(parent \`R0001\`)` or in a separate `Parent revision ID` / `Parent revision` field; any declared parent must match `manifest.json`. A missing manifest, a non-COMPLETE status, a missing/hash-mismatched file, or inconsistent claim/parent selection means INCOMPLETE/CONFLICT; never resume by combining root files with a partial revision. Never overwrite a revision folder or manufacture a missing historical artifact.
+Сначала запишите все снимки. Проверьте список файлов, активные тезисы и хэши, затем последним запишите `manifest.json` со статусом `COMPLETE`. Корневой снимок `state.md` включает ID протокола, ID ревизии и активные тезисы, но не hash manifest (чтобы избежать самоссылки); `decision.md` повторяет ID ревизии и активных тезисов. Указатель может объявлять родителя inline как `(parent \`R0001\`)` или отдельным полем `Parent revision ID` / `Parent revision`; любое указанное значение должно совпадать с `manifest.json`. Отсутствующий manifest, статус не `COMPLETE`, отсутствующий/несовпадающий файл или конфликт тезисов/родителя означает `INCOMPLETE/CONFLICT`. Не продолжайте работу, смешивая корневые файлы и неполную ревизию. Не перезаписывайте папку ревизии и не создавайте задним числом отсутствующие исторические файлы.
 
-### Append-only ledgers and historical hashes
+### Журналы только для добавления и исторические хэши
 
-Each manifest pins a ledger's exact bytes at its revision. Later append-only rows do not invalidate that checkpoint if its hash still matches a complete JSON-object prefix of the current file. An empty-ledger hash records zero historical rows; later rows are outside that historical checkpoint. Only the five root JSONL paths listed above receive prefix verification. A selected revision's active claims and decision remain explicit in its manifest and snapshots; later JSONL order or timestamps never choose a winner.
+Каждый manifest фиксирует точные байты журналов на момент ревизии. Позднейшие добавленные строки не нарушают checkpoint, если исторический hash совпадает с префиксом текущего файла, заканчивающимся полным JSON-объектом. Hash пустого журнала соответствует нулю исторических строк; будущие записи не относятся к этому checkpoint. Проверка по префиксу допускается только для пяти указанных корневых JSONL. Активные тезисы и решение выбранной ревизии явно указаны в её manifest и снимках; порядок и даты новых строк не выбирают победителя.
 
-For the first checkpoint, set `case-protocol.json` to `CHECKPOINTING` before writing any revision snapshot. Publish in this order: update root `state.md` and `decision.md` to the verified successor, then write root `ACTIVE.json` last. It contains the selected `revision_id` and SHA-256 of that revision's manifest. It is a mutable selector outside the revision manifest; atomic replacement is not assumed. Until root files begin changing, the previous selector remains usable. If a crash leaves root files and selector disagreeing, or `ACTIVE.json` is missing/torn/mismatched, stop with `CONFLICT`; manually restore the prior immutable complete snapshot or finish selection only after re-verifying all files. A verified successor is not current until selected. Do not infer a successor from timestamps or leaf order.
-Example `ACTIVE.json`:
+Перед созданием первого checkpoint установите `CHECKPOINTING` в `case-protocol.json`, до записи любого снимка ревизии. Публикуйте в таком порядке: обновите корневые `state.md` и `decision.md` до проверенного следующего состояния, затем последним запишите корневой `ACTIVE.json`. Он содержит выбранный `revision_id` и SHA-256 manifest этой ревизии. Это изменяемый указатель вне manifest; атомарность замены не предполагается. Пока корневые файлы не менялись, предыдущий указатель остаётся пригоден. Если сбой оставил корневые файлы и указатель несогласованными либо `ACTIVE.json` отсутствует/повреждён/не совпадает, остановитесь со статусом `CONFLICT`; вручную восстановите прежний полный снимок или завершите выбор только после повторной проверки всех файлов. Проверенный successor не становится текущим, пока его не выбрали. Не определяйте его по времени изменения или порядку папок.
+
+Пример `ACTIVE.json`:
 
 ```json
 {"revision_id":"R0001","manifest_sha256":"<sha256-of-complete-manifest-bytes>"}
 ```
 
-This selector is written outside the checkpoint hash set to avoid circular hashing. Revision snapshots do not contain the selector hash.
+Указатель записывается за пределами набора checkpoint-хэшей, чтобы избежать циклического хэширования. Снимки ревизии не содержат hash указателя.
 
-## Approval and claims
+## Согласование и тезисы
 
-Append approvals to `approvals.jsonl`, separate from decision/revision history. Required fields: unique approval ID, approver/authority, timestamp, exact action, scope and limits, revision ID, SHA-256 of that revision's complete manifest, basis/claim IDs, expiry/review trigger, conditions. Any revision/hash, action, scope, or decisive-premise change requires new approval. Do not transfer approval. Missing/ambiguous authority or mismatch means STOP. This is a human workflow contract, not host permission enforcement.
-Approval record shape (one JSON object per line in append-only `approvals.jsonl`):
+Добавляйте согласования в `approvals.jsonl` отдельно от истории решений/ревизий. Обязательные поля: уникальный ID согласования, кто и на каком основании согласовал, время, точное действие, scope и ограничения, ID ревизии, SHA-256 полного manifest ревизии, тезисы-основания, срок/триггер пересмотра и условия. Изменение ревизии/hash, действия, scope или решающего основания требует нового согласования. Не переносите согласование на другое действие или ревизию. Если полномочия неоднозначны или запись не совпадает, остановитесь (`STOP`). Это договорённость рабочего процесса с участием человека, а не техническое управление правами среды.
+
+Структура записи согласования (один JSON-объект в каждой строке append-only журнала `approvals.jsonl`):
 
 ```json
 {"approval_id":"A-001","approver":"<name and authority>","approved_at":"<timestamp>","action":"<exact action>","scope":"<limits and included objects>","revision_id":"R0001","manifest_sha256":"<computed-sha256>","basis_claim_ids":[],"expires_at":"<timestamp or NONE>","review_trigger":"<event or date>","conditions":"<conditions or NONE>"}
 ```
 
-Never copy an example approval into a real case or treat a blank/template record as consent.
+Не копируйте пример согласования в реальное дело и не считайте пустую запись или шаблон согласием.
 
-`supersedes` does not select a claim. List exact active claim IDs in the complete manifest and repeat them in current state/decision. JSONL order, dates and “latest row” MUST NOT select the winner. For unresolved successor forks, mark the candidate INCOMPLETE/CONFLICT.
+Поле `supersedes` не выбирает тезис. В полном manifest укажите точные ID активных тезисов и повторите их в текущих `state.md` и `decision.md`. Порядок строк JSONL, даты и принцип «последняя запись побеждает» не должны определять выбор. При неразрешённом ветвлении пометьте вариант `INCOMPLETE/CONFLICT`.
 
-Each `activity.jsonl` row is a JSON event. Give source reads/requests individual attempt IDs and result status. Record failed writes/edits and retries. Use `UNKNOWN` for unknown outcomes/telemetry; do not backfill fabricated history.
+Каждая строка `activity.jsonl` — отдельное JSON-событие. Назначайте отдельный ID и статус результата каждой попытке чтения/запроса источника. Записывайте неудачные попытки записи/редактирования и повторы. Для неизвестного результата или телеметрии указывайте `UNKNOWN`; не дополняйте историю выдуманными событиями.
 
-For any critical calculation see `test-plan.md` and `references/metrics.md`. Store an execution receipt with the exact command actually run, cwd, input path and SHA-256, tool/runtime version, exit status, raw stdout/stderr, result, units, formula, rounding, missing/error rules. Failed commands are failed receipts, not successful calculations. If no tool ran, mark `NOT RUN`; never invent a command after the fact.
+Для критических расчётов см. `test-plan.md` и `references/metrics.md`. Сохраняйте receipt фактического запуска: точную выполненную команду, рабочую папку, путь и SHA-256 входа, версию инструмента/runtime, exit status, исходные stdout/stderr, результат, единицы, формулу, округление, правила пропусков/ошибок. Неудачная команда остаётся неудачным receipt, а не успешным расчётом. Если инструмент не запускали, укажите `NOT RUN`; не придумывайте команду задним числом.

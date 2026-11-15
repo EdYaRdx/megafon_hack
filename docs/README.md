@@ -28,11 +28,26 @@
 - [Текущее состояние](implementation-status.md).
 - [Процедура проверки в новой среде](clean-host-e2e-runbook.md).
 
-## Конкурс и архив
+## Конкурс и недостающие материалы
 
 - [Рабочий текст конкурсного задания](contest-brief.md).
 - [Проверочный список подачи](submission-checklist.md) и [сценарий видео](demo-video-script.md).
-- [Отчёт о выпуске текущей версии](release/contest-v1-integration.md).
+- [План недостающих материалов](documentation-todo.md) — конкурсные доказательства и необязательные материалы для презентации.
+
+## Архив и служебные материалы
+
+- [Отчёт о выпуске текущей версии](release/contest-v1-integration.md) — датированный release record, а не инструкция по запуску.
 - [Исследовательский архив](../research/README.md).
 
-Архивные документы сохраняют даты и границы своих проверок; они не заменяют текущие инструкции.
+## Карта документов проекта
+
+| Класс | Основные материалы | Как использовать |
+|---|---|---|
+| **PRODUCT** | Корневой [README](../README.md) | Краткое описание продукта, доказанной ценности и границ возможностей. |
+| **USER GUIDE** | [Быстрый старт](quickstart.md), [PantryPath](pantrypath-demo.md), [`prompts/first-run.md`](../prompts/first-run.md) | Создание дела, просмотр подготовленного примера и начало работы. |
+| **DEVELOPER** | [Архитектура](architecture.md), [разработка](development.md), [оценка](evaluation.md), [статус реализации](implementation-status.md), [runbook новой среды](clean-host-e2e-runbook.md), `AGENTS.md`, шесть `.agents/skills/`, `references/`, `cases/_template/`, `tools/`, `tests/` | Процедуры, технический контракт, методика, границы проверок и обслуживание файлов. |
+| **CONTEST** | [Рабочий текст задания](contest-brief.md), [подача](submission-checklist.md), [сценарий видео](demo-video-script.md), [недостающие материалы](documentation-todo.md) | Подготовка конкурса. Рабочий brief не подтверждает актуальность официального задания. |
+| **HISTORICAL** | Датированные материалы `research/`; `docs/release/preprod-report.md`, `docs/release/contest-v1-integration.md`, `docs/repository-inventory.md`, `docs/next-session-handoff.md`, `docs/research-plan.md`; legacy/QA-кейсы в `cases/` | Сохраняют прежние основания и пределы проверок; не считать текущими инструкциями или доказательством текущего состояния. |
+| **INTERNAL** | `MGIMO_RESEARCH_TO_IMPLEMENTATION.md`, `prompts/overnight*`, `.omp/`, `START-OVERNIGHT-V3.txt`, `start-overnight-product-research-v3.cmd` | Внутренняя история исследований/разработки; не нужна пользователю продукта и не является его launcher. |
+
+`START-HERE.txt` — прежняя краткая инструкция; актуальный путь — README → Quick Start. `docs/submission-architecture.md` сохранён как совместимая ссылка на каноническую архитектуру. Архивные документы не переписываются задним числом и сохраняют даты и scope своих проверок.

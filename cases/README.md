@@ -4,16 +4,16 @@
 
 | Кейс | Категория | Назначение и предел |
 |---|---|---|
-| [`pantrypath-week4-20261115/`](pantrypath-week4-20261115/decision.md) | **Canonical contest demo** | Synthetic, unblinded R1→R2→R3 case with complete evidence chain, alternatives, strategies, calculation receipt and checkpoint history. Read the [demo guide](../docs/pantrypath-demo.md) first; no real-user/market validation or action approval. Preserve all case files/revisions. |
-| [`meal-planner-demo/`](meal-planner-demo/) | Historical synthetic example | Earlier walkthrough, not the canonical contest demo; do not treat as live-run or real product evidence. |
-| [`unseen-shelf-alerts-20261114/`](unseen-shelf-alerts-20261114/) | Историческая демонстрация / QA | Synthetic R1/R2; ratios — агрегаты записей, не conversions/causal outcome. Не считать новым clean checkpoint. |
+| [`pantrypath-week4-20261115/`](pantrypath-week4-20261115/decision.md) | **Основная конкурсная демонстрация** | Синтетическое, неслепое дело R1→R2→R3: цепочка доказательств, варианты, стратегии, receipt расчёта и история checkpoint. Сначала откройте [руководство](../docs/pantrypath-demo.md). Реальной проверки пользователей/рынка и разрешения на действие нет. Сохраняйте файлы дела и ревизии. |
+| [`meal-planner-demo/`](meal-planner-demo/) | Исторический синтетический пример | Более ранний разбор, не основная конкурсная демонстрация; это не live-запуск и не данные о реальном продукте. |
+| [`unseen-shelf-alerts-20261114/`](unseen-shelf-alerts-20261114/) | Историческая демонстрация / QA | Синтетические R1/R2; соотношения — агрегаты записей, не конверсии и не причинный эффект. Не считать новым полным checkpoint. |
 | [`fresh-start-demo/`](fresh-start-demo/) | Историческая демонстрация | Исторический синтетический пример; не независимая проверка работы в новой среде. |
-| [`public-source-retention-smoke/`](public-source-retention-smoke/) | QA fixture | Одна static public-page попытка и synthetic retention; reviewer caveat по источнику сохраняется. Не host/site general acceptance. |
-| [`retention-f1-demo/`](retention-f1-demo/) | QA fixture | Малый синтетический fixture для retention/cohort calculation; не кейс реальных данных. |
-| [`service-launch-f3/`](service-launch-f3/) | QA fixture | Сценарные synthetic constraints/economics и alternatives; числа не подтверждают спрос или окупаемость. |
-| [`source-injection-demo/`](source-injection-demo/) | QA fixture | Материал с недоверенной директивой для prompt/source-handling диагностики; не security certification. |
-| [`resume-failure-demo/`](resume-failure-demo/) | QA fixture | Synthetic failure/resume scenario; failure fixture не означает успешную динамическую recovery проверку. |
-| [`offer-terms-demo/`](offer-terms-demo/) | **Incomplete / legacy fixture** | Частичные synthetic offer terms и revisions; нет полного decision/strategy/test-plan checkpoint. Не показывать как complete strategy. |
-| [`_template/`](../cases/_template/) | Новый кейс | Исходные файлы дела и документированный single-writer revision/approval protocol. Копировать в новый каталог, не заполнять шаблон прямо. |
+| [`public-source-retention-smoke/`](public-source-retention-smoke/) | Тестовая фикстура | Одна попытка чтения публичной страницы и синтетический retention; сохраняются замечания reviewer к источнику. Это не общая приёмка хостов или сайтов. |
+| [`retention-f1-demo/`](retention-f1-demo/) | Тестовая фикстура | Небольшая синтетическая фикстура расчёта retention/cohort; не данные реального дела. |
+| [`service-launch-f3/`](service-launch-f3/) | Тестовая фикстура | Сценарные синтетические ограничения, экономика и варианты; числа не подтверждают спрос или окупаемость. |
+| [`source-injection-demo/`](source-injection-demo/) | Тестовая фикстура | Материал с недоверенной директивой для диагностики обработки источников; не сертификация безопасности. |
+| [`resume-failure-demo/`](resume-failure-demo/) | Тестовая фикстура | Синтетический сценарий сбоя/продолжения; фикстура сбоя не подтверждает успешную динамическую проверку восстановления. |
+| [`offer-terms-demo/`](offer-terms-demo/) | **Неполная legacy-фикстура** | Частичные синтетические условия и ревизии; нет полного checkpoint с решением, стратегиями и планом проверки. Не показывать как завершённую стратегию. |
+| [`_template/`](../cases/_template/) | Шаблон нового дела | Исходные файлы дела и документированный протокол ревизий/согласований с одним автором записи. Копируйте в новый каталог; не заполняйте шаблон прямо. |
 
-Классификация говорит о природе файла, а не о том, пройдены ли новые F1–F5 targeted checks. См. [evaluation](../docs/evaluation.md) и [implementation status](../docs/implementation-status.md).
+Категория описывает назначение материалов, но сама по себе не подтверждает качество агента на новой задаче. Подробные ограничения проверки приведены в [оценке](../docs/evaluation.md) и [статусе реализации](../docs/implementation-status.md).
