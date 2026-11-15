@@ -1,0 +1,25 @@
+{
+  "revision_id": "R0001",
+  "parent_revision_id": null,
+  "status": "COMPLETE",
+  "active_claim_ids": ["C-01", "C-02", "C-03", "C-04", "C-05"],
+  "files": [
+    {"path": "revisions/R0001/options.md", "sha256": "37479b9cb822b4670160666b2460f56bd7a2db5aac3d820d0a7528ecbe4c8d51"},
+    {"path": "revisions/R0001/decision.md", "sha256": "d27655e905170635c9b53a745f56ca59c0f6c1bfa788417db49745ac8c8d692b"},
+    {"path": "revisions/R0001/strategy-product.md", "sha256": "5ef584bacc8af8935a50b56dd2b851d8c2806316fbc88c411f1c04bce7d55242"},
+    {"path": "revisions/R0001/strategy-communication.md", "sha256": "e6d46463932de79b15d9b442802cac01c111d8d03a2614693dfadb62d90c2127"},
+    {"path": "revisions/R0001/test-plan.md", "sha256": "d796b23b82ec82f2c68ae423fef8446a8d7220c9b9d35d031888804ac9ab1f10"},
+    {"path": "revisions/R0001/state.md", "sha256": "eea7f5e95d9bcad532cc6cc28a198d645787356ea3376f4eb8219b573e5eb368"},
+    {"path": "inputs/executive-brief.md", "sha256": "51197c45225431c92c2fd8014b04b93635297dd4055a5558e7a750a0f998a70d"},
+    {"path": "inputs/ops-note.md", "sha256": "bc662861db4aed9ed266c05b095967909db7a7a78780ed916e373b1e067de10c"},
+    {"path": "inputs/pilot-summary.csv", "sha256": "ecd78a589a5f7d17fd6b131dc9331b54e39cd8ab855270a95b66a023983577a4"},
+    {"path": "sources/S-001-govuk-user-research.md", "sha256": "83e5df360b02c37eb9e5c7e0080a38addb19aeb3841d2b48a8c6d9c13983bca1"},
+    {"path": "brief.md", "sha256": "f8182322c5d490bfa68c182e3e14490f17e705572e0f1d6b80ad2ae014beca91"},
+    {"path": "README.md", "sha256": "fd2d3b797db1aec350ed6bd4fa10aa186681d4146a01c8ceed568c213ea38418"},
+    {"path": "sources.jsonl", "sha256": "c5467bfa8fd67cc292630dd65a9259e4eb3cd91d8c95cc332f2a32942f18d6a4"},
+    {"path": "evidence.jsonl", "sha256": "25eaf6f9c663d97c20a117fb6fe5d62917bf650456831b72ce2dd890df98c096"},
+    {"path": "claims.jsonl", "sha256": "73a969f9c85bdabfa51520f8564b610967d0c47490dd3039631050ead1abec5a"},
+    {"path": "activity.jsonl", "sha256": "5f4e1abc708f01fb815dceb8333559803d8ff62e16cfee979c2dfe75e9eeea13"},
+    {"path": "approvals.jsonl", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  ]
+}

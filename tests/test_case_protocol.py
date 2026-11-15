@@ -117,6 +117,120 @@ class CaseProtocolTests(unittest.TestCase):
         with self.assertRaises(ProtocolError):
             classify_case(legacy_lookalike)
 
+    def test_historical_checkpoint_survives_append_only_jsonl_growth(self) -> None:
+        self.marker()
+        self.complete_r1()
+        manifest_path = self.root / "revisions/R0001/manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        ledger_paths = ("sources.jsonl", "evidence.jsonl", "claims.jsonl", "activity.jsonl")
+        original_ledgers = {}
+        for name in ledger_paths:
+            record = json.dumps({"id": f"{name}-R1"}, separators=(",", ":")).encode()
+            (self.root / name).write_bytes(record)
+            original_ledgers[name] = record
+            manifest["files"].append(
+                {"path": name, "sha256": hashlib.sha256(record).hexdigest()}
+            )
+
+        manifest_bytes = json.dumps(manifest, separators=(",", ":")).encode()
+        manifest_path.write_bytes(manifest_bytes)
+        (self.root / "ACTIVE.json").write_text(
+            json.dumps(
+                {
+                    "revision_id": "R0001",
+                    "manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest(),
+                }
+            ),
+            encoding="utf-8",
+        )
+        self.assertEqual(classify_case(self.root), "CHECKPOINTED")
+
+        for name in ledger_paths:
+            later_record = json.dumps(
+                {"id": f"{name}-R2"}, separators=(",", ":")
+            ).encode()
+            with (self.root / name).open("ab") as ledger:
+                ledger.write(b"\n" + later_record + b"\n")
+
+        self.assertEqual(classify_case(self.root), "CHECKPOINTED")
+        self.assertEqual(manifest_path.read_bytes(), manifest_bytes)
+        for name, original in original_ledgers.items():
+            self.assertTrue((self.root / name).read_bytes().startswith(original))
+        for name in SNAPSHOTS:
+            snapshot = self.root / "revisions/R0001" / name
+            entry = next(
+                item
+                for item in manifest["files"]
+                if item["path"] == f"revisions/R0001/{name}"
+            )
+            self.assertEqual(
+                hashlib.sha256(snapshot.read_bytes()).hexdigest(), entry["sha256"]
+            )
+
+        sources = self.root / "sources.jsonl"
+        current_sources = sources.read_bytes()
+        sources.write_bytes(
+            current_sources.replace(b"sources.jsonl-R1", b"sources.jsonl-X1", 1)
+        )
+        with self.assertRaisesRegex(ProtocolError, "hash-mismatched dependency: sources.jsonl"):
+            classify_case(self.root)
+
+        sources.write_bytes(original_ledgers["sources.jsonl"][:-1])
+        with self.assertRaisesRegex(ProtocolError, "hash-mismatched dependency: sources.jsonl"):
+            classify_case(self.root)
+
+    def test_parent_annotations_must_match_manifest(self) -> None:
+        self.marker()
+        self.complete_r1()
+        manifest_path = self.root / "revisions/R0001/manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["parent_revision_id"] = "R0002"
+        for name, old, new in (
+            (
+                "state.md",
+                "Active complete revision ID: R0001",
+                "Active complete revision ID: R0001 (parent R0002)",
+            ),
+            (
+                "decision.md",
+                "**Revision:** R0001",
+                "**Revision:** R0001 (parent R0002)",
+            ),
+        ):
+            snapshot = self.root / "revisions/R0001" / name
+            content = snapshot.read_text(encoding="utf-8").replace(old, new, 1)
+            snapshot.write_text(content, encoding="utf-8")
+            entry = next(
+                item
+                for item in manifest["files"]
+                if item["path"] == f"revisions/R0001/{name}"
+            )
+            entry["sha256"] = hashlib.sha256(snapshot.read_bytes()).hexdigest()
+            (self.root / name).write_text(content, encoding="utf-8")
+
+        manifest_bytes = json.dumps(manifest, separators=(",", ":")).encode()
+        manifest_path.write_bytes(manifest_bytes)
+        (self.root / "ACTIVE.json").write_text(
+            json.dumps(
+                {
+                    "revision_id": "R0001",
+                    "manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest(),
+                }
+            ),
+            encoding="utf-8",
+        )
+        self.assertEqual(classify_case(self.root), "CHECKPOINTED")
+
+        decision = self.root / "decision.md"
+        decision.write_text(
+            decision.read_text(encoding="utf-8").replace(
+                "R0001 (parent R0002)", "R0001 (parent R0003)", 1
+            ),
+            encoding="utf-8",
+        )
+        with self.assertRaisesRegex(ProtocolError, "parent revision disagrees with manifest"):
+            classify_case(self.root)
+
     def test_manifest_hash_mismatch_stops(self) -> None:
         self.marker()
         self.complete_r1()

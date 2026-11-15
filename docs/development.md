@@ -41,6 +41,8 @@ New cases carry `case-protocol.json` from the template with `protocol_id: "check
 - add a new protocol/version marker only if consumers can use it to reject incompatible data safely;
 - preserve immutable revisions, existing ledgers, and audit receipts; never silently retrofit old cases;
 - test valid, missing, malformed, hash-mismatched, forked, and mixed-revision cases using synthetic fixtures where applicable;
+- preserve the immutable JSONL record prefix across revisions; hash matching may accept only complete-record prefixes for the five append-only root ledgers, including a prior file ending without a final line-feed;
+- add a regression test that appends records without changing the prior prefix, plus negative tests for changed/truncated prefixes and mismatched parent annotations.
 - obtain independent review of the schema and migration plan.
 
 A format/documentation-only change is not proof that an agent or host correctly enforces the contract. The repository checker validates JSON syntax and relative Markdown targets only; it does not validate semantic schemas, references between IDs, hashes, active revisions, evidence entailment, or approval scope.
