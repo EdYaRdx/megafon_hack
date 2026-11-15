@@ -49,7 +49,7 @@ class CaseProtocolTests(unittest.TestCase):
             else:
                 data = f"snapshot {name}\n"
             (revision_dir / name).write_text(data, encoding="utf-8")
-            files.append({"path": f"revisions/{revision_id}/{name}", "sha256": hashlib.sha256(data.encode()).hexdigest()})
+            files.append({"path": f"revisions/{revision_id}/{name}", "sha256": hashlib.sha256((revision_dir / name).read_bytes()).hexdigest()})
         manifest = {
             "revision_id": revision_id,
             "parent_revision_id": None,
