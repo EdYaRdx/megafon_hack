@@ -1,12 +1,13 @@
 # Конкурсная подача — checklist и текущие gates
 
 Это checklist незавершённых действий, не заявление о приёмке или подаче. Рабочий конкурсный scope взят из [предоставленного contest brief](contest-brief.md); точное происхождение/актуальность относительно кабинета организатора не установлены.
+Статусы dynamic acceptance ниже сохраняют evidence scope из 2026-11-14 baseline; свежие local repository/protocol checks, review, Git ancestry и no-remote limits приведены отдельно в [contest-v1 integration report](release/contest-v1-integration.md). Локальный unit-test PASS не закрывает acceptance/host/contest gates.
 
 ## Текущие gates
 
 | Пункт | Статус | Следующее подтверждение |
 |---|---|---|
-| Product-first repository docs | Обновлены в текущем worktree; Git diff не проверен | Reviewer проверяет итоговый change set после сверки с ожидаемым baseline |
+| Product-first docs and repository checks | Local verification in the [integration report](release/contest-v1-integration.md); report distinguishes the reviewer scope from later unreviewed documentation edits | Owner must review the final exact diff and resolve mode/line-ending differences on Windows; remote refs/PR/main remain unverified |
 | Dynamic E2E | **CONDITIONAL**, ограниченный single-host synthetic scope | Выполнить только разрешённую приёмку по конкретному утверждённому scope; не расширять claim без evidence |
 | Targeted F1–F5 | **NOT ACCEPTED** — defect test harness/checker | Исправить и независимо проверить harness перед новыми зачётными выводами |
 | F6 provenance | Ограничение provenance | Уточнить допустимый evidence/provenance claim по audit source |

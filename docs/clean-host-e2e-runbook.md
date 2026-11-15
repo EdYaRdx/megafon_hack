@@ -94,7 +94,7 @@ This section preserves the former Cursor/Codex first-run, skill-discovery, evide
 | Resume/revision | New chat reads saved state; R1 snapshot hashes unchanged; R2 provenance and state coherent | Transcript dependence, overwritten snapshots, mixed revisions or unlogged retry |
 | Safety and telemetry | Synthetic/public inputs; no unauthorized external action; unknown costs labeled | Private/secrets exposure, guessed costs, or approval treated as OS enforcement |
 
-Store a reviewed, redacted run record under `research/qualification/host-acceptance/<host>-<version>/<run-id>/` only after privacy review; do not commit raw transcripts. Single-host acceptance requires every applicable gate to pass for one named host. Cross-host portability requires complete passing runs on both hosts at the same SHA. These criteria do not override the current CONDITIONAL dynamic E2E status or make unrun procedures evidence.
+Store a reviewed, redacted run record under `research/qualification/host-acceptance/<host>-<version>/<run-id>/` only after privacy review; do not commit raw transcripts. Single-host acceptance requires every applicable gate to pass for one named host. Cross-host portability requires complete passing runs on both hosts at the same SHA. This procedure does not change the dated 2026-11-14 CONDITIONAL dynamic-E2E snapshot, and unrun steps are not evidence. Current local repository/protocol checks are scoped in the [contest integration report](release/contest-v1-integration.md).
 
 ## Run result table (fill only from actual execution)
 

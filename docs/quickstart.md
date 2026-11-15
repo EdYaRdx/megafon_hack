@@ -4,11 +4,12 @@
 
 ## Требования host
 
-- coding assistant, читающий и изменяющий файлы рабочей папки;
-- право пользователя записывать в новую папку дела;
-- для исследования сайтов — разрешённый host web access; для вычислений — реально доступный расчётный инструмент.
+- Coding assistant с чтением/изменением файлов проекта и сохранением в пользовательской папке дела.
+- Cursor, Codex, OMP или другой совместимый host могут использовать те же файлы; обнаружение `.agents/skills/`, инструменты и формат запросов зависят от host.
+- Web access нужен только для разрешённых сетевых источников; расчётный инструмент — только для воспроизводимых вычислений. Если инструмент отсутствует, оставь `NOT RUN`.
+- Host/model, permissions, telemetry, model usage/cost and sandbox are host-controlled; repo neither installs nor confines them. Docker/OMP не нужны для продукта.
 
-Модель, стоимость/телеметрия, file/network permissions и обнаружение Skills зависят от host и могут быть неизвестны. Инструкции проекта не изолируют ОС и не ограничивают права host. Не помещайте в дело секреты, приватные материалы или персональные данные.
+Не добавляй секреты, закрытые материалы, credentials или персональные данные. Не запускай внешние действия без отдельного разрешения; текстовые approvals не ограничивают host.
 
 ## Создать дело
 
@@ -34,20 +35,18 @@ New-Item -ItemType Directory .\cases\churn-review\input
 mkdir -p cases/churn-review/input
 ```
 
-Затем:
+## Первый запуск и результат
 
-1. Откройте корень проекта в coding assistant.
-2. Прочитайте `AGENTS.md`, `cases/churn-review/brief.md`, `cases/churn-review/README.md` и `.agents/skills/intake/SKILL.md`.
-3. Следуйте `prompts/first-run.md` и отвечайте `UNKNOWN`, если фактов нет. Не выдумывайте ответы.
-4. Сохраняйте работу в `cases/churn-review/`; добавляйте источники/locators, evidence, claims, варианты, решение, обе стратегии, план проверки и state.
-5. Проверьте согласованность IDs/locators и выполните применимый case protocol из `cases/_template/README.md`.
+1. Открой корень репозитория в Cursor, Codex, OMP или совместимом coding assistant.
+2. Прочитай `AGENTS.md`, новый `brief.md`, `cases/<case-id>/README.md` и `.agents/skills/intake/SKILL.md`.
+3. Отправь [`prompts/first-run.md`](../prompts/first-run.md) как рабочую инструкцию. Записывай unknowns как `UNKNOWN`.
+4. Работай только в копии `cases/_template/`; сохраняй evidence IDs, точные locators, альтернативы, обе стратегии, план и решение в новом деле.
+5. Подготовь краткий decision memo с основными claim IDs и ссылками на источники/locators. Окончательный memo — `decision.md`.
 
-Стартовый запрос:
+Пример готового memo и навигация по его основаниям: [PantryPath demo guide](pantrypath-demo.md). Копируй только шаблон, не пример.
 
-> Прочитай brief и состояние дела. Сначала уточни ближайшее решение, владельца, аудиторию, ограничения и неизвестное; спрашивай только о том, что изменит следующий шаг. Исследуй только доступные и разрешённые материалы, запиши источники и точные locators, отделяй evidence от inference и hypothesis. До рекомендации предложи минимум три разных варианта, включая статус-кво и остановку; свяжи product- и communication strategy и подготовь проверяемый план. Не выполняй внешних действий; неизвестные параметры оставь UNKNOWN. Запиши результат и точный следующий шаг в деле.
+## Resume / revise
 
-## Пример и продолжение
+На паузе сохраняй завершённое, открытые вопросы, ошибки/повторы и один точный следующий шаг в `state.md`/`activity.jsonl`. До чтения изменяемых корневых решений прочитай [resume-revise Skill](../.agents/skills/resume-revise/SKILL.md), выбранный `ACTIVE.json`, его revision manifest и связанный `state.md`. Проверь revision/parent, manifest + все зависимости, exact active claims и наличие approval, привязанного к точным action/scope/revision/hash. Изменившаяся ревизия, decisive premise, срок или scope делает approval stale. При конфликте selector/root, hash mismatch, fork или неоднозначных claims — STOP `INCOMPLETE/CONFLICT`; не смешивай revisions и не выполняй внешние действия.
 
-Для просмотра формата результата откройте [meal-planner synthetic case](../cases/meal-planner-demo/README.md); это заполненный исторический пример, не инструкция копировать его решения в своё дело и не live-run.
-
-При паузе сохраняйте сделанное, незавершённое, ошибки/повторы, ограничения и один точный следующий шаг в `state.md`/`activity.jsonl`. В новом сеансе сначала прочитайте `state.md` и `.agents/skills/resume-revise/SKILL.md`. Используйте только завершённую revision с согласованными snapshots, manifest/hash и active selector; несогласованность означает остановку и `CONFLICT`, не сборку из файлов разных ревизий. См. [architecture](architecture.md).
+Синтетический [PantryPath R1→R2→R3 history](pantrypath-demo.md) показывает исправленную классификацию исторических revisions без изменения их файлов; это не разрешение переносить approval.

@@ -1,8 +1,10 @@
-# Текущий статус реализации и приёмки
+# Статус реализации и приёмки
 
-**Дата среза:** 2026-11-14. Текущая продуктовая приёмка взята из заданного baseline и сохранённых acceptance/audit reports, не из изменений документации ниже. Репозиторный baseline этой задачи: `7fd1ae68cd597c5a046de568d336f39791f25855` на `release/product-repository-20261114`; `origin/main` при старте: `7bbe59d37d4c1e13f0fd4453f7605e8d2f601d42`. Опубликованный audit reference: `672aa5c83616f813c7dd9dc0598a1c8e20f8e7e9`.
+**Baseline snapshot:** 2026-11-14. Таблица ниже сохраняет gate statuses из принятого тогда baseline; это не текущий статус исправлений текущей ветки. См. [contest integration report](release/contest-v1-integration.md) для новой проверки checkpoint-protocol, test/checker outcomes, текущего Git состояния и внешних blockers.
 
-## Current acceptance snapshot
+Исходный репозиторный baseline: `7fd1ae68cd597c5a046de568d336f39791f25855` на `release/product-repository-20261114`; сохранённый `origin/main` на момент baseline: `7bbe59d37d4c1e13f0fd4453f7605e8d2f601d42`. Опубликованный audit reference: `672aa5c83616f813c7dd9dc0598a1c8e20f8e7e9`.
+
+## Historical acceptance snapshot — 2026-11-14
 
 | Gate | Статус | Интерпретация |
 |---|---|---|
