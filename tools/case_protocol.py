@@ -168,6 +168,18 @@ def _validate_checkpoint_claims(prefix: bytes, active_claims: list[str]) -> None
     if any(ancestors[claim_id] & active for claim_id in active_claims):
         raise ProtocolError("active claims conflict with supersedes graph")
 
+    successors: dict[str, list[str]] = {claim_id: [] for claim_id in claims}
+    for claim_id, claim_parents in parents.items():
+        for parent_id in claim_parents:
+            successors[parent_id].append(claim_id)
+    for claim_id, direct_successors in successors.items():
+        if len(direct_successors) > 1 and not any(
+            successor == active_id or successor in ancestors[active_id]
+            for active_id in active
+            for successor in direct_successors
+        ):
+            raise ProtocolError(f"unresolved claim successor fork: {claim_id}")
+
 
 def _markdown_selection(path: Path, label: str) -> tuple[str, list[str], str | None]:
     try:

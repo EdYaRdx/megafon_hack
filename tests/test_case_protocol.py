@@ -184,6 +184,19 @@ class CaseProtocolTests(unittest.TestCase):
         )
         self.assertEqual(classify_case(self.root), "CHECKPOINTED")
 
+    def test_unselected_claim_fork_is_rejected_even_if_parent_is_active(self) -> None:
+        self.marker()
+        self.complete_r1(
+            ["CL-01"],
+            claim_records=[
+                {"id": "CL-01", "status": "DOCUMENTED", "supersedes": []},
+                {"id": "CL-02", "status": "HYPOTHESIS", "supersedes": ["CL-01"]},
+                {"id": "CL-03", "status": "CLAIMED", "supersedes": ["CL-01"]},
+            ],
+        )
+        with self.assertRaisesRegex(ProtocolError, "unresolved claim successor fork: CL-01"):
+            classify_case(self.root)
+
     def test_active_claim_requires_claims_ledger_dependency(self) -> None:
         self.marker()
         self.complete_r1()
@@ -206,6 +219,16 @@ class CaseProtocolTests(unittest.TestCase):
             {"id": "CL-01", "status": "DOCUMENTED", "supersedes": ["CL-02"]},
         ])
         with self.assertRaisesRegex(ProtocolError, "supersedes references missing claim ID: CL-02"):
+            classify_case(self.root)
+
+    def test_checkpoint_rejects_cycles_in_supersedes_graph(self) -> None:
+        self.marker()
+        self.complete_r1()
+        self.republish_claims([
+            {"id": "CL-01", "status": "DOCUMENTED", "supersedes": ["CL-02"]},
+            {"id": "CL-02", "status": "HYPOTHESIS", "supersedes": ["CL-01"]},
+        ])
+        with self.assertRaisesRegex(ProtocolError, "cycle in checkpoint claim supersedes graph"):
             classify_case(self.root)
 
     def test_checkpointing_case_with_populated_roots_but_missing_selector_stops(self) -> None:
