@@ -97,6 +97,14 @@ def _append_only_ledger_prefix(path: Path, expected_sha256: str) -> bytes | None
         if without_separator.hexdigest() == expected_sha256:
             return data[:position]
 
+        # CRLF is one record separator too. Preserve exact checkpoint bytes:
+        # the frozen final JSON record may omit both bytes of that separator.
+        if record.endswith(b"\r"):
+            before_crlf = digest.copy()
+            before_crlf.update(record[:-1])
+            if before_crlf.hexdigest() == expected_sha256:
+                return data[: position - 1]
+
         digest.update(record)
         digest.update(b"\n")
         if digest.hexdigest() == expected_sha256:

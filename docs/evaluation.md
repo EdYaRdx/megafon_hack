@@ -1,4 +1,6 @@
 # Evaluation и доказательства
+The bounded offline artifact evaluator has its own [schema, commands and limitations guide](functional-evaluator.md). Its synthetic checks do not alter this historical snapshot: full product F1–F3/H1 evaluation remains NOT RUN, H02 remains BLOCKED, and human/host acceptance is separate.
+
 
 **Границы среза:** продуктовые gate statuses ниже дословно описывают принятую evaluation snapshot от 2026-11-14, а не текущую версию branch; исходные SHA/branch/audit reference сохранены для provenance. Текущие детерминированные проверки repository и checkpoint-protocol отдельно перечислены в [contest integration report](release/contest-v1-integration.md). Их результат не переписывает прошлые F1–F5/H02/Sol/clean-host/real-user gates и не является product, security или host certification.
 
