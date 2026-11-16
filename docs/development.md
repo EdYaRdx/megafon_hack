@@ -1,6 +1,6 @@
 # Development guide
 
-This repository is a portable, file-first project for a coding assistant. Product behavior is specified by the root `AGENTS.md`, the six canonical Skills in `.agents/skills/`, references, and a case folder. There is no bundled runtime, test framework, package manager, CI, or OMP dependency. Keep additions proportional to an observed product or maintenance need.
+This repository is a portable, file-first project for a coding assistant. Product behavior is specified by the root `AGENTS.md`, the six canonical Skills in `.agents/skills/`, references, and a case folder. There is no bundled runtime, third-party test framework, package manager, or OMP dependency. Keep additions proportional to an observed product or maintenance need.
 
 ## Repository map and boundaries
 
@@ -65,9 +65,14 @@ python3 -c 'from pathlib import Path; from tools.case_protocol import classify_c
 git diff --check
 ```
 
-On Windows, use the installed Python 3 command alias (`py -3`/`python` as appropriate) if `python3` is unavailable, keeping the same test, checker and classifier operations. Repo first use does not require Python or Git. `check_repository.py` checks indexed case JSON/JSONL syntax and selected relative Markdown targets only; it does not validate schemas, fragments, hashes, references, behavior, host security or contest acceptance.
+On Windows, use the installed Python 3 command alias (`py -3`/`python` as appropriate) if `python3` is unavailable, keeping the same test, checker and classifier operations. Repo first use does not require Python or Git. Developer checks do: `check_repository.py` requires a Git checkout/index and cannot run on a plain extracted ZIP. It checks indexed case JSON/JSONL syntax and selected relative Markdown targets only; it does not validate schemas, fragments, hashes, references, behavior, host security or contest acceptance.
 
 В CRLF checkout с `.gitattributes` `text=auto` plain `git diff --check` может считать carriage return trailing whitespace. Для такого checkout используй одноразовый эквивалент без изменения Git config: `git -c core.whitespace=cr-at-eol diff --check`; он всё равно проверяет пробелы перед концом строки. Перед host-side PR проверь фактическую нормализацию/режимы в Windows.
+
+### GitHub CI
+
+[`.github/workflows/ci.yml`](../.github/workflows/ci.yml) runs on pull requests targeting `main` and pushes to `main`. One GitHub-hosted Ubuntu job uses Python 3.12, the standard library, `python -m unittest discover -s tests -v`, and `python tools/check_repository.py`; no dependency installation or external service is required. The token has read-only repository contents permission. This is not automated release, a PantryPath R3 classifier run, or functional acceptance. Workflow presence alone is not CI PASS: inspect the actual Actions run; if none ran, record `NOT RUN`.
+
 ## Fixture maintenance
 
 Update a fixture only when a real contract or product change requires it. Keep expected behavior and intentionally unknown fields explicit; fixture text must not turn into evidence of an executed test. Do not revise historical audit outputs to make them pass. Product behavior needs an appropriately scoped synthetic run and independent artifact review; dynamic checks that are unavailable remain `NOT RUN` or `BLOCKED`.
@@ -78,7 +83,7 @@ Update a fixture only when a real contract or product change requires it. Keep e
 - Work on a named feature/release branch from the agreed base; do not force-push or rewrite published history. Keep unrelated/user-owned files out of the change.
 - Ask an independent read-only reviewer to inspect the actual diff, architecture choices, link/provenance changes, and limitations. Address material findings once; retain disagreements and evidence.
 - Before release, check the exact staged file set, whitespace/errors, repository integrity check, historical-data preservation, privacy/secrets, current acceptance evidence, and remote branch state. A documentation check is not release approval.
-- Tag/version only when a release owner approves the scope and public claims. No automated release or CI is configured. Contest submission, official brief verification, video, H02, and independent Sol acceptance are separate human/evidence gates.
+- Tag/version only when a release owner approves the scope and public claims. CI runs the bounded repository checks above; no automated release is configured. Contest submission, official brief verification, video, H02, and independent Sol acceptance are separate human/evidence gates.
 
 ## Current technical debt and release boundaries
 
