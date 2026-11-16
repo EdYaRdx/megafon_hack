@@ -73,8 +73,8 @@ def _is_json_object_record(record: bytes) -> bool:
     return isinstance(value, dict)
 
 
-def _matches_append_only_ledger_prefix(path: Path, expected_sha256: str) -> bool:
-    """Match a checkpoint hash at a complete JSONL record boundary."""
+def _append_only_ledger_prefix(path: Path, expected_sha256: str) -> bytes | None:
+    """Return the exact checkpointed bytes at a complete JSONL record boundary."""
     try:
         data = path.read_bytes()
     except OSError as error:
@@ -82,7 +82,7 @@ def _matches_append_only_ledger_prefix(path: Path, expected_sha256: str) -> bool
 
     digest = hashlib.sha256()
     if digest.hexdigest() == expected_sha256:
-        return True
+        return b""
 
     record_start = 0
     for position, byte in enumerate(data):
@@ -95,19 +95,78 @@ def _matches_append_only_ledger_prefix(path: Path, expected_sha256: str) -> bool
         without_separator = digest.copy()
         without_separator.update(record)
         if without_separator.hexdigest() == expected_sha256:
-            return True
+            return data[:position]
 
         digest.update(record)
         digest.update(b"\n")
         if digest.hexdigest() == expected_sha256:
-            return True
+            return data[: position + 1]
         record_start = position + 1
 
     final_record = data[record_start:]
     if final_record and _is_json_object_record(final_record):
         digest.update(final_record)
-        return digest.hexdigest() == expected_sha256
-    return False
+        if digest.hexdigest() == expected_sha256:
+            return data
+    return None
+
+
+def _validate_checkpoint_claims(prefix: bytes, active_claims: list[str]) -> None:
+    """Validate claim identity and explicit selection against one pinned JSONL prefix."""
+    claims: dict[str, dict] = {}
+    for line_number, raw_record in enumerate(prefix.splitlines(), start=1):
+        try:
+            record = json.loads(raw_record)
+        except (UnicodeDecodeError, json.JSONDecodeError) as error:
+            raise ProtocolError(f"invalid claim record in checkpoint ledger at line {line_number}") from error
+        if not isinstance(record, dict):
+            raise ProtocolError(f"invalid claim record in checkpoint ledger at line {line_number}")
+        claim_id = record.get("id")
+        if not isinstance(claim_id, str) or not CLAIM_ID.fullmatch(claim_id):
+            raise ProtocolError(f"invalid claim ID in checkpoint ledger at line {line_number}")
+        if claim_id in claims:
+            raise ProtocolError(f"duplicate claim ID in checkpoint ledger: {claim_id}")
+        supersedes = record.get("supersedes", [])
+        if not isinstance(supersedes, list) or any(
+            not isinstance(item, str) or not CLAIM_ID.fullmatch(item) for item in supersedes
+        ) or len(supersedes) != len(set(supersedes)):
+            raise ProtocolError(f"invalid supersedes list for claim: {claim_id}")
+        if claim_id in supersedes:
+            raise ProtocolError(f"claim supersedes itself: {claim_id}")
+        claims[claim_id] = record
+
+    if not prefix and active_claims:
+        missing = active_claims[0]
+        raise ProtocolError(f"active claim is absent from checkpoint claims ledger: {missing}")
+    for claim_id in active_claims:
+        if claim_id not in claims:
+            raise ProtocolError(f"active claim is absent from checkpoint claims ledger: {claim_id}")
+
+    parents: dict[str, list[str]] = {}
+    for claim_id, record in claims.items():
+        claim_parents = record.get("supersedes", [])
+        for parent_id in claim_parents:
+            if parent_id not in claims:
+                raise ProtocolError(f"supersedes references missing claim ID: {parent_id}")
+        parents[claim_id] = claim_parents
+
+    ancestors: dict[str, set[str]] = {}
+    for claim_id in claims:
+        visited: set[str] = set()
+        pending = list(parents[claim_id])
+        while pending:
+            parent_id = pending.pop()
+            if parent_id == claim_id:
+                raise ProtocolError("cycle in checkpoint claim supersedes graph")
+            if parent_id in visited:
+                continue
+            visited.add(parent_id)
+            pending.extend(parents[parent_id])
+        ancestors[claim_id] = visited
+
+    active = set(active_claims)
+    if any(ancestors[claim_id] & active for claim_id in active_claims):
+        raise ProtocolError("active claims conflict with supersedes graph")
 
 
 def _markdown_selection(path: Path, label: str) -> tuple[str, list[str], str | None]:
@@ -205,6 +264,7 @@ def classify_case(case_dir: Path, *, repo_root: Path | None = None) -> str:
     if not isinstance(files, list):
         raise ProtocolError("manifest file list is missing")
     seen: set[str] = set()
+    checkpoint_claim_prefix: bytes | None = None
     for entry in files:
         if not isinstance(entry, dict) or not isinstance(entry.get("path"), str) or not isinstance(entry.get("sha256"), str):
             raise ProtocolError("malformed manifest file entry")
@@ -216,14 +276,21 @@ def classify_case(case_dir: Path, *, repo_root: Path | None = None) -> str:
         if not target.is_file():
             raise ProtocolError(f"missing or hash-mismatched dependency: {entry['path']}")
         actual_hash = _sha256(target)
-        if actual_hash != entry["sha256"] and not (
-            entry["path"] in APPEND_ONLY_LEDGER_PATHS
-            and _matches_append_only_ledger_prefix(target, entry["sha256"])
-        ):
+        if entry["path"] in APPEND_ONLY_LEDGER_PATHS:
+            prefix = _append_only_ledger_prefix(target, entry["sha256"])
+            if prefix is None:
+                raise ProtocolError(f"missing or hash-mismatched dependency: {entry['path']}")
+            if entry["path"] == "claims.jsonl":
+                checkpoint_claim_prefix = prefix
+        elif actual_hash != entry["sha256"]:
             raise ProtocolError(f"missing or hash-mismatched dependency: {entry['path']}")
     required_paths = {f"revisions/{revision_id}/{name}" for name in REQUIRED_SNAPSHOTS}
     if not required_paths.issubset(seen):
         raise ProtocolError("manifest omits required revision snapshots")
+    if active_claims and "claims.jsonl" not in seen:
+        raise ProtocolError("manifest omits claims.jsonl required by active claims")
+    if "claims.jsonl" in seen:
+        _validate_checkpoint_claims(checkpoint_claim_prefix or b"", active_claims)
 
     for name, label in (
         ("state.md", "root state"),

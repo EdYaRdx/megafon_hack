@@ -35,7 +35,9 @@ class CaseProtocolTests(unittest.TestCase):
             json.dumps({"protocol_id": "checkpoint-v1", "checkpoint_state": state}), encoding="utf-8"
         )
 
-    def complete_r1(self, claims: list[str] | None = None) -> None:
+    def complete_r1(
+        self, claims: list[str] | None = None, claim_records: list[dict] | None = None
+    ) -> None:
         claims = claims or ["CL-01"]
         revision_id = "R0001"
         revision_dir = self.root / "revisions" / revision_id
@@ -57,6 +59,20 @@ class CaseProtocolTests(unittest.TestCase):
             "active_claim_ids": claims,
             "files": files,
         }
+        claims_path = self.root / "claims.jsonl"
+        claim_records = claim_records or [
+            {"id": claim_id, "text": f"Claim {claim_id}", "status": "DOCUMENTED", "evidence_ids": [], "supersedes": []}
+            for claim_id in claims
+        ]
+        claims_bytes = b"\n".join(
+            json.dumps(record, separators=(",", ":")).encode() for record in claim_records
+        )
+        if claim_records:
+            claims_bytes += b"\n"
+        claims_path.write_bytes(claims_bytes)
+        manifest["files"].append(
+            {"path": "claims.jsonl", "sha256": hashlib.sha256(claims_bytes).hexdigest()}
+        )
         manifest_path = revision_dir / "manifest.json"
         manifest_bytes = json.dumps(manifest, separators=(",", ":")).encode()
         manifest_path.write_bytes(manifest_bytes)
@@ -84,6 +100,113 @@ class CaseProtocolTests(unittest.TestCase):
         self.marker("CHECKPOINTING")
         self.complete_r1()
         self.assertEqual(classify_case(self.root), "CHECKPOINTED")
+
+    def republish_claims(self, records: list[dict]) -> None:
+        claims_bytes = b"\n".join(
+            json.dumps(record, separators=(",", ":")).encode() for record in records
+        )
+        if records:
+            claims_bytes += b"\n"
+        (self.root / "claims.jsonl").write_bytes(claims_bytes)
+        manifest_path = self.root / "revisions/R0001/manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        for entry in manifest["files"]:
+            if entry["path"] == "claims.jsonl":
+                entry["sha256"] = hashlib.sha256(claims_bytes).hexdigest()
+        manifest_bytes = json.dumps(manifest, separators=(",", ":")).encode()
+        manifest_path.write_bytes(manifest_bytes)
+        (self.root / "ACTIVE.json").write_text(
+            json.dumps({"revision_id": "R0001", "manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest()}),
+            encoding="utf-8",
+        )
+
+    def test_active_claim_missing_from_checkpoint_ledger_is_rejected(self) -> None:
+        self.marker()
+        self.complete_r1()
+        claims_path = self.root / "claims.jsonl"
+        # The active claim appears only after the exact empty prefix pinned by R1.
+        claims_path.write_bytes(b'{"id":"CL-01","text":"late","status":"DOCUMENTED","supersedes":[]}\n')
+        manifest_path = self.root / "revisions/R0001/manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        for entry in manifest["files"]:
+            if entry["path"] == "claims.jsonl":
+                entry["sha256"] = hashlib.sha256(b"").hexdigest()
+        manifest_bytes = json.dumps(manifest, separators=(",", ":")).encode()
+        manifest_path.write_bytes(manifest_bytes)
+        (self.root / "ACTIVE.json").write_text(
+            json.dumps({"revision_id": "R0001", "manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest()}),
+            encoding="utf-8",
+        )
+        with self.assertRaisesRegex(ProtocolError, "active claim is absent from checkpoint claims ledger: CL-01"):
+            classify_case(self.root)
+
+    def test_claim_ids_are_unique_in_checkpoint_prefix(self) -> None:
+        self.marker()
+        self.complete_r1()
+        self.republish_claims([
+            {"id": "CL-01", "status": "DOCUMENTED", "supersedes": []},
+            {"id": "CL-01", "status": "CLAIMED", "supersedes": []},
+        ])
+        with self.assertRaisesRegex(ProtocolError, "duplicate claim ID in checkpoint ledger: CL-01"):
+            classify_case(self.root)
+
+    def test_active_claim_set_must_follow_supersedes_edges(self) -> None:
+        self.marker()
+        self.complete_r1(["CL-01", "CL-02"])
+        self.republish_claims([
+            {"id": "CL-01", "status": "DOCUMENTED", "supersedes": []},
+            {"id": "CL-02", "status": "HYPOTHESIS", "supersedes": ["CL-01"]},
+        ])
+        with self.assertRaisesRegex(ProtocolError, "active claims conflict with supersedes graph"):
+            classify_case(self.root)
+
+    def test_valid_statuses_and_explicit_successor_selection_are_checkpointed(self) -> None:
+        self.marker()
+        self.complete_r1(
+            ["CL-01", "CL-02", "CL-03"],
+            claim_records=[
+                {"id": "CL-01", "status": "CLAIMED", "supersedes": []},
+                {"id": "CL-02", "status": "HYPOTHESIS", "supersedes": []},
+                {"id": "CL-03", "status": "UNKNOWN", "supersedes": []},
+            ],
+        )
+        self.assertEqual(classify_case(self.root), "CHECKPOINTED")
+
+    def test_explicit_successor_selection_resolves_a_claim_fork(self) -> None:
+        self.marker()
+        self.complete_r1(
+            ["CL-02"],
+            claim_records=[
+                {"id": "CL-01", "status": "DOCUMENTED", "supersedes": []},
+                {"id": "CL-02", "status": "CLAIMED", "supersedes": ["CL-01"]},
+                {"id": "CL-03", "status": "UNKNOWN", "supersedes": ["CL-01"]},
+            ],
+        )
+        self.assertEqual(classify_case(self.root), "CHECKPOINTED")
+
+    def test_active_claim_requires_claims_ledger_dependency(self) -> None:
+        self.marker()
+        self.complete_r1()
+        manifest_path = self.root / "revisions/R0001/manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["files"] = [entry for entry in manifest["files"] if entry["path"] != "claims.jsonl"]
+        manifest_bytes = json.dumps(manifest, separators=(",", ":")).encode()
+        manifest_path.write_bytes(manifest_bytes)
+        (self.root / "ACTIVE.json").write_text(
+            json.dumps({"revision_id": "R0001", "manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest()}),
+            encoding="utf-8",
+        )
+        with self.assertRaisesRegex(ProtocolError, "manifest omits claims.jsonl required by active claims"):
+            classify_case(self.root)
+
+    def test_checkpoint_rejects_unknown_supersedes_target(self) -> None:
+        self.marker()
+        self.complete_r1()
+        self.republish_claims([
+            {"id": "CL-01", "status": "DOCUMENTED", "supersedes": ["CL-02"]},
+        ])
+        with self.assertRaisesRegex(ProtocolError, "supersedes references missing claim ID: CL-02"):
+            classify_case(self.root)
 
     def test_checkpointing_case_with_populated_roots_but_missing_selector_stops(self) -> None:
         self.marker("CHECKPOINTING")
@@ -122,7 +245,7 @@ class CaseProtocolTests(unittest.TestCase):
         self.complete_r1()
         manifest_path = self.root / "revisions/R0001/manifest.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        ledger_paths = ("sources.jsonl", "evidence.jsonl", "claims.jsonl", "activity.jsonl")
+        ledger_paths = ("sources.jsonl", "evidence.jsonl", "activity.jsonl")
         original_ledgers = {}
         for name in ledger_paths:
             record = json.dumps({"id": f"{name}-R1"}, separators=(",", ":")).encode()
