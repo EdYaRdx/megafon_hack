@@ -6,6 +6,9 @@ description: Продолжи дело из файлов и оцени влия�
 # Resume and revise
 
 ## Classify the case before reading mutable roots
+Before reading or writing any case file, explicitly resolve exactly one user-specified active directory `cases/<case-id>/`. If absent or ambiguous, ask for the exact case path and stop; do not select by scanning neighboring contents, timestamps, example names, or guessing. All case files—including `brief.md`, `README.md`, `case-protocol.json`, `ACTIVE.json`, `state.md`, ledgers, and revisions—are relative to this CASE root. The marker is only `cases/<case-id>/case-protocol.json`, never a repository/workspace-root marker. Shared `AGENTS.md`, `.agents/skills/`, prompts, and references remain project-root relative. “Root” below always means CASE root for case files.
+
+Explicitly select the same directory again in a fresh/resumed session. Follow the classification below before reading mutable case-root files. A missing marker for an explicitly selected case follows only the fail-closed/legacy rules below; never fall back to the project root or another case.
 
 For a new case copied from `cases/_template/`, first read its root `case-protocol.json`. It must contain the supported `protocol_id: "checkpoint-v1"` and `checkpoint_state` of `UNINITIALIZED`, `CHECKPOINTING`, or `CHECKPOINTED`. Missing, malformed, unsupported, or ambiguous identity is `INCOMPLETE/CONFLICT` and means stop; missing `ACTIVE.json` never makes a case legacy.
 
