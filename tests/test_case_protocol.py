@@ -184,6 +184,27 @@ class CaseProtocolTests(unittest.TestCase):
         )
         self.assertEqual(classify_case(self.root), "CHECKPOINTED")
 
+    def test_canonical_claim_ids_are_checkpointed_and_claim_id_alias_is_rejected(self) -> None:
+        self.marker("CHECKPOINTING")
+        records = [
+            {"id": "CL-01", "status": "DOCUMENTED", "supersedes": []},
+            {"id": "CL-02", "status": "CLAIMED", "supersedes": ["CL-01"]},
+        ]
+        self.complete_r1(["CL-02"], claim_records=records)
+        self.assertEqual(classify_case(self.root), "CHECKPOINTED")
+
+        self.republish_claims(
+            [
+                {"claim_id": record["id"], "status": record["status"], "supersedes": record["supersedes"]}
+                for record in records
+            ]
+        )
+        with self.assertRaisesRegex(
+            ProtocolError, "invalid claim ID in checkpoint ledger at line 1"
+        ):
+            classify_case(self.root)
+
+
     def test_unselected_claim_fork_is_rejected_even_if_parent_is_active(self) -> None:
         self.marker()
         self.complete_r1(

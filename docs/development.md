@@ -32,6 +32,20 @@ The chosen structure keeps a small, obvious product core at the root and separat
 
 Copy only `cases/_template/` into a new `cases/<case-id>/`, preserve the template unchanged, and record the case purpose/category in `cases/README.md`. Use public or explicitly user-supplied synthetic material; do not commit credentials, private sessions, personal data, or closed MegaFon information. Keep sources, evidence, claims, decision files, activity, state, and approval records in the case. Follow the complete checkpoint protocol in `cases/_template/README.md`; an approval is not a host permission.
 
+### Canonical claim contract and result gate
+
+The existing [ledger forms](../references/evidence-and-claims.md) and `tools.case_protocol` agree: a claim uses `id`; `supersedes` and `active_claim_ids` refer to those same IDs. The historical F1 R0001–R0003 producer instead wrote `claim_id`, and its case-local verifier checked that alternative field. This establishes producer/verification drift, not a classifier defect; the model's internal reason for choosing that field is UNKNOWN. The evidence-research Skill previously did not require reading the ledger forms before writing.
+
+Use the shared consumer from the developer checkout after publishing a checkpoint, not a case-specific verifier:
+
+```sh
+python -c "import sys; from pathlib import Path; from tools.case_protocol import classify_case; print(classify_case(Path(sys.argv[1])))" /absolute/path/to/case
+```
+
+On this Windows host use `py -V:Astral/CPython3.12.14` instead of `python`. Record the actual classification/error and runtime; a `ProtocolError` stops protocol resume. A syntax/hash-only PASS, an unavailable checker (`NOT RUN`), or an LLM saying PASS is not `CHECKPOINTED`. This operator-side check does not add a runtime dependency to the staged portable product or authorize access outside its workspace.
+
+The regression uses a temporary synthetic checkpoint with current ledger/manifest/selector hashes: canonical `id` is accepted, while replacing it with `claim_id` is rejected by the same consumer. No compatibility alias or migration of historical ledgers is introduced. Historical F1 remains incompatible with protocol resume and formally `REVIEW_REQUIRED`; this maintenance change does not re-evaluate it.
+
 ## Changing schemas or revision protocol
 
 Case JSONL records and the `manifest.json`/`ACTIVE.json` pair are interfaces, even though no generated schema package exists. Before changing them:
