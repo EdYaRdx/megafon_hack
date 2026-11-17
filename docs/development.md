@@ -32,17 +32,25 @@ The chosen structure keeps a small, obvious product core at the root and separat
 
 Copy only `cases/_template/` into a new `cases/<case-id>/`, preserve the template unchanged, and record the case purpose/category in `cases/README.md`. Use public or explicitly user-supplied synthetic material; do not commit credentials, private sessions, personal data, or closed MegaFon information. Keep sources, evidence, claims, decision files, activity, state, and approval records in the case. Follow the complete checkpoint protocol in `cases/_template/README.md`; an approval is not a host permission.
 
-### Canonical claim contract and result gate
+### Canonical claims, control lines and publication gate
 
 The existing [ledger forms](../references/evidence-and-claims.md) and `tools.case_protocol` agree: a claim uses `id`; `supersedes` and `active_claim_ids` refer to those same IDs. The historical F1 R0001–R0003 producer instead wrote `claim_id`, and its case-local verifier checked that alternative field. This establishes producer/verification drift, not a classifier defect; the model's internal reason for choosing that field is UNKNOWN. The evidence-research Skill previously did not require reading the ledger forms before writing.
 
-Use the shared consumer from the developer checkout after publishing a checkpoint, not a case-specific verifier:
+The later H1 Original used canonical claim `id` values but paraphrased machine-checked Markdown: a period after the protocol backtick, different state selection labels, and prose on decision control lines. The shared consumer rejected it. This is a control-field serialization defect, not evidence of a wrong selected revision, claim values or hashes. The template mixed an inline explanation into its protocol field, while the procedure described the fields' meaning without their exact grammar. The model's internal cause remains UNKNOWN.
+
+Keep the exact [state/decision control forms](../cases/_template/README.md#машинные-строки-state-и-decision): one control field per line, explanations separate. Before selecting a candidate, use the shared read-only preflight from the developer checkout:
 
 ```sh
-python -c "import sys; from pathlib import Path; from tools.case_protocol import classify_case; print(classify_case(Path(sys.argv[1])))" /absolute/path/to/case
+python tools/case_protocol.py check-candidate /absolute/path/to/case --revision R0001
 ```
 
-On this Windows host use `py -V:Astral/CPython3.12.14` instead of `python`. Record the actual classification/error and runtime; a `ProtocolError` stops protocol resume. A syntax/hash-only PASS, an unavailable checker (`NOT RUN`), or an LLM saying PASS is not `CHECKPOINTED`. This operator-side check does not add a runtime dependency to the staged portable product or authorize access outside its workspace.
+This computes the real saved manifest digest and calls `classify_case` on a temporary full copy with a prospective selector. It does not write to the case, infer approvals, repair historical outputs or declare the actual case complete. Only an actual `VALIDATED_CANDIDATE` receipt permits selecting those exact bytes in `ACTIVE.json`. Then check the real case:
+
+```sh
+python tools/case_protocol.py classify /absolute/path/to/case
+```
+
+On this Windows host use `py -V:Astral/CPython3.12.14` instead of `python`. Record both actual commands/results/runtime; errors or `NOT RUN` stop selection/resume. Exit 0 with `FRESH`, a hash-only PASS or an LLM saying PASS is not `CHECKPOINTED`. Staged workspaces may omit `tools/`; the operator runs the same tool from an allowed developer checkout and provides the receipt, without granting the product access outside its boundary. No separate serializer or per-case verifier is needed for this confirmed instruction/gate gap; the shared grammar is unchanged.
 
 The regression uses a temporary synthetic checkpoint with current ledger/manifest/selector hashes: canonical `id` is accepted, while replacing it with `claim_id` is rejected by the same consumer. No compatibility alias or migration of historical ledgers is introduced. Historical F1 remains incompatible with protocol resume and formally `REVIEW_REQUIRED`; this maintenance change does not re-evaluate it.
 
@@ -78,7 +86,7 @@ Run from the repository root with Python 3 and Git available. The classifier com
 ```sh
 python3 -m unittest discover -s tests -v
 python3 tools/check_repository.py
-python3 -c 'from pathlib import Path; from tools.case_protocol import classify_case; print(classify_case(Path("cases/pantrypath-week4-20261115")))'
+python3 tools/case_protocol.py classify cases/pantrypath-week4-20261115
 git diff --check
 ```
 

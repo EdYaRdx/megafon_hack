@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.case_protocol import ProtocolError, classify_case
+from tools.case_protocol import ProtocolError, check_candidate, classify_case
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -440,6 +440,201 @@ class CaseProtocolTests(unittest.TestCase):
         (legacy / "ACTIVE.json").write_text("{}", encoding="utf-8")
         with self.assertRaises(ProtocolError):
             classify_case(legacy, repo_root=self.root)
+
+    def test_template_candidate_is_checked_before_selection_without_mutating_history(self) -> None:
+        case = self.root / "new-case"
+        shutil.copytree(REPO_ROOT / "cases/_template", case)
+        self.root = case
+        self.assertEqual(classify_case(case), "FRESH")
+        self.marker("CHECKPOINTING")
+        fields = {
+            "state.md": {
+                "- Active complete revision ID:": "- Active complete revision ID: R0001",
+                "- Current claim IDs (active successors only; match manifest):":
+                    "- Current claim IDs (active successors only; match manifest): CL-01",
+            },
+            "decision.md": {
+                "- **Revision:**": "- **Revision:** R0001",
+                "- **Active claim IDs:**": "- **Active claim IDs:** CL-01",
+            },
+        }
+        for name, replacements in fields.items():
+            text = (case / name).read_text(encoding="utf-8")
+            for old, new in replacements.items():
+                text = text.replace(old + "\n", new + "\n", 1)
+            (case / name).write_text(text, encoding="utf-8")
+        revision = case / "revisions/R0001"
+        revision.mkdir(parents=True)
+        files = []
+        for name in SNAPSHOTS:
+            snapshot = revision / name
+            shutil.copyfile(case / name, snapshot)
+            files.append({
+                "path": f"revisions/R0001/{name}",
+                "sha256": hashlib.sha256(snapshot.read_bytes()).hexdigest(),
+            })
+        claims = b'{"id":"CL-01","status":"HYPOTHESIS","supersedes":[]}\n'
+        (case / "claims.jsonl").write_bytes(claims)
+        files.append({"path": "claims.jsonl", "sha256": hashlib.sha256(claims).hexdigest()})
+        manifest = {
+            "revision_id": "R0001", "parent_revision_id": None, "status": "COMPLETE",
+            "active_claim_ids": ["CL-01"], "files": files,
+        }
+        (revision / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+        before = {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()}
+        selector = check_candidate(case, "R0001")
+        self.assertEqual(
+            {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()},
+            before,
+        )
+        self.assertFalse((case / "ACTIVE.json").exists())
+        (case / "ACTIVE.json").write_text(json.dumps(selector), encoding="utf-8")
+        self.marker("CHECKPOINTED")
+        self.assertEqual(classify_case(case), "CHECKPOINTED")
+        published = {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()}
+        self.assertEqual(check_candidate(case, "R0001"), selector)
+        self.assertEqual(classify_case(case), "CHECKPOINTED")
+        self.assertEqual(
+            {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()},
+            published,
+        )
+        self.assertEqual((case / "approvals.jsonl").read_bytes(), b"")
+
+    def test_h1_control_line_drift_is_rejected_in_roots_and_snapshots(self) -> None:
+        variants = (
+            ("state.md", "- Case protocol: `checkpoint-v1`", "- Case protocol: `checkpoint-v1`.",
+             "does not repeat the protocol identity"),
+            ("state.md", "- Active complete revision ID:", "- Revision ID:",
+             "does not declare revision and active claims"),
+            ("state.md", "- Current claim IDs (active successors only; match manifest):",
+             "- Active claim IDs:", "does not declare revision and active claims"),
+            ("decision.md", "- **Revision:** R0001", "- **Revision:** R0001; explanation",
+             "does not declare revision and active claims"),
+            ("decision.md", "- **Active claim IDs:** CL-01", "- **Active claim IDs:** CL-01. explanation",
+             "invalid active claims"),
+        )
+        base = self.root
+        for index, (name, old, new, error) in enumerate(variants):
+            for snapshot in (False, True):
+                with self.subTest(name=name, snapshot=snapshot, variant=index):
+                    self.root = base / f"{index}-{snapshot}"
+                    self.root.mkdir()
+                    self.marker("CHECKPOINTING")
+                    self.complete_r1()
+                    relative = f"revisions/R0001/{name}" if snapshot else name
+                    path = self.root / relative
+                    path.write_text(path.read_text(encoding="utf-8").replace(old, new, 1), encoding="utf-8")
+                    if snapshot:
+                        manifest_path = self.root / "revisions/R0001/manifest.json"
+                        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                        for entry in manifest["files"]:
+                            if entry["path"] == relative:
+                                entry["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+                        manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+                        (self.root / "ACTIVE.json").write_text(json.dumps({
+                            "revision_id": "R0001",
+                            "manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+                        }), encoding="utf-8")
+                    before = {p.relative_to(self.root): p.read_bytes()
+                              for p in self.root.rglob("*") if p.is_file()}
+                    with self.assertRaisesRegex(ProtocolError, error):
+                        check_candidate(self.root, "R0001")
+                    with self.assertRaisesRegex(ProtocolError, error):
+                        classify_case(self.root)
+                    self.assertEqual(
+                        {p.relative_to(self.root): p.read_bytes()
+                         for p in self.root.rglob("*") if p.is_file()}, before,
+                    )
+
+    def test_candidate_check_rejects_missing_malformed_and_incomplete_manifests(self) -> None:
+        base = self.root
+        for fault in ("missing", "malformed", "incomplete"):
+            with self.subTest(fault=fault):
+                self.root = base / fault
+                self.root.mkdir()
+                self.marker("CHECKPOINTING")
+                self.complete_r1()
+                selector = (self.root / "ACTIVE.json").read_bytes()
+                manifest_path = self.root / "revisions/R0001/manifest.json"
+                if fault == "missing":
+                    manifest_path.unlink()
+                elif fault == "malformed":
+                    manifest_path.write_text("{", encoding="utf-8")
+                else:
+                    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                    manifest["status"] = "INCOMPLETE"
+                    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+                with self.assertRaises(ProtocolError):
+                    check_candidate(self.root, "R0001")
+                self.assertEqual((self.root / "ACTIVE.json").read_bytes(), selector)
+
+    def test_candidate_check_rejects_corrupted_or_missing_snapshot_before_selection(self) -> None:
+        base = self.root
+        for fault in ("corrupted", "missing"):
+            with self.subTest(fault=fault):
+                self.root = base / fault
+                self.root.mkdir()
+                self.marker("CHECKPOINTING")
+                self.complete_r1()
+                (self.root / "ACTIVE.json").unlink()
+                snapshot = self.root / "revisions/R0001/options.md"
+                if fault == "missing":
+                    snapshot.unlink()
+                else:
+                    snapshot.write_text("changed after hashing", encoding="utf-8")
+                with self.assertRaisesRegex(ProtocolError, "missing or hash-mismatched dependency"):
+                    check_candidate(self.root, "R0001")
+                self.assertFalse((self.root / "ACTIVE.json").exists())
+
+    def test_candidate_check_keeps_competing_complete_manifests_in_shared_validation(self) -> None:
+        self.marker("CHECKPOINTING")
+        self.complete_r1()
+        sibling = self.root / "revisions/R0002"
+        sibling.mkdir()
+        (sibling / "manifest.json").write_text(json.dumps({
+            "revision_id": "R0002", "parent_revision_id": None, "status": "COMPLETE",
+        }), encoding="utf-8")
+        with self.assertRaisesRegex(ProtocolError, "multiple complete revisions share a parent"):
+            check_candidate(self.root, "R0001")
+
+    def test_candidate_revision_cannot_escape_the_revision_directory(self) -> None:
+        for revision in ("../R0001", ".", ".."):
+            with self.subTest(revision=revision):
+                with self.assertRaisesRegex(ProtocolError, "candidate revision ID is malformed"):
+                    check_candidate(self.root, revision)
+
+    def test_candidate_rejects_dependencies_aliasing_mutable_selector(self) -> None:
+        base = self.root
+        for kind in ("direct", "hardlink", "symlink"):
+            with self.subTest(kind=kind):
+                self.root = base / kind
+                self.root.mkdir()
+                self.marker("CHECKPOINTING")
+                self.complete_r1()
+                active = self.root / "ACTIVE.json"
+                selector_bytes = active.read_bytes()
+                alias = self.root / "selector-alias.json"
+                if kind == "direct":
+                    alias = active
+                elif kind == "hardlink":
+                    alias.hardlink_to(active)
+                else:
+                    try:
+                        alias.symlink_to(active)
+                    except OSError as error:
+                        self.skipTest(f"symlink creation unavailable: {error}")
+                manifest_path = self.root / "revisions/R0001/manifest.json"
+                manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                manifest["files"].append({
+                    "path": alias.name,
+                    "sha256": hashlib.sha256(selector_bytes).hexdigest(),
+                })
+                manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+                # A proposed manifest must not pin bytes changed by its own selection.
+                with self.assertRaisesRegex(ProtocolError, "aliases mutable ACTIVE.json"):
+                    check_candidate(self.root, "R0001")
+                self.assertEqual(active.read_bytes(), selector_bytes)
+                self.assertEqual(alias.read_bytes(), selector_bytes)
 
 
 if __name__ == "__main__":
