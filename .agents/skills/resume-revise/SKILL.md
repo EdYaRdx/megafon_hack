@@ -28,7 +28,18 @@ Claim selection is explicit: use only `active_claim_ids` listed in the complete 
 
 Before preparing a new checkpoint, read the exact machine-control lines in `cases/_template/README.md` and preserve them in root `state.md`/`decision.md` and their snapshots. Labels and punctuation are part of the contract: one field per line, no trailing prose or period; do not paraphrase the revision/active-claim labels. Keep explanations separate. Use the verified parent and explicit claim selection, not timestamps or JSONL order.
 
-Create a new immutable revision ID, save all six snapshots, and hash every saved snapshot and decision dependency (source snapshots, inputs and ledgers actually used). Write the manifest last with `status: "COMPLETE"` only after verifying completeness and hashes. **Before selecting it in the real `ACTIVE.json`, require an actual successful `python tools/case_protocol.py check-candidate <CASE> --revision <ID>` receipt from the shared developer tool.** It checks a temporary copy with the proposed selector using the unchanged `classify_case`; `VALIDATED_CANDIDATE` does not mean the real case is published. Use its computed selector digest without changing the verified files, select last, then require `python tools/case_protocol.py classify <CASE>` to return `CHECKPOINTED`. Only then claim compatibility and continue protocol resume.
+Create a new immutable revision ID, prepare all six final root Markdown views byte-identical to their snapshots, and hash every saved snapshot and immutable decision dependency (saved source snapshots, inputs and ledgers actually used; never mutable root views or `ACTIVE.json`).
+For every successor, include `parent_manifest_sha256` computed from the exact bytes of the verified selected parent's saved `manifest.json`; root revisions may omit it or use `null`.
+Write the manifest last with `status: "COMPLETE"` only after verifying completeness and hashes.
+
+**Before selecting it in the real `ACTIVE.json`, require an actual successful `python tools/case_protocol.py check-candidate <CASE> --revision <ID>` receipt from the shared developer tool.**
+The gate validates the actual selected parent, all ancestor hashes/snapshots/dependencies/claim prefixes and forks, all six root views, then checks a temporary copy with the proposed selector using unchanged `classify_case`.
+`VALIDATED_CANDIDATE` does not mean the real case is published.
+Use its computed selector digest without changing verified files, select last, then require `python tools/case_protocol.py classify <CASE>` to return `CHECKPOINTED`.
+Only then claim compatibility and continue protocol resume.
+
+Keep final state/decision focused on the decision, claims, business obligations and next step; publication truth belongs in the actual selector and external/append-only receipts, not transient `ACTIVE old`/`NOT RUN`/`NOT PUBLISHED` prose.
+A candidate is not successful until real post-selection classification passes.
 
 If the shared tool is outside the product's allowed workspace/tools, ask the operator for these actual receipts; never reach outside the boundary or invent a call. Missing access/receipt is `NOT RUN` and stops selection; any error is `INCOMPLETE/CONFLICT`, not a successful checkpoint. Preserve rejected/history artifacts, and do not replace this gate with a hash-only or case-specific verifier. Do not silently repair a published revision. These checks create no execution approval or host permission.
 

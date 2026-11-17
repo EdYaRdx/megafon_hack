@@ -145,9 +145,9 @@ class FunctionalEvaluatorTests(unittest.TestCase):
         manifest_path = case / "revisions" / "R0001" / "manifest.json"
         manifest_path.write_text(json.dumps(manifest, separators=(",", ":")), encoding="utf-8")
         manifest_hash = digest(manifest_path)
-        (case / "ACTIVE.json").write_text(json.dumps({"revision_id": "R0001", "manifest_sha256": manifest_hash}), encoding="utf-8")
-        for name in ("state.md", "decision.md"):
+        for name in ("options.md", "decision.md", "strategy-product.md", "strategy-communication.md", "test-plan.md", "state.md"):
             (case / name).write_bytes((case / "revisions" / "R0001" / name).read_bytes())
+        (case / "ACTIVE.json").write_text(json.dumps({"revision_id": "R0001", "manifest_sha256": manifest_hash}), encoding="utf-8")
         return manifest_hash
 
     def make_r2(self, before: Path, final: Path, parent_hash: str, expected: dict) -> str:
@@ -194,9 +194,9 @@ class FunctionalEvaluatorTests(unittest.TestCase):
                     "review_trigger": "price changes", "conditions": "synthetic only"}
         with (final / "approvals.jsonl").open("ab") as f:
             f.write((json.dumps(approval, separators=(",", ":")) + "\n").encode())
-        (final / "ACTIVE.json").write_text(json.dumps({"revision_id": "R0002", "manifest_sha256": manifest_hash}), encoding="utf-8")
-        for name in ("state.md", "decision.md"):
+        for name in ("options.md", "decision.md", "strategy-product.md", "strategy-communication.md", "test-plan.md", "state.md"):
             (final / name).write_bytes((revision / name).read_bytes())
+        (final / "ACTIVE.json").write_text(json.dumps({"revision_id": "R0002", "manifest_sha256": manifest_hash}), encoding="utf-8")
         return manifest_hash
 
     def h1_fixture(self, *, pin_activity: bool = False) -> tuple[Path, Path, dict]:

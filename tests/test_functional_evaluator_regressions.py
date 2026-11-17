@@ -39,7 +39,9 @@ class EvaluatorRegressions(unittest.TestCase):
 
     def test_h1_manifest_boundaries_lineage_and_preservation(self):
         scenarios = {
-            "parent_hash": "parent manifest digest mismatch", "self_parent": "unsafe/self-referential parent",
+            "parent_hash": "parent manifest digest mismatch",
+            "parent_hash_missing": "parent manifest digest mismatch",
+            "self_parent": "unsafe/self-referential parent",
             "escape": "unsafe relative path", "alias": "duplicate alias", "self_dependency": "manifest self-reference",
             "selected_fork": "multiple complete revisions", "ancestor_fork": "complete sibling fork",
             "old_snapshot": "pre-resume immutable record changed", "lost_unchanged": "lost unchanged claims",
@@ -51,6 +53,8 @@ class EvaluatorRegressions(unittest.TestCase):
                 manifest = json.loads((final / "revisions/R0002/manifest.json").read_text(encoding="utf-8"))
                 if scenario == "parent_hash":
                     manifest["parent_manifest_sha256"] = "0" * 64
+                elif scenario == "parent_hash_missing":
+                    manifest.pop("parent_manifest_sha256")
                 elif scenario == "self_parent":
                     manifest["parent_revision_id"] = "R0002"
                 elif scenario == "escape":
