@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""Small deterministic classifier for new-case checkpoint protocol regression checks."""
+"""Shared read-only checkpoint classifier and pre-selection compatibility check."""
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
+import shutil
+import sys
+import tempfile
 from pathlib import Path
 
 PROTOCOL_ID = "checkpoint-v1"
@@ -333,3 +337,65 @@ def classify_case(case_dir: Path, *, repo_root: Path | None = None) -> str:
         if candidate.get("status") == "COMPLETE" and candidate.get("parent_revision_id") == manifest.get("parent_revision_id"):
             raise ProtocolError("multiple complete revisions share a parent")
     return "CHECKPOINTED"
+
+
+def check_candidate(case_dir: Path, revision_id: str) -> dict[str, str]:
+    """Validate a prospective selector with the shared consumer, without publishing it."""
+    case_dir = Path(case_dir)
+    if not re.fullmatch(r"[A-Za-z0-9._-]+", revision_id) or revision_id in {".", ".."}:
+        raise ProtocolError("candidate revision ID is malformed")
+    manifest_path = case_dir / "revisions" / revision_id / "manifest.json"
+    selector = {"revision_id": revision_id, "manifest_sha256": _sha256(manifest_path)}
+    manifest = _json(manifest_path)
+    entries = manifest.get("files")
+    if isinstance(entries, list):
+        active = case_dir / "ACTIVE.json"
+        for entry in entries:
+            if not isinstance(entry, dict) or not isinstance(entry.get("path"), str):
+                continue  # The shared consumer reports malformed entries.
+            relative = Path(entry["path"])
+            if relative.is_absolute() or ".." in relative.parts:
+                continue  # Do not resolve an invalid dependency outside the case.
+            dependency = case_dir / relative
+            if dependency.resolve() == active.resolve() or (
+                dependency.exists() and active.exists() and dependency.samefile(active)
+            ):
+                raise ProtocolError("candidate dependency aliases mutable ACTIVE.json")
+    # Keep every other manifest and ledger: omitting them would hide forks/history.
+    with tempfile.TemporaryDirectory(prefix="checkpoint-v1-") as temporary:
+        staged = Path(temporary) / "case"
+        shutil.copytree(case_dir, staged, symlinks=True)
+        staged_selector = staged / "ACTIVE.json"
+        # A copied symlink must never redirect this temporary write to the source.
+        staged_selector.unlink(missing_ok=True)
+        staged_selector.write_text(json.dumps(selector), encoding="utf-8")
+        if classify_case(staged) != "CHECKPOINTED":
+            raise ProtocolError("candidate is not a complete checkpoint")
+    return selector
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    commands = parser.add_subparsers(dest="command", required=True)
+    classify = commands.add_parser("classify", help="classify the actual case without changing it")
+    classify.add_argument("case", type=Path)
+    candidate = commands.add_parser(
+        "check-candidate", help="check a prospective selector in a temporary copy; do not publish"
+    )
+    candidate.add_argument("case", type=Path)
+    candidate.add_argument("--revision", required=True)
+    args = parser.parse_args(argv)
+    try:
+        if args.command == "classify":
+            print(classify_case(args.case))
+        else:
+            selector = check_candidate(args.case, args.revision)
+            print(json.dumps({"status": "VALIDATED_CANDIDATE", **selector}))
+    except (ProtocolError, OSError, shutil.Error) as error:
+        print(f"INCOMPLETE/CONFLICT: {error}", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

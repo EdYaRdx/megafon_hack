@@ -1,7 +1,7 @@
 # Case state
 
 - Updated at:
-- Case protocol: `checkpoint-v1` (must match root `case-protocol.json`)
+- Case protocol: `checkpoint-v1`
 - Active complete revision ID:
 - Current stage: `INTAKE`
 - Decision status: `NOT_MADE`
@@ -16,3 +16,5 @@
 - Human decision needed:
 
 - Cost/time/call telemetry: `UNKNOWN` unless host exposes it.
+
+Keep protocol, revision and active-claim control lines in the exact form from `README.md`; put explanations on separate lines, never after their values.

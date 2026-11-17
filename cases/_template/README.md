@@ -16,6 +16,27 @@
 - `state.md` — этап и ссылка на единственную активную полную ревизию.
 - Остальные Markdown-файлы — альтернативы, решение, две связанные стратегии и план проверки.
 
+## Машинные строки state и decision
+
+Перед копированием snapshots прочитай и сохрани точные имена полей ниже. Это синтаксис `checkpoint-v1`, не свободный пересказ. В корневых файлах и их revision snapshots используй одинаковые значения и порядок claim IDs из manifest. Каждое поле — отдельная строка, без точки, комментария, второго поля или пояснения после значения. Пояснения и условия публикации пиши отдельным абзацем.
+
+`state.md` для первой ревизии (ID ниже — только пример; подставь выбранные реальные ID):
+
+```markdown
+- Case protocol: `checkpoint-v1`
+- Active complete revision ID: R0001
+- Current claim IDs (active successors only; match manifest): C-001, C-002
+```
+
+`decision.md` для той же ревизии:
+
+```markdown
+- **Revision:** R0001
+- **Active claim IDs:** C-001, C-002
+```
+
+Не заменяй эти labels на `Revision ID` или `Active claim IDs` без указанного оформления. Пустой active set записывай как `[]`, не как выдуманный claim. Для первой ревизии `parent_revision_id` в manifest — JSON `null`, без Markdown-поля родителя со строкой `null`. Для следующей ревизии можно добавить отдельную строку `- Parent revision ID: R0001` в state и `- **Parent revision:** R0001` в decision; значение должно совпадать с manifest. Не объединяй родителя с другими полями или прозой.
+
 ## Протокол ревизий (один автор записи)
 
 ID ревизии неизменяемы, например `R0001`, `R0002`; в каждом manifest указан ровно один родитель или `null`. Для ревизии создайте `revisions/<id>/` и сохраните точные копии `options.md`, `decision.md`, `strategy-product.md`, `strategy-communication.md`, `test-plan.md` и `state.md`. В `manifest.json` укажите ID ревизии и родителя, `status`, явный список `active_claim_ids`, относительный путь и SHA-256 каждого снимка и каждой использованной зависимости решения (входных материалов, снимков источников и нужных журналов). Хэшируйте JSONL-зависимости по точным байтам на момент публикации.
@@ -62,9 +83,25 @@ ID ревизии неизменяемы, например `R0001`, `R0002`; в 
 
 ### Проверка совместимости checkpoint
 
-Формы журналов заданы в [evidence and claim conventions](../../references/evidence-and-claims.md). Локальная проверка хэшей или verifier, написанный для отдельного дела, не доказывает совместимость с протоколом. После публикации checkpoint оператор проверяет его штатной `tools.case_protocol.classify_case` из developer checkout и сохраняет фактический результат; только `CHECKPOINTED` подтверждает этот ограниченный машинный gate. Не создавайте альтернативный verifier и не ослабляйте consumer под результат.
+Формы журналов заданы в [evidence and claim conventions](../../references/evidence-and-claims.md). Локальная проверка хэшей или verifier для отдельного дела не доказывает совместимость с протоколом. **До выбора новой ревизии в настоящем `ACTIVE.json` обязателен штатный pre-selection gate** из developer checkout:
 
-В staged product workspace модуль `tools/` может отсутствовать: это не разрешение читать вне workspace. Тогда операторская проверка остаётся `NOT RUN`, а совместимость не объявляется подтверждённой. Ошибка схемы означает STOP для продолжения по протоколу; исторические строки/manifest не переписывают ради прохождения проверки.
+```sh
+python tools/case_protocol.py check-candidate /absolute/path/to/case --revision R0001
+```
+
+Команда вычисляет SHA-256 сохранённого manifest и вызывает тот же `classify_case` на временной копии полного дела с предполагаемым selector. Исходное дело, прежний selector, snapshots и журналы не изменяются; остальные manifests сохраняются в проверке, чтобы не скрыть конфликт. Единственный успешный результат — `VALIDATED_CANDIDATE` с вычисленными `revision_id` и `manifest_sha256`. Это не публикация и не `CHECKPOINTED` исходного дела.
+
+`ACTIVE.json` не может быть зависимостью своего checkpoint ни напрямую, ни через filesystem alias (symlink/hardlink): выбор меняет эти байты. Pre-selection gate отклоняет такие ссылки, а не подменяет их копиями старого selector.
+
+Только после фактического успеха gate запиши эти значения в `ACTIVE.json` последним шагом выбора, без изменения проверенных байтов. Любое изменение зависимостей после receipt требует новой проверки; ошибку/`NOT RUN` нельзя заменять ручным «PASS». После выбора проверь настоящее дело:
+
+```sh
+python tools/case_protocol.py classify /absolute/path/to/case
+```
+
+Сохрани реальные command/stdout/stderr/exit code обоих вызовов. Только фактический `CHECKPOINTED` разрешает объявить машинную совместимость; exit 0 с `FRESH` недостаточен. До него не выдавай checkpoint за принятый и не продолжай protocol resume.
+
+В staged product workspace модуль `tools/` может отсутствовать: это не разрешение читать вне workspace. Оператор выполняет те же команды в разрешённом developer checkout и возвращает настоящий receipt. Если это недоступно, gate остаётся `NOT RUN`: не выбирай новый checkpoint по предположению. Ошибка означает STOP; не переписывай опубликованные snapshots, manifests или исторические строки ради прохождения. Не создавай альтернативный verifier и не ослабляй consumer.
 
 
 ## Согласование и тезисы
