@@ -237,53 +237,47 @@ def _check_protocol_id(path: Path, label: str) -> None:
         raise ProtocolError(f"{label} does not repeat the protocol identity")
 
 
-def classify_case(case_dir: Path, *, repo_root: Path | None = None) -> str:
-    """Return FRESH, CHECKPOINTED, or LEGACY; unsafe/ambiguous cases raise ProtocolError."""
-    case_dir = Path(case_dir)
-    repository = Path(repo_root).resolve() if repo_root is not None else Path(__file__).resolve().parents[1]
-    if not case_dir.is_dir():
-        raise ProtocolError("case directory is missing")
-    marker_path = case_dir / "case-protocol.json"
-    selector_path = case_dir / "ACTIVE.json"
+def _validate_revision(
+    case_dir: Path,
+    revision_id: str,
+    *,
+    expected_manifest_sha256: str | None = None,
+    require_parent_digest: bool = False,
+) -> dict:
+    """Validate one immutable revision and its pinned dependencies."""
     revisions_dir = case_dir / "revisions"
-    revision_files = [path for path in revisions_dir.rglob("*") if path.is_file()] if revisions_dir.exists() else []
-    manifest_paths = list(revisions_dir.glob("*/manifest.json")) if revisions_dir.exists() else []
-
-    if not marker_path.exists():
-        canonical_legacy_path = (repository / "cases" / case_dir.name).resolve()
-        if case_dir.name in LEGACY_CASES and case_dir.resolve() == canonical_legacy_path and not selector_path.exists() and not manifest_paths:
-            return "LEGACY"
-        raise ProtocolError("case protocol identity is absent or case is not on the legacy allowlist")
-
-    marker = _json(marker_path)
-    if marker.get("protocol_id") != PROTOCOL_ID or marker.get("checkpoint_state") not in CHECKPOINT_STATES:
-        raise ProtocolError("case protocol identity/state is unsupported or ambiguous")
-
-    if not selector_path.exists() and not manifest_paths:
-        if marker["checkpoint_state"] == "UNINITIALIZED" and not revision_files:
-            return "FRESH"
-        raise ProtocolError("checkpoint was started or selected artifacts are incomplete")
-    if not selector_path.exists() or not manifest_paths:
-        raise ProtocolError("selector or manifest is missing")
-
-    selector = _json(selector_path)
-    revision_id = selector.get("revision_id")
-    manifest_hash = selector.get("manifest_sha256")
-    if not isinstance(revision_id, str) or not re.fullmatch(r"[A-Za-z0-9._-]+", revision_id):
-        raise ProtocolError("selector revision_id is missing or malformed")
     manifest_path = revisions_dir / revision_id / "manifest.json"
-    if not manifest_path.is_file() or _sha256(manifest_path) != manifest_hash:
+    if not manifest_path.is_file():
+        raise ProtocolError("selected manifest is missing or hash-mismatched")
+    if expected_manifest_sha256 is not None and _sha256(manifest_path) != expected_manifest_sha256:
         raise ProtocolError("selected manifest is missing or hash-mismatched")
     manifest = _json(manifest_path)
     if manifest.get("revision_id") != revision_id or manifest.get("status") != "COMPLETE":
         raise ProtocolError("selected manifest identity/status is invalid")
     parent_id = manifest.get("parent_revision_id")
-    if parent_id is not None and (not isinstance(parent_id, str) or not re.fullmatch(r"[A-Za-z0-9._-]+", parent_id)):
+    if parent_id is not None and (
+        not isinstance(parent_id, str) or not re.fullmatch(r"[A-Za-z0-9._-]+", parent_id)
+    ):
         raise ProtocolError("manifest parent revision ID is malformed")
+    if require_parent_digest and parent_id in {".", ".."}:
+        raise ProtocolError("manifest parent revision ID is malformed")
+    manifest_path = revisions_dir / revision_id / "manifest.json"
+    for other in revisions_dir.glob("*/manifest.json"):
+        if other != manifest_path:
+            sibling = _json(other)
+            if sibling.get("status") == "COMPLETE" and sibling.get("parent_revision_id") == parent_id:
+                raise ProtocolError("multiple complete revisions share a parent")
+    if require_parent_digest:
+        parent_hash = manifest.get("parent_manifest_sha256")
+        if parent_id is None and parent_hash is not None:
+            raise ProtocolError("root manifest must not declare a parent manifest hash")
+        if parent_id is not None and (
+            not isinstance(parent_hash, str) or not re.fullmatch(r"[0-9a-f]{64}", parent_hash)
+        ):
+            raise ProtocolError("successor manifest parent_manifest_sha256 is missing or malformed")
     active_claims = manifest.get("active_claim_ids")
     if not isinstance(active_claims, list) or any(not isinstance(item, str) or not CLAIM_ID.fullmatch(item) for item in active_claims) or len(active_claims) != len(set(active_claims)):
         raise ProtocolError("manifest active_claim_ids is missing, invalid, or ambiguous")
-
     files = manifest.get("files")
     if not isinstance(files, list):
         raise ProtocolError("manifest file list is missing")
@@ -315,58 +309,145 @@ def classify_case(case_dir: Path, *, repo_root: Path | None = None) -> str:
         raise ProtocolError("manifest omits claims.jsonl required by active claims")
     if "claims.jsonl" in seen:
         _validate_checkpoint_claims(checkpoint_claim_prefix or b"", active_claims)
-
-    for name, label in (
-        ("state.md", "root state"),
-        ("decision.md", "root decision"),
-        (f"revisions/{revision_id}/state.md", "selected state snapshot"),
-        (f"revisions/{revision_id}/decision.md", "selected decision snapshot"),
-    ):
+    for name in (f"revisions/{revision_id}/state.md", f"revisions/{revision_id}/decision.md"):
         if name.endswith("state.md"):
+            _check_protocol_id(case_dir / name, "selected state snapshot")
+        selected_revision, selected_claims, declared_parent = _markdown_selection(case_dir / name, "selected snapshot")
+        if selected_revision != revision_id or selected_claims != active_claims:
+            raise ProtocolError("selected snapshot disagrees with selected revision/active claims")
+        if declared_parent is not None and declared_parent != parent_id:
+            raise ProtocolError("selected snapshot parent revision disagrees with manifest")
+    return manifest
+
+
+def _validate_parent_chain(case_dir: Path, revision_id: str) -> None:
+    """Validate every actual ancestor and the exact bytes pinned by each child."""
+    seen: set[str] = set()
+    child_id = revision_id
+    child = _validate_revision(case_dir, child_id, require_parent_digest=True)
+    while child.get("parent_revision_id") is not None:
+        parent_id = child["parent_revision_id"]
+        if parent_id in seen or parent_id == child_id:
+            raise ProtocolError("cycle in revision parent chain")
+        seen.add(child_id)
+        parent_path = case_dir / "revisions" / parent_id / "manifest.json"
+        actual_hash = _sha256(parent_path)
+        if child.get("parent_manifest_sha256") != actual_hash:
+            raise ProtocolError("parent manifest hash is missing or mismatched")
+        child_id = parent_id
+        child = _validate_revision(
+            case_dir, child_id, expected_manifest_sha256=actual_hash, require_parent_digest=True
+        )
+
+
+def classify_case(case_dir: Path, *, repo_root: Path | None = None) -> str:
+    """Return FRESH, CHECKPOINTED, or LEGACY; unsafe/ambiguous cases raise ProtocolError."""
+    case_dir = Path(case_dir)
+    repository = Path(repo_root).resolve() if repo_root is not None else Path(__file__).resolve().parents[1]
+    if not case_dir.is_dir():
+        raise ProtocolError("case directory is missing")
+    marker_path = case_dir / "case-protocol.json"
+    selector_path = case_dir / "ACTIVE.json"
+    revisions_dir = case_dir / "revisions"
+    revision_files = [path for path in revisions_dir.rglob("*") if path.is_file()] if revisions_dir.exists() else []
+    manifest_paths = list(revisions_dir.glob("*/manifest.json")) if revisions_dir.exists() else []
+    if not marker_path.exists():
+        canonical_legacy_path = (repository / "cases" / case_dir.name).resolve()
+        if case_dir.name in LEGACY_CASES and case_dir.resolve() == canonical_legacy_path and not selector_path.exists() and not manifest_paths:
+            return "LEGACY"
+        raise ProtocolError("case protocol identity is absent or case is not on the legacy allowlist")
+    marker = _json(marker_path)
+    if marker.get("protocol_id") != PROTOCOL_ID or marker.get("checkpoint_state") not in CHECKPOINT_STATES:
+        raise ProtocolError("case protocol identity/state is unsupported or ambiguous")
+    if not selector_path.exists() and not manifest_paths:
+        if marker["checkpoint_state"] == "UNINITIALIZED" and not revision_files:
+            return "FRESH"
+        raise ProtocolError("checkpoint was started or selected artifacts are incomplete")
+    if not selector_path.exists() or not manifest_paths:
+        raise ProtocolError("selector or manifest is missing")
+    selector = _json(selector_path)
+    revision_id = selector.get("revision_id")
+    manifest_hash = selector.get("manifest_sha256")
+    if not isinstance(revision_id, str) or not re.fullmatch(r"[A-Za-z0-9._-]+", revision_id):
+        raise ProtocolError("selector revision_id is missing or malformed")
+    if not isinstance(manifest_hash, str):
+        raise ProtocolError("selected manifest is missing or hash-mismatched")
+    manifest_path = revisions_dir / revision_id / "manifest.json"
+    manifest = _validate_revision(case_dir, revision_id, expected_manifest_sha256=manifest_hash)
+    for name, label in (("state.md", "root state"), ("decision.md", "root decision")):
+        if name == "state.md":
             _check_protocol_id(case_dir / name, label)
         selected_revision, selected_claims, declared_parent = _markdown_selection(case_dir / name, label)
-        if selected_revision != revision_id or selected_claims != active_claims:
+        if selected_revision != revision_id or selected_claims != manifest["active_claim_ids"]:
             raise ProtocolError(f"{label} disagrees with selected revision/active claims")
-        if declared_parent is not None and declared_parent != parent_id:
+        if declared_parent is not None and declared_parent != manifest.get("parent_revision_id"):
             raise ProtocolError(f"{label} parent revision disagrees with manifest")
-
-    for other in manifest_paths:
-        if other == manifest_path:
-            continue
-        candidate = _json(other)
-        if candidate.get("status") == "COMPLETE" and candidate.get("parent_revision_id") == manifest.get("parent_revision_id"):
-            raise ProtocolError("multiple complete revisions share a parent")
     return "CHECKPOINTED"
-
 
 def check_candidate(case_dir: Path, revision_id: str) -> dict[str, str]:
     """Validate a prospective selector with the shared consumer, without publishing it."""
     case_dir = Path(case_dir)
     if not re.fullmatch(r"[A-Za-z0-9._-]+", revision_id) or revision_id in {".", ".."}:
         raise ProtocolError("candidate revision ID is malformed")
+    active = case_dir / "ACTIVE.json"
+    marker = _json(case_dir / "case-protocol.json")
+    if marker.get("protocol_id") != PROTOCOL_ID or marker.get("checkpoint_state") not in CHECKPOINT_STATES:
+        raise ProtocolError("case protocol identity/state is unsupported or ambiguous")
+    current_id = None
+    if active.exists() or active.is_symlink():
+        selected = _json(active)
+        current_id = selected.get("revision_id")
+        if not isinstance(current_id, str) or current_id in {".", ".."} or not re.fullmatch(r"[A-Za-z0-9._-]+", current_id):
+            raise ProtocolError("selector revision_id is missing or malformed")
+        selected_hash = selected.get("manifest_sha256")
+        if not isinstance(selected_hash, str):
+            raise ProtocolError("selected manifest is missing or hash-mismatched")
+        _validate_revision(case_dir, current_id, expected_manifest_sha256=selected_hash)
+    else:
+        revision_entries = list((case_dir / "revisions").iterdir()) if (case_dir / "revisions").exists() else []
+        if any(path.name != revision_id for path in revision_entries):
+            raise ProtocolError("selector is missing while other revision artifacts exist")
+        if marker.get("checkpoint_state") == "UNINITIALIZED":
+            raise ProtocolError("first checkpoint must begin in CHECKPOINTING state")
+    current = "FRESH" if current_id is None else "CHECKPOINTED"
     manifest_path = case_dir / "revisions" / revision_id / "manifest.json"
     selector = {"revision_id": revision_id, "manifest_sha256": _sha256(manifest_path)}
-    manifest = _json(manifest_path)
+    manifest = _validate_revision(
+        case_dir, revision_id, expected_manifest_sha256=selector["manifest_sha256"], require_parent_digest=True
+    )
     entries = manifest.get("files")
     if isinstance(entries, list):
-        active = case_dir / "ACTIVE.json"
         for entry in entries:
             if not isinstance(entry, dict) or not isinstance(entry.get("path"), str):
-                continue  # The shared consumer reports malformed entries.
+                continue
             relative = Path(entry["path"])
             if relative.is_absolute() or ".." in relative.parts:
-                continue  # Do not resolve an invalid dependency outside the case.
+                continue
             dependency = case_dir / relative
             if dependency.resolve() == active.resolve() or (
                 dependency.exists() and active.exists() and dependency.samefile(active)
             ):
                 raise ProtocolError("candidate dependency aliases mutable ACTIVE.json")
+    if current == "FRESH":
+        if manifest.get("parent_revision_id") is not None:
+            raise ProtocolError("first candidate must have a null parent")
+    else:
+        if revision_id != current_id and manifest.get("parent_revision_id") != current_id:
+            raise ProtocolError("candidate must extend the selected ACTIVE revision")
+    _validate_parent_chain(case_dir, revision_id)
+    for name in REQUIRED_SNAPSHOTS:
+        try:
+            current_view = (case_dir / name).read_bytes()
+            snapshot = (case_dir / "revisions" / revision_id / name).read_bytes()
+        except OSError as error:
+            raise ProtocolError(f"missing current root view: {name}") from error
+        if current_view != snapshot:
+            raise ProtocolError(f"root current view is stale: {name}")
     # Keep every other manifest and ledger: omitting them would hide forks/history.
     with tempfile.TemporaryDirectory(prefix="checkpoint-v1-") as temporary:
         staged = Path(temporary) / "case"
         shutil.copytree(case_dir, staged, symlinks=True)
         staged_selector = staged / "ACTIVE.json"
-        # A copied symlink must never redirect this temporary write to the source.
         staged_selector.unlink(missing_ok=True)
         staged_selector.write_text(json.dumps(selector), encoding="utf-8")
         if classify_case(staged) != "CHECKPOINTED":

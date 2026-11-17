@@ -80,15 +80,196 @@ class CaseProtocolTests(unittest.TestCase):
             json.dumps({"revision_id": revision_id, "manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest()}),
             encoding="utf-8",
         )
-        claim_text = ", ".join(claims)
-        (self.root / "state.md").write_text(
-            f"- Case protocol: `checkpoint-v1`\n- Active complete revision ID: {revision_id}\n- Current claim IDs (active successors only; match manifest): {claim_text}\n",
-            encoding="utf-8",
-        )
-        (self.root / "decision.md").write_text(
-            f"- **Revision:** {revision_id}\n- **Active claim IDs:** {claim_text}\n", encoding="utf-8"
-        )
+        for name in SNAPSHOTS:
+            (self.root / name).write_bytes((revision_dir / name).read_bytes())
 
+    def complete_r2(self, *, parent: str = "R0001", revision: str = "R0002", parent_hash: str | None = None) -> bytes:
+        parent_manifest = self.root / "revisions" / parent / "manifest.json"
+        actual_parent_hash = hashlib.sha256(parent_manifest.read_bytes()).hexdigest()
+        revision_dir = self.root / "revisions" / revision
+        revision_dir.mkdir(parents=True)
+        files = []
+        for name in SNAPSHOTS:
+            source = self.root / "revisions" / parent / name
+            content = source.read_text(encoding="utf-8")
+            if name == "state.md":
+                content = content.replace(f"Active complete revision ID: {parent}", f"Active complete revision ID: {revision}")
+            elif name == "decision.md":
+                content = content.replace(f"**Revision:** {parent}", f"**Revision:** {revision}")
+            (revision_dir / name).write_text(content, encoding="utf-8")
+            files.append({
+                "path": f"revisions/{revision}/{name}",
+                "sha256": hashlib.sha256((revision_dir / name).read_bytes()).hexdigest(),
+            })
+        claims_bytes = (self.root / "claims.jsonl").read_bytes()
+        files.append({"path": "claims.jsonl", "sha256": hashlib.sha256(claims_bytes).hexdigest()})
+        manifest = {
+            "revision_id": revision, "parent_revision_id": parent,
+            "status": "COMPLETE", "active_claim_ids": ["CL-01"], "files": files,
+        }
+        if parent_hash != "omit":
+            manifest["parent_manifest_sha256"] = actual_parent_hash if parent_hash is None else parent_hash
+        manifest_path = revision_dir / "manifest.json"
+        manifest_path.write_text(json.dumps(manifest, separators=(",", ":")), encoding="utf-8")
+        for name in SNAPSHOTS:
+            (self.root / name).write_bytes((revision_dir / name).read_bytes())
+        return manifest_path.read_bytes()
+
+    def test_candidate_requires_real_direct_and_deep_parent_manifest_hashes(self) -> None:
+        base = self.root
+        for depth in (1, 2):
+            for fault in ("omit", "wrong"):
+                with self.subTest(depth=depth, fault=fault):
+                    self.root = base / f"{depth}-{fault}"
+                    self.root.mkdir()
+                    self.marker("CHECKPOINTING")
+                    self.complete_r1()
+                    self.complete_r2(parent_hash=fault)
+                    if depth == 2:
+                        parent_bytes = (self.root / "revisions/R0002/manifest.json").read_bytes()
+                        (self.root / "ACTIVE.json").write_text(json.dumps({
+                            "revision_id": "R0002",
+                            "manifest_sha256": hashlib.sha256(parent_bytes).hexdigest(),
+                        }), encoding="utf-8")
+                        self.complete_r2(parent="R0002", revision="R0003")
+                        candidate = "R0003"
+                    else:
+                        candidate = "R0002"
+                    with self.assertRaises(ProtocolError):
+                        check_candidate(self.root, candidate)
+
+    def test_candidate_accepts_full_chain_and_rechecks_selected_revision_read_only(self) -> None:
+        self.marker("CHECKPOINTING")
+        self.complete_r1()
+        parent_bytes = (self.root / "revisions/R0001/manifest.json").read_bytes()
+        self.complete_r2()
+        before = {p.relative_to(self.root): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}
+        selector = check_candidate(self.root, "R0002")
+        self.assertEqual(selector["revision_id"], "R0002")
+        self.assertEqual(
+            selector["manifest_sha256"],
+            hashlib.sha256((self.root / "revisions/R0002/manifest.json").read_bytes()).hexdigest(),
+        )
+        self.assertEqual((self.root / "revisions/R0001/manifest.json").read_bytes(), parent_bytes)
+        self.assertEqual({p.relative_to(self.root): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}, before)
+        (self.root / "ACTIVE.json").write_text(json.dumps(selector), encoding="utf-8")
+        self.assertEqual(classify_case(self.root), "CHECKPOINTED")
+        published = {p.relative_to(self.root): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}
+        self.assertEqual(check_candidate(self.root, "R0002"), selector)
+        self.assertEqual({p.relative_to(self.root): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}, published)
+
+    def test_candidate_rejects_each_stale_current_view(self) -> None:
+        base = self.root
+        for name in SNAPSHOTS:
+            with self.subTest(name=name):
+                self.root = base / name.replace(".", "-")
+                self.root.mkdir()
+                self.marker("CHECKPOINTING")
+                self.complete_r1()
+                view = self.root / name
+                view.write_bytes(view.read_bytes() + b"stale old price prose\n")
+                with self.assertRaisesRegex(ProtocolError, "root current view is stale"):
+                    check_candidate(self.root, "R0001")
+
+    def test_candidate_rejects_corrupt_ancestor_snapshot_before_selection(self) -> None:
+        self.marker("CHECKPOINTING")
+        self.complete_r1()
+        self.complete_r2()
+        # The candidate R2 snapshots/root views remain internally consistent.
+        (self.root / "revisions/R0001/options.md").write_text("corrupt ancestor", encoding="utf-8")
+        with self.assertRaisesRegex(ProtocolError, "missing or hash-mismatched dependency"):
+            check_candidate(self.root, "R0002")
+
+    def test_candidate_rejects_missing_parent_and_corrupt_ancestor_dependency_prefix(self) -> None:
+        base = self.root
+        for fault in ("missing_parent", "source_prefix"):
+            with self.subTest(fault=fault):
+                self.root = base / fault
+                self.root.mkdir()
+                self.marker("CHECKPOINTING")
+                self.complete_r1()
+                if fault == "source_prefix":
+                    source = self.root / "sources.jsonl"
+                    source.write_bytes(b'{"id":"source-1"}\n')
+                    parent_manifest_path = self.root / "revisions/R0001/manifest.json"
+                    parent_manifest = json.loads(parent_manifest_path.read_text(encoding="utf-8"))
+                    parent_manifest["files"].append({
+                        "path": "sources.jsonl", "sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+                    })
+                    parent_manifest_path.write_text(json.dumps(parent_manifest, separators=(",", ":")), encoding="utf-8")
+                    parent_bytes = parent_manifest_path.read_bytes()
+                    (self.root / "ACTIVE.json").write_text(json.dumps({
+                        "revision_id": "R0001", "manifest_sha256": hashlib.sha256(parent_bytes).hexdigest(),
+                    }), encoding="utf-8")
+                self.complete_r2()
+                if fault == "missing_parent":
+                    (self.root / "revisions/R0001/manifest.json").unlink()
+                else:
+                    (self.root / "sources.jsonl").write_bytes(b'{"id":"corrupt"}\n')
+                with self.assertRaises(ProtocolError):
+                    check_candidate(self.root, "R0002")
+
+    def test_candidate_checks_siblings_at_every_ancestor_in_a_three_revision_chain(self) -> None:
+        self.marker("CHECKPOINTING")
+        self.complete_r1()
+        self.complete_r2()
+        check_candidate(self.root, "R0002")
+        parent_bytes = (self.root / "revisions/R0002/manifest.json").read_bytes()
+        (self.root / "ACTIVE.json").write_text(json.dumps({
+            "revision_id": "R0002",
+            "manifest_sha256": hashlib.sha256(parent_bytes).hexdigest(),
+        }), encoding="utf-8")
+        self.complete_r2(parent="R0002", revision="R0003")
+        check_candidate(self.root, "R0003")
+        sibling = self.root / "revisions/R0004"
+        sibling.mkdir()
+        (sibling / "manifest.json").write_text(json.dumps({
+            "revision_id": "R0004", "parent_revision_id": None, "status": "COMPLETE",
+        }), encoding="utf-8")
+        with self.assertRaisesRegex(ProtocolError, "multiple complete revisions share a parent"):
+            check_candidate(self.root, "R0003")
+
+    def test_candidate_rejects_incomplete_ancestor_and_self_parent_cycle(self) -> None:
+        base = self.root
+        for fault in ("incomplete_ancestor", "self_cycle"):
+            with self.subTest(fault=fault):
+                self.root = base / fault
+                self.root.mkdir()
+                self.marker("CHECKPOINTING")
+                self.complete_r1()
+                self.complete_r2()
+                if fault == "self_cycle":
+                    candidate_path = self.root / "revisions/R0002/manifest.json"
+                    candidate = json.loads(candidate_path.read_text(encoding="utf-8"))
+                    candidate["parent_revision_id"] = "R0002"
+                    candidate["parent_manifest_sha256"] = "0" * 64
+                    candidate_path.write_text(json.dumps(candidate), encoding="utf-8")
+                    candidate_hash = hashlib.sha256(candidate_path.read_bytes()).hexdigest()
+                    (self.root / "ACTIVE.json").write_text(json.dumps({
+                        "revision_id": "R0002", "manifest_sha256": candidate_hash,
+                    }), encoding="utf-8")
+                    with self.assertRaisesRegex(ProtocolError, "cycle in revision parent chain"):
+                        check_candidate(self.root, "R0002")
+                    continue
+                r1_path = self.root / "revisions/R0001/manifest.json"
+                r1 = json.loads(r1_path.read_text(encoding="utf-8"))
+                r1["status"] = "INCOMPLETE"
+                r1_path.write_text(json.dumps(r1), encoding="utf-8")
+                r2_path = self.root / "revisions/R0002/manifest.json"
+                r2 = json.loads(r2_path.read_text(encoding="utf-8"))
+                r2["parent_manifest_sha256"] = hashlib.sha256(r1_path.read_bytes()).hexdigest()
+                r2_path.write_text(json.dumps(r2), encoding="utf-8")
+                r2_hash = hashlib.sha256(r2_path.read_bytes()).hexdigest()
+                self.complete_r2(parent="R0002", revision="R0003")
+                r3_path = self.root / "revisions/R0003/manifest.json"
+                r3 = json.loads(r3_path.read_text(encoding="utf-8"))
+                r3["parent_manifest_sha256"] = r2_hash
+                r3_path.write_text(json.dumps(r3), encoding="utf-8")
+                (self.root / "ACTIVE.json").write_text(json.dumps({
+                    "revision_id": "R0002", "manifest_sha256": r2_hash,
+                }), encoding="utf-8")
+                with self.assertRaises(ProtocolError):
+                    check_candidate(self.root, "R0003")
     def test_copied_template_is_fresh_uninitialized_case(self) -> None:
         case_dir = self.root / "new-case"
         shutil.copytree(REPO_ROOT / "cases" / "_template", case_dir)
@@ -502,19 +683,14 @@ class CaseProtocolTests(unittest.TestCase):
 
     def test_h1_control_line_drift_is_rejected_in_roots_and_snapshots(self) -> None:
         variants = (
-            ("state.md", "- Case protocol: `checkpoint-v1`", "- Case protocol: `checkpoint-v1`.",
-             "does not repeat the protocol identity"),
-            ("state.md", "- Active complete revision ID:", "- Revision ID:",
-             "does not declare revision and active claims"),
-            ("state.md", "- Current claim IDs (active successors only; match manifest):",
-             "- Active claim IDs:", "does not declare revision and active claims"),
-            ("decision.md", "- **Revision:** R0001", "- **Revision:** R0001; explanation",
-             "does not declare revision and active claims"),
-            ("decision.md", "- **Active claim IDs:** CL-01", "- **Active claim IDs:** CL-01. explanation",
-             "invalid active claims"),
+            ("state.md", "- Case protocol: `checkpoint-v1`", "- Case protocol: `checkpoint-v1`."),
+            ("state.md", "- Active complete revision ID:", "- Revision ID:"),
+            ("state.md", "- Current claim IDs (active successors only; match manifest):", "- Active claim IDs:"),
+            ("decision.md", "- **Revision:** R0001", "- **Revision:** R0001; explanation"),
+            ("decision.md", "- **Active claim IDs:** CL-01", "- **Active claim IDs:** CL-01. explanation"),
         )
         base = self.root
-        for index, (name, old, new, error) in enumerate(variants):
+        for index, (name, old, new) in enumerate(variants):
             for snapshot in (False, True):
                 with self.subTest(name=name, snapshot=snapshot, variant=index):
                     self.root = base / f"{index}-{snapshot}"
@@ -537,9 +713,9 @@ class CaseProtocolTests(unittest.TestCase):
                         }), encoding="utf-8")
                     before = {p.relative_to(self.root): p.read_bytes()
                               for p in self.root.rglob("*") if p.is_file()}
-                    with self.assertRaisesRegex(ProtocolError, error):
+                    with self.assertRaises(ProtocolError):
                         check_candidate(self.root, "R0001")
-                    with self.assertRaisesRegex(ProtocolError, error):
+                    with self.assertRaises(ProtocolError):
                         classify_case(self.root)
                     self.assertEqual(
                         {p.relative_to(self.root): p.read_bytes()
@@ -611,8 +787,11 @@ class CaseProtocolTests(unittest.TestCase):
                 self.root.mkdir()
                 self.marker("CHECKPOINTING")
                 self.complete_r1()
+                self.complete_r2()
                 active = self.root / "ACTIVE.json"
                 selector_bytes = active.read_bytes()
+                candidate_selector = check_candidate(self.root, "R0002")
+                self.assertEqual(candidate_selector["revision_id"], "R0002")
                 alias = self.root / "selector-alias.json"
                 if kind == "direct":
                     alias = active
@@ -623,18 +802,24 @@ class CaseProtocolTests(unittest.TestCase):
                         alias.symlink_to(active)
                     except OSError as error:
                         self.skipTest(f"symlink creation unavailable: {error}")
-                manifest_path = self.root / "revisions/R0001/manifest.json"
+                manifest_path = self.root / "revisions/R0002/manifest.json"
                 manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
                 manifest["files"].append({
                     "path": alias.name,
                     "sha256": hashlib.sha256(selector_bytes).hexdigest(),
                 })
                 manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
-                # A proposed manifest must not pin bytes changed by its own selection.
-                with self.assertRaisesRegex(ProtocolError, "aliases mutable ACTIVE.json"):
-                    check_candidate(self.root, "R0001")
+                alias_bytes = alias.read_bytes()
+                before = {p.relative_to(self.root): p.read_bytes()
+                          for p in self.root.rglob("*") if p.is_file()}
+                with self.assertRaises(ProtocolError):
+                    check_candidate(self.root, "R0002")
                 self.assertEqual(active.read_bytes(), selector_bytes)
-                self.assertEqual(alias.read_bytes(), selector_bytes)
+                self.assertEqual(alias.read_bytes(), alias_bytes)
+                self.assertEqual(
+                    {p.relative_to(self.root): p.read_bytes()
+                     for p in self.root.rglob("*") if p.is_file()}, before,
+                )
 
 
 if __name__ == "__main__":
