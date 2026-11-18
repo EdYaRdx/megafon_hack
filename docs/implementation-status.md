@@ -2,20 +2,23 @@
 
 ## Текущий срез — 2026-11-18
 
-Behavioral baseline main: `31bc5222f1845a900a890f8b6a57faa696b72e3d` (PR #16). Актуальный контекст и следующий шаг — [current session handoff](current-session-handoff.md).
+Проверенный baseline main нового H1: `0e587f1e9607f733f1c5d51295e18ef87f4e2437` (PR #13–17). Последующие workflow/docs уточнения — в [PR #18](https://github.com/EdYaRdx/megafon_hack/pull/18), не merge и не model requalification. Актуальные ограничения и следующий шаг — [current session handoff](current-session-handoff.md).
 
 | Контур | Текущий подтверждённый результат |
 |---|---|
 | Product core | Шесть Skills, references, case template и checkpoint-v1 реализованы; это не доказательство безошибочного выполнения модели |
 | Claims / publication fixes | PR #13–15 слиты: canonical `id`, shared pre-selection gate, реальные parent digests/full chain и шесть согласованных current views |
-| Original efficiency / DRAFT | PR #16 слит; scoped retries, remaining budget, DRAFT/prospective/CHECKPOINTED уточнены; ускорение NOT VERIFIED |
+| Original efficiency / DRAFT | PR #16 слит; новый настоящий Original дошёл до CHECKPOINTED R1 в1055,394 active seconds включая auth; причинное ускорение не измерено |
 | Детерминированные проверки PR #16 | 62 теста PASS в Ubuntu CI без skips, repository checker/syntax/classifier PASS; main CI success |
 | F1 R0003 | REVIEW_REQUIRED: 21/21 machine PASS, Terra 7/8, human reviews отсутствуют; исторический `claim_id` несовместим с classifier |
 | H1 2026-11-17 | Реальный interrupted/resume run FAIL; R2 parent digest/current views исправлены только для будущих результатов |
-| H1 repeat 2026-11-18 | FAIL на Original deadline до R0001; A/B, planned interruption, Resume/R0002 NOT RUN; evaluator CLI BLOCKED, H1 checks не выполнены |
+| Предыдущий H1 repeat 2026-11-18 | Исторический FAIL на Original deadline до R1; A/B/interruption/Resume NOT RUN, evaluator BLOCKED |
+| Новый H1 на PR #17 | Original R1 CHECKPOINTED; реальные A/B, A once и clean stop; fresh Resume восстановил контекст и обработал missing/retry/new terms, но R2 incomplete по deadline |
+| Новый H1 evaluation | FAIL/exit1: final root R2 / ACTIVE R1 conflict;13 typed fact bindings не заменяют publication/semantic acceptance. R1 history preserved, B blocked, A не повторялось |
+| Уточнение будущего producer | Snapshot-first/root-last, byte-copy вместо повторной генерации, as-of approvals и точные operator input fields; model requalification NOT_RUN |
 | Общая приёмка | H1 E2E PASS не получен; F2/F3 не запускались этим циклом; human/contest/host acceptance не закрыты |
 
-Сводка не заменяет immutable локальные отчёты и не переписывает исторические findings. Следующий шаг — отдельно разрешённый Original на исправленном baseline, а не новое исследование инфраструктуры.
+Сводка не заменяет immutable локальные отчёты и не переписывает findings. Следующий шаг — review/CI PR #18 без автоматического merge; новый runtime trial только по отдельному разрешению, не новое исследование инфраструктуры.
 
 
 **Исторический baseline snapshot:** 2026-11-14. Таблица ниже сохраняет gate statuses из принятого тогда baseline, не заменяет текущий срез выше. [Contest integration report](release/contest-v1-integration.md) также является датированной проверкой своего scope.
@@ -61,6 +64,6 @@ Behavioral baseline main: `31bc5222f1845a900a890f8b6a57faa696b72e3d` (PR #16). �
 
 ## Безопасность и воспроизводимость
 
-Host управляет правами. Проектные инструкции и approvals — текстовый workflow contract, не OS enforcement. Не выполнены здесь новые dynamic tests, H02, model experiments, paid research, clean-host replay или cross-host portability checks. Не объявлять их PASS.
+Host управляет правами. Проектные инструкции и approvals — текстовый workflow contract, не OS enforcement. Новый H1 выше ограничен одним Docker runtime и operator-assisted hashes/gates; отрицательный canary не является общей security certification. H02, clean-host/cross-host portability, full contest acceptance и новая model requalification будущего workflow не подтверждены.
 
 Следующие внешние действия и Git handoff см. [submission checklist](submission-checklist.md) и [next-session handoff](next-session-handoff.md).

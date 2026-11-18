@@ -3,6 +3,8 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -141,17 +143,92 @@ class CaseProtocolTests(unittest.TestCase):
     def test_candidate_accepts_full_chain_and_rechecks_selected_revision_read_only(self) -> None:
         self.marker("CHECKPOINTING")
         self.complete_r1()
-        parent_bytes = (self.root / "revisions/R0001/manifest.json").read_bytes()
-        self.complete_r2()
-        before = {p.relative_to(self.root): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}
-        selector = check_candidate(self.root, "R0002")
-        self.assertEqual(selector["revision_id"], "R0002")
-        self.assertEqual(
-            selector["manifest_sha256"],
-            hashlib.sha256((self.root / "revisions/R0002/manifest.json").read_bytes()).hexdigest(),
-        )
+        parent_manifest_path = self.root / "revisions/R0001/manifest.json"
+        parent_bytes = parent_manifest_path.read_bytes()
+        selected_before = (self.root / "ACTIVE.json").read_bytes()
+        root_views_before = {name: (self.root / name).read_bytes() for name in SNAPSHOTS}
+        parent_snapshots_before = {
+            name: (self.root / "revisions/R0001" / name).read_bytes() for name in SNAPSHOTS
+        }
+
+        # Stage a successor's prepared snapshots and append its new claim without
+        # changing the selected R1 snapshots or any root current view.
+        revision_dir = self.root / "revisions/R0002"
+        revision_dir.mkdir()
+        successor_claim = {
+            "id": "CL-02",
+            "text": "Claim CL-02",
+            "status": "HYPOTHESIS",
+            "evidence_ids": [],
+            "supersedes": ["CL-01"],
+        }
+        with (self.root / "claims.jsonl").open("ab") as claims_file:
+            claims_file.write(json.dumps(successor_claim, separators=(",", ":")).encode() + b"\n")
+        claims_bytes = (self.root / "claims.jsonl").read_bytes()
+        for name in SNAPSHOTS:
+            content = (self.root / "revisions/R0001" / name).read_text(encoding="utf-8")
+            if name == "state.md":
+                content = content.replace("Active complete revision ID: R0001", "Active complete revision ID: R0002")
+                content = content.replace("Current claim IDs (active successors only; match manifest): CL-01",
+                                          "Current claim IDs (active successors only; match manifest): CL-02")
+            elif name == "decision.md":
+                content = content.replace("**Revision:** R0001", "**Revision:** R0002")
+                content = content.replace("**Active claim IDs:** CL-01", "**Active claim IDs:** CL-02")
+            (revision_dir / name).write_text(content, encoding="utf-8")
+
+        self.assertEqual(classify_case(self.root), "CHECKPOINTED")
+        self.assertEqual((self.root / "ACTIVE.json").read_bytes(), selected_before)
+        self.assertEqual({name: (self.root / name).read_bytes() for name in SNAPSHOTS}, root_views_before)
         self.assertEqual((self.root / "revisions/R0001/manifest.json").read_bytes(), parent_bytes)
-        self.assertEqual({p.relative_to(self.root): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}, before)
+        self.assertEqual(
+            {name: (self.root / "revisions/R0001" / name).read_bytes() for name in SNAPSHOTS},
+            parent_snapshots_before,
+        )
+
+        # Finalize the prepared revision and hash its actual dependencies before
+        # copying any successor bytes into the root current views.
+        files = []
+        for name in SNAPSHOTS:
+            files.append({
+                "path": f"revisions/R0002/{name}",
+                "sha256": hashlib.sha256((revision_dir / name).read_bytes()).hexdigest(),
+            })
+        files.append({"path": "claims.jsonl", "sha256": hashlib.sha256(claims_bytes).hexdigest()})
+        manifest = {
+            "revision_id": "R0002",
+            "parent_revision_id": "R0001",
+            "parent_manifest_sha256": hashlib.sha256(parent_bytes).hexdigest(),
+            "status": "COMPLETE",
+            "active_claim_ids": ["CL-02"],
+            "files": files,
+        }
+        manifest_bytes = json.dumps(manifest, separators=(",", ":")).encode()
+        (revision_dir / "manifest.json").write_bytes(manifest_bytes)
+        self.assertEqual(classify_case(self.root), "CHECKPOINTED")
+        self.assertEqual((self.root / "ACTIVE.json").read_bytes(), selected_before)
+        self.assertEqual({name: (self.root / name).read_bytes() for name in SNAPSHOTS}, root_views_before)
+        for name in SNAPSHOTS:
+            shutil.copyfile(revision_dir / name, self.root / name)
+        before_candidate_check = {
+            p.relative_to(self.root): p.read_bytes()
+            for p in self.root.rglob("*")
+            if p.is_file()
+        }
+        selector = check_candidate(self.root, "R0002")
+        self.assertEqual(selector, {
+            "revision_id": "R0002",
+            "manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest(),
+        })
+        self.assertEqual(
+            {p.relative_to(self.root): p.read_bytes() for p in self.root.rglob("*") if p.is_file()},
+            before_candidate_check,
+        )
+        self.assertEqual((self.root / "ACTIVE.json").read_bytes(), selected_before)
+        self.assertEqual((self.root / "revisions/R0001/manifest.json").read_bytes(), parent_bytes)
+        self.assertEqual(
+            {name: (self.root / "revisions/R0001" / name).read_bytes() for name in SNAPSHOTS},
+            parent_snapshots_before,
+        )
         (self.root / "ACTIVE.json").write_text(json.dumps(selector), encoding="utf-8")
         self.assertEqual(classify_case(self.root), "CHECKPOINTED")
         published = {p.relative_to(self.root): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}
@@ -667,16 +744,29 @@ class CaseProtocolTests(unittest.TestCase):
         before = {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()}
         with self.assertRaises(ProtocolError):
             classify_case(case)
-        selector = check_candidate(case, "R0001")
+        command = [
+            sys.executable, str(REPO_ROOT / "tools/case_protocol.py"),
+            "check-candidate", str(case), "--revision", "R0001",
+        ]
+        gate = subprocess.run(command, capture_output=True, text=True, check=False)
+        self.assertEqual(gate.returncode, 0, gate.stderr)
+        result = json.loads(gate.stdout)
+        self.assertEqual(result["status"], "VALIDATED_CANDIDATE")
+        selector = {key: result[key] for key in ("revision_id", "manifest_sha256")}
         self.assertEqual(
             {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()},
             before,
         )
         self.assertFalse((case / "ACTIVE.json").exists())
-        with self.assertRaises(ProtocolError):
-            classify_case(case)
+        classify_command = [
+            sys.executable, str(REPO_ROOT / "tools/case_protocol.py"), "classify", str(case),
+        ]
+        unselected = subprocess.run(classify_command, capture_output=True, text=True, check=False)
+        self.assertEqual(unselected.returncode, 1)
         (case / "ACTIVE.json").write_text(json.dumps(selector), encoding="utf-8")
-        self.assertEqual(classify_case(case), "CHECKPOINTED")
+        selected = subprocess.run(classify_command, capture_output=True, text=True, check=False)
+        self.assertEqual(selected.returncode, 0, selected.stderr)
+        self.assertEqual(selected.stdout.strip(), "CHECKPOINTED")
         self.marker("CHECKPOINTED")
         self.assertEqual(classify_case(case), "CHECKPOINTED")
         published = {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()}
