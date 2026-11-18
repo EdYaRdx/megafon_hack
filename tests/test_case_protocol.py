@@ -3,6 +3,8 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -667,16 +669,29 @@ class CaseProtocolTests(unittest.TestCase):
         before = {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()}
         with self.assertRaises(ProtocolError):
             classify_case(case)
-        selector = check_candidate(case, "R0001")
+        command = [
+            sys.executable, str(REPO_ROOT / "tools/case_protocol.py"),
+            "check-candidate", str(case), "--revision", "R0001",
+        ]
+        gate = subprocess.run(command, capture_output=True, text=True, check=False)
+        self.assertEqual(gate.returncode, 0, gate.stderr)
+        result = json.loads(gate.stdout)
+        self.assertEqual(result["status"], "VALIDATED_CANDIDATE")
+        selector = {key: result[key] for key in ("revision_id", "manifest_sha256")}
         self.assertEqual(
             {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()},
             before,
         )
         self.assertFalse((case / "ACTIVE.json").exists())
-        with self.assertRaises(ProtocolError):
-            classify_case(case)
+        classify_command = [
+            sys.executable, str(REPO_ROOT / "tools/case_protocol.py"), "classify", str(case),
+        ]
+        unselected = subprocess.run(classify_command, capture_output=True, text=True, check=False)
+        self.assertEqual(unselected.returncode, 1)
         (case / "ACTIVE.json").write_text(json.dumps(selector), encoding="utf-8")
-        self.assertEqual(classify_case(case), "CHECKPOINTED")
+        selected = subprocess.run(classify_command, capture_output=True, text=True, check=False)
+        self.assertEqual(selected.returncode, 0, selected.stderr)
+        self.assertEqual(selected.stdout.strip(), "CHECKPOINTED")
         self.marker("CHECKPOINTED")
         self.assertEqual(classify_case(case), "CHECKPOINTED")
         published = {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()}
