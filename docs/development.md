@@ -50,7 +50,7 @@ The gate validates the selected parent, every ancestor manifest/snapshot/depende
 python tools/case_protocol.py classify /absolute/path/to/case
 ```
 
-On this Windows host use `py -V:Astral/CPython3.12.14` instead of `python`. Record both actual commands/results/runtime; errors or `NOT RUN` stop selection/resume. Exit 0 with `FRESH`, a hash-only PASS or an LLM saying PASS is not `CHECKPOINTED`. Staged workspaces may omit `tools/`; the operator runs the same tool from an allowed developer checkout and provides the receipt, without granting the product access outside its boundary. The gate is compatibility validation only; real selection and post-selection `classify` remain separate required steps.
+On Windows, first check an available Python3.12+ launcher (`py -3.12 --version` or `python --version`); use that same executable for both commands. A machine-specific launcher alias is not a portable dependency. Record actual commands/results/runtime; errors or NOT RUN stop selection/resume. Exit0 with FRESH, a hash-only PASS or an LLM saying PASS is not CHECKPOINTED. Staged workspaces may omit tools; the operator uses the same consumer from an allowed developer checkout and provides a receipt without expanding product access. Real selection and post-selection classify remain separately required.
 Standalone `classify` deliberately retains its historical contract and may still read checkpoints whose older manifests lack successor parent digests. The stronger pre-selection gate cannot certify those historical chains. Do not retrofit their manifests/snapshots or add a compatibility bypass; preserve them as-is.
 
 The regression uses a temporary synthetic checkpoint with current ledger/manifest/selector hashes: canonical `id` is accepted, while replacing it with `claim_id` is rejected by the same consumer. No compatibility alias or migration of historical ledgers is introduced. Historical F1 remains incompatible with protocol resume and formally `REVIEW_REQUIRED`; this maintenance change does not re-evaluate it.
@@ -80,6 +80,20 @@ For a separately authorized next Original, record a native timeline and require:
 - absent publication remains DRAFT/INCOMPLETE, not a resumable checkpoint; immutable history and approvals remain intact.
 
 Unit tests validate consumer compatibility and fail-closed status, not the speed of a future model run. No new H1 or performance qualification is implied.
+
+### Models, tools, services and costs
+
+| Requirement | Supplied by | Verified boundary |
+|---|---|---|
+| Model/account and file read/write/edit tools | User's compatible host; Cursor/other coding assistants are workflow options | No embedded model, credentials, subscription or guarantee of automatic Skill discovery |
+| Websites, documents and CSV/calculations | Permitted host tools and user-authorized inputs | No bundled crawler, OCR, RAG, database or product MCP service; unavailable formats need readable exports or UNKNOWN |
+| Checkpoint verification | Python3.12+ stdlib and `tools/case_protocol.py`, or a real operator running it | Validates files/chain, not strategy quality, human authority or OS isolation |
+| Git and repository checker | Developer checkout | Git is needed for clone/indexed maintenance checks, not plain ZIP analysis; no package manager/test service required |
+| OMP/Docker/provider profiles | Optional operator-specific qualification setup, not product dependencies | Private profiles, sessions, keys and model history must not enter a normal manual test |
+| Time and money | Owner's explicit allowance and actual host telemetry | No fixed product fee or universal monetary hard cap; soft request-stop estimates are not invoice guarantees; absent costs UNKNOWN |
+
+Observed trial-specific model/cost figures and limits belong in [current handoff](current-session-handoff.md), not as a pricing promise or mandatory launcher. Manual testing means a new case with the tester's own permission, not reuse of historical qualification approvals or evaluator answers.
+
 
 
 ## Changing schemas or revision protocol
@@ -118,7 +132,7 @@ python3 tools/case_protocol.py classify cases/pantrypath-week4-20261115
 git diff --check
 ```
 
-On Windows, use the installed Python 3 command alias (`py -3`/`python` as appropriate) if `python3` is unavailable, keeping the same test, checker and classifier operations. Repo first use does not require Python or Git. Developer checks do: `check_repository.py` requires a Git checkout/index and cannot run on a plain extracted ZIP. It checks indexed case JSON/JSONL syntax and selected relative Markdown targets only; it does not validate schemas, fragments, hashes, references, behavior, host security or contest acceptance.
+On Windows use the available Python3.12+ command in place of python3. Reading files and preliminary analysis need neither Python nor Git; publishing/resuming a canonical checkpoint requires the shared Python consumer or a real operator. The developer repository checker additionally requires a Git checkout/index and cannot run on a plain extracted ZIP. It checks indexed case JSON/JSONL syntax and selected relative Markdown targets only, not schemas, fragments, hashes, references, behavior, host security or contest acceptance.
 
 В CRLF checkout с `.gitattributes` `text=auto` plain `git diff --check` может считать carriage return trailing whitespace. Для такого checkout используй одноразовый эквивалент без изменения Git config: `git -c core.whitespace=cr-at-eol diff --check`; он всё равно проверяет пробелы перед концом строки. Перед host-side PR проверь фактическую нормализацию/режимы в Windows.
 
