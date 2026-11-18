@@ -1,8 +1,18 @@
 # Evaluation и доказательства
-The bounded offline artifact evaluator has its own [schema, commands and limitations guide](functional-evaluator.md). Its synthetic checks do not alter this historical snapshot: full product F1–F3/H1 evaluation remains NOT RUN, H02 remains BLOCKED, and human/host acceptance is separate.
+The bounded offline artifact evaluator has its own [schema, commands and limitations guide](functional-evaluator.md). Current outcomes are in [implementation status](implementation-status.md) and the [current session handoff](current-session-handoff.md): F1 R0003 is REVIEW_REQUIRED; real H1 attempts failed, most recently before R0001. Historical tables below do not mean those later attempts were NOT RUN.
 
 
 **Границы среза:** продуктовые gate statuses ниже дословно описывают принятую evaluation snapshot от 2026-11-14, а не текущую версию branch; исходные SHA/branch/audit reference сохранены для provenance. Текущие детерминированные проверки repository и checkpoint-protocol отдельно перечислены в [contest integration report](release/contest-v1-integration.md). Их результат не переписывает прошлые F1–F5/H02/Sol/clean-host/real-user gates и не является product, security или host certification.
+
+## Текущая квалификация — 2026-11-18
+
+PR #13–16 исправили future producer workflow; успешные unit/CI checks не являются повторной приёмкой старых результатов.
+F1: 21/21 machine PASS, Terra 7/8, нет двух qualifying human reviews; сохранённый `claim_id` не соответствует canonical classifier.
+H1 2026-11-17 дошёл до interrupted/resume и завершился FAIL по parent digest/current views. Эти outputs не ремонтировались.
+Повтор 2026-11-18 завершился FAIL на deadline Original: R0001 INCOMPLETE/CONFLICT, ACTIVE отсутствует, A/B и Resume NOT RUN.
+Его evaluator CLI — BLOCKED/exit 2 на недостающих подлинных key/observations, без H1 machine checks; это не оценка завершённой 13-fact последовательности.
+После PR #16 скорость/качество следующего model run ещё NOT VERIFIED. Процедуры ниже и historical acceptance snapshots сохраняются как записи своих дат, не как новые разрешения на запуск.
+
 
 ## Acceptance snapshot — 2026-11-14 baseline
 

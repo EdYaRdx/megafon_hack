@@ -1,6 +1,24 @@
 # Статус реализации и приёмки
 
-**Baseline snapshot:** 2026-11-14. Таблица ниже сохраняет gate statuses из принятого тогда baseline; это не текущий статус исправлений текущей ветки. См. [contest integration report](release/contest-v1-integration.md) для новой проверки checkpoint-protocol, test/checker outcomes, текущего Git состояния и внешних blockers.
+## Текущий срез — 2026-11-18
+
+Behavioral baseline main: `31bc5222f1845a900a890f8b6a57faa696b72e3d` (PR #16). Актуальный контекст и следующий шаг — [current session handoff](current-session-handoff.md).
+
+| Контур | Текущий подтверждённый результат |
+|---|---|
+| Product core | Шесть Skills, references, case template и checkpoint-v1 реализованы; это не доказательство безошибочного выполнения модели |
+| Claims / publication fixes | PR #13–15 слиты: canonical `id`, shared pre-selection gate, реальные parent digests/full chain и шесть согласованных current views |
+| Original efficiency / DRAFT | PR #16 слит; scoped retries, remaining budget, DRAFT/prospective/CHECKPOINTED уточнены; ускорение NOT VERIFIED |
+| Детерминированные проверки PR #16 | 62 теста PASS в Ubuntu CI без skips, repository checker/syntax/classifier PASS; main CI success |
+| F1 R0003 | REVIEW_REQUIRED: 21/21 machine PASS, Terra 7/8, human reviews отсутствуют; исторический `claim_id` несовместим с classifier |
+| H1 2026-11-17 | Реальный interrupted/resume run FAIL; R2 parent digest/current views исправлены только для будущих результатов |
+| H1 repeat 2026-11-18 | FAIL на Original deadline до R0001; A/B, planned interruption, Resume/R0002 NOT RUN; evaluator CLI BLOCKED, H1 checks не выполнены |
+| Общая приёмка | H1 E2E PASS не получен; F2/F3 не запускались этим циклом; human/contest/host acceptance не закрыты |
+
+Сводка не заменяет immutable локальные отчёты и не переписывает исторические findings. Следующий шаг — отдельно разрешённый Original на исправленном baseline, а не новое исследование инфраструктуры.
+
+
+**Исторический baseline snapshot:** 2026-11-14. Таблица ниже сохраняет gate statuses из принятого тогда baseline, не заменяет текущий срез выше. [Contest integration report](release/contest-v1-integration.md) также является датированной проверкой своего scope.
 
 Исходный репозиторный baseline: `7fd1ae68cd597c5a046de568d336f39791f25855` на `release/product-repository-20261114`; сохранённый `origin/main` на момент baseline: `7bbe59d37d4c1e13f0fd4453f7605e8d2f601d42`. Опубликованный audit reference: `672aa5c83616f813c7dd9dc0598a1c8e20f8e7e9`.
 
