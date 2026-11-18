@@ -2,7 +2,7 @@
 
 ## Текущий срез — 2026-11-18
 
-Проверенный baseline main нового H1: `0e587f1e9607f733f1c5d51295e18ef87f4e2437` (PR #13–17). Последующие workflow/docs уточнения — в [PR #18](https://github.com/EdYaRdx/megafon_hack/pull/18), не merge и не model requalification. Актуальные ограничения и следующий шаг — [current session handoff](current-session-handoff.md).
+Проверенный merged main: `afea4b8dfaf2cd59ef3ebbe0fa41955c859762ca`; [PR #18](https://github.com/EdYaRdx/megafon_hack/pull/18) слит с разрешения владельца, [main CI SUCCESS](https://github.com/EdYaRdx/megafon_hack/actions/runs/44356209988). Реальный Original выполнен на `0e587f1e9607f733f1c5d51295e18ef87f4e2437` (PR #13–17); отдельный поздний Resume-only — на merged инструкциях. Актуальные ограничения и следующий шаг — [current session handoff](current-session-handoff.md).
 
 | Контур | Текущий подтверждённый результат |
 |---|---|
@@ -13,12 +13,15 @@
 | F1 R0003 | REVIEW_REQUIRED: 21/21 machine PASS, Terra 7/8, human reviews отсутствуют; исторический `claim_id` несовместим с classifier |
 | H1 2026-11-17 | Реальный interrupted/resume run FAIL; R2 parent digest/current views исправлены только для будущих результатов |
 | Предыдущий H1 repeat 2026-11-18 | Исторический FAIL на Original deadline до R1; A/B/interruption/Resume NOT RUN, evaluator BLOCKED |
-| Новый H1 на PR #17 | Original R1 CHECKPOINTED; реальные A/B, A once и clean stop; fresh Resume восстановил контекст и обработал missing/retry/new terms, но R2 incomplete по deadline |
-| Новый H1 evaluation | FAIL/exit1: final root R2 / ACTIVE R1 conflict;13 typed fact bindings не заменяют publication/semantic acceptance. R1 history preserved, B blocked, A не повторялось |
-| Уточнение будущего producer | Snapshot-first/root-last, byte-copy вместо повторной генерации, as-of approvals и точные operator input fields; model requalification NOT_RUN |
-| Общая приёмка | H1 E2E PASS не получен; F2/F3 не запускались этим циклом; human/contest/host acceptance не закрыты |
+| H1 на PR #17, исторический FAIL | Original R1 CHECKPOINTED; реальные A/B, A once и clean stop; первый fresh Resume обработал missing/retry/new terms, но R2 incomplete по deadline |
+| Evaluation той попытки | FAIL/exit1: final root R2 / ACTIVE R1 conflict;13 typed fact bindings не заменяют publication/semantic acceptance. История сохранена, B blocked, A не повторялось |
+| Отдельный Resume-only после PR #18 | На новой копии genuine R1: fresh Sol High без чата, actual missing→retry, шесть snapshots/root-last byte-copy, реальный parent digest, stock VALIDATED_CANDIDATE → CHECKPOINTED R2 |
+| Resume-only evaluation | 29/29 machine checks PASS; evaluator и machine_status REVIEW_REQUIRED/exit3. Retrospective mixed-version scope, не новый blind/single-version full H1 |
+| Semantic review / human gate | LLM review стратегий без P1/P2; семь H1 checks поддержаны документально, context_restored qualified из-за нормализованных labels. Reviewer model/effort UNKNOWN; двух human reviews нет |
+| Подготовленный demo | PantryPath текущим stock classifier принят CHECKPOINTED; существующий video script9:30, это план и prepared synthetic artifacts, не live-запуск или записанное видео |
+| Общая приёмка | Formal H1 PASS не получен; прежние FAIL неизменны; F2/F3 не запускались этим циклом; human/contest/host acceptance не закрыты |
 
-Сводка не заменяет immutable локальные отчёты и не переписывает findings. Следующий шаг — review/CI PR #18 без автоматического merge; новый runtime trial только по отдельному разрешению, не новое исследование инфраструктуры.
+Сводка не заменяет immutable локальные отчёты и не переписывает findings; полные новые receipts/key/native evidence остаются вне Git. Следующий шаг — два настоящих независимых human reviews frozen digest с проверкой restoration-label entailment. Дополнительно открыты jury access/license/официальный brief и запись видео. Новый runtime trial или автоматический merge не разрешены этим обновлением.
 
 
 **Исторический baseline snapshot:** 2026-11-14. Таблица ниже сохраняет gate statuses из принятого тогда baseline, не заменяет текущий срез выше. [Contest integration report](release/contest-v1-integration.md) также является датированной проверкой своего scope.
@@ -64,6 +67,6 @@
 
 ## Безопасность и воспроизводимость
 
-Host управляет правами. Проектные инструкции и approvals — текстовый workflow contract, не OS enforcement. Новый H1 выше ограничен одним Docker runtime и operator-assisted hashes/gates; отрицательный canary не является общей security certification. H02, clean-host/cross-host portability, full contest acceptance и новая model requalification будущего workflow не подтверждены.
+Host управляет правами. Проектные инструкции и approvals — текстовый workflow contract, не OS enforcement. Поздний Resume-only выше ограничен одним Docker runtime и operator-assisted hashes/copy/gates; отрицательный canary не является общей security certification. H02, clean-host/cross-host portability, blind/single-version full H1 и full contest acceptance не подтверждены.
 
-Следующие внешние действия и Git handoff см. [submission checklist](submission-checklist.md) и [next-session handoff](next-session-handoff.md).
+Следующие внешние действия и Git handoff см. [submission checklist](submission-checklist.md) и [current session handoff](current-session-handoff.md); старые next-session snapshots не заменяют текущий результат.
