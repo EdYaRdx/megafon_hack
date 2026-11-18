@@ -7,9 +7,9 @@
 
 | Пункт | Статус | Следующее подтверждение |
 |---|---|---|
-| Repository / CI | На main `0e587f1e9607f733f1c5d51295e18ef87f4e2437` PR #13–17 интегрированы; [CI success](https://github.com/EdYaRdx/megafon_hack/actions/runs/44267986726), 62 unit tests и repository checker PASS | Это deterministic compatibility, не принятый H1 или live demo; перед подачей сверить фактический HEAD/CI |
+| Repository / CI | Проверенный merged main `afea4b8dfaf2cd59ef3ebbe0fa41955c859762ca`, PR #13–18 интегрированы; [CI success](https://github.com/EdYaRdx/megafon_hack/actions/runs/44356209988) | Deterministic compatibility не равна human acceptance/live demo; перед подачей сверить фактический HEAD/CI |
 | F1 R0003 | REVIEW_REQUIRED: 21/21 machine PASS, Terra 7/8; исторический `claim_id` несовместим со shared classifier | Два квалифицированных human reviews отсутствуют; не менять старую историю и не использовать её formal H1 baseline |
-| Последний H1 | FAIL на Original deadline до R0001; A/B, planned interruption и fresh Resume NOT RUN | Новый Original требует явного разрешения и лимитов; после исправлений PR #16 скорость NOT VERIFIED |
+| Последний отдельно разрешённый Resume-only | Genuine R1/исторический stop + fresh Resume на merged инструкциях: CHECKPOINTED R2;29/29 machine PASS, evaluator REVIEW_REQUIRED/exit3 | Retrospective mixed-version scope, не новый одно-версионный blind H1; два human reviews и проверка qualified restoration labels ещё нужны. Прежние FAIL сохранены |
 | Dynamic E2E | **CONDITIONAL**, ограниченный single-host synthetic scope | Выполнить только разрешённую приёмку по конкретному утверждённому scope; не расширять claim без evidence |
 | Targeted F1–F5 | **NOT ACCEPTED** — defect test harness/checker | Исправить и независимо проверить harness перед новыми зачётными выводами |
 | F6 provenance | Ограничение provenance | Уточнить допустимый evidence/provenance claim по audit source |
@@ -17,7 +17,8 @@
 | Latest independent Sol acceptance sign-off | **PENDING** | Дождаться независимого sign-off по dynamic acceptance; historical preprod audit не замена |
 | Official MegaFon demo brief | Нет в доступных материалах; public note указывает на личный кабинет | Уполномоченный капитан сверяет актуальный документ и передаёт по разрешённому каналу |
 | Видео, документ/screenshots, доступ жюри, human acceptance, фактическая подача | Не подтверждены | Подготовить, просмотреть и проверить по актуальному brief; зафиксировать подачу отдельно от readiness |
-| GitHub visibility / LICENSE | Проверка 2026-11-18: repository PRIVATE, GitHub `licenseInfo: null`; jury access NOT VERIFIED | Решение владельца о доступе жюри/visibility и лицензии; не делать репозиторий публичным и не назначать лицензию автоматически |
+| Подготовленный video/demo | Существующий script9:30 и PantryPath files доступны; текущий stock classify CHECKPOINTED | Это prepared synthetic artifact walkthrough, не новый live model run, запись или подача; приватный H1 не публиковать без разрешения |
+| GitHub visibility / LICENSE | Проверка 2026-11-18T18:39Z: repository PRIVATE, GitHub `licenseInfo: null`; jury access NOT VERIFIED | Решение владельца о доступе жюри/visibility и лицензии; не делать репозиторий публичным и не назначать лицензию автоматически |
 
 ## Перед подачей
 
