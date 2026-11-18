@@ -55,6 +55,33 @@ Standalone `classify` deliberately retains its historical contract and may still
 
 The regression uses a temporary synthetic checkpoint with current ledger/manifest/selector hashes: canonical `id` is accepted, while replacing it with `claim_id` is rejected by the same consumer. No compatibility alias or migration of historical ledgers is introduced. Historical F1 remains incompatible with protocol resume and formally `REVIEW_REQUIRED`; this maintenance change does not re-evaluate it.
 
+### Bounded drafting and publication status
+
+The 2026-11-18 Original exhausted its owner-authorized 1500s window before R1.
+Native provider message spans totalled 1393.217s, while unioned file-tool intervals took 5.803s.
+Three rejected multi-file patches consumed about 459.3s of provider generation; partial/truncated anchors triggered `unseen_lines`, followed by regeneration of the document package.
+These are observed trace costs, not a claim that all that time can be recovered or that provider latency equals pure model computation.
+
+Root `AGENTS.md` now requires scoped edits/retries, append-only EOF writes, reuse of unchanged analysis and planning against the actual remaining budget.
+When relaying an owner reply to a bounded runtime, the operator must supply remaining phase seconds and money from real telemetry, not repeat the original total or reset counters.
+One quarter of the agreed phase time is a planning reserve for saving, hashing and both gates, not an enforced or benchmarked SLA.
+Unknown telemetry stays `UNKNOWN`; a budget warning never permits skipping sources, alternatives, objections, strategies or validation.
+
+The [template](../cases/_template/README.md#draft-и-checkpointed) separates working DRAFT, prospective control fields and published CHECKPOINTED without adding protocol states.
+An owner choice does not activate R1. Keep first-draft controls empty until snapshot finalization and preserve the state's permanent conditional note in its snapshot.
+No mutable publication flag is hashed into final prose: real `ACTIVE.json` and successful post-selection classification remain authoritative.
+The existing template-consumer regression now rejects prospective roots, a complete unselected manifest and a gate-only candidate; only the real selector makes the unchanged consumer accept it.
+
+For a separately authorized next Original, record a native timeline and require:
+- actual remaining time/cost relayed after each owner pause, with no counter reset;
+- zero `unseen_lines` rejections and no repeated multi-document retry for one bad anchor;
+- saving/hash/gate preparation reached before the final quarter of its authorized phase budget;
+- all existing substantive/evidence requirements, no invented owner/approval, and real `VALIDATED_CANDIDATE` then `CHECKPOINTED` before deadline;
+- absent publication remains DRAFT/INCOMPLETE, not a resumable checkpoint; immutable history and approvals remain intact.
+
+Unit tests validate consumer compatibility and fail-closed status, not the speed of a future model run. No new H1 or performance qualification is implied.
+
+
 ## Changing schemas or revision protocol
 
 Case JSONL records and the `manifest.json`/`ACTIVE.json` pair are interfaces, even though no generated schema package exists. Before changing them:
