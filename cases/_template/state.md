@@ -1,5 +1,9 @@
 # Case state
 
+Строки revision/claims ниже описывают содержимое ревизии, не подтверждение публикации.
+До фактического post-selection `classify = CHECKPOINTED` это DRAFT; `VALIDATED_CANDIDATE` недостаточно.
+Статус определяют настоящий `ACTIVE.json` и реальный classifier receipt, не выбор владельца или заголовок документа.
+
 - Updated at:
 - Case protocol: `checkpoint-v1`
 - Active complete revision ID:

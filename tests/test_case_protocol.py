@@ -644,6 +644,8 @@ class CaseProtocolTests(unittest.TestCase):
             for old, new in replacements.items():
                 text = text.replace(old + "\n", new + "\n", 1)
             (case / name).write_text(text, encoding="utf-8")
+        with self.assertRaises(ProtocolError):
+            classify_case(case)
         revision = case / "revisions/R0001"
         revision.mkdir(parents=True)
         files = []
@@ -663,13 +665,18 @@ class CaseProtocolTests(unittest.TestCase):
         }
         (revision / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
         before = {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()}
+        with self.assertRaises(ProtocolError):
+            classify_case(case)
         selector = check_candidate(case, "R0001")
         self.assertEqual(
             {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()},
             before,
         )
         self.assertFalse((case / "ACTIVE.json").exists())
+        with self.assertRaises(ProtocolError):
+            classify_case(case)
         (case / "ACTIVE.json").write_text(json.dumps(selector), encoding="utf-8")
+        self.assertEqual(classify_case(case), "CHECKPOINTED")
         self.marker("CHECKPOINTED")
         self.assertEqual(classify_case(case), "CHECKPOINTED")
         published = {p.relative_to(case): p.read_bytes() for p in case.rglob("*") if p.is_file()}
