@@ -215,6 +215,20 @@ class FindPythonTests(unittest.TestCase):
         result, payload = self.discover()
         self.assert_found(result, payload, chosen, "uv python find")
 
+    def test_broken_py312_falls_back_to_working_offline_uv(self) -> None:
+        broken = self.executable("broken312/python.exe", kind="version-only")
+        launcher = self.launcher({"-3.12": self.programs[broken]})
+        chosen = self.executable("uv installed/python.exe")
+        uv = self.executable("uv/uv.exe", kind="uv")
+        self.programs[uv]["executable"] = chosen
+        self.commands["uv"] = [uv]
+        result, payload = self.discover()
+        self.assert_found(result, payload, chosen, "uv python find")
+        calls = self.calls()
+        self.assertIn(launcher, [call["executable"] for call in calls])
+        self.assertIn("encodings", str(payload["diagnostics"]))
+        self.assertEqual(calls[-1]["executable"], chosen)
+
     def test_attempt_count_is_bounded(self) -> None:
         self.commands = {"python": [self.executable(f"bad{i}/python.exe", kind="version-only") for i in range(30)]}
         launcher = self.launcher({})
