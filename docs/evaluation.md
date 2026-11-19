@@ -1,12 +1,12 @@
 # Evaluation и доказательства
-The bounded offline evaluator has its own [schema, commands and limitations guide](functional-evaluator.md). Current outcomes are in [implementation status](implementation-status.md) and [current session handoff](current-session-handoff.md): F1 R0003 remains REVIEW_REQUIRED; historical full H1 failures are preserved; the later separately authorized retrospective Resume-only reached R2 with29/29 machine checks PASS but evaluator REVIEW_REQUIRED/exit3. These are distinct scopes, not a full H1 PASS.
+Здесь собраны подтверждённые результаты и границы приёмки. Контракт штатного offline evaluator — в [functional-evaluator.md](functional-evaluator.md). Датированные инженерные детали сохранены в [срезе реализации](implementation-status.md) и [handoff 2026-11-18](current-session-handoff.md); они не являются отдельными актуальными статусами или инструкциями первого запуска.
 
 
-**Границы среза:** продуктовые gate statuses ниже дословно описывают принятую evaluation snapshot от 2026-11-14, а не текущую версию branch; исходные SHA/branch/audit reference сохранены для provenance. Текущие детерминированные проверки repository и checkpoint-protocol отдельно перечислены в [contest integration report](release/contest-v1-integration.md). Их результат не переписывает прошлые F1–F5/H02/Sol/clean-host/real-user gates и не является product, security или host certification.
+**Как читать результаты:** текущая квалификация приведена в первом разделе. Раздел `Acceptance snapshot — 2026-11-14` сохраняет статусы принятого тогда baseline и его SHA/branch/audit references, а не описывает текущий HEAD. [Contest integration report](release/contest-v1-integration.md) также является датированной проверкой своего scope. Ни CI, ни проверка совместимости checkpoint не переписывают результаты продуктовых испытаний и не являются product, security или host certification.
 
 ## Текущая квалификация — 2026-11-18
 
-PR #13–19 интегрированы; unit/CI checks не являются повторной приёмкой старых результатов.
+PR #13–20 интегрированы; изменения документации и unit/CI checks не являются повторной приёмкой старых продуктовых результатов.
 F1: 21/21 machine PASS, Terra 7/8, нет двух qualifying human reviews; сохранённый `claim_id` не соответствует canonical classifier.
 H1 2026-11-17 дошёл до interrupted/resume и завершился FAIL по parent digest/current views. Эти outputs не ремонтировались.
 Ранний повтор 2026-11-18 завершился FAIL на deadline Original: R0001 INCOMPLETE/CONFLICT, ACTIVE отсутствует, A/B и Resume NOT RUN; его evaluator был BLOCKED/exit2 без H1 machine checks.
@@ -33,7 +33,7 @@ H1 2026-11-17 дошёл до interrupted/resume и завершился FAIL п
 
 `research/audits/sol-preprod-2026-11-14/` — **исторический статический preprod audit** со статусом CONDITIONAL. Он не является latest independent Sol acceptance sign-off по dynamic E2E; этот sign-off остаётся **PENDING**. `docs/release/preprod-report.md` — отдельный исторический release/process отчёт с собственными ограничениям и gate. Ни один документ нельзя переименовывать в текущую динамическую приёмку.
 
-## Имеющиеся локальные свидетельства и пределы
+### Имеющиеся локальные свидетельства и пределы
 
 - [Codex R1/R2 acceptance review](../research/qualification/host-acceptance/codex-0.169.0/20261114-r1-r2/acceptance-review.md) классифицирует сохранённый synthetic run как **PARTIAL PASS**. Источником является пакет saved artifacts и пользовательская provenance summary; raw session logs не представлены/не проверялись в указанном review. Это не доказывает automatic Skill activation, успешность каждого host call, clean-host reproducibility или общий E2E PASS.
 - [Preprod audit verdict](../research/audits/sol-preprod-2026-11-14/final-verdict.md) — статический независимый аудит своего scope, **CONDITIONAL**; не runtime test.
@@ -41,34 +41,34 @@ H1 2026-11-17 дошёл до interrupted/resume и завершился FAIL п
 - [Clean-host runbook](clean-host-e2e-runbook.md) задаёт процедуры, но строки `NOT RUN`/будущие проверки не являются результатами.
 - [Официальный brief availability note](../research/qualification/official-demo-brief-availability.md) фиксирует публичную страницу MGIMO Challenge на 2026-11-13: текст говорит о partner assignment в личном кабинете; проверенная публичная страница не раскрывала сам MegaFon brief. Личный кабинет не открывался; содержимое/версия задания неизвестны.
 
-## Ограничения исследования
+### Ограничения исследования
 
 Примеры и прогоны основаны на synthetic/user-supplied материалах и ограниченном наборе публичных методических источников. Они не устанавливают реальный спрос, поведение клиентов, unit economics, причинность, безопасность host, полную стоимость, преимущество перед обычным чатом или production readiness. Не подтверждены полный clean-host acceptance, cross-host portability, official demo workflow, видео и подача. План теста не равен выполненному тесту.
-## Риски, дефекты и незакрытые границы
+### Риски, дефекты и незакрытые границы
 
-### Известные product risks / findings
+#### Известные product risks / findings
 
 - Независимый исторический Sol preprod audit описал ограниченные P2 product/method findings: неучёт eligible starters с abandonment в draft task-success denominator; преждевременная фиксация retention D30 semantics; неполное concise memo/source locator contract; unsupported interpretation of orders/opens as conditional conversion. Locators, caveats и reviewer challenge — в [technical findings](../research/audits/sol-preprod-2026-11-14/technical-findings.md), [product review](../research/audits/sol-preprod-2026-11-14/product-review.md) и [final verdict](../research/audits/sol-preprod-2026-11-14/final-verdict.md). Эти scoped findings не исправлялись этим repository documentation change; старые output/ledgers не менялись.
 - В reviewed scope нет подтверждённых product P0/P1. Это ограниченное наблюдение, не доказательство отсутствия дефектов вне scope или security certification.
 
-### Test infrastructure defects
+#### Test infrastructure defects
 
 - Targeted F1–F5 — **NOT ACCEPTED** из-за defects test harness/checker. Сохранённые exploratory результаты не подменяют этот gate. Исправления harness и повторные accepted runs не входят в эту структуру/doc change.
 - F6 ограничен provenance; точный status и открытые границы — в [implementation status](implementation-status.md).
 - Новый `tools/check_repository.py` проверяет только синтаксис JSON/JSONL в `cases/` и existence относительных Markdown targets в указанном product/developer scope. Его PASS не говорит о продуктовой функциональности, schema correctness, hashes, semantic references или поведении host.
 
-### Непроверенное поведение
+#### Непроверенное поведение
 
 - Dynamic E2E остаётся **CONDITIONAL** только в ограниченном synthetic single-host scope; H02 **BLOCKED**; latest independent Sol acceptance sign-off **PENDING**.
 - Clean-host acceptance, cross-host portability, автоматическое обнаружение/исполнение Skills, arbitrary interrupted-write recovery, общая injection resistance и enforced least privilege не сертифицированы.
 - В рамках этой repository задачи full E2E, H02, paid research, массовые agent experiments, host acceptance и fault injection не запускались.
 
-### Конкурсные blockers
+#### Конкурсные blockers
 
 - Официальный supplementary MegaFon demo brief и его provenance/version не проверены; доступные project records сообщают о задании в личном кабинете, который не открывался.
 - Видео, полный submission package, human acceptance и факт подачи не подтверждены. Contest checklist остаётся отдельным gate; отсутствие этих подтверждений не означает, что organizer не публиковал brief.
 
-### Отложенные улучшения
+#### Отложенные улучшения
 
 - Исправить и независимо принять F1–F5 harness/checker до новых выводов.
 - Снять F6 provenance limitation и закрыть H02; получить latest independent Sol acceptance sign-off.
@@ -78,7 +78,7 @@ H1 2026-11-17 дошёл до interrupted/resume и завершился FAIL п
 
 См. [development guide](development.md) для разграничения product tests и harness checks. Ни одна из перечисленных deferred items не обозначена как завершённая этим изменением.
 
-Для актуальных gates см. [implementation status](implementation-status.md); для классификации всех исторических материалов см. [research index](../research/README.md).
+Этот исторический блок сохраняет scope 2026-11-14; актуальная квалификация приведена выше. Полный перечень датированных материалов — в [research index](../research/README.md).
 
 ## Historical planning record — canonical-claims maintenance
 

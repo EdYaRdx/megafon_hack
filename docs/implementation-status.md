@@ -1,10 +1,12 @@
-# Статус реализации и приёмки
+# Исторический срез реализации и приёмки — 2026-11-18
 
-## Текущий срез — 2026-11-18
+Датированная инженерная запись, сохранённая для воспроизводимости. Текущая сводка результатов и ограничений — [evaluation.md](evaluation.md), пользовательский запуск — [quickstart.md](quickstart.md). SHA и статусы ниже относятся к указанному срезу, не к текущему HEAD main.
+
+## Срез на 2026-11-18
 
 Проверенный merged main: `afea4b8dfaf2cd59ef3ebbe0fa41955c859762ca`; [PR #18](https://github.com/EdYaRdx/megafon_hack/pull/18) слит с разрешения владельца, [main CI SUCCESS](https://github.com/EdYaRdx/megafon_hack/actions/runs/44356209988). Реальный Original выполнен на `0e587f1e9607f733f1c5d51295e18ef87f4e2437` (PR #13–17); отдельный поздний Resume-only — на merged инструкциях. Актуальные ограничения и следующий шаг — [current session handoff](current-session-handoff.md).
 
-| Контур | Текущий подтверждённый результат |
+| Контур | Подтверждённый результат на дату среза |
 |---|---|
 | Product core | Шесть Skills, references, case template и checkpoint-v1 реализованы; это не доказательство безошибочного выполнения модели |
 | Claims / publication fixes | PR #13–15 слиты: canonical `id`, shared pre-selection gate, реальные parent digests/full chain и шесть согласованных current views |
