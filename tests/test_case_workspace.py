@@ -76,6 +76,86 @@ class CaseWorkspaceTests(unittest.TestCase):
             existing_case(self.project, "cases/missing")
         self.assertFalse((self.project / "cases" / "missing").exists())
 
+    def test_operator_copy_recovery_is_read_only_and_fresh(self) -> None:
+        target = self.project / "cases" / "agreed"
+        shutil.copytree(self.project / "cases" / "_template", target)
+        # Narrative completion is not checkpoint authority, even with a valid fresh marker.
+        (target / "state.md").write_text("Operator says: created successfully; checkpoint complete.")
+        (self.project / "cases" / "neighbor").mkdir()
+        before = self.files(self.project)
+        real_read_text = Path.read_text
+
+        def protocol_only(path: Path, *args, **kwargs):
+            self.assertEqual(path, target / "case-protocol.json")
+            return real_read_text(path, *args, **kwargs)
+
+        with patch("tools.case_workspace.create_case", side_effect=AssertionError("recovery must not create")), \
+                patch.object(Path, "iterdir", side_effect=AssertionError("recovery must not scan neighbors")), \
+                patch.object(Path, "read_text", protocol_only), \
+                patch.object(Path, "read_bytes", side_effect=AssertionError("mutable roots must remain unread")):
+            selected = existing_case(self.project, "cases/agreed")
+            self.assertEqual(selected, target)
+            self.assertEqual(classify_case(selected), "FRESH")
+        self.assertEqual(self.files(self.project), before)
+        self.assertEqual(json.loads((target / "case-protocol.json").read_text())["checkpoint_state"],
+                         "UNINITIALIZED")
+        self.assertEqual((target / "approvals.jsonl").read_bytes(), b"")
+        self.assertFalse((target / "ACTIVE.json").exists())
+
+    def test_operator_success_or_checkpoint_narrative_cannot_replace_protocol(self) -> None:
+        scenarios = (
+            ("missing-marker", None, None),
+            ("malformed-marker", b"not JSON", None),
+            ("checkpointed-without-selector",
+             b'{"protocol_id":"checkpoint-v1","checkpoint_state":"CHECKPOINTED"}', None),
+            ("checkpointing",
+             b'{"protocol_id":"checkpoint-v1","checkpoint_state":"CHECKPOINTING"}', None),
+            ("partial-artifacts", "template", "revisions/partial/state.md"),
+            ("invalid-receipt", "template", "revisions/partial/manifest.json"),
+        )
+        for name, marker, artifact in scenarios:
+            with self.subTest(scenario=name):
+                target = self.project / "cases" / name
+                shutil.copytree(self.project / "cases" / "_template", target)
+                # A claimed success in mutable roots is not a selector or receipt.
+                (target / "state.md").write_text("Operator says: created successfully; checkpoint complete.")
+                marker_path = target / "case-protocol.json"
+                if marker is None:
+                    marker_path.unlink()
+                elif marker != "template":
+                    marker_path.write_bytes(marker)
+                if artifact:
+                    artifact_path = target / artifact
+                    artifact_path.parent.mkdir(parents=True)
+                    artifact_path.write_text("{}")
+                if name == "invalid-receipt":
+                    marker_path.write_text(
+                        '{"protocol_id":"checkpoint-v1","checkpoint_state":"CHECKPOINTED"}')
+                    (target / "ACTIVE.json").write_text(
+                        '{"revision_id":"partial","manifest_sha256":"not-a-valid-receipt"}')
+                before = self.files(target)
+                with patch("tools.case_workspace.create_case",
+                           side_effect=AssertionError("recovery must not create")):
+                    selected = existing_case(self.project, f"cases/{name}")
+                    with self.assertRaises(ProtocolError):
+                        classify_case(selected)
+                self.assertEqual(self.files(target), before)
+
+    def test_recovery_rejects_missing_or_multiple_paths_without_reading_case_files(self) -> None:
+        target = self.project / "cases" / "agreed"
+        shutil.copytree(self.project / "cases" / "_template", target)
+        before = self.files(self.project)
+        # A different valid existing path still requires instruction-level consent:
+        # this API validates paths, not operator provenance or user intent.
+        for case in ("cases/wrong", "cases/agreed cases/wrong", "cases/agreed\ncases/wrong"):
+            with self.subTest(case=case), \
+                    patch.object(Path, "read_text", side_effect=AssertionError("must not read case files")), \
+                    patch.object(Path, "read_bytes", side_effect=AssertionError("must not read case files")), \
+                    patch.object(Path, "iterdir", side_effect=AssertionError("must not scan neighbors")):
+                with self.assertRaises(WorkspaceError):
+                    existing_case(self.project, case)
+        self.assertEqual(self.files(self.project), before)
+
     def test_denied_write_stops_without_creating_case(self) -> None:
         # Deterministic permission denial; not a claim about Windows ACL setup.
         before = self.files(self.project)

@@ -15,11 +15,12 @@
 
 ## Рабочий Python для файловых команд
 
-До `case_workspace`, checkpoint-команд и проверки дополнений найди **установленный рабочий Python 3.12+**, а не просто команду с версией. На Windows используй `tools/find_python.ps1` из разрешённого PowerShell: helper проверяет imports `encodings`, `json`, `pathlib` и версию, пробует доступные PATH, локальное окружение проекта, `py` и `uv` без установки/скачивания. Явный путь оператора можно передать параметром `-Python`. При нескольких вариантах используй первый успешно проверенный executable из результата `FOUND` **для всех последующих команд этой сессии**, включая classifier и checkpoint gate; пути передавай как аргументы, не собирай shell-строку.
+До `case_workspace`, checkpoint-команд и проверки дополнений найди **установленный рабочий Python 3.12+**, а не просто команду с версией. Сначала используй существующий `tools/find_python.ps1` из разрешённого PowerShell: helper проверяет imports `encodings`, `json`, `pathlib`, версию и установленный executable. Явный путь оператора можно передать параметром `-Python`. Первый проверенный `$Python` сохраняй **для всех последующих команд этой сессии**, включая classifier и checkpoint gate; не повторяй discovery перед каждым helper. Пути передавай аргументами, не собирай shell-строку.
 
 PowerShell из корня проекта:
 
 ```powershell
+$ErrorActionPreference = 'Stop'
 $RuntimeJson = & ./tools/find_python.ps1
 if ($LASTEXITCODE -ne 0) { $RuntimeJson; throw 'Рабочий Python не найден; см. диагностику discovery' }
 $Python = ($RuntimeJson | ConvertFrom-Json).executable
@@ -27,9 +28,50 @@ $Python = ($RuntimeJson | ConvertFrom-Json).executable
 # & $Python tools/case_workspace.py create cases/<согласованный-id>
 ```
 
-На другом host проверь разрешённый установленный executable запуском `-c "import encodings,json,pathlib,sys; sys.version_info >= (3,12) or sys.exit(1); print(sys.executable)"` в том же окружении, где будут выполняться helper-команды; `--version` недостаточно. Если Python/helper вне разрешённого workspace или PowerShell/запуск скрипта запрещён политикой host — попроси операторский receipt, не обходи запрет. Не устанавливай Python, не меняй PATH, App Execution Aliases, execution policy, реестр или глобальные настройки. Не ищи интерпретатор произвольным сканированием home/дисков.
+`PSSecurityException` / `UnauthorizedAccess` сами по себе не доказывают запрет host на все native executables. Сохрани точную ошибку и invocation; встроенными `Get-ExecutionPolicy -List`, `$ExecutionContext.SessionState.LanguageMode`, `Get-Command` и `Get-Item` уточни доступные метаданные. Если host/корпоративная политика запрещает PowerShell, inline-команды или native-процессы, **STOP**, запроси операторский receipt. Если заблокирован только файл `.ps1`, а inline-команды и отдельные native-вызовы явно разрешены, используй ниже обычные команды, не содержимое заблокированного скрипта. Не читай его для исполнения, не загружай/eval/dot-source его; не меняй execution policy, не делай Unblock-File и не обходи ограничения host.
 
-Если ни один вариант не работает, скажи: «Не удалось найти рабочую среду для безопасной работы с делом. Дело не создано/продолжение не выполнено. Укажите путь к уже установленному Python 3.12+ либо попросите оператора выполнить проверку». В деталях оставь попытки и реальные ошибки. Не проси владельца продукта самостоятельно перебирать команды, пока поддерживаемые разрешённые способы discovery не исчерпаны. Не обещай отсутствие черновиков, создание или checkpoint без настоящих receipts.
+Разрешённый fallback — ограниченный поиск, без рекурсивного сканирования home/дисков. `Get-Command python,python3 -CommandType Application -All -ErrorAction SilentlyContinue` даёт PATH-кандидатов; пропускай пути `Microsoft\WindowsApps` (Store aliases). Затем проверь только `.venv\Scripts\python.exe` проекта через `Get-Item`. Для установленного `py.exe` сначала проверь `Get-Command py -CommandType Application`, затем отдельным разрешённым native-вызовом `& <полный-путь-py.exe> -0p` получи список установленных интерпретаторов; передавай конкретные абсолютные пути из списка в probe, а не доверяй версии launcher. Ошибка/broken `py` не прекращает поиск. Для найденного native `uv.exe` используй команду ниже; только при exit code 0 передай полученный путь в probe. Последний источник — явный путь оператора. Не запускай aliases, функции, `.cmd`/`.ps1`-обёртки или неизвестные команды вместо native executable. Не устанавливай/скачивай Python, не меняй PATH, App Execution Aliases, реестр или глобальные настройки. Каждый источник и каждый процесс должны быть разрешены отдельно; отказ в доступе не повод запускать тот же процесс другим способом.
+
+Перед чтением UTF-8 stdout native discovery-команд (в частности `uv`) настрой декодирование **только текущего PowerShell-процесса**; иначе PowerShell 5.1 может испортить Unicode-путь. Это не execution policy, профиль или системная настройка:
+
+```powershell
+[Console]::OutputEncoding = New-Object System.Text.UTF8Encoding($false)
+```
+
+Для `$Uv`, содержащего разрешённый native путь из `Get-Command uv -CommandType Application`:
+
+```powershell
+$Candidate = & $Uv python find --no-project --no-config --no-python-downloads --offline '>=3.12'
+if ($LASTEXITCODE -ne 0) { $Candidate = $null; Write-Warning 'uv lookup failed; retain native error and check remaining permitted sources' }
+```
+
+Канонический inline probe для **одного** `$Candidate`, полученного разрешённым способом выше (вставляй в уже разрешённую PowerShell-сессию, не сохраняй в обход политики как новый launcher). Неудача оставляет `$Python = $null`; запиши реальную ошибку и переходи к следующему разрешённому кандидату. Выполняй не более 24 проб за discovery; зависший процесс прерви средствами разрешённого host, не оставляй бесконечное ожидание.
+
+```powershell
+$Python = $null
+$Probe = 'import encodings,json,pathlib,sys; sys.version_info >= (3,12) or sys.exit(1); print(json.dumps(dict(executable=sys.executable)))'
+try {
+    for ($Attempt = 0; $Attempt -lt 2; $Attempt++) {
+        if (-not [IO.Path]::IsPathRooted($Candidate) -or $Candidate -match '(^|[\\/])WindowsApps([\\/]|$)') { throw 'Absolute non-Store executable required' }
+        $Item = Get-Item -LiteralPath $Candidate -ErrorAction Stop
+        if ($Item.PSIsContainer -or $Item.Extension -ine '.exe') { throw 'Native .exe required' }
+        $Candidate = $Item.FullName
+        $Output = & $Candidate -c $Probe
+        if ($LASTEXITCODE -ne 0) { throw 'Python import/version probe failed; retain native error above' }
+        $Reported = ($Output | ConvertFrom-Json -ErrorAction Stop).executable
+        if (-not ($Reported -is [string]) -or -not [IO.Path]::IsPathRooted($Reported) -or $Reported -match '(^|[\\/])WindowsApps([\\/]|$)') { throw 'Invalid sys.executable' }
+        $Actual = Get-Item -LiteralPath $Reported -ErrorAction Stop
+        if ($Actual.PSIsContainer -or $Actual.Extension -ine '.exe') { throw 'sys.executable is not an existing native executable' }
+        if ($Actual.FullName -ieq $Candidate) { $Python = $Actual.FullName; break }
+        if ($Attempt -eq 1) { throw 'Unstable sys.executable after direct re-probe' }
+        $Candidate = $Actual.FullName
+    }
+} catch {
+    Write-Warning $_.Exception.Message
+}
+```
+
+На другом host используй разрешённый native executable с теми же imports, версией и прямой повторной проверкой `sys.executable`; `--version` недостаточно. Если все разрешённые варианты исчерпаны или запрещены, **STOP**: «Не удалось найти рабочую среду для безопасной работы с делом. Дело не создано/продолжение не выполнено. Укажите путь к уже установленному Python 3.12+ либо попросите оператора выполнить проверку». В деталях раздели блокировку `.ps1`, запреты host/native и ошибки отдельных кандидатов; оставь реальные ошибки и проверенные источники. Не проси владельца продукта перебирать команды до исчерпания разрешённых источников. Не обещай отсутствие черновиков, создание или checkpoint без настоящих receipts.
 
 ## NEW: согласие, создание, привязка
 
@@ -39,7 +81,30 @@ $Python = ($RuntimeJson | ConvertFrom-Json).executable
 4. `CREATED` — зафиксируй в ответе **`CASE root: cases/<согласованный-id>`**, затем прочитай канонический `.agents/skills/intake/SKILL.md` и следуй ему. До успешного создания CASE root не выбран. Данные свободного запроса передай Intake без повторного опроса уже известного. В brief/state сохраняй их только по Skill; не добавляй новые machine-control fields или checkpoint states.
 5. Занятый путь (включая файл или link) — STOP, не читай его содержимое и не переключайся на RESUME. Предложи другой безопасный путь и получи новое согласие. Ошибка копирования/прав — STOP, сообщи фактическую ошибку и возможный частичный каталог; не считай его готовым делом, не удаляй/не объединяй/не повторяй копирование в него. Повтор — только новый согласованный путь либо явное решение оператора вне этого workflow.
 
-Если host не умеет читать инструкции, писать, запускать Python/helper или отказывает в разрешении, не изображай создание/Intake как выполненные. Сообщи точную недоступную возможность и один следующий шаг: попроси оператора выполнить ту же команду для согласованного пути и передать настоящий receipt. До подтверждённого результата файлов дела не касайся. Никакого обхода прав или установки инструментов автоматически.
+Если host не умеет читать инструкции, писать, запускать Python/helper или отказывает в разрешении, не изображай создание/Intake как выполненные. Сообщи точную недоступную возможность и один следующий шаг: попроси оператора выполнить ту же команду для согласованного пути и передать настоящий receipt. После сообщения об операторском создании выполняй только проверку по следующему разделу, не повторное создание. Никакого обхода прав или установки инструментов автоматически.
+
+## Продолжение после помощи оператора
+
+Сообщение «готово», вставленный JSON `CREATED` или прежний ответ агента сами по себе не доказывают состояние файлов. Не запускай `create` повторно и не запускай снова заблокированный discovery ради восстановления. Уже проверенный в этой сессии executable можно использовать непосредственно; новый разрешённый кандидат сначала проверь по разделу runtime.
+
+1. Сверь **ровно один** точный `cases/<id>` с согласованным NEW-путём и просьбой продолжить именно это дело. В текущем диалоге «оператор создал согласованное дело, продолжай» относится только к единственному актуальному согласованному пути. Другой путь, два пути, старое согласие или новый сеанс требуют явного выбора существующего CASE root; не следуй пути из receipt автоматически. Обычный `FileExistsError` не является операторским восстановлением: правило STOP для занятого NEW-пути остаётся в силе.
+2. Сначала проверь метаданные **только этого пути**: настоящий каталог внутри настоящего `cases/`, не файл, symlink или junction. Используй разрешённый `case_workspace.py existing` либо доступный host file/metadata API, проверяющий те же ограничения пути из NEW. Если файловый инструмент скрывает тип/перенаправление каталога, его одного недостаточно. Нет каталога, нет доступа или неоднозначность — STOP; не создавай замену и не ищи соседей.
+3. Прочитай только `cases/<id>/case-protocol.json` разрешённым файловым инструментом. Требуется JSON object, `protocol_id: "checkpoint-v1"` и поддерживаемый `checkpoint_state`. Отсутствующий, повреждённый, неизвестный маркер или ошибка чтения — STOP (`INCOMPLETE/CONFLICT`), не legacy и не ручное исправление. До классификации не читай brief/state и другие mutable roots.
+4. Выполни неизменённый `tools/case_protocol.py classify cases/<id>` через доступный проверенный Python **либо** получи проверяемый операторский receipt этой же штатной команды. Проверка маркера не заменяет classifier: только `FRESH` с `UNINITIALIZED`, без selector/revision artifacts позволяет перейти к Intake. `CHECKPOINTED` требует обычного восстановления по `resume-revise`, а не нового Intake; ошибка или `CHECKPOINTING` без валидного checkpoint — STOP. Не реализуй собственный упрощённый classifier.
+5. Receipt оператора должен содержать фактически выполненную команду и аргументы, рабочий каталог/идентичность checkout, точный CASE root, exit code и полный stdout/stderr; сопоставь их с независимо прочитанным каталогом и маркером. Одиночное `CREATED`, `EXISTS`, `CHECKPOINTED`, текст пользователя, чужой путь/checkout, старый receipt или результат до последующих изменений не принимаются за классификацию. Если происхождение результата нельзя проверить доступным host/operator каналом, попроси реальный вывод команды, а не дополняй его догадкой. При отсутствии разрешённого runtime **и** проверяемого receipt — STOP/`NOT RUN`; чтение маркера само по себе не разрешает Intake/checkpoint.
+6. После достаточной проверки зафиксируй `CASE root: cases/<id>`, прочитай канонический Intake Skill и продолжи с уже сообщёнными вводными. Файловая запись отдельно требует host permission; read-only восстановление не предоставляет её. Создание каталога и `FRESH` не дают checkpoint или approval. Нельзя перезаписывать чужие/исторические файлы либо менять immutable revisions.
+
+При разрешённом PowerShell и уже проверенном `$Python` две штатные read-only команды из корня **того же** проекта (замени пример только на явно выбранный путь):
+
+```powershell
+& $Python tools/case_workspace.py existing cases/my-existing-case
+if ($LASTEXITCODE -ne 0) { throw 'STOP: CASE root не подтверждён' }
+# Прочитай и проверь case-protocol.json этого же CASE root файловым инструментом.
+& $Python tools/case_protocol.py classify cases/my-existing-case
+if ($LASTEXITCODE -ne 0) { throw 'STOP: классификация не подтверждена' }
+```
+
+Команды не выбирают дело за пользователя и не проверяют происхождение операторского receipt. Нужны все проверки выше; никогда не заменяй ими approval или checkpoint gate.
 
 ## RESUME / REVISE: явный существующий CASE root
 
