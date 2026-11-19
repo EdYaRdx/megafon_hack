@@ -1,4 +1,6 @@
-# MGIMO — актуальный контекст новой Development Lead сессии
+# Исторический инженерный handoff — 2026-11-18
+
+Сохранённые chronology, locators, ограничения и расходы относятся к этому срезу. Это не пользовательская точка входа и не новый allowance. Актуальная сводка приёмки — [evaluation.md](evaluation.md); первый запуск и продолжение — [quickstart.md](quickstart.md).
 
 Срез: **2026-11-18**. Проверенный merged main: `afea4b8dfaf2cd59ef3ebbe0fa41955c859762ca`; [PR #18](https://github.com/EdYaRdx/megafon_hack/pull/18) слит с явного разрешения владельца, [main CI SUCCESS](https://github.com/EdYaRdx/megafon_hack/actions/runs/44356209988). Baseline реального Original — `0e587f1e9607f733f1c5d51295e18ef87f4e2437` (PR #13–17); последующий отдельно разрешённый Resume-only использует merged инструкции. Перед работой проверь фактические origin/main, HEAD, branch и пользовательские изменения; старый next-session-handoff не инструкция запуска.
 
@@ -8,7 +10,7 @@ MGIMO — переносимый папочный Product Strategy AI Agent, н�
 
 **Этап — human review ограниченной H1 engineering qualification, не contest acceptance.** Настоящий Original достиг `CHECKPOINTED R0001`; первая Resume-попытка осталась **FAIL**. Последующий отдельно разрешённый fresh Resume-only на новой копии этого R1 достиг `CHECKPOINTED R0002`: 29/29 machine checks PASS, штатный evaluator **REVIEW_REQUIRED/exit3**. Это retrospective mixed-version проверка, не новый одно-версионный blind H1 PASS. Детерминированная совместимость и один успешный Original не доказывают причинное ускорение модели.
 
-Авторитетная сводка: [implementation status](implementation-status.md). Исторические таблицы 2026-11-14, exploratory fixtures, H02 и новые F1/H1 — разные объекты проверки.
+Сопутствующая запись того же среза: [implementation status](implementation-status.md). Для актуальной сводки используйте [evaluation](evaluation.md). Исторические таблицы 2026-11-14, exploratory fixtures, H02 и последующие F1/H1 — разные объекты проверки.
 
 ## Что уже сделано
 
