@@ -30,7 +30,9 @@ The chosen structure keeps a small, obvious product core at the root and separat
 
 ## Creating a case
 
-Copy only `cases/_template/` into a new `cases/<case-id>/`, preserve the template unchanged, and record the case purpose/category in `cases/README.md`. Use public or explicitly user-supplied synthetic material; do not commit credentials, private sessions, personal data, or closed MegaFon information. Keep sources, evidence, claims, decision files, activity, state, and approval records in the case. Follow the complete checkpoint protocol in `cases/_template/README.md`; an approval is not a host permission.
+The pre-case instruction router in `prompts/first-run.md` handles NEW / RESUME / REVISE / HELP before case-file access. For NEW, obtain consent for the exact `cases/<id>` and host write permission, then run `python tools/case_workspace.py create cases/<id>` with Python 3.12+. The helper validates a bounded project-relative path, rejects occupied/link/junction destinations, exclusively reserves the directory and copies only `_template`. It publishes the unchanged protocol marker last via rename, so interrupted copies cannot classify as FRESH. Failed partial directories are preserved, not merged/retried. `existing` checks only the explicitly selected directory; the existing resume Skill owns checkpoint classification. The helper is not a launcher, consent checker, sandbox or checkpoint publisher.
+
+Preserve the template and historical cases; register only intentionally published examples in `cases/README.md`, not disposable test cases. Use public or user-supplied synthetic material, never credentials, raw sessions, personal data or closed MegaFon information. The existing checkpoint protocol and approval contracts remain in `cases/_template/README.md`; creation consent grants neither execution approval nor host permission.
 
 ### Canonical claims, control lines and publication gate
 
@@ -131,6 +133,8 @@ python3 tools/check_repository.py
 python3 tools/case_protocol.py classify cases/pantrypath-week4-20261115
 git diff --check
 ```
+
+For first-run changes, the narrow offline commands are `python -m unittest discover -s tests -p 'test_case_workspace.py' -v` and `python -m unittest discover -s tests -p 'test_case_protocol.py' -v`. They exercise filesystem boundaries and checkpoint consumers, not natural-language routing or automatic host discovery. Test the actual coding-assistant surface separately; see [First Run UX verification](release/first-run-ux-20261119.md) for observed live responses, review and limitations.
 
 On Windows use the available Python3.12+ command in place of python3. Reading files and preliminary analysis need neither Python nor Git; publishing/resuming a canonical checkpoint requires the shared Python consumer or a real operator. The developer repository checker additionally requires a Git checkout/index and cannot run on a plain extracted ZIP. It checks indexed case JSON/JSONL syntax and selected relative Markdown targets only, not schemas, fragments, hashes, references, behavior, host security or contest acceptance.
 
