@@ -1,10 +1,12 @@
 # Основная демонстрация: мобильная продуктовая стратегия
 
+**Исходный документ теста:** [«Пример брифа.pdf»](../cases/mobile-product-strategy-demo/inputs/Пример%20брифа.pdf) — 11-страничный пример «Связь для близких и собственных устройств», предоставленный для работы Codex в контексте конкурсного ТЗ. В нём поставлена задача выбора между семейным направлением и владельцами нескольких номеров, с пятью годовыми KPI, экономикой и контрольными решениями Q1/Q2. Это **не независимое подтверждение**, что файл является актуальным официальным приложением из личного кабинета организатора; права передачи документа тоже не подтверждены.
+
 Это разбор **подготовленного аналитического дела**, не live-запуск, не реализованный мобильный продукт и не доказанный бизнес-эффект. Оператор вымышленный, показатели исходного брифа учебные. Аудитория демонстрации — жюри; задача — показать проверяемое решение, а не обещать рост KPI. Барьер доверия — смешение целей, расчётных сценариев и фактов. Канал — этот walkthrough и план видео; следующий шаг — проверка release gates владельцем.
 
 ## Доступ и точный CASE
 
-Публичный производный CASE: [`cases/mobile-product-strategy-demo`](../cases/mobile-product-strategy-demo/). Независимая цепочка D0001→D0002→D0003; выбран D0003 от исходного R0003. Точный актуальный manifest hash — в [ACTIVE.json](../cases/mobile-product-strategy-demo/ACTIVE.json), карта происхождения — в export-map. Это производная упаковка, не оригинальные ревизии и не новое исследование.
+Производный CASE для просмотра и проверки: [`cases/mobile-product-strategy-demo`](../cases/mobile-product-strategy-demo/). Независимая цепочка D0001→D0002→D0003; выбран D0003 от исходного R0003. Точный актуальный manifest hash — в [ACTIVE.json](../cases/mobile-product-strategy-demo/ACTIVE.json), карта происхождения — в export-map. Это производная упаковка, не оригинальные ревизии и не новое исследование. Передача внешним получателям остаётся заблокированной до проверки прав и доступа.
 
 ```text
 RESUME CASE cases/mobile-product-strategy-demo
@@ -19,22 +21,38 @@ RESUME CASE cases/mobile-product-strategy-demo
 
 Откройте корень проекта. В Codex создайте новый чат/задачу; в Cursor — Open Folder → корень → новый Agent/chat. Вручную передайте `AGENTS.md`, `prompts/first-run.md`, `.agents/skills/resume-revise/SKILL.md` и `cases/mobile-product-strategy-demo/EXPORT.md`, затем точный RESUME выше. Это **не новая квалификация Codex/Cursor**, не live-host acceptance и не гарантия автообнаружения Skills. Новое дело — по неизменённому [Quick Start](quickstart.md).
 
+### Проверка копии без новой генерации
+
+Из корня проекта с **уже проверенным Python 3.12+** ([discovery и fallback](quickstart.md#если-команду-выполняет-оператор)) выполните read-only команды. PowerShell использует сохранённый `$Python`:
+
+```powershell
+& $Python tools/case_protocol.py check-candidate cases/mobile-product-strategy-demo --revision D0003
+& $Python tools/case_protocol.py classify cases/mobile-product-strategy-demo
+& $Python -m tools.resume_context cases/mobile-product-strategy-demo
+```
+
+На macOS/Linux замените `& $Python` на `"$Python"` из Quick Start. Ожидаются последовательно `VALIDATED_CANDIDATE`, `CHECKPOINTED`, затем inventory с `confirmed.revision_id: D0003` и отдельным `unfinished`. Ошибка означает остановку, не ремонт истории. Эти команды не вызывают модель, не выбирают новую ревизию и не разрешают действия.
+
+Затем в новом чате передайте точный RESUME выше. Ожидаемый ответ: сохранённое решение и его основания, открытые вопросы/следующий шаг, **отдельно** старые или незавершённые drafts. Не выдавайте CLI-проверку за состоявшийся ответ модели. Не запускайте исторические `run.py`, `research/*.py` или `record_review.py`: они могли писать case-файлы. Для нового исследования создайте отдельное дело.
+
+**Успешный Resume оригинала в новом чате — наблюдение пользователя**, не повторённый здесь live-тест. [Release verification](release/contest-rc-verification.md#воспроизведение-штатного-resume) отдельно фиксирует CLI-проверки D-копии; [demo evidence](release/demo-evidence.md) — доступные время, инструменты и неизвестную стоимость.
+
 ## Источники и официальность
 
-- `inputs/Пример брифа.pdf`, S-001, 11 страниц — user-supplied пример; SHA-256 `558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5`. `inputs/provenance.json`, поля `author`, `published_at`, `organizer_original_independently_verified`: автор/дата **UNKNOWN**, независимое подтверждение оригинала организатором отсутствует. OCR — производный материал; его abnormal exit и последующая проверка инвентаря сохранены в `extraction_limitation`, а не скрыты.
+- [`Пример брифа.pdf`](../cases/mobile-product-strategy-demo/inputs/Пример%20брифа.pdf), S-001, 11 страниц — user-supplied пример; SHA-256 `558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5`. `inputs/provenance.json`, поля `author`, `published_at`, `organizer_original_independently_verified`: автор/дата **UNKNOWN**, независимое подтверждение оригинала организатором отсутствует. OCR — производный материал; его abnormal exit и последующая проверка инвентаря сохранены в `extraction_limitation`, а не скрыты.
 - Открытая [страница конкурса](https://challenge.mgimo.ai/), проверенная 20.11.2026: FAQ05 указывает получение задания ИИ-проекта в личном кабинете; опубликованный дедлайн — 22.11.2026, 23:59 МСК. Это **не подтверждает**, что данный PDF — актуальное официальное задание трека. В кабинет для этой подготовки не заходили.
 - R0001 `decision.md`, раздел «Что установлено»: открытые T2/МТС и FCA — примеры механизмов/ограничений. Они не подтверждают поведение клиентов учебного оператора; банковский результат FCA нельзя переносить в связь.
 - Выбор PO и последующее согласование — `inputs/R0002-owner-decision.md`, «Выбор»/«Поручение», и `inputs/R0003-owner-publication.md`, «Сохраняемые решения»/«Ограничения и остановка». Это решения пользователя, не внешнее исследование.
 
-Ниже R0001–R0003 — исторические аналитические этапы в сохранённой прозе, не IDs derivative. Для открытия публичных файлов заменяйте revision-directory locator `revisions/R0001/` на `revisions/D0001/`, аналогично R0002→D0002, R0003→D0003; точные пути/hashes — export-map. Корневые filenames и названия inputs/receipts могут сохранять R. Исходные IDs/receipts не являются evidence проверки derivative. Телеметрия — [demo evidence](release/demo-evidence.md).
+R0001–R0003 ниже обозначают исходные аналитические этапы; **ссылки ведут прямо в производные D0001–D0003**, а не в отсутствующий оригинал. Названия inputs/receipts и историческая проза могут сохранять R. Исходные IDs/receipts не являются evidence проверки derivative. Точное сопоставление — [export-map](../cases/mobile-product-strategy-demo/export-map.json); телеметрия — [demo evidence](release/demo-evidence.md).
 
 ## Три сохранённых этапа
 
 | Ревизия | Что произошло | Где проверить |
 |---|---|---|
-| **R0001 — исследование** | Разобраны бриф и открытые источники; шесть разных путей, границы экономики и план проверки. Направление человеком ещё не выбрано: `RECOMMENDATION_PENDING_HUMAN`; рекомендация — сначала различить причины | `revisions/R0001/decision.md`, «Что установлено», «Явные варианты»; `revisions/R0001/options.md`; `sources.jsonl` → `evidence.jsonl` → `claims.jsonl` |
-| **R0002 — выбор PO** | PO выбрал семейный сигнал и существующую передачу, подготовлена углублённая стратегия и условная чувствительность; не разрешены пилот/расходы/контакты | `inputs/R0002-owner-decision.md`, «Выбор»; `revisions/R0002/decision.md`; `calculations/R0002/results.json` |
-| **R0003 — ограниченный аудит** | Проверены семь замечаний, ослаблены неподтверждённые финансовые/временные выводы. A сохранён; согласовано только направление ограниченной подготовки и внутреннее планирование оценок | `revisions/R0003/dependencies/strategy.md`, §2–8; `decision.md`; `state.md`, «Подтверждённое содержание решений» |
+| **R0001 → D0001 — исследование** | Бриф, открытые источники, шесть путей; направление ещё не выбрано (`RECOMMENDATION_PENDING_HUMAN`) | [Решение D0001](../cases/mobile-product-strategy-demo/revisions/D0001/decision.md), «Что установлено», «Явные варианты»; [варианты](../cases/mobile-product-strategy-demo/revisions/D0001/options.md); [sources](../cases/mobile-product-strategy-demo/sources.jsonl) → [evidence](../cases/mobile-product-strategy-demo/evidence.jsonl) → [claims](../cases/mobile-product-strategy-demo/claims.jsonl) |
+| **R0002 → D0002 — выбор PO** | Семейный сигнал и существующая передача; углублённая стратегия и условная чувствительность, не разрешение пилота | [Ввод PO](../cases/mobile-product-strategy-demo/inputs/R0002-owner-decision.md), «Выбор»; [решение D0002](../cases/mobile-product-strategy-demo/revisions/D0002/decision.md); [расчёт](../cases/mobile-product-strategy-demo/calculations/R0002/results.json) |
+| **R0003 → D0003 — аудит** | Семь замечаний; ослаблены финансовые/временные выводы, A сохранён; только ограниченная подготовка | [Стратегия D0003](../cases/mobile-product-strategy-demo/revisions/D0003/dependencies/strategy.md), §2–8; [решение](../cases/mobile-product-strategy-demo/revisions/D0003/decision.md); [состояние](../cases/mobile-product-strategy-demo/revisions/D0003/state.md), «Подтверждённое содержание решений» |
 
 Исходный `receipts/R0003-classify.json`, `exit_code: 0`, `stdout: CHECKPOINTED` фиксирует наблюдённую классификацию исходного дела. Это не новый прогон release-копии, не оценка качества стратегии и не human acceptance. Ревизии R0001–R0003 не переписываются. Старые drafts не выбираются автоматически по дате.
 
@@ -51,7 +69,7 @@ RESUME CASE cases/mobile-product-strategy-demo
 | Тарифные правила/резерв | Вернуться при подтверждённой нехватке объёма | Себестоимость и замещение доходов неизвестны |
 | Остановка | Допустима при неприменимости/неприемлемой цене | Возможная ценность теряется до различающей проверки |
 
-Основание: `options.md`, таблица «Почему выбран A» и «Ресурс, цена отказа»; полное исходное сравнение — `revisions/R0001/options.md`. Сценарные числа не ранжируют ожидаемую прибыль альтернатив.
+Основание: [текущие варианты](../cases/mobile-product-strategy-demo/options.md), таблицы «Почему выбран A» и «Ресурс, цена отказа»; исходное сравнение — в [D0001/options.md](../cases/mobile-product-strategy-demo/revisions/D0001/options.md). Сценарные числа не ранжируют ожидаемую прибыль альтернатив.
 
 ## Существенные расчёты — с единицами и границами
 
@@ -74,4 +92,4 @@ P0 (пакет готовности), G1 (точный запуск) и G2 (сл
 
 ## Что этот пример не доказывает
 
-Нет подтверждённого спроса, клиентского эффекта, собственного прогноза, финансирования, production-интеграции, переносимости на все hosts или превосходства над обычным LLM-ответом. Публичен derivative D0001–D0003; оригинал удержан локально. Официальность неизменённого PDF и права распространения остаются gates, как доступ жюри, видео, PDF/screenshots и подача: [checklist](submission-checklist.md). [PantryPath](pantrypath-demo.md) — дополнительный синтетический пример.
+Нет подтверждённого спроса, клиентского эффекта, собственного прогноза, финансирования, production-интеграции, переносимости на все hosts или превосходства над обычным LLM-ответом. В репозитории подготовлен derivative D0001–D0003; оригинал удержан локально. Доступ жюри пока не подтверждён. Официальность неизменённого PDF и права распространения остаются gates, как доступ жюри, видео, PDF/screenshots и подача: [checklist](submission-checklist.md). [PantryPath](pantrypath-demo.md) — дополнительный синтетический пример.
