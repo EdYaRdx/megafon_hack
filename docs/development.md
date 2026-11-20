@@ -158,7 +158,7 @@ On Windows use the available Python3.12+ command in place of python3. Reading fi
 
 ### GitHub CI
 
-[`.github/workflows/ci.yml`](../.github/workflows/ci.yml) runs on pull requests targeting `main` and pushes to `main`. One GitHub-hosted Ubuntu job uses Python 3.12, the standard library, `python -m unittest discover -s tests -v`, and `python tools/check_repository.py`; no dependency installation or external service is required. The token has read-only repository contents permission. This is not automated release, a PantryPath R3 classifier run, or functional acceptance. Workflow presence alone is not CI PASS: inspect the actual Actions run; if none ran, record `NOT RUN`.
+[`.github/workflows/ci.yml`](../.github/workflows/ci.yml) runs on pull requests to **any base branch** (including stacked documentation PRs) and pushes to `main`. One GitHub-hosted Ubuntu job uses Python 3.12, the standard library, `python -m unittest discover -s tests -v`, and `python tools/check_repository.py`; no dependency installation or external service is required. The token has read-only repository contents permission; checkout does not persist credentials. This is not automated release, a PantryPath R3 classifier run, or functional acceptance. Workflow presence alone is not CI PASS: inspect the actual Actions run; if none ran, record `NOT RUN`.
 
 ## Fixture maintenance
 
