@@ -87,7 +87,8 @@ tools:
     - C:/Projects/mgimo-qualification-20261110-p1/control
     - C:/Projects/mgimo-qualification-20261110-p1/evidence
     - C:/Projects/GitHub/megafon_hack
-    - C:/Users/Эдуард/.omp
+    # Portable, broader exclusion: never publish a real user's profile path.
+    - C:/Users
   maxTimeout: 60
   xdev: false
 bash:

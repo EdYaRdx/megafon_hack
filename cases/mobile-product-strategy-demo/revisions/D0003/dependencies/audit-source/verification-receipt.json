@@ -1,0 +1,110 @@
+{
+  "status": "PASS",
+  "verified_at_utc": "2026-11-20T00:01:15.311000+00:00",
+  "runtime": "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+  "runtime_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "base_revision": "R0002",
+  "base_manifest_sha256": "824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3",
+  "protected_file_count": 29,
+  "protected_hashes_unchanged": true,
+  "historical_ledger_prefixes": {
+    "sources.jsonl": {
+      "historical_bytes": 9694,
+      "historical_sha256": "c1ce3e41bb2c606defdb4d9a7c6868e8ca1b1e9f88a1e2ff29b52f4e785f2d9f",
+      "prefix_preserved": true,
+      "new_bytes": 2141
+    },
+    "evidence.jsonl": {
+      "historical_bytes": 12418,
+      "historical_sha256": "4025831dfc145ff2ef84b4908ee4f502b667bee9446dc2b3b85c9ef2bff353d1",
+      "prefix_preserved": true,
+      "new_bytes": 3766
+    },
+    "claims.jsonl": {
+      "historical_bytes": 8110,
+      "historical_sha256": "8258ab7898562fe7ed7a49a004119a357ccbdfa503d08d100c87be8cbfc56c2f",
+      "prefix_preserved": true,
+      "new_bytes": 3410
+    },
+    "activity.jsonl": {
+      "historical_bytes": 12208,
+      "historical_sha256": "ed2ecadb5452d09ce79656fc57609cc793e03b74fe311e9a6301f1d3ecfac698",
+      "prefix_preserved": true,
+      "new_bytes": 2396
+    }
+  },
+  "current_activity_sha256": "0bb18dd259ed7ee2de25dc2ce85530a293db2c4d7be8fdb4475e4342f9b3cad5",
+  "draft_artifacts_sha256": {
+    "audit-input.md": "6546874681d07ea890e2b76a2a3941136df87f2984e4527a8ef18687b5e0b02f",
+    "before.json": "a04d17d2f73fc7c37bdc05a6057dccc47649582d163da2a30eaa97d7c54fe137",
+    "calculate.py": "bf50553acddeb32f1b9d09ea030919aee7938bd4c3b93d4add81bf17bdfa72f7",
+    "calculation-receipt.json": "40c04f0ce618bf9ced64192f2caae6e2a8cf8e476a6908ebdc255a9b80fe344b",
+    "calculation-results.json": "78e3d4788f19e0f52f4a1953c7357a726e6ba60c1a539fa6f00587434d232b78",
+    "record_review.py": "8cca4b6e5b11b2e7247b360fe9e278304770987745c531a5a0f93a9e915f14d5",
+    "review.md": "6d8ea82d098e01de6db22ac82e0ccb7f7620a083b33d82ca517af51dbb3bdca6",
+    "state.md": "a9e09eba62daaa58d62ae3bf05828140e39598df7fae21bc6afa1c9c88772ac9",
+    "strategy.md": "c3cef91ba4a34ec9bf0185ca3bdf86cc80ba33c8c2fe8dbc1ba3e242a532c972"
+  },
+  "commands": [
+    {
+      "command_argv": [
+        "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/case_protocol.py",
+        "classify",
+        "cases/mobile-product-strategy-fdadbbcb"
+      ],
+      "cwd": "<WORKSPACE>",
+      "started_at_utc": "2026-11-20T00:01:13.790176+00:00",
+      "finished_at_utc": "2026-11-20T00:01:14.031632+00:00",
+      "exit_code": 0,
+      "stdout": "CHECKPOINTED\n",
+      "stderr": ""
+    },
+    {
+      "command_argv": [
+        "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/case_protocol.py",
+        "check-candidate",
+        "cases/mobile-product-strategy-fdadbbcb",
+        "--revision",
+        "R0002"
+      ],
+      "cwd": "<WORKSPACE>",
+      "started_at_utc": "2026-11-20T00:01:14.031632+00:00",
+      "finished_at_utc": "2026-11-20T00:01:15.004789+00:00",
+      "exit_code": 0,
+      "stdout": "{\"status\": \"VALIDATED_CANDIDATE\", \"revision_id\": \"R0002\", \"manifest_sha256\": \"824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3\"}\n",
+      "stderr": ""
+    },
+    {
+      "command_argv": [
+        "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "tools.resume_context",
+        "cases/mobile-product-strategy-fdadbbcb"
+      ],
+      "cwd": "<WORKSPACE>",
+      "started_at_utc": "2026-11-20T00:01:15.004789+00:00",
+      "finished_at_utc": "2026-11-20T00:01:15.301475+00:00",
+      "exit_code": 0,
+      "stdout": "{\"case\": \"cases/mobile-product-strategy-fdadbbcb\", \"classification\": \"CHECKPOINTED\", \"confirmed\": {\"revision_id\": \"R0002\", \"manifest_sha256\": \"824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3\", \"snapshots\": {\"decision.md\": \"revisions/D0002/decision.md\", \"options.md\": \"revisions/D0002/options.md\", \"state.md\": \"revisions/D0002/state.md\", \"strategy-communication.md\": \"revisions/D0002/strategy-communication.md\", \"strategy-product.md\": \"revisions/D0002/strategy-product.md\", \"test-plan.md\": \"revisions/D0002/test-plan.md\"}}, \"unfinished\": {\"discovery\": \"complete\", \"drafts\": [{\"path\": \"drafts/po-priorities-comparison/recovery-receipt.json\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 1849, \"sha256\": \"6b9d9860791b625699f9bb69e2bdd3c998ac922dbcc207326abc93e4b4772b4f\"}, {\"path\": \"drafts/po-priorities-comparison/review.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 21266, \"sha256\": \"a636806dcde1b4a84f5d6b4d25f3b1c6a61ff3dcc0d0844c8af8320ac612af2a\"}, {\"path\": \"drafts/r0002-family-priority/brief.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 4912, \"sha256\": \"fc5fb1fcc666a0578cd0f769f3271cacfc1fb67077cf386e535937038802d6ca\"}, {\"path\": \"drafts/r0002-family-priority/decision.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 11962, \"sha256\": \"6325b4f73ac5baf177b1fcf17d241c4526f48b2c84bc9515547a356aee801ad9\"}, {\"path\": \"drafts/r0002-family-priority/options.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 7725, \"sha256\": \"1490a087e6b5b07b9f730b21bb49d1a779b0ffc2e69cd852bcd622f54a9e15a9\"}, {\"path\": \"drafts/r0002-family-priority/review.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 3746, \"sha256\": \"73850480f6c66b44605259e93cd7c991c4c45fe94726355a93a417a4ee0fd615\"}, {\"path\": \"drafts/r0002-family-priority/state.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 7593, \"sha256\": \"625ff7c50087a62ae3b807cf9c300c3944ecac22f73e44ea18784f33fa42f24c\"}, {\"path\": \"drafts/r0002-family-priority/strategy-communication.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 6254, \"sha256\": \"4fa30c152d3497b7352360137649a1592eca39e9823c356bdf9b35f266c207d5\"}, {\"path\": \"drafts/r0002-family-priority/strategy-product.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 5962, \"sha256\": \"4c6c161f7d37e3560d50bbd4b321f0c4b1baf7197d07d9eb8101363b46bdf0e4\"}, {\"path\": \"drafts/r0002-family-priority/strategy.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 49149, \"sha256\": \"54401c4dad432ada2bad1c227482748c66d5bdc30f2cd51c5f1ee9933f1029c4\"}, {\"path\": \"drafts/r0002-family-priority/test-plan.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 18757, \"sha256\": \"3a2b6d2e879cbfd4fcbb7f4dbf54926feeb2ff2f7ebd72b8efdf5ed591d23339\"}, {\"path\": \"drafts/r0003-independent-audit/audit-input.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 2845, \"sha256\": \"6546874681d07ea890e2b76a2a3941136df87f2984e4527a8ef18687b5e0b02f\"}, {\"path\": \"drafts/r0003-independent-audit/before.json\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 3943, \"sha256\": \"a04d17d2f73fc7c37bdc05a6057dccc47649582d163da2a30eaa97d7c54fe137\"}, {\"path\": \"drafts/r0003-independent-audit/calculate.py\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 6596, \"sha256\": \"bf50553acddeb32f1b9d09ea030919aee7938bd4c3b93d4add81bf17bdfa72f7\"}, {\"path\": \"drafts/r0003-independent-audit/calculation-receipt.json\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 7095, \"sha256\": \"40c04f0ce618bf9ced64192f2caae6e2a8cf8e476a6908ebdc255a9b80fe344b\"}, {\"path\": \"drafts/r0003-independent-audit/calculation-results.json\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 6092, \"sha256\": \"78e3d4788f19e0f52f4a1953c7357a726e6ba60c1a539fa6f00587434d232b78\"}, {\"path\": \"drafts/r0003-independent-audit/record_review.py\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 13001, \"sha256\": \"8cca4b6e5b11b2e7247b360fe9e278304770987745c531a5a0f93a9e915f14d5\"}, {\"path\": \"drafts/r0003-independent-audit/review.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 4884, \"sha256\": \"6d8ea82d098e01de6db22ac82e0ccb7f7620a083b33d82ca517af51dbb3bdca6\"}, {\"path\": \"drafts/r0003-independent-audit/state.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 3728, \"sha256\": \"a9e09eba62daaa58d62ae3bf05828140e39598df7fae21bc6afa1c9c88772ac9\"}, {\"path\": \"drafts/r0003-independent-audit/strategy.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 47432, \"sha256\": \"c3cef91ba4a34ec9bf0185ca3bdf86cc80ba33c8c2fe8dbc1ba3e242a532c972\"}], \"hints\": [{\"path\": \"activity.jsonl\", \"provenance\": \"activity ledger\", \"status\": \"unverified\", \"reason\": \"changed or unpinned activity; not proof of a later draft\", \"relationship_to_selected\": \"unknown\"}], \"issues\": [], \"notice\": \"Candidates and hints are unverified, not selected or necessarily newer. Inspect provenance/content; no referenced paths were followed. Discovery is not an atomic snapshot.\"}}",
+      "stderr": ""
+    }
+  ],
+  "R0003_published": false,
+  "R0003_manifest_created": false,
+  "R0003_candidate_gate": "NOT RUN BY DESIGN; explicit owner publication consent absent",
+  "new_claims_active": false,
+  "telemetry": "UNKNOWN; no limit supplied",
+  "limitations": "Integrity and arithmetic only; not evidence of customer behavior, cost, feasibility or action approval. Inventory is not an atomic snapshot and precedes this receipt file.",
+  "export_notice": "REDACTED SOURCE HISTORY ONLY; not an export execution receipt or approval."
+}

@@ -1,0 +1,12 @@
+{
+  "status": "CHECKPOINTED",
+  "revision_id": "R0002",
+  "manifest_sha256": "824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3",
+  "parent_revision_id": "R0001",
+  "parent_manifest_sha256": "7b97ae92c708880da11e53ba9c59089190bf53eed70a65d9d51c6d0f7d78cbf9",
+  "strategy": "revisions/D0002/dependencies/strategy.md",
+  "decision": "revisions/D0002/decision.md",
+  "state": "revisions/D0002/state.md",
+  "execution_approval": "NOT PROVIDED for pilot/spend/communications as of this revision",
+  "export_notice": "REDACTED SOURCE HISTORY ONLY; not an export execution receipt or approval."
+}

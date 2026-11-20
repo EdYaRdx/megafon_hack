@@ -1,0 +1,40 @@
+$ErrorActionPreference = 'Stop'
+[Console]::OutputEncoding = New-Object System.Text.UTF8Encoding($false)
+Add-Type -AssemblyName System.Runtime.WindowsRuntime
+[Windows.Storage.StorageFile,Windows.Storage,ContentType=WindowsRuntime] | Out-Null
+[Windows.Data.Pdf.PdfDocument,Windows.Data.Pdf,ContentType=WindowsRuntime] | Out-Null
+[Windows.Storage.Streams.InMemoryRandomAccessStream,Windows.Storage.Streams,ContentType=WindowsRuntime] | Out-Null
+[Windows.Graphics.Imaging.BitmapDecoder,Windows.Graphics.Imaging,ContentType=WindowsRuntime] | Out-Null
+[Windows.Media.Ocr.OcrEngine,Windows.Foundation,ContentType=WindowsRuntime] | Out-Null
+$TaskMethod = [System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object { $_.Name -eq 'AsTask' -and $_.IsGenericMethodDefinition -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' } | Select-Object -First 1
+$ActionMethod = [System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object { $_.Name -eq 'AsTask' -and -not $_.IsGenericMethod -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncAction' } | Select-Object -First 1
+function AwaitResult($Operation, $ResultType) { $Task = $TaskMethod.MakeGenericMethod($ResultType).Invoke($null,@($Operation)); $Task.GetAwaiter().GetResult() }
+$PdfFile = AwaitResult ([Windows.Storage.StorageFile]::GetFileFromPathAsync('<WORKSPACE>\cases\mobile-product-strategy-fdadbbcb\inputs\Пример брифа.pdf')) ([Windows.Storage.StorageFile])
+$PdfDoc = AwaitResult ([Windows.Data.Pdf.PdfDocument]::LoadFromFileAsync($PdfFile)) ([Windows.Data.Pdf.PdfDocument])
+$OcrEngine = [Windows.Media.Ocr.OcrEngine]::TryCreateFromUserProfileLanguages()
+$OutputDir = '<WORKSPACE>\cases\mobile-product-strategy-fdadbbcb\inputs\brief-extracted'
+New-Item -ItemType Directory -Path $OutputDir -Force | Out-Null
+for ($PageIndex = 0; $PageIndex -lt $PdfDoc.PageCount; $PageIndex++) {
+ $Page = $PdfDoc.GetPage($PageIndex)
+ $Stream = New-Object Windows.Storage.Streams.InMemoryRandomAccessStream
+ $Options = New-Object Windows.Data.Pdf.PdfPageRenderOptions
+ $Options.DestinationWidth = 1800
+ $Action = $Page.RenderToStreamAsync($Stream,$Options)
+ $Task = $ActionMethod.Invoke($null,@($Action))
+ $Task.GetAwaiter().GetResult() | Out-Null
+ $Stream.Seek(0)
+ $DotNetStream = [System.IO.WindowsRuntimeStreamExtensions]::AsStreamForRead($Stream)
+ $PngPath = Join-Path $OutputDir ('page-{0:D2}.png' -f ($PageIndex+1))
+ $FileStream = [System.IO.File]::Create($PngPath)
+ $DotNetStream.CopyTo($FileStream)
+ $FileStream.Dispose()
+ $Stream.Seek(0)
+ $Decoder = AwaitResult ([Windows.Graphics.Imaging.BitmapDecoder]::CreateAsync($Stream)) ([Windows.Graphics.Imaging.BitmapDecoder])
+ $Bitmap = AwaitResult ($Decoder.GetSoftwareBitmapAsync()) ([Windows.Graphics.Imaging.SoftwareBitmap])
+ $OcrResult = AwaitResult ($OcrEngine.RecognizeAsync($Bitmap)) ([Windows.Media.Ocr.OcrResult])
+ $TextLines = @($OcrResult.Lines | ForEach-Object { $_.Text })
+ [System.IO.File]::WriteAllLines((Join-Path $OutputDir ('page-{0:D2}.txt' -f ($PageIndex+1))),$TextLines,(New-Object System.Text.UTF8Encoding($false)))
+ Write-Output ('PAGE {0}: {1} lines' -f ($PageIndex+1),$TextLines.Count)
+ $Page.Dispose()
+}
+Write-Output ('OCR_LANG=' + $OcrEngine.RecognizerLanguage.LanguageTag)

@@ -1,0 +1,122 @@
+{
+  "status": "PASS",
+  "captured_at_utc": "2026-11-20T02:28:35.151604+00:00",
+  "commands": [
+    {
+      "command_argv": [
+        "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "tools.resume_context",
+        "cases/mobile-product-strategy-fdadbbcb"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "stdout": "{\"case\": \"cases/mobile-product-strategy-fdadbbcb\", \"classification\": \"CHECKPOINTED\", \"confirmed\": {\"revision_id\": \"R0002\", \"manifest_sha256\": \"824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3\", \"snapshots\": {\"decision.md\": \"revisions/D0002/decision.md\", \"options.md\": \"revisions/D0002/options.md\", \"state.md\": \"revisions/D0002/state.md\", \"strategy-communication.md\": \"revisions/D0002/strategy-communication.md\", \"strategy-product.md\": \"revisions/D0002/strategy-product.md\", \"test-plan.md\": \"revisions/D0002/test-plan.md\"}}, \"unfinished\": {\"discovery\": \"complete\", \"drafts\": [{\"path\": \"drafts/po-priorities-comparison/recovery-receipt.json\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 1849, \"sha256\": \"6b9d9860791b625699f9bb69e2bdd3c998ac922dbcc207326abc93e4b4772b4f\"}, {\"path\": \"drafts/po-priorities-comparison/review.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 21266, \"sha256\": \"a636806dcde1b4a84f5d6b4d25f3b1c6a61ff3dcc0d0844c8af8320ac612af2a\"}, {\"path\": \"drafts/r0002-family-priority/brief.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 4912, \"sha256\": \"fc5fb1fcc666a0578cd0f769f3271cacfc1fb67077cf386e535937038802d6ca\"}, {\"path\": \"drafts/r0002-family-priority/decision.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 11962, \"sha256\": \"6325b4f73ac5baf177b1fcf17d241c4526f48b2c84bc9515547a356aee801ad9\"}, {\"path\": \"drafts/r0002-family-priority/options.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 7725, \"sha256\": \"1490a087e6b5b07b9f730b21bb49d1a779b0ffc2e69cd852bcd622f54a9e15a9\"}, {\"path\": \"drafts/r0002-family-priority/review.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 3746, \"sha256\": \"73850480f6c66b44605259e93cd7c991c4c45fe94726355a93a417a4ee0fd615\"}, {\"path\": \"drafts/r0002-family-priority/state.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 7593, \"sha256\": \"625ff7c50087a62ae3b807cf9c300c3944ecac22f73e44ea18784f33fa42f24c\"}, {\"path\": \"drafts/r0002-family-priority/strategy-communication.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 6254, \"sha256\": \"4fa30c152d3497b7352360137649a1592eca39e9823c356bdf9b35f266c207d5\"}, {\"path\": \"drafts/r0002-family-priority/strategy-product.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 5962, \"sha256\": \"4c6c161f7d37e3560d50bbd4b321f0c4b1baf7197d07d9eb8101363b46bdf0e4\"}, {\"path\": \"drafts/r0002-family-priority/strategy.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 49149, \"sha256\": \"54401c4dad432ada2bad1c227482748c66d5bdc30f2cd51c5f1ee9933f1029c4\"}, {\"path\": \"drafts/r0002-family-priority/test-plan.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 18757, \"sha256\": \"3a2b6d2e879cbfd4fcbb7f4dbf54926feeb2ff2f7ebd72b8efdf5ed591d23339\"}, {\"path\": \"drafts/r0003-independent-audit/audit-input.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 2845, \"sha256\": \"6546874681d07ea890e2b76a2a3941136df87f2984e4527a8ef18687b5e0b02f\"}, {\"path\": \"drafts/r0003-independent-audit/before.json\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 3943, \"sha256\": \"a04d17d2f73fc7c37bdc05a6057dccc47649582d163da2a30eaa97d7c54fe137\"}, {\"path\": \"drafts/r0003-independent-audit/calculate.py\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 6596, \"sha256\": \"bf50553acddeb32f1b9d09ea030919aee7938bd4c3b93d4add81bf17bdfa72f7\"}, {\"path\": \"drafts/r0003-independent-audit/calculation-receipt.json\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 7095, \"sha256\": \"40c04f0ce618bf9ced64192f2caae6e2a8cf8e476a6908ebdc255a9b80fe344b\"}, {\"path\": \"drafts/r0003-independent-audit/calculation-results.json\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 6092, \"sha256\": \"78e3d4788f19e0f52f4a1953c7357a726e6ba60c1a539fa6f00587434d232b78\"}, {\"path\": \"drafts/r0003-independent-audit/owner-decision-receipt.json\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 1648, \"sha256\": \"7efb9342804931e3ce05a37f539b216a95e34e8fa246b5073b2be5faf51189fe\"}, {\"path\": \"drafts/r0003-independent-audit/owner-decision.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 3175, \"sha256\": \"1cdccabe5552a3cb015f573d1f27ad30c5be3b0abb822eef6776e3086b313d02\"}, {\"path\": \"drafts/r0003-independent-audit/record_review.py\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 13001, \"sha256\": \"8cca4b6e5b11b2e7247b360fe9e278304770987745c531a5a0f93a9e915f14d5\"}, {\"path\": \"drafts/r0003-independent-audit/review.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 4884, \"sha256\": \"6d8ea82d098e01de6db22ac82e0ccb7f7620a083b33d82ca517af51dbb3bdca6\"}, {\"path\": \"drafts/r0003-independent-audit/state.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 5099, \"sha256\": \"b0002769c7eddd1d8e193e62d20b04d6080eb1a4759ec22771ae3e0447b4ebaa\"}, {\"path\": \"drafts/r0003-independent-audit/strategy.md\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 47432, \"sha256\": \"c3cef91ba4a34ec9bf0185ca3bdf86cc80ba33c8c2fe8dbc1ba3e242a532c972\"}, {\"path\": \"drafts/r0003-independent-audit/verification-receipt.json\", \"provenance\": \"drafts/\", \"status\": \"unverified\", \"relationship_to_selected\": \"unknown\", \"completeness\": \"unknown\", \"kind\": \"file\", \"bytes\": 13986, \"sha256\": \"a6904a222af36383f671e59c0e29e4467b13c1d8b579ab80a7012faef60ea97c\"}], \"hints\": [{\"path\": \"activity.jsonl\", \"provenance\": \"activity ledger\", \"status\": \"unverified\", \"reason\": \"changed or unpinned activity; not proof of a later draft\", \"relationship_to_selected\": \"unknown\"}], \"issues\": [], \"notice\": \"Candidates and hints are unverified, not selected or necessarily newer. Inspect provenance/content; no referenced paths were followed. Discovery is not an atomic snapshot.\"}}",
+      "stderr": ""
+    },
+    {
+      "command_argv": [
+        "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/case_protocol.py",
+        "check-candidate",
+        "cases/mobile-product-strategy-fdadbbcb",
+        "--revision",
+        "R0002"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "stdout": "{\"status\": \"VALIDATED_CANDIDATE\", \"revision_id\": \"R0002\", \"manifest_sha256\": \"824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3\"}\n",
+      "stderr": ""
+    }
+  ],
+  "base": {
+    "revision_id": "R0002",
+    "manifest_sha256": "824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3",
+    "snapshots": {
+      "decision.md": "revisions/D0002/decision.md",
+      "options.md": "revisions/D0002/options.md",
+      "state.md": "revisions/D0002/state.md",
+      "strategy-communication.md": "revisions/D0002/strategy-communication.md",
+      "strategy-product.md": "revisions/D0002/strategy-product.md",
+      "test-plan.md": "revisions/D0002/test-plan.md"
+    }
+  },
+  "history_sha256": {
+    "revisions/R0001/decision.md": "99b357aafa0dabc8b6ef062a71d426ef22a543935249cb4b6bc1645adae69475",
+    "revisions/R0001/manifest.json": "7b97ae92c708880da11e53ba9c59089190bf53eed70a65d9d51c6d0f7d78cbf9",
+    "revisions/R0001/options.md": "e89156b2d025b93a2220626d228977c4d51525aa38d3acfbb64d330cc42ef5e5",
+    "revisions/R0001/state.md": "992e0c37d79600df42291fabe707c2af0b4c72527b5a100b7d8e5da5c4fdb7e1",
+    "revisions/R0001/strategy-communication.md": "0ab1c60cc3d698485803500e43d1a52ebb65d098067e33b21cf22c0b00cf9c01",
+    "revisions/R0001/strategy-product.md": "ccece455d74ad193566ba38e0944fddb4c9dc7879420f3beb7e17525da65bbe5",
+    "revisions/R0001/test-plan.md": "ac4ec079dbb5c795f5ad0eaa9df185478610b2555d6916fe88725d4c6a07c25a",
+    "revisions/R0002/decision.md": "6325b4f73ac5baf177b1fcf17d241c4526f48b2c84bc9515547a356aee801ad9",
+    "revisions/R0002/manifest.json": "824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3",
+    "revisions/R0002/options.md": "1490a087e6b5b07b9f730b21bb49d1a779b0ffc2e69cd852bcd622f54a9e15a9",
+    "revisions/R0002/state.md": "625ff7c50087a62ae3b807cf9c300c3944ecac22f73e44ea18784f33fa42f24c",
+    "revisions/R0002/strategy-communication.md": "4fa30c152d3497b7352360137649a1592eca39e9823c356bdf9b35f266c207d5",
+    "revisions/R0002/strategy-product.md": "4c6c161f7d37e3560d50bbd4b321f0c4b1baf7197d07d9eb8101363b46bdf0e4",
+    "revisions/R0002/test-plan.md": "3a2b6d2e879cbfd4fcbb7f4dbf54926feeb2ff2f7ebd72b8efdf5ed591d23339",
+    "revisions/R0001/dependencies/brief.md": "ee0e64d39c389ce261504652c0b1f0f7ad4f0fdf202c86170478d570f1905332",
+    "revisions/R0001/dependencies/strategy.md": "15f6c28f287128c661343c85b95933b34f9b10e4663887af34d9afab684676ca",
+    "revisions/R0002/dependencies/brief.md": "fc5fb1fcc666a0578cd0f769f3271cacfc1fb67077cf386e535937038802d6ca",
+    "revisions/R0002/dependencies/strategy.md": "54401c4dad432ada2bad1c227482748c66d5bdc30f2cd51c5f1ee9933f1029c4"
+  },
+  "root_before_sha256": {
+    "ACTIVE.json": "ac3089dce6f6184a4975c3270de01d38c7bfe3466a659478ded51e4f07df67a4",
+    "case-protocol.json": "a9f241e2e2258496bebef088c4df6e716929bf56184d4c675ff1a67962da2999",
+    "options.md": "1490a087e6b5b07b9f730b21bb49d1a779b0ffc2e69cd852bcd622f54a9e15a9",
+    "decision.md": "6325b4f73ac5baf177b1fcf17d241c4526f48b2c84bc9515547a356aee801ad9",
+    "strategy-product.md": "4c6c161f7d37e3560d50bbd4b321f0c4b1baf7197d07d9eb8101363b46bdf0e4",
+    "strategy-communication.md": "4fa30c152d3497b7352360137649a1592eca39e9823c356bdf9b35f266c207d5",
+    "test-plan.md": "3a2b6d2e879cbfd4fcbb7f4dbf54926feeb2ff2f7ebd72b8efdf5ed591d23339",
+    "state.md": "625ff7c50087a62ae3b807cf9c300c3944ecac22f73e44ea18784f33fa42f24c",
+    "strategy.md": "54401c4dad432ada2bad1c227482748c66d5bdc30f2cd51c5f1ee9933f1029c4",
+    "brief.md": "fc5fb1fcc666a0578cd0f769f3271cacfc1fb67077cf386e535937038802d6ca"
+  },
+  "ledger_prefixes": {
+    "sources.jsonl": {
+      "bytes": 12618,
+      "sha256": "5becb87aefee380ecdb666a748b0feb5d945c5ba0f7aefa8ea82ca2171d324f6"
+    },
+    "evidence.jsonl": {
+      "bytes": 16827,
+      "sha256": "cb675d96d2ab5b58ff20ce77a3443e3e197d52fe323f6adb71e3509b55fbda8f"
+    },
+    "claims.jsonl": {
+      "bytes": 12106,
+      "sha256": "8f808185268ae3e4ba89dc22ea357d7d2de6f5499ca36a9447343c46617e8bc8"
+    },
+    "activity.jsonl": {
+      "bytes": 16035,
+      "sha256": "ed817e255e42fe860eb36eb55f5a8621786abbeaba877ca07fdb174e3b637a80"
+    },
+    "approvals.jsonl": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "draft_sha256": {
+    "audit-input.md": "6546874681d07ea890e2b76a2a3941136df87f2984e4527a8ef18687b5e0b02f",
+    "before.json": "a04d17d2f73fc7c37bdc05a6057dccc47649582d163da2a30eaa97d7c54fe137",
+    "calculate.py": "bf50553acddeb32f1b9d09ea030919aee7938bd4c3b93d4add81bf17bdfa72f7",
+    "calculation-receipt.json": "40c04f0ce618bf9ced64192f2caae6e2a8cf8e476a6908ebdc255a9b80fe344b",
+    "calculation-results.json": "78e3d4788f19e0f52f4a1953c7357a726e6ba60c1a539fa6f00587434d232b78",
+    "owner-decision-receipt.json": "7efb9342804931e3ce05a37f539b216a95e34e8fa246b5073b2be5faf51189fe",
+    "owner-decision.md": "1cdccabe5552a3cb015f573d1f27ad30c5be3b0abb822eef6776e3086b313d02",
+    "record_review.py": "8cca4b6e5b11b2e7247b360fe9e278304770987745c531a5a0f93a9e915f14d5",
+    "review.md": "6d8ea82d098e01de6db22ac82e0ccb7f7620a083b33d82ca517af51dbb3bdca6",
+    "state.md": "b0002769c7eddd1d8e193e62d20b04d6080eb1a4759ec22771ae3e0447b4ebaa",
+    "strategy.md": "c3cef91ba4a34ec9bf0185ca3bdf86cc80ba33c8c2fe8dbc1ba3e242a532c972",
+    "verification-receipt.json": "a6904a222af36383f671e59c0e29e4467b13c1d8b579ab80a7012faef60ea97c"
+  },
+  "budget_remaining_seconds": "UNKNOWN",
+  "monetary_guard": "UNKNOWN",
+  "limit": "Not specified",
+  "export_notice": "REDACTED SOURCE HISTORY ONLY; not an export execution receipt or approval."
+}

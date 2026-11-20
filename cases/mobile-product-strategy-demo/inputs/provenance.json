@@ -1,0 +1,18 @@
+{
+  "source_id": "S-001",
+  "original_path": "<USER_HOME>/Downloads/Пример брифа.pdf",
+  "case_copy": "inputs/Пример брифа.pdf",
+  "original_filename": "Пример брифа.pdf",
+  "bytes": 253991,
+  "sha256": "558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5",
+  "original_and_copy_hash_equal": true,
+  "copied_at_utc": "2026-11-19T22:20:39.4291588Z",
+  "authorization": "User explicitly approved reading the Downloads PDF and copying it into this case inputs, preserving the filename.",
+  "author": "UNKNOWN",
+  "published_at": "UNKNOWN",
+  "organizer_original_independently_verified": false,
+  "pages": 11,
+  "extraction": "Windows.Data.Pdf rendered 11 PNGs at width 1800; Windows.Media.Ocr, recognizer ru, produced 11 UTF-8 text files. OCR is a derivative, not the original.",
+  "extraction_process_exit_code": -1073741819,
+  "extraction_limitation": "Process returned abnormal exit after reporting all 11 pages and OCR_LANG=ru. Subsequent inventory verified 11 PNG and 11 TXT files. Pages 1, 3, 9, 11 were visually inspected; all page text was read. Numeric table order was verified against page 3 image. OCR must not be used blindly for additional critical numbers."
+}

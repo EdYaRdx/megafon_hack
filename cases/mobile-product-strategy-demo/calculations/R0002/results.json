@@ -1,0 +1,193 @@
+{
+  "status": "ARITHMETIC_VERIFIED_NOT_EMPIRICAL_FORECAST",
+  "input_path": "inputs\\R0002-scenario.json",
+  "input_sha256": "7fe5197b2dc67425bf70ac234e690c1d51ed45886c1e5d06e65feaa811f0ae80",
+  "baseline_path": "calculations/results.json",
+  "baseline_sha256": "1b89ee79e5bb1610ab8792e67b3bec093555dd3ac73cbfedcbe1606cd0367221",
+  "pdf_sha256": "558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5",
+  "cohorts": [
+    {
+      "start_month": 6,
+      "families": 2000,
+      "eligible_numbers_assumed": 4000,
+      "credited_months": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "opportunity_number_months": 24000
+    },
+    {
+      "start_month": 7,
+      "families": 4000,
+      "eligible_numbers_assumed": 8000,
+      "credited_months": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "opportunity_number_months": 40000
+    },
+    {
+      "start_month": 10,
+      "families": 6000,
+      "eligible_numbers_assumed": 12000,
+      "credited_months": [
+        11,
+        12
+      ],
+      "opportunity_number_months": 24000
+    }
+  ],
+  "monthly_opportunities": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 4000,
+    "8": 12000,
+    "9": 12000,
+    "10": 12000,
+    "11": 24000,
+    "12": 24000
+  },
+  "total_opportunity_number_months": 88000,
+  "required_extra_paid_number_months": 14000.0,
+  "required_weighted_average_probability_gap": 0.1590909090909091,
+  "required_weighted_average_gap_percentage_points": 15.909090909090908,
+  "probability_gap_interpretation": "Weighted average over later within-year number-months. Not an assumed constant probability, estimated effect or observed curve. Feasibility also requires sum(N*(1-Ppaid_usual)) >= M; usual curve UNKNOWN.",
+  "annual_new_direct_cost_rub_sensitivity": 1000000,
+  "annual_other_contribution_rub": 0,
+  "annual_gross_contribution_before_new_cost_rub": 7000000.0,
+  "annual_net_incremental_gp_rub": 6000000.0,
+  "gp_rub_conditional": 285000000.0,
+  "stress_extra_paid_months": 7000.0,
+  "stress_gp_rub": 281500000.0,
+  "no_effect_gp_rub_if_cost_incurred": 278000000.0,
+  "annual_development_investment_ceiling_rub_conditional": 6000000.0,
+  "quarterly": [
+    {
+      "quarter": 1,
+      "opportunity_number_months": 0,
+      "required_extra_paid_number_months": 0.0,
+      "gross_contribution_before_new_direct_cost_rub": 0.0,
+      "cumulative_contribution_before_new_direct_cost_rub": 0.0,
+      "cumulative_net_formula": "0.0 - cumulative_D_RUB",
+      "development_payback_condition": "cumulative_I_RUB <= cumulative_contribution - cumulative_D_RUB; D/I schedule UNKNOWN"
+    },
+    {
+      "quarter": 2,
+      "opportunity_number_months": 0,
+      "required_extra_paid_number_months": 0.0,
+      "gross_contribution_before_new_direct_cost_rub": 0.0,
+      "cumulative_contribution_before_new_direct_cost_rub": 0.0,
+      "cumulative_net_formula": "0.0 - cumulative_D_RUB",
+      "development_payback_condition": "cumulative_I_RUB <= cumulative_contribution - cumulative_D_RUB; D/I schedule UNKNOWN"
+    },
+    {
+      "quarter": 3,
+      "opportunity_number_months": 28000,
+      "required_extra_paid_number_months": 4454.545454545455,
+      "gross_contribution_before_new_direct_cost_rub": 2227272.727272727,
+      "cumulative_contribution_before_new_direct_cost_rub": 2227272.727272727,
+      "cumulative_net_formula": "2227272.727272727 - cumulative_D_RUB",
+      "development_payback_condition": "cumulative_I_RUB <= cumulative_contribution - cumulative_D_RUB; D/I schedule UNKNOWN"
+    },
+    {
+      "quarter": 4,
+      "opportunity_number_months": 60000,
+      "required_extra_paid_number_months": 9545.454545454546,
+      "gross_contribution_before_new_direct_cost_rub": 4772727.2727272725,
+      "cumulative_contribution_before_new_direct_cost_rub": 7000000.0,
+      "cumulative_net_formula": "7000000.0 - cumulative_D_RUB",
+      "development_payback_condition": "cumulative_I_RUB <= cumulative_contribution - cumulative_D_RUB; D/I schedule UNKNOWN"
+    }
+  ],
+  "five_kpi_forecast": [
+    {
+      "metric": "gross_profit_million_rub",
+      "no_change": 279,
+      "target": 285,
+      "conditional_target_scenario": 285.0,
+      "difference_from_no_change": 6.0,
+      "target_shortfall_conditional": 0.0,
+      "stress_scenario": 281.5,
+      "stress_difference_from_no_change": 2.5
+    },
+    {
+      "metric": "active_groups_last_month",
+      "no_change": 5000,
+      "target": 8000,
+      "conditional_target_scenario": 8000.0,
+      "difference_from_no_change": 3000.0,
+      "target_shortfall_conditional": 0.0,
+      "stress_scenario": 6500.0,
+      "stress_difference_from_no_change": 1500.0
+    },
+    {
+      "metric": "connected_groups_eoy",
+      "no_change": 8000,
+      "target": 12000,
+      "conditional_target_scenario": 12000.0,
+      "difference_from_no_change": 4000.0,
+      "target_shortfall_conditional": 0.0,
+      "stress_scenario": 10000.0,
+      "stress_difference_from_no_change": 2000.0
+    },
+    {
+      "metric": "connected_owners_eoy",
+      "no_change": 1000,
+      "target": 2000,
+      "conditional_target_scenario": 1000.0,
+      "difference_from_no_change": 0.0,
+      "target_shortfall_conditional": 1000.0,
+      "stress_scenario": 1000.0,
+      "stress_difference_from_no_change": 0.0
+    },
+    {
+      "metric": "activation_14d_percent",
+      "no_change": 45,
+      "target": 60,
+      "conditional_target_scenario": 60.0,
+      "difference_from_no_change": 15.0,
+      "target_shortfall_conditional": 0.0,
+      "stress_scenario": 52.5,
+      "stress_difference_from_no_change": 7.5
+    }
+  ],
+  "third_year_proposal": {
+    "connected_families": 24000,
+    "active_families": 16000,
+    "available_households_if_unchanged": 100000,
+    "penetration_percent": 24.0,
+    "status": "PROPOSED_UNAPPROVED_ORIENTIR_NOT_FORECAST"
+  },
+  "formulas": [
+    "GP_RUB=279000000+500*M+O-D",
+    "M_required=(6000000+D-O)/500",
+    "opportunity=sum(cohort_families*2*(12-start_month)); no credit in entry month",
+    "required_weighted_gap=M_required/opportunity",
+    "stress: family increments and M multiplied by 1/2; D fixed",
+    "activation=first useful action within14days after group creation among all Q4-created groups, including unaccepted invites",
+    "active_share=active_last_month/connected_at_year_end"
+  ],
+  "units": "RUB; unique families/owners; additional paid NUMBER-months; percent/percentage points separately",
+  "rounding": "Exact Fraction arithmetic internally, JSON decimal outputs; reports round gap to2decimals; no statistical uncertainty implied",
+  "missing_and_error_rules": "Actual effect/cost/eligibility/curves remain UNKNOWN; fail on hash mismatch, invalid month, invalid capacity or inconsistent arithmetic; no invented statistical thresholds",
+  "assumption_ids": [
+    "H-001",
+    "H-002",
+    "H-003",
+    "H-004",
+    "H-005",
+    "H-006",
+    "H-007"
+  ]
+}

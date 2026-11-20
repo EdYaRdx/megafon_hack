@@ -1,0 +1,21 @@
+{
+  "command_argv": [
+    "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+    "-X",
+    "utf8",
+    "<WORKSPACE>\\tools\\case_protocol.py",
+    "check-candidate",
+    "<WORKSPACE>\\cases\\mobile-product-strategy-fdadbbcb",
+    "--revision",
+    "R0001"
+  ],
+  "cwd": "<WORKSPACE>",
+  "started_at_utc": "2026-11-19T22:43:49.927672+00:00",
+  "finished_at_utc": "2026-11-19T22:43:50.752682+00:00",
+  "runtime": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "consumer_sha256": "6d1e8cfd71ab0075028b788acad0aa6a1ad45741cf0e9f468dabcac7a78f2006",
+  "exit_code": 0,
+  "stdout": "{\"status\": \"VALIDATED_CANDIDATE\", \"revision_id\": \"R0001\", \"manifest_sha256\": \"7b97ae92c708880da11e53ba9c59089190bf53eed70a65d9d51c6d0f7d78cbf9\"}\n",
+  "stderr": "",
+  "export_notice": "REDACTED SOURCE HISTORY ONLY; not an export execution receipt or approval."
+}

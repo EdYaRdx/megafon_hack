@@ -9,13 +9,15 @@ This repository is a portable, file-first project for a coding assistant. Produc
 | `AGENTS.md`, `.agents/skills/` | Product workflow and six canonical procedures | Keep one canonical procedure per Skill; update routing and the matching documentation together. |
 | `references/` | Reusable evidence, metrics, and source-handling methods | Keep general methods here; case-specific evidence belongs in its case. |
 | `cases/_template/` | New-case file contract and revision/approval protocol | Treat protocol and schemas as versioned interfaces; never use the template as a working case. |
-| `cases/pantrypath-week4-20261115/` | Canonical readable synthetic demo; see `docs/pantrypath-demo.md`. | Preserve historical outputs and ledgers; `meal-planner-demo` is an earlier example, not the contest demo. |
+| `cases/mobile-product-strategy-demo/` | Основной prepared demo: обезличенный производный экспорт D0001→D0003; см. `docs/contest-demo.md`. | Не выдавать за оригинальные R0001–R0003 или новый live run; receipts/approvals источника не подтверждают производную копию. |
+| `cases/pantrypath-week4-20261115/` | Дополнительный синтетический demo; см. `docs/pantrypath-demo.md`. | Сохранять исторические outputs/ledgers; `meal-planner-demo` — более ранний пример. |
 | Other `cases/` | Named historical demonstrations and QA fixtures | Use `cases/README.md` to classify each; preserve historical outputs and ledgers. |
 | `docs/` | Product overview, Quick Start, architecture, development, evaluation, and contest gates | Current claims and acceptance states belong in their current source pages, not historical reports. |
 | `research/` | Historical research, qualification, audits, and rationale | Archive/navigation only; preserve reports as written and do not treat old plans as runtime requirements. |
 | `.omp/`, `START-OVERNIGHT-V3.txt`, `start-overnight-product-research-v3.cmd` | Historical research/development setup | Not part of product setup or runtime. Do not read or publish user-local profiles/secrets. |
 | `MGIMO_RESEARCH_TO_IMPLEMENTATION.md` | Historical implementation rationale | Retain as provenance; it is not the current onboarding or architecture source. |
 | `tools/functional_evaluator.py` | Offline bounded artifact evaluation; see [functional evaluator](functional-evaluator.md). | No agent execution or semantic auto-judgment; keep operator keys/reviews outside candidate workspaces. |
+| `tools/export_contest_demo.py` | Ограниченный stdlib-packager релиза, не runtime-функция агента. | Только проверенный исходный R0003 и точный inventory; новый пустой destination. Не менять оригинал/протокол, не переносить approvals. [Проверка и ограничения](release/contest-rc-verification.md). |
 
 For evaluator schemas, staging boundaries, deterministic report/review binding, and limits, see the [functional evaluator guide](functional-evaluator.md). Its synthetic checks are separate from product acceptance.
 

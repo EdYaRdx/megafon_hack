@@ -1,0 +1,13 @@
+{
+  "command_file": "inputs/brief-extracted/render-command.txt",
+  "shell": "Windows PowerShell",
+  "cwd": "<WORKSPACE>",
+  "session_id": 57791,
+  "exit_code": -1073741819,
+  "stdout": "PAGE 1: 38 lines\r\nPAGE 2: 2 lines\r\nPAGE 3: 65 lines\r\nPAGE 4: 41 lines\r\nPAGE 5: 42 lines\r\nPAGE 6: 41 lines\r\nPAGE 7: 56 lines\r\nPAGE 8: 38 lines\r\nPAGE 9: 43 lines\r\nPAGE 10: 61 lines\r\nPAGE 11: 59 lines\r\nOCR_LANG=ru\r\n",
+  "stderr": "No separate stderr exposed by host; abnormal process exit retained.",
+  "result": "Process FAILED; subsequent inventory verified 11 PNG and 11 TXT. Read all text; visually verified pages 1,3,9,11, including critical table and educational rate. Successful outputs do not turn exit code into PASS.",
+  "native_api": "Windows.Data.Pdf; Windows.Media.Ocr; ru",
+  "numeric_input_use": "PDF page 3 column order and 45 percent OCR correction verified visually; original PDF SHA-256 pinned by provenance and calculations.",
+  "export_notice": "REDACTED SOURCE HISTORY ONLY; not an export execution receipt or approval."
+}

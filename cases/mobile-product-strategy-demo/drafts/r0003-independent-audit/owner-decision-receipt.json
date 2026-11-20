@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "recorded_at_utc": "2026-11-20T00:06:31.232205+00:00",
+  "base_revision": "R0002",
+  "base_manifest_sha256": "824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3",
+  "source_sha256": "1cdccabe5552a3cb015f573d1f27ad30c5be3b0abb822eef6776e3086b313d02",
+  "draft_strategy_sha256": "c3cef91ba4a34ec9bf0185ca3bdf86cc80ba33c8c2fe8dbc1ba3e242a532c972",
+  "draft_strategy_unchanged": true,
+  "draft_state_sha256": "b0002769c7eddd1d8e193e62d20b04d6080eb1a4759ec22771ae3e0447b4ebaa",
+  "protected_files_unchanged": true,
+  "historical_ledger_prefixes": {
+    "sources.jsonl": {
+      "bytes": 11835,
+      "sha256": "cddd023d250436bf492c49fde162dec4c09b36c83db92a656fb79b1ffee13684"
+    },
+    "evidence.jsonl": {
+      "bytes": 16184,
+      "sha256": "42a980c92ba9a9b32f57194cc40d47aa14bee219ccc9e179825a5dab8b123659"
+    },
+    "claims.jsonl": {
+      "bytes": 11520,
+      "sha256": "1df715ced810aca3b35f5257e41b4c494264cd0d01b510e20aa5954bd268d25e"
+    },
+    "activity.jsonl": {
+      "bytes": 15235,
+      "sha256": "0bb18dd259ed7ee2de25dc2ce85530a293db2c4d7be8fdb4475e4342f9b3cad5"
+    }
+  },
+  "command_argv": [
+    "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/case_protocol.py",
+    "classify",
+    "cases/mobile-product-strategy-fdadbbcb"
+  ],
+  "cwd": "<WORKSPACE>",
+  "exit_code": 0,
+  "stdout": "CHECKPOINTED\n",
+  "stderr": "",
+  "R0003_published": false,
+  "execution_approval_created": false,
+  "cost_time_model": "UNKNOWN",
+  "export_notice": "REDACTED SOURCE HISTORY ONLY; not an export execution receipt or approval."
+}

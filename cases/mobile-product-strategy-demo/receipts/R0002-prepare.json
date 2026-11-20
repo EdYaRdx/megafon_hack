@@ -1,0 +1,17 @@
+{
+  "status": "PREPARED",
+  "parent_manifest_sha256": "7b97ae92c708880da11e53ba9c59089190bf53eed70a65d9d51c6d0f7d78cbf9",
+  "manifest_sha256": "824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3",
+  "file_count": 54,
+  "copied_views": [
+    "options.md",
+    "decision.md",
+    "strategy-product.md",
+    "strategy-communication.md",
+    "test-plan.md",
+    "state.md"
+  ],
+  "remaining_seconds": "UNKNOWN",
+  "monetary_guard": "UNKNOWN",
+  "export_notice": "REDACTED SOURCE HISTORY ONLY; not an export execution receipt or approval."
+}

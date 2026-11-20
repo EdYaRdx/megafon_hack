@@ -1,0 +1,61 @@
+{
+  "cwd": "<WORKSPACE>",
+  "runtime": "<USER_HOME>/AppData/Roaming/uv/python/cpython-3.12-windows-x86_64-none/python.exe",
+  "runtime_basis": "Previously verified installed executable in this same session; no blocked discovery repeated",
+  "calls": [
+    {
+      "argv": [
+        "-X",
+        "utf8",
+        "tools/case_workspace.py",
+        "existing",
+        "cases/mobile-product-strategy-fdadbbcb"
+      ],
+      "exit_code": 0,
+      "host_output": "{\"status\": \"EXISTS\", \"case_root\": \"cases/mobile-product-strategy-fdadbbcb\", \"absolute_case_root\": \"<WORKSPACE>\\cases\\mobile-product-strategy-fdadbbcb\"}",
+      "stderr_separate": "UNKNOWN: host exposes combined output"
+    },
+    {
+      "argv": [
+        "-X",
+        "utf8",
+        "tools/case_protocol.py",
+        "classify",
+        "cases/mobile-product-strategy-fdadbbcb"
+      ],
+      "exit_code": 0,
+      "host_output": "CHECKPOINTED\r\n",
+      "stderr_separate": "UNKNOWN: host exposes combined output"
+    },
+    {
+      "argv": [
+        "-X",
+        "utf8",
+        "-m",
+        "tools.resume_context",
+        "cases/mobile-product-strategy-fdadbbcb"
+      ],
+      "exit_code": 0,
+      "classification": "CHECKPOINTED",
+      "confirmed_revision": "R0001",
+      "manifest_sha256": "7b97ae92c708880da11e53ba9c59089190bf53eed70a65d9d51c6d0f7d78cbf9",
+      "unfinished": {
+        "discovery": "complete",
+        "drafts": [],
+        "hints": [
+          {
+            "path": "activity.jsonl",
+            "status": "unverified",
+            "reason": "changed or unpinned activity; not proof of a later draft",
+            "relationship_to_selected": "unknown"
+          }
+        ],
+        "issues": []
+      },
+      "stderr_separate": "UNKNOWN: host exposes combined output"
+    }
+  ],
+  "hint_review": "Read last activity rows ACT-027 and ACT-028; ACT-028 reports publication/classifier receipt of R0001, not a separate draft. No existing drafts discovered before this new comparison was created.",
+  "scope": "Restored selected six snapshots and listed decision dependencies; no update of ACTIVE, six root views, snapshots, manifests, source/evidence/claim ledgers or approvals. New draft is not selected.",
+  "export_notice": "REDACTED SOURCE HISTORY ONLY; not an export execution receipt or approval."
+}

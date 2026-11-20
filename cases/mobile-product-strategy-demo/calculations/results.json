@@ -1,0 +1,151 @@
+{
+  "purpose": "Учебные разрывы и условия достижимости; не прогноз эффекта и не реальные данные оператора",
+  "source": {
+    "pdf": "inputs/Пример брифа.pdf",
+    "pdf_sha256": "558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5",
+    "locators": [
+      "PDF стр. 3, таблица исходных показателей и доступные рынки",
+      "PDF стр. 9, ставка и граница решения"
+    ],
+    "derivative_hashes": {
+      "inputs\\brief-extracted\\page-03.txt": "6cc56e18eb5116a75f1ecc66c1fd918fac52c063eaebec075b58ba44ee10cce7",
+      "inputs\\brief-extracted\\page-09.txt": "24e8917955dadfe7b922b3a33613dc923d5d420c52c1c14be1c8dd94c72b78ca",
+      "inputs\\brief-extracted\\page-08.txt": "85c34a37810d0418d1fab56d551e8c1636bb3c55939c5a70ef4c8b8991c85b70"
+    },
+    "raw_table_cells": [
+      "282",
+      "5 000",
+      "7 500",
+      "1 000",
+      "50 %",
+      "275",
+      "4 000",
+      "6 500",
+      "800",
+      "42 %",
+      "279",
+      "5 000",
+      "8 000",
+      "1 000",
+      "45 9/0",
+      "285",
+      "8 000",
+      "12 000",
+      "2 000",
+      "60 %"
+    ],
+    "ocr_corrections": [
+      "45 9/0 interpreted as 45 %, visually verified on PDF page 3"
+    ]
+  },
+  "table": {
+    "base_plan": {
+      "gross_profit_million_rub": 282,
+      "active_groups_last_month": 5000,
+      "connected_groups_eoy": 7500,
+      "connected_owners_eoy": 1000,
+      "activation_14d_percent": 50
+    },
+    "base_estimate": {
+      "gross_profit_million_rub": 275,
+      "active_groups_last_month": 4000,
+      "connected_groups_eoy": 6500,
+      "connected_owners_eoy": 800,
+      "activation_14d_percent": 42
+    },
+    "plan_no_change": {
+      "gross_profit_million_rub": 279,
+      "active_groups_last_month": 5000,
+      "connected_groups_eoy": 8000,
+      "connected_owners_eoy": 1000,
+      "activation_14d_percent": 45
+    },
+    "plan_target": {
+      "gross_profit_million_rub": 285,
+      "active_groups_last_month": 8000,
+      "connected_groups_eoy": 12000,
+      "connected_owners_eoy": 2000,
+      "activation_14d_percent": 60
+    }
+  },
+  "base_shortfall": {
+    "gross_profit_million_rub": 7,
+    "active_groups_last_month": 1000,
+    "connected_groups_eoy": 1000,
+    "connected_owners_eoy": 200,
+    "activation_14d_percent": 8
+  },
+  "target_minus_no_change": {
+    "gross_profit_million_rub": 6,
+    "active_groups_last_month": 3000,
+    "connected_groups_eoy": 4000,
+    "connected_owners_eoy": 1000,
+    "activation_14d_percent": 15
+  },
+  "available_market": {
+    "households": 100000,
+    "owners": 40000
+  },
+  "family_net_additions": {
+    "no_change": 1500,
+    "target": 5500,
+    "increment_over_no_change": 4000
+  },
+  "owner_net_additions": {
+    "no_change": 200,
+    "target": 1200,
+    "increment_over_no_change": 1000
+  },
+  "penetration_percent": {
+    "families_no_change": 8.0,
+    "families_target": 12.0,
+    "owners_no_change": 2.5,
+    "owners_target": 5.0
+  },
+  "activity": {
+    "no_change_share": 0.625,
+    "target_share": 0.6666666666666666,
+    "difference_percentage_points": 4.1666666666666625,
+    "growth_due_to_connections_at_unchanged_share": 2500.0,
+    "remaining_active_groups_due_to_share_change": 500.0
+  },
+  "profit_boundary": {
+    "gap_rub": 6000000,
+    "rub_per_extra_paid_number_month": 500,
+    "extra_paid_number_months_if_other_contribution_and_new_direct_cost_zero": 12000.0,
+    "formula": "M_required = max(0, (6_000_000 + new_direct_cost_RUB - other_incremental_gross_contribution_RUB) / 500)",
+    "unit": "additional paid number-months within plan year; never household-months",
+    "sensitivity_grid_not_a_forecast": [
+      {
+        "hypothetical_new_direct_cost_rub": 0,
+        "other_contribution_rub": 0,
+        "required_extra_paid_number_months": 12000.0
+      },
+      {
+        "hypothetical_new_direct_cost_rub": 1000000,
+        "other_contribution_rub": 0,
+        "required_extra_paid_number_months": 14000.0
+      },
+      {
+        "hypothetical_new_direct_cost_rub": 3000000,
+        "other_contribution_rub": 0,
+        "required_extra_paid_number_months": 18000.0
+      }
+    ]
+  },
+  "rules": {
+    "rounding": "full float precision in JSON; percentage displays may round to 2 decimals; integer requirements round upward if operationally indivisible",
+    "missing": "unknown effect, costs, take-up, retention, recruitment and statistical parameters are not replaced with numbers",
+    "failures": "mismatched PDF hash, ambiguous extraction or wrong cell count raises and returns nonzero"
+  },
+  "formulas": [
+    "shortfall = base_plan - base_estimate",
+    "target_gap = plan_target - plan_no_change",
+    "connected_end = connected_start + new_connected - exited",
+    "active_share = active_groups_last_month / connected_groups_eoy",
+    "penetration = connected_eoy / available_unique_market",
+    "gross_profit = 279_000_000 + 500 * sum(number_paid_treatment_minus_counterfactual_by_month) + other_incremental_contribution - new_direct_cost",
+    "investment_ceiling_at_T = cumulative_incremental_profit_after_direct_cost_through_T; development is separate",
+    "paid_months = sum_cohort sum_month(exposed_numbers_in_cohort * (P_paid_new - P_paid_usual)); truncate at year end"
+  ]
+}
