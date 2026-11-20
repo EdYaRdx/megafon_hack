@@ -1,0 +1,181 @@
+{
+  "status": "ARITHMETIC_REVIEW_NOT_CUSTOMER_OBSERVATIONS",
+  "pinned_inputs_sha256": {
+    "inputs/R0002-scenario.json": "7fe5197b2dc67425bf70ac234e690c1d51ed45886c1e5d06e65feaa811f0ae80",
+    "calculations/results.json": "1b89ee79e5bb1610ab8792e67b3bec093555dd3ac73cbfedcbe1606cd0367221",
+    "calculations/R0002/results.json": "99dd19cf32d85014b342f8f79060cfcdfd3bfbbc15fd1b0c5e51b79119313fc1",
+    "calculations/R0002/calculate.py": "80bd387028ee8df81c8d7ddf119ca5aad8d99934beb47c2847ef0b698dd11714",
+    "inputs/Пример брифа.pdf": "558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5"
+  },
+  "cohorts": [
+    {
+      "start_month": 6,
+      "families": 2000,
+      "numbers": 4000,
+      "counted_months": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "opportunity_number_months": 24000
+    },
+    {
+      "start_month": 7,
+      "families": 4000,
+      "numbers": 8000,
+      "counted_months": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "opportunity_number_months": 40000
+    },
+    {
+      "start_month": 10,
+      "families": 6000,
+      "numbers": 12000,
+      "counted_months": [
+        11,
+        12
+      ],
+      "opportunity_number_months": 24000
+    }
+  ],
+  "monthly_opportunity_number_months": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 4000,
+    "8": 12000,
+    "9": 12000,
+    "10": 12000,
+    "11": 24000,
+    "12": 24000
+  },
+  "quarter_opportunity_number_months": [
+    0,
+    0,
+    28000,
+    60000
+  ],
+  "capacity_number_months": 88000,
+  "required_extra_paid_number_months": 14000.0,
+  "required_weighted_gap_fraction": "7/44",
+  "required_weighted_gap_percentage_points": 15.909090909090908,
+  "maximum_weighted_usual_paid_probability_fraction": "37/44",
+  "maximum_weighted_usual_paid_probability_percent": 84.0909090909091,
+  "capacity_constraint": "M <= sum_ct N_c*(1-p_usual_ct) = C*(1-pbar_usual); pbar weights N_c over exactly counted cohort-month cells",
+  "interpretation": "Necessary condition only. C=88000 and D=1000000 are hypothetical. At equality p_A must reach1 in all positive-weight cells to attain M. Preventability, eligibility, timing, uptake and causal effect remain UNKNOWN. Uniform cell gap additionally requires p_usual_ct <=1-gap in every affected cell.",
+  "timing_profiles_not_forecasts": {
+    "implicit_uniform_gap_in_R0002": {
+      "extra_paid_number_months_by_quarter": [
+        0.0,
+        0.0,
+        4454.545454545455,
+        9545.454545454546
+      ],
+      "gross_rub_before_D_by_quarter": [
+        0.0,
+        0.0,
+        2227272.727272727,
+        4772727.2727272725
+      ],
+      "annual_extra_paid_number_months": 14000.0
+    },
+    "earliest_capacity_only_witness": {
+      "extra_paid_number_months_by_quarter": [
+        0.0,
+        0.0,
+        14000.0,
+        0.0
+      ],
+      "gross_rub_before_D_by_quarter": [
+        0.0,
+        0.0,
+        7000000.0,
+        0.0
+      ],
+      "annual_extra_paid_number_months": 14000.0
+    },
+    "latest_capacity_only_witness": {
+      "extra_paid_number_months_by_quarter": [
+        0.0,
+        0.0,
+        0.0,
+        14000.0
+      ],
+      "gross_rub_before_D_by_quarter": [
+        0.0,
+        0.0,
+        0.0,
+        7000000.0
+      ],
+      "annual_extra_paid_number_months": 14000.0
+    }
+  },
+  "timing_limitations": "Witnesses only satisfy absolute capacity and annual sum; actual baseline curves, causal/persistence constraints and D/I timing are UNKNOWN. No witness is selected as expected or practically feasible.",
+  "quarterly_actual_or_expected_profit": "UNKNOWN; requires cell-specific effect timing and O/D/I schedules, and source annual baseline has no quarterly split",
+  "kpi_reclassification": [
+    {
+      "metric": "gross_profit_million_rub",
+      "source_no_change": 279,
+      "source_target": 285,
+      "independent_A_forecast": "UNKNOWN",
+      "source_target_gap": 6,
+      "R0002_goal_seeking_value": 285.0
+    },
+    {
+      "metric": "active_groups_last_month",
+      "source_no_change": 5000,
+      "source_target": 8000,
+      "independent_A_forecast": "UNKNOWN",
+      "source_target_gap": 3000,
+      "R0002_goal_seeking_value": 8000.0
+    },
+    {
+      "metric": "connected_groups_eoy",
+      "source_no_change": 8000,
+      "source_target": 12000,
+      "independent_A_forecast": "UNKNOWN",
+      "source_target_gap": 4000,
+      "R0002_goal_seeking_value": 12000.0
+    },
+    {
+      "metric": "connected_owners_eoy",
+      "source_no_change": 1000,
+      "source_target": 2000,
+      "independent_A_forecast": "UNKNOWN",
+      "source_target_gap": 1000,
+      "R0002_goal_seeking_value": 1000.0
+    },
+    {
+      "metric": "activation_14d_percent",
+      "source_no_change": 45,
+      "source_target": 60,
+      "independent_A_forecast": "UNKNOWN",
+      "source_target_gap": 15,
+      "R0002_goal_seeking_value": 60.0
+    }
+  ],
+  "owner_gap": 1000,
+  "year3_path": "UNKNOWN; C_y=C_(y-1)+new_y-exits_y; active_y=C_y*active_share_y. No identified new/exits/share/cost path supports doubling.",
+  "formulas": [
+    "M_required=max(0,(target_GP-usual_GP+D-O)/rate)",
+    "C=sum(families*eligible_numbers*(12-start_month))",
+    "pbar_usual=sum(N_c*p_usual_ct)/C",
+    "pbar_usual<=1-M_required/C",
+    "M_q=sum_(ct in q) N_c*(p_A_ct-p_usual_ct)",
+    "delta_GP_q=rate*M_q+O_q-D_q; compare cumulative delta_GP with cumulative I"
+  ],
+  "units": "RUB; additional paid NUMBER-months; probability, percent and percentage points separately; KPI counts unique families/owners",
+  "rounding": "Exact Fraction internally; display percent to2decimals; 84.09 is rounded, strict comparison uses37/44",
+  "missing_error_rules": "Fail on pinned hash mismatch, invalid capacity, inconsistent reconstruction. Never replace unknown payment curves, effort, rates, harm thresholds or effect with numeric defaults."
+}

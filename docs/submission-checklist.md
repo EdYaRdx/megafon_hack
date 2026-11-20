@@ -1,9 +1,26 @@
 # Конкурсная подача — checklist и текущие gates
 
-Это checklist незавершённых действий, не заявление о приёмке или подаче. Рабочий конкурсный scope взят из [предоставленного contest brief](contest-brief.md); точное происхождение/актуальность относительно кабинета организатора не установлены.
-Таблица сочетает текущие CI/F1/H1 сведения с явно сохранёнными historical dynamic acceptance gates 2026-11-14. Датированный [contest-v1 integration report](release/contest-v1-integration.md) не заменяет [текущий статус](implementation-status.md) и [handoff](current-session-handoff.md). Unit/CI PASS не закрывает product/host/contest acceptance.
+Это checklist release candidate 20.11.2026, **не заявление о приёмке или подаче**. Основной prepared walkthrough — [мобильный кейс](contest-demo.md); PantryPath остаётся дополнительным. Официальность user-supplied PDF не установлена. [Открытая страница конкурса](https://challenge.mgimo.ai/), FAQ05, указывает на задания в личном кабинете; публичный дедлайн — 22.11.2026 23:59 МСК. В кабинет в рамках подготовки не заходили.
 
-## Текущие gates
+## Текущие release gates
+
+| Пункт | Статус RC | Что требуется |
+|---|---|---|
+| Основание сборки | Ветка `release/mgimo-contest-rc-20261120` от `origin/main` `7c55792db7f5153e9f8e56e7f346200532baa400`; это provenance, не результат проверки | Фактический scope и результат интеграционной проверки фиксируются в [contest RC verification](release/contest-rc-verification.md); до записи результата PASS не заявлять |
+| Мобильный walkthrough | R0001 исследование → R0002 выбор PO → R0003 аудит; исходный R0003 receipt содержит CHECKPOINTED | Не выдавать исходный receipt за новый release/host acceptance; проверить фактический пакет после интеграции |
+| Публикация оригинального CASE | **BLOCKED — owner publication=hold**: личные пути в неизменяемой истории | Оригинал остаётся локально вне release-worktree, не входит в PR/clone; подготовлен отдельный derivative ниже. R0001–R0003 не редактировать |
+| Публичный derivative CASE | Создан [`cases/mobile-product-strategy-demo`](../cases/mobile-product-strategy-demo/), независимая D0001–D0003, выбран D0003 от R0003 | [EXPORT](../cases/mobile-product-strategy-demo/EXPORT.md)/[export-map](../cases/mobile-product-strategy-demo/export-map.json) отделяют его от оригинала; фактический PASS — только по release verification, не исходным receipts |
+| Официальный PDF | **UNKNOWN**; публичная страница не подтверждает происхождение примера | Уполномоченный капитан отдельно сверяет актуальное задание и допустимость распространения; не входить в кабинет автоматически |
+| Описание решения | [Markdown для жюри](submission-description.md) подготовлен | PDF/скриншоты ещё не подтверждены; выполнить экспорт/просмотр отдельно, если требуются актуальным brief |
+| Видео ≤10 минут | [Сценарий мобильного кейса](demo-video-script.md) подготовлен, запись **NOT CONFIRMED** | Записать/просмотреть, убрать личные пути и секреты; prepared walkthrough не называть live-run |
+| Модели, инструменты, время, стоимость | [Demo evidence](release/demo-evidence.md) — отдельный источник | Называть только наблюдённые данные; отсутствующие call/time/cost telemetry — UNKNOWN |
+| Human/product/host acceptance | Не закрываются Markdown, classifier или unit/CI | Отдельно зафиксировать фактическую приёмку и сохраняемые ограничения; прошлые результаты не переносить автоматически |
+| Доступ жюри, visibility, LICENSE | Проверено: **PRIVATE**, `licenseInfo: null`; доступ жюри NOT VERIFIED. Старые Git-коммиты содержат персональный путь | Не делать текущий репозиторий публичным. После решения о правах — snapshot-архив без `.git` или новый history-free репозиторий; новая лицензия/очистка истории требуют решения владельца |
+| Фактическая подача | **NOT CONFIRMED** | Отдельное подтверждение капитана; readiness не является submission |
+
+## Сохранённые historical gates — не текущий acceptance
+
+Ниже сохранены прежние CI/F1/H1 сведения и dynamic acceptance gates, включая провалы. Они не переоценивались в этой документационной правке. Датированный [contest-v1 report](release/contest-v1-integration.md), [implementation status](implementation-status.md), [handoff](current-session-handoff.md) и [evaluation](evaluation.md) сохраняют свой scope; их результаты нельзя переносить на RC.
 
 | Пункт | Статус | Следующее подтверждение |
 |---|---|---|
@@ -23,14 +40,14 @@
 ## Перед подачей
 
 - [ ] Сверить официальный MegaFon brief, версию и сроки с уполномоченным аккаунтом; не использовать закрытые материалы без разрешения.
-- [ ] Выбрать synthetic/public-data demo, пометить все synthetic элементы и хранить inputs/outputs раздельно.
+- [ ] Сохранить выбранный hold: не включать полный mobile CASE в PR, не раскрывать имя профиля и не менять историю. Проверить безопасный readable walkthrough; full-case reproducibility для clone/жюри не заявлять. PantryPath — дополнительный.
 - [ ] Провести требуемую приёмку на конкретном host и сохранить redacted evidence; отдельно назвать unobserved/blocked проверки.
 - [ ] Исправить harness/checker defects до принятия targeted F1–F5 результатов; не объявлять эти результаты PASS задним числом.
 - [ ] Закрыть H02 и получить latest independent Sol sign-off; статический historical preprod verdict не равен динамической приёмке.
 - [ ] Проверить продуктовую рекомендацию, locators, denominators, три разных варианта, связанные стратегии и test plan.
 - [ ] Записать и посмотреть видео (лимит по предоставленному brief — до 10 минут); не выдавать подготовленные repository outputs за live-generated.
-- [ ] Подготовить полный документ/screenshots, host/model/tool list и фактическое время/затраты либо `UNKNOWN`; указать помощь человека и ошибки.
+- [ ] Проверить [описание для жюри](submission-description.md), подготовить требуемый PDF/screenshots отдельно; сверить [host/model/tools и затраты](release/demo-evidence.md), неизвестное оставить UNKNOWN; указать помощь человека и ошибки.
 - [ ] Убедиться в jury access к репозиторию/материалам и проверить privacy/secret exposure отдельно. Локальный pattern scan не достаточен.
 - [ ] Получить human acceptance и подтверждение фактической captain submission; это отдельные статусы.
 
-Подробные доказательства и статус формулируются в [evaluation](evaluation.md) и [implementation status](implementation-status.md).
+Текущий результат RC фиксируется только в [release verification](release/contest-rc-verification.md). Исторические доказательства остаются в [evaluation](evaluation.md) и [implementation status](implementation-status.md). Ни этот checklist, ни старый план не означают закрытие gates.

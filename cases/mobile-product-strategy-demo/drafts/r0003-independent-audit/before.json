@@ -1,0 +1,57 @@
+{
+  "captured_at_utc": "2026-11-19T23:53:45.307963+00:00",
+  "case": "<WORKSPACE>\\cases\\mobile-product-strategy-fdadbbcb",
+  "base_revision": "R0002",
+  "base_manifest_sha256": "824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3",
+  "protected": {
+    "revisions/R0001/decision.md": "99b357aafa0dabc8b6ef062a71d426ef22a543935249cb4b6bc1645adae69475",
+    "revisions/R0001/manifest.json": "7b97ae92c708880da11e53ba9c59089190bf53eed70a65d9d51c6d0f7d78cbf9",
+    "revisions/R0001/options.md": "e89156b2d025b93a2220626d228977c4d51525aa38d3acfbb64d330cc42ef5e5",
+    "revisions/R0001/state.md": "992e0c37d79600df42291fabe707c2af0b4c72527b5a100b7d8e5da5c4fdb7e1",
+    "revisions/R0001/strategy-communication.md": "0ab1c60cc3d698485803500e43d1a52ebb65d098067e33b21cf22c0b00cf9c01",
+    "revisions/R0001/strategy-product.md": "ccece455d74ad193566ba38e0944fddb4c9dc7879420f3beb7e17525da65bbe5",
+    "revisions/R0001/test-plan.md": "ac4ec079dbb5c795f5ad0eaa9df185478610b2555d6916fe88725d4c6a07c25a",
+    "revisions/R0002/decision.md": "6325b4f73ac5baf177b1fcf17d241c4526f48b2c84bc9515547a356aee801ad9",
+    "revisions/R0002/manifest.json": "824eb11ef01cdb64792f8ebc5d5262b6b37e143bbc9582f5b49466c96c5df3c3",
+    "revisions/R0002/options.md": "1490a087e6b5b07b9f730b21bb49d1a779b0ffc2e69cd852bcd622f54a9e15a9",
+    "revisions/R0002/state.md": "625ff7c50087a62ae3b807cf9c300c3944ecac22f73e44ea18784f33fa42f24c",
+    "revisions/R0002/strategy-communication.md": "4fa30c152d3497b7352360137649a1592eca39e9823c356bdf9b35f266c207d5",
+    "revisions/R0002/strategy-product.md": "4c6c161f7d37e3560d50bbd4b321f0c4b1baf7197d07d9eb8101363b46bdf0e4",
+    "revisions/R0002/test-plan.md": "3a2b6d2e879cbfd4fcbb7f4dbf54926feeb2ff2f7ebd72b8efdf5ed591d23339",
+    "revisions/R0001/dependencies/brief.md": "ee0e64d39c389ce261504652c0b1f0f7ad4f0fdf202c86170478d570f1905332",
+    "revisions/R0001/dependencies/strategy.md": "15f6c28f287128c661343c85b95933b34f9b10e4663887af34d9afab684676ca",
+    "revisions/R0002/dependencies/brief.md": "fc5fb1fcc666a0578cd0f769f3271cacfc1fb67077cf386e535937038802d6ca",
+    "revisions/R0002/dependencies/strategy.md": "54401c4dad432ada2bad1c227482748c66d5bdc30f2cd51c5f1ee9933f1029c4",
+    "ACTIVE.json": "ac3089dce6f6184a4975c3270de01d38c7bfe3466a659478ded51e4f07df67a4",
+    "case-protocol.json": "a9f241e2e2258496bebef088c4df6e716929bf56184d4c675ff1a67962da2999",
+    "options.md": "1490a087e6b5b07b9f730b21bb49d1a779b0ffc2e69cd852bcd622f54a9e15a9",
+    "decision.md": "6325b4f73ac5baf177b1fcf17d241c4526f48b2c84bc9515547a356aee801ad9",
+    "strategy-product.md": "4c6c161f7d37e3560d50bbd4b321f0c4b1baf7197d07d9eb8101363b46bdf0e4",
+    "strategy-communication.md": "4fa30c152d3497b7352360137649a1592eca39e9823c356bdf9b35f266c207d5",
+    "test-plan.md": "3a2b6d2e879cbfd4fcbb7f4dbf54926feeb2ff2f7ebd72b8efdf5ed591d23339",
+    "state.md": "625ff7c50087a62ae3b807cf9c300c3944ecac22f73e44ea18784f33fa42f24c",
+    "strategy.md": "54401c4dad432ada2bad1c227482748c66d5bdc30f2cd51c5f1ee9933f1029c4",
+    "brief.md": "fc5fb1fcc666a0578cd0f769f3271cacfc1fb67077cf386e535937038802d6ca",
+    "approvals.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "append_only_prefixes": {
+    "sources.jsonl": {
+      "bytes": 9694,
+      "sha256": "c1ce3e41bb2c606defdb4d9a7c6868e8ca1b1e9f88a1e2ff29b52f4e785f2d9f"
+    },
+    "evidence.jsonl": {
+      "bytes": 12418,
+      "sha256": "4025831dfc145ff2ef84b4908ee4f502b667bee9446dc2b3b85c9ef2bff353d1"
+    },
+    "claims.jsonl": {
+      "bytes": 8110,
+      "sha256": "8258ab7898562fe7ed7a49a004119a357ccbdfa503d08d100c87be8cbfc56c2f"
+    },
+    "activity.jsonl": {
+      "bytes": 12208,
+      "sha256": "ed2ecadb5452d09ce79656fc57609cc793e03b74fe311e9a6301f1d3ecfac698"
+    }
+  },
+  "model_cost_remaining_seconds": "UNKNOWN",
+  "time_or_spend_limit": "Not specified"
+}

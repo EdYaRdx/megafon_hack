@@ -1,0 +1,27 @@
+{
+ "id":"S-010",
+ "kind":"HYPOTHETICAL_GOAL_SEEKING_SCENARIO_NOT_EMPIRICAL_FORECAST",
+ "purpose":"Requested conditional year forecast and feasibility boundary; all unknown actual effects/costs remain UNKNOWN.",
+ "base_calculation_path":"calculations/results.json",
+ "base_calculation_sha256":"1b89ee79e5bb1610ab8792e67b3bec093555dd3ac73cbfedcbe1606cd0367221",
+ "pdf_sha256":"558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5",
+ "assumptions":[
+  {"id":"H-001","status":"HYPOTHESIS","meaning":"Conditional family outcome uses the original target for connected, active and 14-day activation; this is a reverse-calculated target scenario, not an independently estimated take-up forecast.","verification":"Validate eligible population, linked funnel, incremental connections/exits and mature activity/activation before operational forecast."},
+  {"id":"H-002","status":"HYPOTHESIS","meaning":"Illustrative deployment cohorts: 2000 different families from June, 4000 additional from July, 6000 additional from October. Total 12000 equals conditional year-end family target. All are assumed eligible and still observable; real eligibility and calendar UNKNOWN. Counts are not pilot sample sizes or authorized rollout.","verification":"Owner-approved eligibility, flow, tariff and delivery schedule; if fewer eligible families, recalculate."},
+  {"id":"H-003","status":"HYPOTHESIS","meaning":"Two eligible numbers per family for arithmetic, not observed average. No extra paid month credited in first month of availability. Subsequent months only through December; number remains tracked after leaving group.","verification":"Finance-approved paid-month contract and eligible number counts, group-size stratification, no double counting."},
+  {"id":"H-004","status":"HYPOTHESIS","meaning":"New annual direct cost 1000000 RUB is a sensitivity point already used in R0001, not a cost estimate, approved budget or spend. Other incremental contribution O=0 to avoid unproven savings/subscription income.","verification":"Get quantity-price-period service cost estimate; replace sensitivity point before budget decision."},
+  {"id":"H-005","status":"HYPOTHESIS","meaning":"Required incremental paid-month gap is solved from GP target, not assumed proven; weighted average probability difference must be feasible against counterfactual paid curves, which are UNKNOWN.","verification":"Controlled paid-month follow-up; check maximum recoverable months from usual-service curve."},
+  {"id":"H-006","status":"HYPOTHESIS","meaning":"Less favourable scenario halves conditional increments in family KPI and paid-month opportunity effect, while direct cost is fixed. This is a stress convention, not probability/quantile/confidence interval; owners remain at no-change forecast.","verification":"Replace with evidence-based uncertainty after study and cost estimate."},
+  {"id":"H-007","status":"HYPOTHESIS","meaning":"Third-year proposal doubles first-year target for connected/active families at unchanged available base; not approved target or demand forecast. Requires proven benefit, sustainable net contribution and separate yearly financing.","verification":"Owner decides after year-one demand/cost/retention; revise if eligibility/available base changes."}
+ ],
+ "eligible_numbers_per_family":2,
+ "cohorts":[{"start_month":6,"families":2000},{"start_month":7,"families":4000},{"start_month":10,"families":6000}],
+ "new_direct_cost_rub_sensitivity":1000000,
+ "other_incremental_contribution_rub":0,
+ "stress_increment_multiplier":"1/2",
+ "year3_target_multiplier":2,
+ "actual_effect":"UNKNOWN",
+ "actual_cost":"UNKNOWN",
+ "actual_cohorts":"UNKNOWN",
+ "development_cost":"UNKNOWN"
+}

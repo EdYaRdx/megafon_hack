@@ -1,0 +1,18 @@
+{
+  "status": "PREPARED",
+  "revision_id": "R0001",
+  "manifest_sha256": "7b97ae92c708880da11e53ba9c59089190bf53eed70a65d9d51c6d0f7d78cbf9",
+  "files": 45,
+  "copied_views": [
+    "options.md",
+    "decision.md",
+    "strategy-product.md",
+    "strategy-communication.md",
+    "test-plan.md",
+    "state.md"
+  ],
+  "remaining_seconds": "UNKNOWN",
+  "monetary_guard": "UNKNOWN",
+  "source_limit": "No overall time or money limit supplied",
+  "export_notice": "REDACTED SOURCE HISTORY ONLY; not an export execution receipt or approval."
+}

@@ -15,7 +15,7 @@
 
 ## Что уже есть
 
-- [README](../README.md), [Quick Start](quickstart.md), [архитектура](architecture.md) и [PantryPath guide](pantrypath-demo.md) объясняют текущую файловую сборку и показывают сохранённый синтетический пример.
+- [README](../README.md), [Quick Start](quickstart.md), [архитектура](architecture.md), [мобильный кейс](contest-demo.md) и [описание для жюри](submission-description.md) подготовлены. Публикуется только производный обезличенный D0001–D0003 с отдельной цепочкой хэшей, не исходная R0001–R0003. [PantryPath guide](pantrypath-demo.md) — дополнительный синтетический пример.
 - [Сценарий видео](demo-video-script.md) — подготовительный план; запись и запуск для видео не подтверждены.
 - [Checklist подачи](submission-checklist.md) сохраняет открытые конкурсные и acceptance gates.
 
