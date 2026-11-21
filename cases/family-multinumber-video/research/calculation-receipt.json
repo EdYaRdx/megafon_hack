@@ -1,0 +1,15 @@
+{
+  "command": [
+    "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "cases/family-multinumber-video/calculations/run.py"
+  ],
+  "cwd": "<WORKSPACE>",
+  "executed_at": "2026-11-21T15:02:26.362118+00:00",
+  "exit_code": 0,
+  "stdout": "{\n  \"kind\": \"conditional bounds; NOT demand/effect forecasts\",\n  \"python\": \"3.12.14\",\n  \"pdf_sha256\": \"558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5\",\n  \"inputs\": [\n    {\n      \"path\": \"inputs\\\\brief.pdf\",\n      \"sha256\": \"558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5\"\n    },\n    {\n      \"path\": \"sources\\\\S-001-ocr\\\\page-03.txt\",\n      \"sha256\": \"95c7e7fc2f2b4dc969f9ab052566d1a2fd3b5701f2ee9a72d12da1b0c727d667\"\n    },\n    {\n      \"path\": \"sources\\\\S-001-ocr\\\\page-09.txt\",\n      \"sha256\": \"f18782ad9f6a5753a9f6f34ed497b0980a9ac8e7a2fdb1171997668ba5aec018\"\n    }\n  ],\n  \"source_locators\": {\n    \"baseline_target_estimate\": \"S-001 PDF p3 table, OCR page-03; visually checked\",\n    \"rate\": \"S-001 PDF p9 retention paragraph\"\n  },\n  \"baseline\": {\n    \"gross_profit_mrub\": 279,\n    \"active_families\": 5000,\n    \"connected_families\": 8000,\n    \"connected_owners\": 1000,\n    \"activation14_pct\": 45\n  },\n  \"target\": {\n    \"gross_profit_mrub\": 285,\n    \"active_families\": 8000,\n    \"connected_families\": 12000,\n    \"connected_owners\": 2000,\n    \"activation14_pct\": 60\n  },\n  \"gross_profit_gap_rub\": 6000000,\n  \"additional_paid_number_months_zero_new_direct_costs_and_other_contribution\": 12000,\n  \"profit_rate_rub_per_additional_paid_number_month\": 500,\n  \"family_additional_vs_baseline\": 4000,\n  \"family_net_additions_vs_start\": 5500,\n  \"owner_additional_vs_baseline\": 1000,\n  \"owner_net_additions_vs_start\": 1200,\n  \"active_additional_vs_baseline\": 3000,\n  \"baseline_active_share\": 0.625,\n  \"target_active_share\": 0.6666666666666666,\n  \"target14_vs_baseline_pp\": 15,\n  \"family_target_share_of_available_base\": 0.12,\n  \"owner_target_share_of_available_base\": 0.05,\n  \"family_active_at_target_connections_if_share_unchanged\": 7500.0,\n  \"active_gap_remaining_if_share_unchanged\": 500.0,\n  \"month_ceiling_if_entitled_start_Q2_per_number\": 9,\n  \"month_ceiling_if_entitled_start_Q3_per_number\": 6,\n  \"month_ceiling_if_entitled_start_Q4_per_number\": 3,\n  \"formula\": \"GP=279000000+500*M+O-C; M_required=max(0,(6000000+C-O)/500); investment I separate; payback when cumulative(500*M_q+O_q-C_q)>=I_cumulative\",\n  \"missing_rules\": \"missing, mismatched OCR or hash => stop; no imputation; no people-to-number conversion\",\n  \"rounding\": \"exact integer differences; shares full precision, display to 2 decimals; actual count requirement ceil when noninteger\"\n}\n",
+  "stderr": "",
+  "export_notice": "DERIVATIVE HISTORY ONLY: transformed source receipt, not a new execution or PASS on derivative bytes. Source hashes/times/results refer to original R0001-R0003; resolve through export-map.json. No execution approval transfers."
+}

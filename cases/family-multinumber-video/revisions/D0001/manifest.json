@@ -1,0 +1,203 @@
+{
+  "revision_id": "D0001",
+  "parent_revision_id": null,
+  "status": "COMPLETE",
+  "active_claim_ids": [
+    "C-001",
+    "C-002",
+    "C-003",
+    "C-004",
+    "C-005",
+    "C-006",
+    "C-007",
+    "C-008",
+    "C-009",
+    "C-010",
+    "C-011",
+    "C-012",
+    "C-013",
+    "C-014"
+  ],
+  "files": [
+    {
+      "path": "activity.jsonl",
+      "sha256": "9cbc5eb916ce109037f12a2e1008cdb0aab43bfb92d4f18ea4c81e116d052477"
+    },
+    {
+      "path": "approvals.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "calculations/results.json",
+      "sha256": "af4cacd115a24fe34c1099d1a20e2de6ff4414fe41384aa3afa7f5a9675bdda2"
+    },
+    {
+      "path": "calculations/run.py",
+      "sha256": "15e7a1811ca76884c580d39353b79c2e3f653c17ee55d86bbf0d2cad9b082c05"
+    },
+    {
+      "path": "claims.jsonl",
+      "sha256": "ac3c9543a553e5bed9e9b91c0439c6a4b6ad2b845190f9c17f2d44b8273cfc71"
+    },
+    {
+      "path": "evidence.jsonl",
+      "sha256": "6ba1945452bbf465b714f1ee375b772be7fc4ffef3601b866d9b2e487bb71e33"
+    },
+    {
+      "path": "inputs/brief.pdf",
+      "sha256": "558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5"
+    },
+    {
+      "path": "inputs/user-scope.md",
+      "sha256": "15261261bfdd5370ceebc2036146ee027cb30bbc41871e762acf7f1742e0658d"
+    },
+    {
+      "path": "research/calculation-receipt.json",
+      "sha256": "37e849b26fda8410ef0e9866b07d8c25dff83abc05feec40b14d9ae26070d16f"
+    },
+    {
+      "path": "research/checkpoint.py",
+      "sha256": "83811563399611ffb7e5bd6a19eea173eb1ea74abd7a7b6d67d7d9c7c1d0ec22"
+    },
+    {
+      "path": "research/record.py",
+      "sha256": "03b1b5b93a7e36c30e082c18e52990bb35d13ed9b909fe29389304cee73e83aa"
+    },
+    {
+      "path": "revisions/D0001/decision.md",
+      "sha256": "47242ceaffc9f78d35033e2b0e0fe3a5d5a5c877f6a0a834d1bbc2ee0181b51f"
+    },
+    {
+      "path": "revisions/D0001/options.md",
+      "sha256": "b611ffe1a5ddc7d626afafcf83552edc0264ae37bfc1539a531a3e3d7b351949"
+    },
+    {
+      "path": "revisions/D0001/state.md",
+      "sha256": "29d4db1d097bc23890fb520a7c4ff72fa56e64ff814e7df155f6756b5a120c24"
+    },
+    {
+      "path": "revisions/D0001/strategy-communication.md",
+      "sha256": "75dd862d42e99baf3274c03a54de3243a5542108343d65a07c15cf0ac407dd60"
+    },
+    {
+      "path": "revisions/D0001/strategy-product.md",
+      "sha256": "1aad20cf8a68bed86774450e16926c61d3325d191f333f9cbe2c5c0d5e44ef15"
+    },
+    {
+      "path": "revisions/D0001/strategy.md",
+      "sha256": "1aad20cf8a68bed86774450e16926c61d3325d191f333f9cbe2c5c0d5e44ef15"
+    },
+    {
+      "path": "revisions/D0001/test-plan.md",
+      "sha256": "56646a37cab36e5ee453391aeb653490bd783837d5f8e09e590d0f328daba361"
+    },
+    {
+      "path": "sources/S-001-ocr/page-01.txt",
+      "sha256": "de70a2dda3bf1e1432d6d42a0b7d6faacadbdec30915ed221881ff74d0d197f2"
+    },
+    {
+      "path": "sources/S-001-ocr/page-02.txt",
+      "sha256": "00021d550cb93088fc47e26ae6097c7cd3963a45ee0561d20e74ea0992e61d9d"
+    },
+    {
+      "path": "sources/S-001-ocr/page-03.txt",
+      "sha256": "95c7e7fc2f2b4dc969f9ab052566d1a2fd3b5701f2ee9a72d12da1b0c727d667"
+    },
+    {
+      "path": "sources/S-001-ocr/page-04.txt",
+      "sha256": "1d0489121b8b79f24f469f8c1f0d4dad7925dcec76199706fa77a3b43b4fd22c"
+    },
+    {
+      "path": "sources/S-001-ocr/page-05.txt",
+      "sha256": "f17849d08dab9e63b280d2e4059a37996b776f335b46b7c846168cb547a6936a"
+    },
+    {
+      "path": "sources/S-001-ocr/page-06.txt",
+      "sha256": "11ee7685606fba63aa53e26e70bdda8235e168e6f16236a1225a8becf671cb61"
+    },
+    {
+      "path": "sources/S-001-ocr/page-07.txt",
+      "sha256": "d35403fe9565700372b6ab19f1ed863a0f96907126a25c8cefb521674575624a"
+    },
+    {
+      "path": "sources/S-001-ocr/page-08.txt",
+      "sha256": "77e261ccfdf225f965010a5ce96424a90611d804b026ce59839eabdf2c0c16d3"
+    },
+    {
+      "path": "sources/S-001-ocr/page-09.txt",
+      "sha256": "f18782ad9f6a5753a9f6f34ed497b0980a9ac8e7a2fdb1171997668ba5aec018"
+    },
+    {
+      "path": "sources/S-001-ocr/page-10.txt",
+      "sha256": "5b5b602a7753516a012371febf4a10b6c07796e953ac8f0fff9bf5dec1526342"
+    },
+    {
+      "path": "sources/S-001-ocr/page-11.txt",
+      "sha256": "c2c30c99a7b5b305d887334be613e28d6f15330490fa71b059bfe4cd6fa742e9"
+    },
+    {
+      "path": "sources/S-001-pages/page-01.png",
+      "sha256": "7f55a5f7a84508711853c03acd285d6a11bbbf41fb807832d4d4d4f6993ebd03"
+    },
+    {
+      "path": "sources/S-001-pages/page-02.png",
+      "sha256": "6a0d24f9aa0864fe28fb9ddd17c0bdcb3a8e647cd1335145f0fa896989e14177"
+    },
+    {
+      "path": "sources/S-001-pages/page-03.png",
+      "sha256": "de87ed49305fabfb607914ef32794afb2fba0b364241ffeb01a4c31bb332cfd2"
+    },
+    {
+      "path": "sources/S-001-pages/page-04.png",
+      "sha256": "1291a4e005d56b8380629a19a52c70670934ebb244b587748b234720764e268a"
+    },
+    {
+      "path": "sources/S-001-pages/page-05.png",
+      "sha256": "b4765989a0f55525496f1ccc4484e88f91365b061c1655784bee3bf829124806"
+    },
+    {
+      "path": "sources/S-001-pages/page-06.png",
+      "sha256": "2b9f0403ad38b2eedf4a8170bbda832d8d2bd207ecd2ab5a0eefc6d48d5e1c05"
+    },
+    {
+      "path": "sources/S-001-pages/page-07.png",
+      "sha256": "8c16e0fbc3623c763f6ae164c602ca61ed27bf344e3d92c859b6a44b405e42d9"
+    },
+    {
+      "path": "sources/S-001-pages/page-08.png",
+      "sha256": "4b50dd697a81f8aeb52619760faade5cfceb1d7c8980c945cefbc68e24889136"
+    },
+    {
+      "path": "sources/S-001-pages/page-09.png",
+      "sha256": "c26e40d87c7584bf6c12ec659290c325ff6728c9d7fe1dfac7d18f5bf738b3cc"
+    },
+    {
+      "path": "sources/S-001-pages/page-10.png",
+      "sha256": "4d9feab4e1f02692a45f6c7241d3ba562cc31cb42fa7a936d651483b19ed5ddc"
+    },
+    {
+      "path": "sources/S-001-pages/page-11.png",
+      "sha256": "7095cf6849551fd8c1628d1e490293f2ddf00314b37a125ac6ac9d9b728b9682"
+    },
+    {
+      "path": "sources/S-001-reading.md",
+      "sha256": "11b952ac3404259ac1fa9fc91d1cbf04ca32aaa58f9962f0b98fb098bef40346"
+    },
+    {
+      "path": "sources/S-003-method.md",
+      "sha256": "5b63fd057785862488e5319a8353532ab1b8a44da5c0c623227ede88ef937461"
+    },
+    {
+      "path": "sources/S-004-method.md",
+      "sha256": "9307871845e6e0fea52c51374815c7566fa3862079dd1828c81ebd8d08a880e2"
+    },
+    {
+      "path": "sources/S-005-method.md",
+      "sha256": "8498f4202bf1b2869f0629f72c8fe1c9f8a2a415da07866ec8dedcd3cc12e0eb"
+    },
+    {
+      "path": "sources.jsonl",
+      "sha256": "500bbdf9763733484880ea1c8c07e376fb3b6187540fa1e8f6ae989a49d8518b"
+    }
+  ]
+}

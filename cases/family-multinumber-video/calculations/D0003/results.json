@@ -1,0 +1,78 @@
+{
+  "kind": "documentary arithmetic and conditional feasibility bounds; NO empirical effect estimate",
+  "runtime": "3.12.14",
+  "inputs": [
+    {
+      "path": "inputs/brief.pdf",
+      "sha256": "558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5"
+    },
+    {
+      "path": "sources/S-001-ocr/page-03.txt",
+      "sha256": "95c7e7fc2f2b4dc969f9ab052566d1a2fd3b5701f2ee9a72d12da1b0c727d667"
+    },
+    {
+      "path": "sources/S-001-ocr/page-09.txt",
+      "sha256": "f18782ad9f6a5753a9f6f34ed497b0980a9ac8e7a2fdb1171997668ba5aec018"
+    },
+    {
+      "path": "calculations/results.json",
+      "sha256": "af4cacd115a24fe34c1099d1a20e2de6ff4414fe41384aa3afa7f5a9675bdda2"
+    }
+  ],
+  "source_locators": {
+    "baseline_target": "S-001 inputs/brief.pdf p3 table; saved image page-03.png visually rechecked",
+    "rate_and_rules": "S-001 inputs/brief.pdf p9 How to calculate profit and payback; saved image page-09.png visually rechecked"
+  },
+  "baseline_gp_rub": 279000000,
+  "target_gp_rub": 285000000,
+  "gap_rub": 6000000,
+  "rate_rub_per_additional_paid_number_month": 500,
+  "required_additional_paid_number_months_if_C_O_zero": 12000,
+  "formula": "GP=279000000+500*M+O-C; target iff 500*M+O-C>=6000000; M and net O may be negative; C>=0; I separate",
+  "sensitivity": "holding O fixed, each extra ruble C adds 1/500 required number-month; higher C worsens the bound; O must be net and evidenced, not assumed",
+  "timing_scenarios": [
+    {
+      "assumed_start": "01-04 of the fictional plan year",
+      "full_calendar_month_ceiling_per_number": 9,
+      "necessary_distinct_numbers_at_unattainably_generous_full_incremental_months_each": 1334,
+      "formula": "ceil(M_required / H); H = 12 - start_month + 1",
+      "assumptions": "C=O=0; all numbers available on first day; every remaining month incremental vs control; no rollout, churn, delay or missing months",
+      "interpretation": "outer necessary bound only, not sample size, target reach, realistic retention or sufficient condition"
+    },
+    {
+      "assumed_start": "01-07 of the fictional plan year",
+      "full_calendar_month_ceiling_per_number": 6,
+      "necessary_distinct_numbers_at_unattainably_generous_full_incremental_months_each": 2000,
+      "formula": "ceil(M_required / H); H = 12 - start_month + 1",
+      "assumptions": "C=O=0; all numbers available on first day; every remaining month incremental vs control; no rollout, churn, delay or missing months",
+      "interpretation": "outer necessary bound only, not sample size, target reach, realistic retention or sufficient condition"
+    },
+    {
+      "assumed_start": "01-10 of the fictional plan year",
+      "full_calendar_month_ceiling_per_number": 3,
+      "necessary_distinct_numbers_at_unattainably_generous_full_incremental_months_each": 4000,
+      "formula": "ceil(M_required / H); H = 12 - start_month + 1",
+      "assumptions": "C=O=0; all numbers available on first day; every remaining month incremental vs control; no rollout, churn, delay or missing months",
+      "interpretation": "outer necessary bound only, not sample size, target reach, realistic retention or sufficient condition"
+    }
+  ],
+  "general_feasibility": "M_upper=sum_i H_i for distinct eligible numbers; if 500*M_upper+O_upper-C_lower<6000000, annual goal impossible within that scope even at the optimistic envelope; passing is not evidence of likelihood",
+  "real_inputs": {
+    "eligible_distinct_numbers": "UNKNOWN",
+    "rollout_by_month": "UNKNOWN",
+    "incremental_paid_share_by_month": "UNKNOWN",
+    "C": "UNKNOWN",
+    "O": "UNKNOWN",
+    "I": "UNKNOWN",
+    "baseline_paid_share": "UNKNOWN",
+    "cluster_sample_size": "UNKNOWN",
+    "recruitment_flow": "UNKNOWN",
+    "critical_path": "UNKNOWN",
+    "payback_date": "UNKNOWN",
+    "effect_probability": "UNKNOWN"
+  },
+  "rounding": "exact integer differences; necessary distinct-number bounds rounded upward; no rounding of invented effects",
+  "missing_error_rules": "hash/extraction mismatch => fail; no imputation; families are not converted to numbers; no zero defaults for unknown C/O/M",
+  "denominator": "one distinct eligible phone number per paid month; all originally included numbers retained in monthly cohort denominators, including group exits; no repeated-event duplication",
+  "verification": "recomputed from pinned OCR, compared to prior saved results; critical table and rate visually checked against pinned page images; no field research run"
+}

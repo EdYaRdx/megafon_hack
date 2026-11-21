@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/case_protocol.py",
+    "classify",
+    "cases/family-multinumber-video"
+  ],
+  "cwd": "<WORKSPACE>",
+  "runtime": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "recorded_at": "2026-11-21T15:26:08.950548+00:00",
+  "command_elapsed_seconds": 0.22870019997935742,
+  "exit_code": 0,
+  "stdout": "CHECKPOINTED\n",
+  "stderr": "",
+  "export_notice": "DERIVATIVE HISTORY ONLY: transformed source receipt, not a new execution or PASS on derivative bytes. Source hashes/times/results refer to original R0001-R0003; resolve through export-map.json. No execution approval transfers."
+}
