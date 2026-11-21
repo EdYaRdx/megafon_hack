@@ -12,7 +12,7 @@
 
 *MGIMO AI Challenge · Трек МегаФона «Стратег Фабрики продуктов»*
 
-[**Открыть результаты из видео**](docs/video-e2e.md) · [**Начать со своей задачи**](docs/quickstart.md) · [Прежний prepared demo](docs/contest-demo.md) · [Доказательства и ограничения](docs/evaluation.md) · [Навигация по ролям](docs/README.md)
+[**Смотреть видеодемонстрацию**](https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view) · [**Результаты из видео**](docs/video-e2e.md) · [**Начать со своей задачи**](docs/quickstart.md) · [Прежний prepared demo](docs/contest-demo.md) · [Доказательства и ограничения](docs/evaluation.md) · [Навигация по ролям](docs/README.md)
 
 ## От вопроса к решению
 
@@ -46,7 +46,7 @@ flowchart LR
 
 [**Маршрут по этапам видео**](docs/video-e2e.md) · [Решение после R0003](cases/family-multinumber-video/decision.md) · [Продуктовая стратегия](cases/family-multinumber-video/strategy-product.md) · [Коммуникационная стратегия](cases/family-multinumber-video/strategy-communication.md) · [Шесть альтернатив](cases/family-multinumber-video/options.md) · [Исходный PDF](cases/family-multinumber-video/inputs/brief.pdf) · [Критический пересмотр R0003](cases/family-multinumber-video/research/D0003/review.md) · [План проверки](cases/family-multinumber-video/test-plan.md).
 
-Владелец сообщил о записи запуска и Resume в новой сессии; сам видеофайл здесь не проверялся. В [`cases/family-multinumber-video/`](cases/family-multinumber-video/README.md) — самостоятельная производная цепочка **D0001–D0003 от R0001–R0003** с [картой контрольных сумм](cases/family-multinumber-video/export-map.json). Результаты отделены от старого демо ниже. Направление B сохранено; достижимость 285 млн ₽, сроки и окупаемость `UNKNOWN`, пилот и бюджет не одобрены. [Аудит, проверки и решения владельца](docs/release/video-family-e2e-20261121.md).
+Длительность видео — **9:58 по сообщению владельца**; папка Google Drive имеет доступ по ссылке по его подтверждению. Содержательная проверка кадров и звука остаётся ответственностью владельца; доступ жюри не подтверждён этой проверкой. В [`cases/family-multinumber-video/`](cases/family-multinumber-video/README.md) — самостоятельная производная цепочка **D0001–D0003 от R0001–R0003** с [картой контрольных сумм](cases/family-multinumber-video/export-map.json). Результаты отделены от старого демо ниже. Направление B сохранено; достижимость 285 млн ₽, сроки и окупаемость `UNKNOWN`, пилот и бюджет не одобрены. [Аудит, проверки и решения владельца](docs/release/video-family-e2e-20261121.md).
 
 ## Прежняя подготовленная демонстрация: мобильный сервис
 
