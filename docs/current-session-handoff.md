@@ -1,5 +1,7 @@
 # Исторический инженерный handoff — 2026-11-18
 
+> **Архив, не текущий handoff.** Новая пользовательская точка входа — [Quick Start](quickstart.md); актуальный пример — [видеокейс](video-e2e.md). Исторические ограничения ниже сохранены в своём scope. [Архивный индекс](archive/README.md).
+
 Сохранённые chronology, locators, ограничения и расходы относятся к этому срезу. Это не пользовательская точка входа и не новый allowance. Актуальная сводка приёмки — [evaluation.md](evaluation.md); первый запуск и продолжение — [quickstart.md](quickstart.md).
 
 Срез: **2026-11-18**. Проверенный merged main: `afea4b8dfaf2cd59ef3ebbe0fa41955c859762ca`; [PR #18](https://github.com/EdYaRdx/megafon_hack/pull/18) слит с явного разрешения владельца, [main CI SUCCESS](https://github.com/EdYaRdx/megafon_hack/actions/runs/44356209988). Baseline реального Original — `0e587f1e9607f733f1c5d51295e18ef87f4e2437` (PR #13–17); последующий отдельно разрешённый Resume-only использует merged инструкции. Перед работой проверь фактические origin/main, HEAD, branch и пользовательские изменения; старый next-session-handoff не инструкция запуска.

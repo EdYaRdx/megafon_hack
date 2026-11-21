@@ -1,5 +1,7 @@
 # Исторический handoff и Git handoff
 
+> **Архив, не инструкции следующей сессии.** Текущие пользовательские результаты — в [evaluation](evaluation.md), запуск — в [Quick Start](quickstart.md). Старые SHA и задачи ниже не подменяют актуальный release. [Архивный индекс](archive/README.md).
+
 Этот файл сохраняет предыдущую операционную хронологию; он не источник текущего acceptance status. Текущий статус только в [`implementation-status.md`](implementation-status.md), конкурсные gates — в [`submission-checklist.md`](submission-checklist.md). Старые SHA/host paths ниже и в прежних записях исторические, не команды для текущего checkpoint.
 
 ## Для этой документационной работы
