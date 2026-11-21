@@ -1,5 +1,7 @@
 # МегаФон — предметное исследование и Research Mode qualification
 
+> **Архивный план исследовательской фазы.** PREPARATION/BLOCKED ниже — исторические квалификационные статусы, не запрет работы и не текущее состояние продукта. Текущий продукт: [архитектура](architecture.md), [видеокейс](video-e2e.md); [архивный индекс](archive/README.md).
+
 **Статус: PREPARATION ONLY.** Полное исследование и scout smoke не запускались. `.omp/profiles/research.yml` — **CANDIDATE**, не VERIFIED. Полный оригинал кейса отсутствует: [contest-brief](contest-brief.md) BLOCKED. Bootstrap не подменяет этот prerequisite.
 
 ## 1. Scope и результат будущего исследования

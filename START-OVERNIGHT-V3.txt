@@ -1,3 +1,5 @@
+АРХИВ: старый OMP research launcher, не запуск продукта. Текущий запуск: docs/quickstart.md; классификация и зависимости: docs/archive/README.md. Не выполнять шаги ниже как часть конкурсного onboarding.
+
 1. Do NOT start a duplicate run while an OMP research process is still active.
 2. Copy overnight-product-research-v3.md to C:\Projects\GitHub\megafon_hack\prompts\overnight-product-research-v3.md
 3. Copy start-overnight-product-research-v3.cmd to C:\Projects\GitHub\megafon_hack\start-overnight-product-research-v3.cmd
