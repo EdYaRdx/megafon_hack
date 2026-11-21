@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "tools.resume_context",
+    "cases/family-multinumber-video"
+  ],
+  "cwd": "<WORKSPACE>",
+  "runtime": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "recorded_at": "2026-11-21T15:35:20.705237+00:00",
+  "command_elapsed_seconds": 0.31778369995299727,
+  "exit_code": 0,
+  "stdout": "{\n  \"case\": \"cases/family-multinumber-video\",\n  \"classification\": \"CHECKPOINTED\",\n  \"confirmed\": {\n    \"revision_id\": \"D0003\",\n    \"manifest_sha256\": \"90817278d2b39b8c29ea95a753ef55a16860d0f9db58903e71413e1fcaec67d6\",\n    \"snapshots\": {\n      \"decision.md\": \"revisions/D0003/decision.md\",\n      \"options.md\": \"revisions/D0003/options.md\",\n      \"state.md\": \"revisions/D0003/state.md\",\n      \"strategy-communication.md\": \"revisions/D0003/strategy-communication.md\",\n      \"strategy-product.md\": \"revisions/D0003/strategy-product.md\",\n      \"test-plan.md\": \"revisions/D0003/test-plan.md\"\n    }\n  },\n  \"unfinished\": {\n    \"discovery\": \"complete\",\n    \"drafts\": [],\n    \"hints\": [\n      {\n        \"path\": \"activity.jsonl\",\n        \"provenance\": \"activity ledger\",\n        \"status\": \"unverified\",\n        \"reason\": \"changed or unpinned activity; not proof of a later draft\",\n        \"relationship_to_selected\": \"unknown\"\n      }\n    ],\n    \"issues\": [],\n    \"notice\": \"Candidates and hints are unverified, not selected or necessarily newer. Inspect provenance/content; no referenced paths were followed. Discovery is not an atomic snapshot.\"\n  }\n}\n",
+  "stderr": "",
+  "export_notice": "DERIVATIVE HISTORY ONLY: transformed source receipt, not a new execution or PASS on derivative bytes. Source hashes/times/results refer to original R0001-R0003; resolve through export-map.json. No execution approval transfers."
+}

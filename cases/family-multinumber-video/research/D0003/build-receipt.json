@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "cases/family-multinumber-video/research/D0003/build.py"
+  ],
+  "cwd": "<WORKSPACE>",
+  "runtime": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "recorded_at": "2026-11-21T15:32:09.070079+00:00",
+  "command_elapsed_seconds": 0.2440673999954015,
+  "exit_code": 0,
+  "stdout": "{\"status\": \"DRAFT_SNAPSHOTS_SAVED\", \"revision\": \"D0003\", \"active_claim_ids\": [\"C-001\", \"C-002\", \"C-003\", \"C-004\", \"C-005\", \"C-021\", \"C-008\", \"C-009\", \"C-010\", \"C-011\", \"C-019\", \"C-020\", \"C-018\", \"C-016\", \"C-017\", \"C-022\", \"C-023\", \"C-024\"], \"report\": \"research/D0003/review.md\"}\n",
+  "stderr": "",
+  "export_notice": "DERIVATIVE HISTORY ONLY: transformed source receipt, not a new execution or PASS on derivative bytes. Source hashes/times/results refer to original R0001-R0003; resolve through export-map.json. No execution approval transfers."
+}

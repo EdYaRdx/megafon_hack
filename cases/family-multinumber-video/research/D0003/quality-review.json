@@ -1,0 +1,27 @@
+{
+  "status": "PASSED",
+  "checks": [
+    "candidate controls agree with active set",
+    "prior revision snapshot hashes unchanged",
+    "strategy alias byte-identical",
+    "targeted content corrections reviewed"
+  ],
+  "prior_snapshots_checked": [
+    "revisions/D0001/decision.md",
+    "revisions/D0001/options.md",
+    "revisions/D0001/state.md",
+    "revisions/D0001/strategy-communication.md",
+    "revisions/D0001/strategy-product.md",
+    "revisions/D0001/strategy.md",
+    "revisions/D0001/test-plan.md",
+    "revisions/D0002/decision.md",
+    "revisions/D0002/options.md",
+    "revisions/D0002/state.md",
+    "revisions/D0002/strategy-communication.md",
+    "revisions/D0002/strategy-product.md",
+    "revisions/D0002/strategy.md",
+    "revisions/D0002/test-plan.md"
+  ],
+  "limitations": "Document review and arithmetic only; no empirical effect/feasibility asserted",
+  "draft_correction": "Initial draft paragraph helper consumed decision metadata. Detected before gate/current-view handover; restored exact controls in decision only, fixed helper source; corrected malformed claim shorthand and inherited stale calculation wording. No published revision changed."
+}

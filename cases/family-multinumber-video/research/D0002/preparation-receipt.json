@@ -1,0 +1,25 @@
+{
+  "status": "PREPARED_NOT_SELECTED",
+  "revision_id": "D0002",
+  "parent_revision_id": "D0001",
+  "parent_manifest_sha256": "7cca0ed8ea388e56cdcc01b24aa4e896e62174b9283d0a265a3f47a4cdcf5c5d",
+  "manifest_sha256": "aa6a57a28c1369258daa61ed25c214dff3fb86fa79ec89aae08fef472b387b8f",
+  "copied": [
+    "options.md",
+    "decision.md",
+    "strategy-product.md",
+    "strategy-communication.md",
+    "test-plan.md",
+    "state.md",
+    "strategy.md"
+  ],
+  "dependency_count": 48,
+  "unchanged_checks": [
+    "prior snapshots",
+    "economics",
+    "all five KPI and forecast/quarter sections",
+    "comparison table except inherited claim references",
+    "calculation script/results/receipt"
+  ],
+  "export_notice": "DERIVATIVE HISTORY ONLY: transformed source receipt, not a new execution or PASS on derivative bytes. Source hashes/times/results refer to original R0001-R0003; resolve through export-map.json. No execution approval transfers."
+}

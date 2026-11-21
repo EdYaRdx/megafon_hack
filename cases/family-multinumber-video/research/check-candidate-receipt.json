@@ -1,0 +1,19 @@
+{
+  "command": [
+    "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/case_protocol.py",
+    "check-candidate",
+    "cases/family-multinumber-video",
+    "--revision",
+    "D0001"
+  ],
+  "cwd": "<WORKSPACE>",
+  "executed_at": "2026-11-21T15:02:35.345379+00:00",
+  "exit_code": 0,
+  "stdout": "{\"status\": \"VALIDATED_CANDIDATE\", \"revision_id\": \"D0001\", \"manifest_sha256\": \"7cca0ed8ea388e56cdcc01b24aa4e896e62174b9283d0a265a3f47a4cdcf5c5d\"}\n",
+  "stderr": "",
+  "export_notice": "DERIVATIVE HISTORY ONLY: transformed source receipt, not a new execution or PASS on derivative bytes. Source hashes/times/results refer to original R0001-R0003; resolve through export-map.json. No execution approval transfers."
+}

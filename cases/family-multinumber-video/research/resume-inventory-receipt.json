@@ -1,0 +1,17 @@
+{
+  "command": [
+    "<USER_HOME>\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "tools.resume_context",
+    "cases/family-multinumber-video"
+  ],
+  "cwd": "<WORKSPACE>",
+  "executed_at": "2026-11-21T15:03:13.125692+00:00",
+  "exit_code": 0,
+  "stdout": "{\n  \"case\": \"cases/family-multinumber-video\",\n  \"classification\": \"CHECKPOINTED\",\n  \"confirmed\": {\n    \"revision_id\": \"D0001\",\n    \"manifest_sha256\": \"7cca0ed8ea388e56cdcc01b24aa4e896e62174b9283d0a265a3f47a4cdcf5c5d\",\n    \"snapshots\": {\n      \"decision.md\": \"revisions/D0001/decision.md\",\n      \"options.md\": \"revisions/D0001/options.md\",\n      \"state.md\": \"revisions/D0001/state.md\",\n      \"strategy-communication.md\": \"revisions/D0001/strategy-communication.md\",\n      \"strategy-product.md\": \"revisions/D0001/strategy-product.md\",\n      \"test-plan.md\": \"revisions/D0001/test-plan.md\"\n    }\n  },\n  \"unfinished\": {\n    \"discovery\": \"complete\",\n    \"drafts\": [],\n    \"hints\": [\n      {\n        \"path\": \"activity.jsonl\",\n        \"provenance\": \"activity ledger\",\n        \"status\": \"unverified\",\n        \"reason\": \"changed or unpinned activity; not proof of a later draft\",\n        \"relationship_to_selected\": \"unknown\"\n      }\n    ],\n    \"issues\": [],\n    \"notice\": \"Candidates and hints are unverified, not selected or necessarily newer. Inspect provenance/content; no referenced paths were followed. Discovery is not an atomic snapshot.\"\n  }\n}\n",
+  "stderr": "",
+  "export_notice": "DERIVATIVE HISTORY ONLY: transformed source receipt, not a new execution or PASS on derivative bytes. Source hashes/times/results refer to original R0001-R0003; resolve through export-map.json. No execution approval transfers."
+}

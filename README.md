@@ -8,11 +8,11 @@
 
 **Результат — папка с решением и его основаниями**, а не только текст чата. Можно открыть источник важного вывода, посмотреть прежние решения и восстановить сохранённую версию в новом чате. Это файловый проект для Codex/Cursor, не отдельное приложение; модель и инструменты предоставляет ваша среда.
 
-**Учебный пример:** [помощь семье или владельцам нескольких номеров?](cases/mobile-product-strategy-demo/revisions/D0003/decision.md) Из шести направлений PO выбрал ранний сигнал семье и существующую передачу интернета — как гипотезу для проверки, не обещание роста прибыли.
+**Кейс из видеозаписи:** [помощь уже подключённым семьям](docs/video-e2e.md) — первый запрос, PDF, шесть альтернатив, выбор PO, две стратегии, Resume и критический пересмотр. Реальный запуск агента на **учебном** брифе; для публикации подготовлена отдельная обезличенная D-копия, не исходные R-байты.
 
 *MGIMO AI Challenge · Трек МегаФона «Стратег Фабрики продуктов»*
 
-[**Посмотреть решение**](cases/mobile-product-strategy-demo/revisions/D0003/decision.md) · [**Начать со своей задачи**](docs/quickstart.md) · [Разбор демо](docs/contest-demo.md) · [Доказательства и ограничения](docs/evaluation.md) · [Навигация по ролям](docs/README.md)
+[**Открыть результаты из видео**](docs/video-e2e.md) · [**Начать со своей задачи**](docs/quickstart.md) · [Прежний prepared demo](docs/contest-demo.md) · [Доказательства и ограничения](docs/evaluation.md) · [Навигация по ролям](docs/README.md)
 
 ## От вопроса к решению
 
@@ -42,7 +42,13 @@ flowchart LR
 
 Для продолжения в новом чате укажите точный путь существующего дела: `RESUME CASE cases/<case-id>`. Не используйте восстановление «последнего» дела по догадке. [Пошаговая инструкция, Windows/Python fallback и ошибки](docs/quickstart.md).
 
-## Основная демонстрация: мобильный сервис
+## Реальный E2E из видеозаписи
+
+[**Маршрут по этапам видео**](docs/video-e2e.md) · [Решение после R0003](cases/family-multinumber-video/decision.md) · [Продуктовая стратегия](cases/family-multinumber-video/strategy-product.md) · [Коммуникационная стратегия](cases/family-multinumber-video/strategy-communication.md) · [Шесть альтернатив](cases/family-multinumber-video/options.md) · [Исходный PDF](cases/family-multinumber-video/inputs/brief.pdf) · [Критический пересмотр R0003](cases/family-multinumber-video/research/D0003/review.md) · [План проверки](cases/family-multinumber-video/test-plan.md).
+
+Владелец сообщил о записи запуска и Resume в новой сессии; сам видеофайл здесь не проверялся. В [`cases/family-multinumber-video/`](cases/family-multinumber-video/README.md) — самостоятельная производная цепочка **D0001–D0003 от R0001–R0003** с [картой контрольных сумм](cases/family-multinumber-video/export-map.json). Результаты отделены от старого демо ниже. Направление B сохранено; достижимость 285 млн ₽, сроки и окупаемость `UNKNOWN`, пилот и бюджет не одобрены. [Аудит, проверки и решения владельца](docs/release/video-family-e2e-20261121.md).
+
+## Прежняя подготовленная демонстрация: мобильный сервис
 
 Мы проверяли агента на предоставленном для демонстрации **11-страничном примере брифа «Связь для близких и собственных устройств»** ([`Пример брифа.pdf`](cases/mobile-product-strategy-demo/inputs/Пример%20брифа.pdf)). Задача учебного оператора: сравнить помощь семьям и владельцам нескольких номеров, обосновать выбор, коммуникацию и экономику.
 
@@ -69,7 +75,8 @@ flowchart LR
 | [`.agents/skills/`](.agents/skills/) | Шесть повторяемых процедур — от Intake до Resume |
 | [`references/`](references/) | Методика источников, метрик и безопасности |
 | [`cases/_template/`](cases/_template/) | Шаблон нового дела и протокол ревизий |
-| [`cases/mobile-product-strategy-demo/`](cases/mobile-product-strategy-demo/) | Основной обезличенный демонстрационный кейс |
+| [`cases/family-multinumber-video/`](cases/family-multinumber-video/README.md) | Обезличенная копия реального E2E из видеозаписи, отдельная D-цепочка |
+| [`cases/mobile-product-strategy-demo/`](cases/mobile-product-strategy-demo/) | Прежний подготовленный демонстрационный кейс, сохранён без изменений |
 | [`tools/`](tools/) и [`tests/`](tests/) | CLI-проверки, deterministic расчёты, тесты |
 | [`docs/`](docs/README.md) | Руководства, архитектура, оценка и материалы подачи |
 | [`research/`](research/README.md) | История разработки и аудитов: **не runtime** |
