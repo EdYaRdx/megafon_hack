@@ -6,11 +6,11 @@
 
 [Смотреть реальное видео](https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view) · [За минуту для жюри](docs/for-jury.md) · [Карта возможностей](docs/capabilities.md) · [Подробный Quick Start](docs/quickstart.md)
 
-**MGIMO AI Challenge · трек МегаФона.** Оба кейса учебные, реальные клиентские данные не использованы. Финальный PDF v4 ожидается в docs/MGIMO_FINAL_REPORT.pdf; [Markdown-описание решения](docs/submission-description.md) уже доступно. Старый PDF не выдаётся за v4.
+**MGIMO AI Challenge · команда «Ромашка MISIS» · трек МегаФона.** Два независимых учебных кейса: **11 содержательных альтернатив, четыре стратегии и два плана проверки**, 6 Skills, PDF / CSV / Web, evidence / claims / UNKNOWN и Human-in-the-loop. [Финальное описание со скриншотами — PDF, 17 страниц](docs/MGIMO_FINAL_REPORT.pdf) · [Подробности и источники](docs/submission-description.md). Реальные клиентские данные не использованы.
 
 ## Быстрый старт
 
-Нужны Codex с доступом к модели/файлам/командам и **Python 3.12+** для helpers. Отдельные сервер, Docker, база данных и новые MCP не требуются. Модель, разрешения и расходы предоставляет host; Cursor и другие среды требуют совместимых возможностей и отдельно не сертифицированы E2E.
+Нужны coding assistant с доступом к модели/файлам/командам и **Python 3.12+** для helpers. Подтверждённые запуски выполнены в Codex. Отдельные сервер, Docker, база данных и новые MCP не требуются. Модель, разрешения и расходы предоставляет host; условия других сред приведены в [карте возможностей](docs/capabilities.md).
 
 Для установленного Codex CLI и доступа к репозиторию:
 
@@ -29,17 +29,23 @@ codex
 ## Полный путь решения
 
 ```mermaid
-flowchart LR
-  A["Запрос и ограничения"] --> B["Источники и исследование"]
-  B --> C["Разные варианты и возражения"]
-  C --> D{"Выбор PO"}
-  D --> E["Продуктовая + коммуникационная стратегии"]
-  E --> F["План проверки"]
-  F --> G["Проверенный checkpoint"]
-  G --> H["Новый чат: Resume / Revise"]
+flowchart TD
+  Q["NEW / RESUME / REVISE / HELP"]
+  Q -->|NEW| C["Согласие на точный CASE → создание"]
+  C --> E["Intake → исследование → варианты"]
+  E --> PO["Выбор направления PO"]
+  PO --> S["Продуктовая стратегия<br/>+ коммуникационная<br/>+ план проверки"]
+  S -->|сохранить| K["Gate → выбор ревизии → classify"]
+  Q -->|"RESUME / REVISE: точный CASE"| R["Классификация CASE<br/>CHECKPOINTED → восстановление"]
+  K -.->|"CHECKPOINTED; новый чат"| R
+  R -->|"CHECKPOINTED: RESUME"| N["Следующий сохранённый шаг"]
+  R -->|"CHECKPOINTED: REVISE"| U["Адресный пересмотр"]
+  U --> N
+  Q -->|HELP| H["Помощь без чтения дел"]
+  K -.->|"CHECKPOINTED; нужно исполнение"| A["Отдельное approval<br/>действия/ревизии + права host"]
 ```
 
-Сначала подтверждаются источники и неизвестное, затем формируется рекомендация. Выбор направления не разрешает автоматически бюджет, пилот или контакт с людьми. Проверенный checkpoint связывает выбранную версию с файлами и SHA-256; старые основания остаются в истории.
+Сначала подтверждаются источники и неизвестное, затем формируется рекомендация. Только CHECKPOINTED позволяет восстановить выбранную ревизию и отдельно проверить незавершённое; FRESH возвращается в Intake, LEGACY продолжается по историческим ограничениям, ошибка означает STOP. Resume продолжает сохранённый этап; Revise затрагивает только нужную работу, а смена направления снова требует PO. Gate без выбора и успешного classify не означает CHECKPOINTED. Выбор направления и checkpoint не разрешают бюджет, пилот или контакт с людьми. [Полная схема и границы](docs/architecture.md#поток-работы).
 
 ## Два проверяемых кейса
 
@@ -87,9 +93,11 @@ LinguaStep прошёл модельный workflow на новой синтет
 |---|---|
 | Windows / Python3.12.14 | [121 тест, 0 failures/errors, 5 symlink-privilege skips](docs/release/final-20261122/unit-tests.json) |
 | Ubuntu / Python3.12.16 | [121 тест, 0 failures/errors, 5 Windows-only skips](https://github.com/EdYaRdx/megafon_hack/actions/runs/45050094992); Windows symlink-проверки прошли на Ubuntu |
-| Основной main после PR32 | [CI успешен](https://github.com/EdYaRdx/megafon_hack/actions/runs/45053791062); [актуальные запуски main](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain) |
+| Основной main до финального PDF | [CI SUCCESS на 385e1d2](https://github.com/EdYaRdx/megafon_hack/actions/runs/45055668569): 116 passed + 5 Windows-only skipped; [актуальный CI main](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain) |
 | Семейный D0003 и LinguaStep D0001 | [Штатные hash/gate/classify receipts](docs/release/final-20261122/README.md); оба экспортированных checkpoint проверены |
 | Ссылки, syntax и текущая навигация | [Новая целевая проверка](docs/main-submission-checks.json) включает repository checker, оба checkpoint и scoped privacy scan; это проверка локальных targets, не доступов жюри |
+
+Финальная сверка приложенного PDF и текущей документации: [submission readiness](docs/release/submission-ready-20261122/README.md). Pinned CI выше сохраняет исторический срез; новые запуски основного main доступны по соседней ссылке.
 
 Исследования, планы и учебная арифметика не доказывают спрос, прибыль, причинный эффект или готовность пилота. Полное время продуктового решения, model calls/tokens и прямая стоимость UNKNOWN. Произвольные PDF/XLSX, изображения, сеть, Skills discovery и переносимость зависят от host; Cursor E2E не выполнен. Реальных интервью и аудио/видеоанализа не было.
 

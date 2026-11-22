@@ -1,3 +1,5 @@
+> Historical release snapshot — superseded for current submission status by [22 November final readiness](../submission-ready-20261122/README.md). The PRIVATE/public-history NO-GO and v3 PDF statements below describe the earlier release time. Current GitHub metadata confirms PUBLIC; the owner-supplied final PDF is included. Original report body retained unchanged.
+
 # Release verification results
 
 Base: fetched origin/main ed42fef67451ba48a5c6827f5f67cfef015996d3.

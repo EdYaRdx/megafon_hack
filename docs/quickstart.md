@@ -1,6 +1,6 @@
 # Быстрый старт
 
-Готовые результаты: [основной видеокейс](../cases/family-multinumber-video/README.md) и [privacy-safe LinguaStep](../cases/linguastep-retention/README.md). Live Resume исходного R0001 и CLI-проверки экспорта D0001 — [разные доказательства](release/final-20261122/README.md). Cursor не проверен живым E2E; доступность модели и инструментов зависит от среды.
+Готовые результаты: [основной видеокейс](../cases/family-multinumber-video/README.md), [LinguaStep](../cases/linguastep-retention/README.md) и [финальный PDF](MGIMO_FINAL_REPORT.pdf): 11 альтернатив, четыре стратегии и два плана проверки. Live Resume исходного R0001 и CLI-проверки экспорта D0001 — [разные доказательства](release/final-20261122/README.md). Доступность модели и инструментов зависит от среды.
 
 От продуктового вопроса — к сравнению направлений, выбору Product Owner и двум связанным стратегиям. Работа сохраняется в отдельной папке дела и продолжается в новом чате.
 
@@ -16,7 +16,7 @@ git clone https://github.com/EdYaRdx/megafon_hack.git
 
 В **Codex** откройте корень полученной папки — там находятся `AGENTS.md`, `.agents/skills/`, `prompts/`, `cases/` и `tools/`. Начните новый чат. Само открытие папки ничего не запускает; не работайте внутри ZIP.
 
-### Cursor и другие coding assistants
+### Другие совместимые coding assistants
 
 В Cursor выберите **Open Folder** и новый Agent/chat. В любой среде явно попросите прочитать инструкции из следующего шага. Если Skills не обнаружены автоматически, агент должен открыть соответствующий `SKILL.md`. Наличие файлов не означает подтверждённую совместимость всех версий Codex/Cursor; модель, файлы, сеть и запуск команд предоставляет host.
 

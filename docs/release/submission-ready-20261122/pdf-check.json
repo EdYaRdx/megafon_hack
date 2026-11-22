@@ -1,0 +1,617 @@
+{
+  "source_filename": "MGIMO_Romashka_MISIS.pdf",
+  "sha256": "4a887d5b365d4f34bc2ea7a012a147212275bbe3d0f27fec9ceed430fb30715b",
+  "bytes": 1115186,
+  "pdf_header": "%PDF-1.7",
+  "page_count": 17,
+  "encrypted": false,
+  "metadata": {
+    "/Title": "Ромашка MISIS — Стратег Фабрики продуктов | MGIMO AI Challenge",
+    "/Author": "NullObject",
+    "/Subject": "Продуктовый ИИ-агент: результаты двух кейсов, четыре стратегии, 11 альтернатив, Skills, Resume/Revise, CI",
+    "/Keywords": "Ромашка MISIS MGIMO МегаФон ИИ-агент стратегия Skills Resume QA",
+    "/Creator": "NullObject",
+    "/Producer": "NullObject",
+    "/CreationDate": "NullObject",
+    "/ModDate": "NullObject",
+    "/Trapped": "NullObject"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1427,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 2,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1344,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 3,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1548,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 4,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1443,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 5,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1362,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": [
+        {
+          "page": 5,
+          "index": 0,
+          "size": [
+            575,
+            361
+          ],
+          "decoded_rgb_sha256": "a723ef9716f86a34d95432dd81a0f2d4649a402d995d284df9d51cd134e71131",
+          "file": "embedded-p05-00.png"
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1625,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 7,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1583,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 8,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1729,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 9,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1732,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 10,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1859,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": [
+        {
+          "page": 10,
+          "index": 0,
+          "size": [
+            922,
+            34
+          ],
+          "decoded_rgb_sha256": "ebfe1da6e76678c3e70bfc92126fbd84661723f8f58f2542a9a9cb656607f39a",
+          "file": "embedded-p10-00.png"
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1940,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 12,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1810,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 13,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1778,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 14,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1658,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 15,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1900,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 16,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1434,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    },
+    {
+      "page": 17,
+      "media_box": [
+        0.0,
+        0.0,
+        595.2756,
+        841.8898
+      ],
+      "a4": true,
+      "characters": 1477,
+      "replacement_characters": 0,
+      "null_characters": 0,
+      "images": []
+    }
+  ],
+  "uri_annotations": [
+    {
+      "page": 1,
+      "uri": "https://github.com/EdYaRdx/megafon_hack"
+    },
+    {
+      "page": 1,
+      "uri": "https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view"
+    },
+    {
+      "page": 1,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases"
+    },
+    {
+      "page": 1,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/quickstart.md"
+    },
+    {
+      "page": 2,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/brief.md"
+    },
+    {
+      "page": 2,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/inputs/brief.pdf"
+    },
+    {
+      "page": 2,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/sources/S-001-reading.md"
+    },
+    {
+      "page": 3,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/architecture.md"
+    },
+    {
+      "page": 3,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/AGENTS.md"
+    },
+    {
+      "page": 3,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/release/video-family-e2e-receipt.json"
+    },
+    {
+      "page": 4,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/AGENTS.md"
+    },
+    {
+      "page": 4,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/prompts/first-run.md"
+    },
+    {
+      "page": 4,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/.agents/skills/intake/SKILL.md"
+    },
+    {
+      "page": 4,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/inputs/user-choice-D0002.md"
+    },
+    {
+      "page": 7,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/strategy-communication.md"
+    },
+    {
+      "page": 7,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/strategy-product.md"
+    },
+    {
+      "page": 8,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/inputs/brief.pdf"
+    },
+    {
+      "page": 8,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/calculations/D0003/results.json"
+    },
+    {
+      "page": 8,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/research/D0003/review.md"
+    },
+    {
+      "page": 9,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/test-plan.md"
+    },
+    {
+      "page": 9,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/decision.md"
+    },
+    {
+      "page": 11,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/quickstart.md"
+    },
+    {
+      "page": 11,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/architecture.md"
+    },
+    {
+      "page": 11,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/tree/main/.agents/skills"
+    },
+    {
+      "page": 12,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/actions/runs/45050094992"
+    },
+    {
+      "page": 12,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/RELEASE_RESULTS.md"
+    },
+    {
+      "page": 12,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/evaluation.md"
+    },
+    {
+      "page": 13,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/research/sol-audit/eval-results/F9-resume-comparison-20261113.md"
+    },
+    {
+      "page": 13,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases"
+    },
+    {
+      "page": 13,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/README.md"
+    },
+    {
+      "page": 14,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases/linguastep-retention"
+    },
+    {
+      "page": 14,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/source-resume-receipt.json"
+    },
+    {
+      "page": 14,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/README.md"
+    },
+    {
+      "page": 15,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/architecture.md"
+    },
+    {
+      "page": 15,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/tree/main/.agents/skills"
+    },
+    {
+      "page": 15,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/CRITERIA.md"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/quickstart.md"
+    },
+    {
+      "page": 16,
+      "uri": "https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases/family-multinumber-video"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/family-multinumber-video/strategy-product.md"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/family-multinumber-video/strategy-communication.md"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases/linguastep-retention"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/linguastep-retention/analysis/cohort-results.json"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/linguastep-retention/strategy-product.md"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/actions/runs/45050094992"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/README.md"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack"
+    },
+    {
+      "page": 16,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/README.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/inputs/brief.pdf"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/brief.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/AGENTS.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/prompts/first-run.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/architecture.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0001/options.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/inputs/user-choice-D0002.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/strategy-product.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/strategy-communication.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/test-plan.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/calculations/D0003/results.json"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/research/D0003/restore-inventory-receipt.json"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/research/D0003/review.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/decision.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/EXPORT.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/release/video-family-e2e-receipt.json"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/evaluation.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/activity.jsonl"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/quickstart.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/research/sol-audit/eval-results/F9-resume-comparison-20261113.md"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases/linguastep-retention"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/source-resume-receipt.json"
+    },
+    {
+      "page": 17,
+      "uri": "https://github.com/EdYaRdx/megafon_hack/actions/runs/45050094992"
+    }
+  ],
+  "catalog_keys": [
+    "/Type",
+    "/Pages",
+    "/Outlines"
+  ],
+  "render_exit_code": 0,
+  "render_stderr": "",
+  "rendered_pages": 17,
+  "checked_at_utc": "2026-11-22T19:16:24.177268+00:00",
+  "published_path": "docs/MGIMO_FINAL_REPORT.pdf",
+  "source_and_destination_sha256_match": true,
+  "visual_review": {
+    "pages_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "method": "Poppler90dpi renders, each page inspected in adjacent-page images; contact sheet inspected.",
+    "result": "No visible clipped text, corrupted Cyrillic, overlap or accidental private information detected.",
+    "screenshots": "Two embedded Codex screenshot crops, pages5 and10; contents consistent with alternatives/Resume in supplied video-case evidence. Owner-provided video provenance; no new pixel-to-MP4 comparison or full video playback claimed."
+  },
+  "extraction_caveat": "pypdf emitted Odd-length string warnings for supplementary-plane CMap ranges; extraction contains no replacement/null characters and the actual page renders were visually legible. Original bytes preserved; no font rewriting.",
+  "claim_review": [
+    "PDF pages12/16/17 reference historical aa4b23f CI, not the final main CI. Existing pinned links retained; current main CI provided in README/for-jury/evaluation.",
+    "PDF page15 combines NEW and Intake under verified video-case scope. Capability matrix separately retains IMPLEMENTED_NOT_E2E_TESTED for free-form NEW without operator assistance.",
+    "Source Resume receipts remain limited/unsigned; derivative CLI checks not relabelled live E2E.",
+    "Revenue/retention effects, full model billing and task time remain UNKNOWN/NOT RUN as described."
+  ]
+}
