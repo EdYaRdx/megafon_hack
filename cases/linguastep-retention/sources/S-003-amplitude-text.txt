@@ -1,0 +1,154 @@
+How the Retention Analysis chart calculates retention | Amplitude DocsDocsGet StartedProductsAdminDevelopersSearch docs…⌘ K/Full width
+Analytics
+/
+Charts
+/
+Retention Analysis
+/
+How the Retention Analysis chart calculates retention
+How the Retention Analysis chart calculates retention
+Amplitude Academy
+What is Retention Analysis?
+Learn how the Retention chart can help drive product adoption.
+Get started
+The Retention Analysis chart calculates retention with two methods that count returning users differently. Return On or After counts users who returned on a given day or any day after it. Return On counts users who returned on exactly that day. Use Return On or After to measure whether users came back by a certain point, and use Return On to measure whether users came back on a specific day.
+Return On or After
+Amplitude calculates Return On or After retention a bit differently depending on whether you're looking at a specific cohort entry date for your segment or overall. Overall retention (for example, All Users) appears in the visualization and the first row of the breakdown table below it.
+Because Return On or After retention measures users that returned on the Xth day or later, the numerator includes users in all data points before they triggered an event. A user who triggers the event on day two, for example, also appears in the data point for days one and zero.
+Specific cohort entry date
+The calculation for a specific cohort entry date is:
+plaintextCopy
+{ # of users who triggered return event on X day after cohort entry date,
+or any day after X day }
+divided by
+{# of users who triggered start event on specific cohort entry date
+[constant across X days] }
+For example, Day 3 retention for April 1 shows that 6,633 users triggered the return event on April 4 or later. 9,644 users triggered the start event on April 1. Dividing 6,633 by 9,644 gives an April 1 Day 3 retention of 68.8%.
+The retention percentage for a specific cohort entry date always decreases over time. While the denominator remains constant, the numerator gradually goes down: the number of people who are 7 day+ retained is less than the number of people who are 3 day+ retained.
+Overall retention
+The calculation for overall retention (also known as all users) is:
+plaintextCopy
+{ # of users who triggered return event on X day or later after cohort entry date }
+divided by
+{ # of users who triggered start event on cohort entry dates
+that reached the retention interval }
+For example, the All Users Day 3 retention shows that 55,752 users triggered the return event on Day 3 or later, while 137,586 users triggered the start event between March 30 and April 6. Dividing 55,752 by 137,586 gives a Day 3 retention of 40%.
+In the chart's data table, the All Users row contains the daily sums of the date rows below it. Amplitude excludes incomplete data from the All Users totals (incomplete cells have an asterisk).
+When the analysis time frame is complete, the graph curves down as retention decreases over time. This happens because fewer people stay retained for longer periods of time as shown in the numerator (it's harder to retain people for seven days than for three days).
+However, when the analysis is still in progress, the graph can curve up and appear to increase over time. This happens because Amplitude excludes users who haven't yet reached later retention intervals from the denominator. This means Amplitude hasn't collected enough data, and you should give your users more time to trigger your return event. Wait until your analysis time frame is fully complete to get an accurate understanding of your retention trend.
+Accordingly, the denominator value in the Microscope for a single day is the sum of the users who completed that day's retention interval. The breakdown table doesn't show this value.
+A retention curve that appears to increase from about 3.75% on Day 0 to about 4.1% at later intervals because incomplete intervals are excluded from the denominator, not because retention truly improves.Day 0Day 3Day 6Day 9Day 12Day 15Day 18Day 21Day 24Day 27Day 303.753.83.853.93.9544.054.14.15Days since first useRetentionRetention with incomplete later intervalsEnterprise UsersRetention with incomplete later intervalsDays since first useEnterprise UsersDay 03.75Day 13.78Day 23.78Day 33.77Day 43.78Day 53.81Day 63.84Day 73.84Day 83.83Day 93.84Day 103.88Day 113.9Day 123.89Day 133.88Day 143.9Day 153.94Day 163.96Day 173.95Day 183.94Day 193.96Day 204Day 214.01Day 224Day 234Day 244.03Day 254.06Day 264.07Day 274.05Day 284.06Day 294.09Day 304.12
+This figure shows the incomplete-data artifact in action. Instead of decaying, the curve drifts upward from about 3.75% on Day 0 toward roughly 4.1% at the later intervals. True retention still decays over time. The curve only appears to rise because Amplitude excludes users who haven't yet had the chance to reach the later intervals from the denominator, which inflates those percentages. When a Return On or After curve slopes up like this, treat it as a sign that the analysis window hasn't finished collecting data, and wait until the time frame is complete before you draw conclusions.
+Return On
+The calculation for Return On retention is:
+plaintextCopy
+{ # of users who triggered return event on exactly X days after cohort entry date }
+divided by
+{ # of users who triggered start event on specific cohort entry date
+[constant across X days] }
+For example, Day 3 retention for April 1 shows that 6,594 users triggered the return event on April 4, while 9,644 users triggered the start event on April 1. Dividing 6,594 by 9,644 gives an April 1 Day 3 retention of 68.4%.
+All users' Day 3 retention shows 48,219 users triggered the return event on Day 3, while 125,665 users triggered the start event between March 30 and April 6, giving a Day 3 retention of 38.4%.
+A user can trigger the return event on multiple days and Amplitude counts them on each day. This can drive retention percentage up over time, for a specific cohort entry date row or overall row. While the denominator is constant, the number of users that trigger a return event each X days is independent. More users can trigger an event on any day than the prior.
+As with Return On or After retention, when the analysis time frame is complete, the denominator value in the Microscope for any day is consistent with the total number of users for overall retention. When the analysis is still in progress, the denominator value in the Microscope for a single day is the sum of the users who completed that day's retention interval. The breakdown table doesn't show this value.
+In bar chart format, the X axis includes the most common units of time, days, weeks, months, by default. You can customize this using Return On (Custom).
+The overall row represents the sum of the cohort entry date rows below it. Similar to Return On or After retention, if data is incomplete (cells noted with an *), Amplitude excludes them from the overall row's total (for example, the sum of each row for Day 3 doesn't add to the overall Day 3 value).
+Related:Build a retention analysis·Retention Analysis FAQ·Interpret your Retention Analysis chart: Usage interval·Build a usage interval analysis
+Was this helpful?
+For AI agents: a documentation index is available at /docs/llms.txt. Append .md to any page URL for markdown, or send Accept: text/markdown.
+On this page
+Return On or After
+Specific cohort entry date
+Overall retention
+Return On
+Copy Markdown
+On this page
+Return On or After
+Specific cohort entry date
+Overall retention
+Return On
+Products
+DataAnalyticsSession ReplayZoning InsightsHeatmapsAmplitude AIAgent AnalyticsWaveAI AssistantWeb ExperimentFeature ExperimentGuides and Surveys
+More
+Get Started
+Admin
+Developers
+SDKs
+APIs
+CLI
+Back to Analytics
+Metric Explorer
+Event Segmentation
+Funnel Analysis
+Retention Analysis
+Build
+Interpret
+Calculation
+Interpret usage interval
+How time works
+Usage interval
+N-Day LTV
+FAQ
+Data Tables
+Journeys
+Experiment Results
+Revenue LTV
+Compass
+Stickiness
+Personas
+Impact Analysis
+User Sessions
+Engagement Matrix
+Lifecycle
+Other Charts
+Language🇺🇸English
+Platform
+AI Agents
+AI Visibility
+AI Feedback
+Amplitude MCP
+Product Analytics
+Web Analytics
+Feature Experimentation
+Feature Management
+Web Experimentation
+Session Replay
+Guides and Surveys
+Activation
+Compare us
+Adobe
+Google Analytics
+Contentsquare
+Fullstory
+Heap
+LaunchDarkly
+Mixpanel
+Optimizely
+Pendo
+PostHog
+Resources
+Resource Library
+Blog
+Agent Prompt Library
+Product Updates
+Amp Champs
+Amplitude Academy
+Events
+Glossary
+llms.txt
+Partners & Support
+Status
+Contact Us
+Customer Help Center
+Community
+Developer Docs
+Partner Program
+Partner Directory
+Become an affiliate
+Company
+About Us
+Careers
+Press & News
+Investor Relations
+Diversity, Equity & Inclusion
+Terms of ServicePrivacy NoticeAcceptable Use PolicyLegalCookie SettingsEnglishJapanese (日本語)Korean (한국어)
+© 2012–2026 Amplitude, Inc.. All rights reserved. Amplitude is a registered trademark of Amplitude, Inc.

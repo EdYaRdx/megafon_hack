@@ -1,0 +1,20 @@
+{
+  "started_at_utc": "2026-11-22T17:23:57.181125+00:00",
+  "finished_at_utc": "2026-11-22T17:23:59.281654+00:00",
+  "argv_redacted": [
+    "<verified CPython3.12.14>",
+    "-X",
+    "utf8",
+    "-B",
+    "tools/case_protocol.py",
+    "check-candidate",
+    "cases/family-multinumber-video",
+    "--revision",
+    "D0003"
+  ],
+  "cwd": "release root",
+  "exit_code": 0,
+  "stdout": "{\"status\": \"VALIDATED_CANDIDATE\", \"revision_id\": \"D0003\", \"manifest_sha256\": \"10b175b51789466e0b4858ff58c609149dd75d478db321b04c2a843677520626\"}\n",
+  "stderr": "",
+  "scope": "Read-only hash/ancestry validation in final release; not new model E2E"
+}

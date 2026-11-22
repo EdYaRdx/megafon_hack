@@ -1,0 +1,143 @@
+{
+  "revision_id": "D0001",
+  "parent_revision_id": null,
+  "status": "COMPLETE",
+  "active_claim_ids": [
+    "C-001",
+    "C-002",
+    "C-003",
+    "C-004",
+    "C-005",
+    "C-006",
+    "C-007",
+    "C-009",
+    "C-010"
+  ],
+  "derivative_export": {
+    "source_revision_id": "R0001",
+    "source_manifest_sha256": "f5d178602d01c186428e2fd775efe16aafc5cc1f430fa6cf593c05f6af6df618",
+    "notice": "New hashes for exported bytes; source approvals do not transfer"
+  },
+  "files": [
+    {
+      "path": "activity.jsonl",
+      "sha256": "96d7b0e9b7171b5ccc0e2a651cb424db038dcc7e3d6b0d4ecbbec8fa9960b6e8"
+    },
+    {
+      "path": "analysis/calculate_cohorts.py",
+      "sha256": "f3bb160c39cd78ec14fc9a5a24565230b35c22244f099367f52ea9669d6c98e3"
+    },
+    {
+      "path": "analysis/cohort-results.json",
+      "sha256": "f99e43498d1a8f44fe1669c0584ecded7a7602b605d9806c646b9072d3ddddc7"
+    },
+    {
+      "path": "approvals.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "claims.jsonl",
+      "sha256": "4d886f5940dee160ef12513f9ea6623087689c1a4b3d6a451a95c0c0aab198ec"
+    },
+    {
+      "path": "context/brief.md",
+      "sha256": "85e6ac29a48b0d26f39ab77375a59b1c04674152a442f2def5462f8535c94ccc"
+    },
+    {
+      "path": "context/research.md",
+      "sha256": "f3e9b7e2c05a3b6251bb2319159d4e0119c4b0410819a785e48ac125a66d4188"
+    },
+    {
+      "path": "evidence.jsonl",
+      "sha256": "5dd0a34603a7a657c91a1b9daad444d06697fe44bbadbbcb3a3091bfce808241"
+    },
+    {
+      "path": "EXPORT.md",
+      "sha256": "d974091e07ed23f444e687f7eaeba72cc0e3cb4aaab8c0615950211fbb55a8d5"
+    },
+    {
+      "path": "inputs/brief-source.md",
+      "sha256": "65c6ef1768d600c66624afe524016fbc5772e97ce7d3674d8927e4df54b420ba"
+    },
+    {
+      "path": "inputs/cohorts.csv",
+      "sha256": "b6db2059086921629565ed1947b5fa7c91607d8aa19576d3b20efdac7e423ebd"
+    },
+    {
+      "path": "inputs/owner-message-B-20261122.md",
+      "sha256": "04a2750c93424552d540bdc7fd534d8e7b7c8157f4b9cab9099aa77049c744b7"
+    },
+    {
+      "path": "inputs/public-method-source.md",
+      "sha256": "08a2898c019dd15eef2db855ce1a0c2fd320ce7bd659bc054c9bfce1042e0ed7"
+    },
+    {
+      "path": "receipts/calculation-review-source.json",
+      "sha256": "4a83d0595493dd60d78437196fabed69b082257a14d43ca3862e2e089fd50f55"
+    },
+    {
+      "path": "receipts/calculation-run-001.json",
+      "sha256": "7a5a9f47f6de8e2f629b82023c98a1ce30764cfe015f26984c540bd778868540"
+    },
+    {
+      "path": "receipts/content-review-source.json",
+      "sha256": "cda6f25d19b0cfeb1ba8b67aa73135c361178be2b4637dfa35762d12a7d9c5ca"
+    },
+    {
+      "path": "receipts/public-extraction-001.json",
+      "sha256": "5b666f9ff590a6bf04e9dd9287186f7bc6add72f025e7495b59231c3d3e6452c"
+    },
+    {
+      "path": "receipts/public-source-run-001.json",
+      "sha256": "016b2b23c1f329c08d0d471e6f7758af6cfc99f6da0ddbfa46bfaeea122b6bb8"
+    },
+    {
+      "path": "research/pre-po/brief.md",
+      "sha256": "ab747834053608a053fb3ae3f1f106bed9935d9aa2668488d440cb185319dc55"
+    },
+    {
+      "path": "research/pre-po/decision.md",
+      "sha256": "470b28f29c5923b874d98660e64e6dd9d704c3fb8b37d9cd2237f0d662d2cf35"
+    },
+    {
+      "path": "research/pre-po/options.md",
+      "sha256": "766e2a55762989661f64e00e23da3e8c6676c1de0154b3ae9cf9ae530291fe96"
+    },
+    {
+      "path": "research/pre-po/research.md",
+      "sha256": "61a02002e4020e7e8484164674ffa2059e546ff7932184ec784431570ca2d7a9"
+    },
+    {
+      "path": "sources/S-003-amplitude-text.txt",
+      "sha256": "9e350e894fd9003d55aa1064fda1bdeecd927e783f6716ce03f1391659e6f9dc"
+    },
+    {
+      "path": "sources.jsonl",
+      "sha256": "adabd6b9715337ff1dce9b5f862218c62f6e95b942a12944861e2e5e8f9ebbc6"
+    },
+    {
+      "path": "revisions/D0001/options.md",
+      "sha256": "36a5f055d3f2f4e6cffaf33b8e1c71d375e9aba391b1397002df4702a455a3d2"
+    },
+    {
+      "path": "revisions/D0001/decision.md",
+      "sha256": "ddceab601db09133db4e46bcd58fbb0c93454e896871dbe6b2e6b5fe12c7917c"
+    },
+    {
+      "path": "revisions/D0001/strategy-product.md",
+      "sha256": "c4e8dc4f961bd5193fac35eeb8230bfd5e88a8fbfd4fb5253f7e1791a663d5b7"
+    },
+    {
+      "path": "revisions/D0001/strategy-communication.md",
+      "sha256": "af0ff553ccb5193961cd872bc317954cdc990779bcd8e3b43138b2e49bd1795c"
+    },
+    {
+      "path": "revisions/D0001/test-plan.md",
+      "sha256": "c18325141c975f5be5a9a0eac00aaeb2e4c523ef3bcd719df7ac0217bc5b8ad4"
+    },
+    {
+      "path": "revisions/D0001/state.md",
+      "sha256": "8a84548ef910b0841bf789c6b1b6d9d0f5d26b464d9e60cde7c28daddb9a559c"
+    }
+  ]
+}

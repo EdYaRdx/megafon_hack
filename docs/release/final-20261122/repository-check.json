@@ -1,0 +1,16 @@
+{
+  "started_at_utc": "2026-11-22T17:24:13.921011+00:00",
+  "finished_at_utc": "2026-11-22T17:24:14.793571+00:00",
+  "argv_redacted": [
+    "<verified CPython3.12.14>",
+    "-X",
+    "utf8",
+    "-B",
+    "tools/check_repository.py"
+  ],
+  "cwd": "release root",
+  "exit_code": 0,
+  "stdout": "Repository integrity check: PASS (299 Markdown files; indexed case JSON/JSONL syntax)\nScope: file targets only; no schema, hash, fragment, external-link, product, or host validation.\n",
+  "stderr": "",
+  "scope": "Local Markdown targets and indexed case JSON/JSONL syntax; no external access/semantic proof"
+}

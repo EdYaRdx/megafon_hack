@@ -1,0 +1,10 @@
+{
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-22T17:05:12.3471604+00:00",
+  "elapsed_seconds": 66.3564236,
+  "started_at_utc": "2026-11-22T17:04:05.9907368Z",
+  "suite_summary": "121 tests; 10 failures; 1 error; 5 skips",
+  "raw_log_sha256": "86a83d2070f3fbce222cdc3490929a4be369b3701e4110a91c7b56f701fb1577",
+  "scope": "Fresh observed baseline on original main code; not the unavailable earlier 26/4 log",
+  "redactions": "machine-specific paths omitted; full source log retained privately"
+}

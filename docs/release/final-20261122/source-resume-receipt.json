@@ -1,0 +1,127 @@
+{
+  "receipt_type": "limited_independent_resume_transcript",
+  "provenance": {
+    "source": "Actual Codex tool outputs from the requested fresh-chat Resume run, transcribed from the conversation transcript.",
+    "standalone_platform_export": false,
+    "signature": "none",
+    "note": "This is a scoped receipt, not a signed or complete session transcript."
+  },
+  "redactions": [
+    "Absolute Python executable path",
+    "Absolute working and case paths"
+  ],
+  "case_root": "cases/mgimo-retention-qualification-2026-11-22",
+  "runtime": {
+    "implementation": "CPython",
+    "version": "3.12.14",
+    "probe_stdout": "Executable and version printed; imports encodings, json, pathlib succeeded.",
+    "probe_exit_code": "not captured by the command wrapper; later required commands exited 0"
+  },
+  "selected_checkpoint": {
+    "revision_id": "R0001",
+    "manifest_sha256": "f5d178602d01c186428e2fd775efe16aafc5cc1f430fa6cf593c05f6af6df618",
+    "manifest_status": "COMPLETE",
+    "parent_revision_id": null,
+    "active_claim_ids": [
+      "C-001",
+      "C-002",
+      "C-003",
+      "C-004",
+      "C-005",
+      "C-006",
+      "C-007",
+      "C-009",
+      "C-010"
+    ],
+    "classifier_result": "CHECKPOINTED"
+  },
+  "commands": [
+    {
+      "argv_redacted": [
+        "<verified CPython 3.12.14>",
+        "-X",
+        "utf8",
+        "tools/case_workspace.py",
+        "existing",
+        "cases/mgimo-retention-qualification-2026-11-22"
+      ],
+      "start_utc": "2026-11-22T15:49:26.6291111Z",
+      "end_utc": "2026-11-22T15:49:26.8022295Z",
+      "exit_code": 0,
+      "stdout_redacted": {
+        "status": "EXISTS",
+        "case_root": "cases/mgimo-retention-qualification-2026-11-22",
+        "absolute_case_root": "[REDACTED]"
+      },
+      "stderr": "Not exposed separately; no visible error."
+    },
+    {
+      "argv_redacted": [
+        "<verified CPython 3.12.14>",
+        "-X",
+        "utf8",
+        "tools/case_protocol.py",
+        "classify",
+        "cases/mgimo-retention-qualification-2026-11-22"
+      ],
+      "start_utc": "2026-11-22T15:49:27.1135452Z",
+      "end_utc": "2026-11-22T15:49:27.3344941Z",
+      "exit_code": 0,
+      "stdout": "CHECKPOINTED",
+      "stderr": "Not exposed separately; no visible error."
+    },
+    {
+      "argv_redacted": [
+        "<verified CPython 3.12.14>",
+        "-X",
+        "utf8",
+        "-m",
+        "tools.resume_context",
+        "cases/mgimo-retention-qualification-2026-11-22"
+      ],
+      "start_utc": "UNKNOWN",
+      "end_utc": "UNKNOWN",
+      "wall_time_seconds": 0.537,
+      "exit_code": 0,
+      "stdout": {
+        "case": "cases/mgimo-retention-qualification-2026-11-22",
+        "classification": "CHECKPOINTED",
+        "confirmed": {
+          "revision_id": "R0001",
+          "manifest_sha256": "f5d178602d01c186428e2fd775efe16aafc5cc1f430fa6cf593c05f6af6df618",
+          "snapshots": {
+            "decision.md": "revisions/R0001/decision.md",
+            "options.md": "revisions/R0001/options.md",
+            "state.md": "revisions/R0001/state.md",
+            "strategy-communication.md": "revisions/R0001/strategy-communication.md",
+            "strategy-product.md": "revisions/R0001/strategy-product.md",
+            "test-plan.md": "revisions/R0001/test-plan.md"
+          }
+        },
+        "unfinished": {
+          "discovery": "complete",
+          "drafts": [],
+          "hints": [
+            {
+              "path": "activity.jsonl",
+              "provenance": "activity ledger",
+              "status": "unverified",
+              "reason": "changed or unpinned activity; not proof of a later draft",
+              "relationship_to_selected": "unknown"
+            }
+          ],
+          "issues": [],
+          "notice": "Candidates and hints are unverified, not selected or necessarily newer. Inspect provenance/content; no referenced paths were followed. Discovery is not an atomic snapshot."
+        }
+      },
+      "stderr": "Not exposed separately; no visible error."
+    }
+  ],
+  "additional_observations": {
+    "active_selector_matches_manifest": true,
+    "root_state_and_decision_match_active_claim_set": true,
+    "drafts_directory": "absent",
+    "current_approvals_ledger": "empty",
+    "no_new_research_or_product_calculation_in_resume": true
+  }
+}

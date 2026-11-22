@@ -1,0 +1,11 @@
+{
+  "record_type": "REDACTED_HISTORICAL_SOURCE_EVIDENCE",
+  "source_revision": "R0001",
+  "source_manifest_sha256": "f5d178602d01c186428e2fd775efe16aafc5cc1f430fa6cf593c05f6af6df618",
+  "source_receipt_sha256": "e8389e315cafcdff23709cfe2c8b570c2c18baeb23b850573a4a0599d2275f23",
+  "notice": "Historical source result, not execution on D0001 export; paths/host telemetry omitted.",
+  "selected_source_fields": {
+    "result": "saved parsed method text retained",
+    "source_extraction_sha256": "9e350e894fd9003d55aa1064fda1bdeecd927e783f6716ce03f1391659e6f9dc"
+  }
+}

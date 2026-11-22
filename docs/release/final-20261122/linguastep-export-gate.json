@@ -1,0 +1,21 @@
+{
+  "started_at_utc": "2026-11-22T17:21:43.360084+00:00",
+  "ended_at_utc": "2026-11-22T17:21:43.939586+00:00",
+  "exit_code": 0,
+  "stdout": "{\"status\": \"VALIDATED_CANDIDATE\", \"revision_id\": \"D0001\", \"manifest_sha256\": \"0bf383ea374eedf1e5489cc530c9db6c5a5a933e8f9ef137739780cf200ae924\"}\n",
+  "stderr": "",
+  "argv_redacted": [
+    "<verified CPython 3.12.14>",
+    "-X",
+    "utf8",
+    "-B",
+    "tools/case_protocol.py",
+    "check-candidate",
+    "cases/linguastep-retention",
+    "--revision",
+    "D0001"
+  ],
+  "cwd": "release repository root",
+  "export_iteration": 2,
+  "scope": "Actual exported-byte check; not model E2E/Resume"
+}

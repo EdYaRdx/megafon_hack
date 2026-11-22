@@ -19,7 +19,9 @@ class CaseWorkspaceTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.project = Path(self.temp.name)
+        # TemporaryDirectory may return an 8.3 alias on Windows; production
+        # helpers resolve the project root, so compare against its canonical path.
+        self.project = Path(self.temp.name).resolve()
         shutil.copytree(ROOT / "cases" / "_template", self.project / "cases" / "_template")
 
     def files(self, root: Path) -> dict[str, bytes]:
@@ -258,15 +260,19 @@ class CaseWorkspaceTests(unittest.TestCase):
         tools.mkdir()
         script = tools / "case_workspace.py"
         shutil.copyfile(ROOT / "tools" / "case_workspace.py", script)
-        created = subprocess.run([sys.executable, str(script), "create", "cases/cli"], capture_output=True, text=True)
+        python = [sys.executable, "-X", "utf8"]
+        created = subprocess.run([*python, str(script), "create", "cases/cli"], capture_output=True,
+                                 text=True, encoding="utf-8")
         self.assertEqual(created.returncode, 0, created.stderr)
         self.assertEqual(json.loads(created.stdout)["case_root"], "cases/cli")
         self.assertEqual(json.loads(created.stdout)["status"], "CREATED")
-        occupied = subprocess.run([sys.executable, str(script), "create", "cases/cli"], capture_output=True, text=True)
+        occupied = subprocess.run([*python, str(script), "create", "cases/cli"], capture_output=True,
+                                  text=True, encoding="utf-8")
         self.assertEqual(occupied.returncode, 1)
         self.assertEqual(occupied.stdout, "")
         self.assertEqual(json.loads(occupied.stderr)["status"], "STOP")
-        selected = subprocess.run([sys.executable, str(script), "existing", "cases/cli"], capture_output=True, text=True)
+        selected = subprocess.run([*python, str(script), "existing", "cases/cli"], capture_output=True,
+                                  text=True, encoding="utf-8")
         self.assertEqual(selected.returncode, 0, selected.stderr)
         self.assertEqual(json.loads(selected.stdout)["status"], "EXISTS")
 

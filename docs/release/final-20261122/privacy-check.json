@@ -1,0 +1,10 @@
+{
+  "recorded_at_utc": "2026-11-22T17:25:34.609087+00:00",
+  "scope": "All tracked working-tree files plus intended new release/export files; high-confidence secret patterns and new-material path/account-field scan; not full DLP",
+  "file_count": 706,
+  "credential_pattern_findings": [],
+  "new_material_private_path_or_account_findings": [],
+  "json_files_parsed": 95,
+  "raw_scanner_installed": false,
+  "history_scan": "Separate independent review; no history rewrite"
+}

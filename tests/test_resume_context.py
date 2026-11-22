@@ -18,7 +18,9 @@ class ResumeContextTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.project = Path(self.temp.name)
+        # The inventory helper resolves roots; keep fixture Path equality stable
+        # when Windows returns an 8.3 alias from TemporaryDirectory.
+        self.project = Path(self.temp.name).resolve()
         self.case = self.project / "cases" / "synthetic"
         self.case.mkdir(parents=True)
         self.checkpoint()

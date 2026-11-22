@@ -13,7 +13,11 @@ import unittest
 import venv
 
 ROOT = Path(__file__).resolve().parents[1]
-POWERSHELL = shutil.which('powershell')
+# Prefer the available PowerShell 7 host for redirected subprocess tests. On
+# this Windows host, Windows PowerShell 5.1 fails to autoload Security module
+# type data when stdout/stderr are pipes; keep it as a fallback for hosts
+# without pwsh so the legacy path remains exercised where supported.
+POWERSHELL = shutil.which('pwsh') or shutil.which('powershell')
 
 
 @unittest.skipUnless(os.name == 'nt' and POWERSHELL, 'Requires Windows PowerShell execution-policy semantics')

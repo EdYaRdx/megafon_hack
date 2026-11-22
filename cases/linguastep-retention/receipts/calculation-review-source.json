@@ -1,0 +1,23 @@
+{
+  "record_type": "REDACTED_HISTORICAL_SOURCE_EVIDENCE",
+  "source_revision": "R0001",
+  "source_manifest_sha256": "f5d178602d01c186428e2fd775efe16aafc5cc1f430fa6cf593c05f6af6df618",
+  "source_receipt_sha256": "5a5655dcd8d37309b73544aa050752d87c928cd27a3320edb997abd64c6bef26",
+  "notice": "Historical source result, not execution on D0001 export; paths/host telemetry omitted.",
+  "selected_source_fields": {
+    "scope": "Independent read-only replay of inspected calculation and pre-PO receipt hashes; not Resume/E2E",
+    "replay_exit_code": 0,
+    "checks": {
+      "candidate_hashes_match": true,
+      "replay_exit_zero": true,
+      "jan_ratio_55": true,
+      "feb_ratio_50": true,
+      "segments_plus_5": true,
+      "paid_share_50_75": true,
+      "march_missing_not_zero": true,
+      "no_selector": true
+    },
+    "mismatches": [],
+    "result": "PASS"
+  }
+}

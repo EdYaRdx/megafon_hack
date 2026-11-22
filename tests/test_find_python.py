@@ -67,7 +67,8 @@ class FindPythonTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory(prefix="python discovery ")
         self.addCleanup(self.temp.cleanup)
-        self.project = Path(self.temp.name)
+        # pathlib may resolve a Windows 8.3 temp alias to the long profile path.
+        self.project = Path(self.temp.name).resolve()
         (self.project / "tools").mkdir()
         shutil.copyfile(ROOT / "tools" / "find_python.ps1", self.project / "tools" / "find_python.ps1")
         self.wrapper = self.project / "discover.ps1"
