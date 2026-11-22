@@ -7,7 +7,7 @@
 | Материал | Открыть | Статус и граница |
 |---|---|---|
 | Единственный конкурсный репозиторий | [GitHub main](https://github.com/EdYaRdx/megafon_hack/tree/main) | PUBLIC подтверждён API 22.11.2026; эта проверка права доступа не меняет |
-| Демонстрационный проект | [Семейный кейс](../cases/family-multinumber-video/README.md), [LinguaStep](../cases/linguastep-retention/README.md) | Учебные входы, разные альтернативы, решения PO, стратегии и планы |
+| Демонстрационный проект | [МегаФон: короткая продуктовая история](demos/megafon.md) · [LinguaStep](demos/linguastep.md) | Прямые ссылки на задачи, учебные входы, альтернативы, решения PO, четыре стратегии и два плана; защищённые папки дел доступны внутри |
 | Запись работы | [Видео E2E](https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view), [папка Drive](https://drive.google.com/drive/folders/12ZOJFDD96tkRtEe0D5MGdJh69ypJ0irE?usp=sharing), [этапы](video-e2e.md) | anyone / reader подтверждён metadata для файла и папки; полный просмотр записи этой проверкой не выполнялся |
 | Финальное описание | [PDF «Ромашка MISIS», 17 страниц A4](MGIMO_FINAL_REPORT.pdf), [подробное описание](submission-description.md) | Предоставленный MGIMO_Romashka_MISIS.pdf включён без изменения байтов; [проверка страниц, ссылок и области заявлений](release/submission-ready-20261122/README.md) |
 
@@ -22,7 +22,7 @@
 
 Это связь требований с доказательствами, не прогноз баллов жюри.
 
-Два независимых учебных кейса дают 11 альтернатив, четыре стратегии и два плана проверки. Основу составляют 6 Skills, PDF / CSV / Web, evidence / claims / UNKNOWN, воспроизводимые вычисления и управляемые человеком checkpoint / Resume / Revise. [Последний подтверждённый main CI до этой правки](https://github.com/EdYaRdx/megafon_hack/actions/runs/45055668569): 121 тест, 116 passed + 5 skipped; [актуальный CI main](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain).
+Два независимых учебных кейса дают 11 альтернатив, четыре стратегии и два плана проверки. Основу составляют 6 Skills, PDF / CSV / Web, evidence / claims / UNKNOWN, воспроизводимые вычисления и управляемые человеком checkpoint / Resume / Revise. [CI опубликованного PDF-релиза 3005460](https://github.com/EdYaRdx/megafon_hack/actions/runs/45060829339): 121 тест, 116 passed + 5 skipped; [актуальный CI main](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain).
 
 ## Две продуктовые и две коммуникационные стратегии
 

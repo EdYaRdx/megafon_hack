@@ -1,3 +1,5 @@
+> **Исторический срез — план обновления прежнего v3, 22.11.2026. Примечание 22.11.2026:** PRIVATE, неподтверждённый доступ, ожидание PDF/merge и прежние рекомендации о публикации ниже относятся к моменту этой записи. [Актуальная готовность](../submission-ready-20261122/README.md) фиксирует PUBLIC, опубликованный финальный PDF, normal merge и CI SUCCESS релиза 3005460. Это не новая проверка старых испытаний: их FAIL / BLOCKED / REVIEW_REQUIRED и неизвестное сохраняются в исходном scope. Права передачи, полный просмотр видео и отправка формы остаются действиями владельца.
+
 # Minimal PDF update
 
 Current accepted v3 has 15 pages and SHA-256 109B8DD6941C8B656A6EA6A45BF5CEC1854C6B3F1FA88350A294747ECA85CA04. Source PDF was provided by the owner. Its bytes are unchanged.

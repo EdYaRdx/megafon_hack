@@ -1,3 +1,5 @@
+> **Исторический срез — review промежуточной упаковки 22.11.2026. Примечание 22.11.2026:** PRIVATE, неподтверждённый доступ, ожидание PDF/merge и прежние рекомендации о публикации ниже относятся к моменту этой записи. [Актуальная готовность](../submission-ready-20261122/README.md) фиксирует PUBLIC, опубликованный финальный PDF, normal merge и CI SUCCESS релиза 3005460. Это не новая проверка старых испытаний: их FAIL / BLOCKED / REVIEW_REQUIRED и неизвестное сохраняются в исходном scope. Права передачи, полный просмотр видео и отправка формы остаются действиями владельца.
+
 # Independent jury review
 
 Separate read-only reviewer context inspected the updated source qualification, limited fresh-chat Resume receipt, contest criteria and document sources. It was not the author of the retention strategies.

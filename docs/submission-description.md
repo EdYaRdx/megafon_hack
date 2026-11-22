@@ -148,7 +148,7 @@ RESUME CASE cases/family-multinumber-video
 
 ## Материалы для передачи
 
-Финальный [jury PDF](MGIMO_FINAL_REPORT.pdf) уже включён; видео опубликовано, подлинный кадр доступен выше и в `docs/assets/`. Основной репозиторий PUBLIC. [Последний подтверждённый main CI до PDF](https://github.com/EdYaRdx/megafon_hack/actions/runs/45055668569) и [актуальные main runs](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain) отделены от исторических проверок выше.
+Финальный [jury PDF](MGIMO_FINAL_REPORT.pdf) уже включён; видео опубликовано, подлинный кадр доступен выше и в `docs/assets/`. Основной репозиторий PUBLIC. [CI опубликованного PDF-релиза 3005460](https://github.com/EdYaRdx/megafon_hack/actions/runs/45060829339) и [актуальные main runs](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain) отделены от исторических проверок выше.
 
 Владелец отдельно подтверждает полный безопасный просмотр записи, права передачи и итоговую конкурсную форму. Drive metadata файла и папки подтверждает anyone / reader; это не полный просмотр записи. Дополнительных исходников для hero-screenshot не требуется: он получен из реального видео. Модельную/billing телеметрию можно добавить только по реальным данным; при её отсутствии сохраняется UNKNOWN. [Ручной checklist](submission-checklist.md).
 

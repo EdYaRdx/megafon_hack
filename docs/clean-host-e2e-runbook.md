@@ -1,3 +1,5 @@
+> **Исторический срез — историческая процедура отдельных clean-host/qualification испытаний. Примечание 22.11.2026:** PRIVATE, неподтверждённый доступ, ожидание PDF/merge и прежние рекомендации о публикации ниже относятся к моменту этой записи. [Актуальная готовность](release/submission-ready-20261122/README.md) фиксирует PUBLIC, опубликованный финальный PDF, normal merge и CI SUCCESS релиза 3005460. Это не новая проверка старых испытаний: их FAIL / BLOCKED / REVIEW_REQUIRED и неизвестное сохраняются в исходном scope. Права передачи, полный просмотр видео и отправка формы остаются действиями владельца.
+
 # Clean-host E2E and regression runbook
 
 **This file's listed procedures: NOT RUN in this record.** Current dynamic acceptance is separately **CONDITIONAL** for limited single-host synthetic scope; see [current implementation status](implementation-status.md) and [evaluation](evaluation.md). The procedure below does not replace the latest independent Sol sign-off (**PENDING**), close **H02 BLOCKED**, or certify clean-host/cross-host portability. The earlier run result table is the record for these specific planned checks, not an overall product verdict.
