@@ -10,6 +10,12 @@
 
 Содержательные выводы, неизвестное и история сохранены; учебный кейс не подтверждает реальный спрос или финансовый эффект. Все файлы дела, включая README и export-map, сохранены побайтово.
 
+## Второй независимый workflow: LinguaStep
+
+[`linguastep-retention/`](linguastep-retention/README.md) — новая синтетическая задача: бриф, CSV и открытая методика, пять альтернатив, выбор PO B, две стратегии и план ограниченной диагностики. [Происхождение](linguastep-retention/EXPORT.md) отделяет оригинальный R0001 и настоящий новый чат от опубликованного privacy-safe D0001 с собственными hashes. Дело создал оператор; CSV/штатные gates проверены, свободный NEW целиком не подтверждён.
+
+[Продуктовая стратегия](linguastep-retention/strategy-product.md) · [Коммуникационная стратегия](linguastep-retention/strategy-communication.md) · [План](linguastep-retention/test-plan.md) · [Resume receipt оригинала](../docs/release/final-20261122/source-resume-receipt.json)
+
 ## Другие примеры и QA
 
 Эти материалы не заменяют основной видеокейс. Их история и прежние ограничения сохранены.
