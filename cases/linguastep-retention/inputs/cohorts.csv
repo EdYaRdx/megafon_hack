@@ -1,0 +1,7 @@
+cohort_month,acquisition_segment,eligible_users,returned_d30,reported_retention_percent,is_mature,days_observed
+2026-01,paid,1000,350,35,true,30
+2026-01,organic,1000,750,75,true,30
+2026-02,paid,1500,600,40,true,30
+2026-02,organic,500,400,80,true,30
+2026-03,paid,300,,,false,10
+2026-03,organic,700,,,false,10

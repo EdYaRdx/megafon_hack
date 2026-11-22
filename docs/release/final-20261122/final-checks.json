@@ -1,0 +1,31 @@
+{
+  "recorded_at_utc": "2026-11-22T17:27:53.917066+00:00",
+  "new_json_files_parsed": 19,
+  "new_jsonl_files_parsed": 5,
+  "runtime_skills_family_case_unchanged": true,
+  "repository_checker": {
+    "result": "PASS",
+    "receipt": "repository-check.json"
+  },
+  "local_links": "PASS for local file targets; new fragment actual-exported-byte-checks confirmed",
+  "secrets_privacy": {
+    "result": "PASS scoped working tree",
+    "receipt": "privacy-check.json"
+  },
+  "git_diff_check": "PASS (staged check after selector/marker newline normalization; no manifest snapshot bytes changed)",
+  "new_product_E2E": "NOT RUN in release; historical sources explicitly separated",
+  "external_links": {
+    "repository_anonymous": 404,
+    "video_landing": 200,
+    "method_page": 200,
+    "scope": "HTTP only; jury permissions/playback not established"
+  },
+  "history_privacy": {
+    "scope": "125 commits reachable from origin/main, pattern-only review",
+    "identifying_path_occurrences": 118,
+    "current_account_component_matches": 104,
+    "tracked_history_files": 2,
+    "public_history_release": "HOLD for owner approval",
+    "rewrite_performed": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "record_type": "REDACTED_HISTORICAL_SOURCE_EVIDENCE",
+  "source_revision": "R0001",
+  "source_manifest_sha256": "f5d178602d01c186428e2fd775efe16aafc5cc1f430fa6cf593c05f6af6df618",
+  "source_receipt_sha256": "198f0509b99cd6f850ede2e446543fc7f77f4ce35eab3819c610ab54b7275d95",
+  "notice": "Historical source result, not execution on D0001 export; paths/host telemetry omitted.",
+  "selected_source_fields": {
+    "recorded_at_utc": "2026-11-22T15:29:04.596133+00:00",
+    "verdict": "PASS for selected-B preparation content, not host/human acceptance",
+    "scope": [
+      "owner choice/scope",
+      "CSV/formulas/denominators",
+      "Jan-weight standardization and noncausality",
+      "sources/locators",
+      "product/communication alignment",
+      "comparator/periods/guardrails/outcomes"
+    ],
+    "findings": [
+      "qualify pre-choice brief/research",
+      "remove stale pending options heading/C008 current reference",
+      "normalize final machine controls and next step"
+    ],
+    "resolution": "Pre-PO brief/research preserved; current brief updated and research qualified; six final snapshots normalize status/current C010 reference and genuine new-chat next step",
+    "calculation_repeated": false,
+    "tests_run": false,
+    "remaining_limits": [
+      "D30 contract/cutoff/query UNKNOWN",
+      "operational dates/roles/resources/thresholds UNKNOWN",
+      "execution not authorized",
+      "new user-chat Resume NOT RUN"
+    ]
+  }
+}

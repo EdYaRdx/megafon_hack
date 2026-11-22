@@ -1,0 +1,29 @@
+{
+  "scope": "Unauthenticated HTTP reachability only; no video playback/download, no organizer/jury account access, no new research",
+  "results": [
+    {
+      "name": "repository_anonymous",
+      "url": "https://github.com/EdYaRdx/megafon_hack",
+      "started_at_utc": "2026-11-22T17:24:45.219334+00:00",
+      "ended_at_utc": "2026-11-22T17:24:46.234803+00:00",
+      "http_status": 404,
+      "error": "HTTPError"
+    },
+    {
+      "name": "video_landing",
+      "url": "https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view",
+      "started_at_utc": "2026-11-22T17:24:45.220334+00:00",
+      "ended_at_utc": "2026-11-22T17:24:46.215604+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "name": "retention_method",
+      "url": "https://www.amplitude.com/docs/analytics/charts/retention-analysis/retention-analysis-calculation",
+      "started_at_utc": "2026-11-22T17:24:45.221334+00:00",
+      "ended_at_utc": "2026-11-22T17:24:46.864996+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8"
+    }
+  ]
+}

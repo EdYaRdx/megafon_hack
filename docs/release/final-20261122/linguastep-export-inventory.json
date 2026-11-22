@@ -1,0 +1,19 @@
+{
+  "started_at_utc": "2026-11-22T17:21:44.167469+00:00",
+  "ended_at_utc": "2026-11-22T17:21:44.392726+00:00",
+  "exit_code": 0,
+  "stdout": "{\n  \"case\": \"cases/linguastep-retention\",\n  \"classification\": \"CHECKPOINTED\",\n  \"confirmed\": {\n    \"revision_id\": \"D0001\",\n    \"manifest_sha256\": \"0bf383ea374eedf1e5489cc530c9db6c5a5a933e8f9ef137739780cf200ae924\",\n    \"snapshots\": {\n      \"decision.md\": \"revisions/D0001/decision.md\",\n      \"options.md\": \"revisions/D0001/options.md\",\n      \"state.md\": \"revisions/D0001/state.md\",\n      \"strategy-communication.md\": \"revisions/D0001/strategy-communication.md\",\n      \"strategy-product.md\": \"revisions/D0001/strategy-product.md\",\n      \"test-plan.md\": \"revisions/D0001/test-plan.md\"\n    }\n  },\n  \"unfinished\": {\n    \"discovery\": \"complete\",\n    \"drafts\": [],\n    \"hints\": [],\n    \"issues\": [],\n    \"notice\": \"Candidates and hints are unverified, not selected or necessarily newer. Inspect provenance/content; no referenced paths were followed. Discovery is not an atomic snapshot.\"\n  }\n}\n",
+  "stderr": "",
+  "argv_redacted": [
+    "<verified CPython 3.12.14>",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "tools.resume_context",
+    "cases/linguastep-retention"
+  ],
+  "cwd": "release repository root",
+  "export_iteration": 2,
+  "scope": "Actual exported-byte check; not model E2E/Resume"
+}

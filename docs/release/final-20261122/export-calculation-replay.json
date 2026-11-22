@@ -1,0 +1,20 @@
+{
+  "started_at_utc": "2026-11-22T17:23:04.604027+00:00",
+  "finished_at_utc": "2026-11-22T17:23:04.776704+00:00",
+  "argv_redacted": [
+    "<verified CPython3.12.14>",
+    "-X",
+    "utf8",
+    "-B",
+    "cases\\linguastep-retention\\analysis\\calculate_cohorts.py",
+    "cases\\linguastep-retention\\inputs\\cohorts.csv"
+  ],
+  "cwd": "release repository root",
+  "exit_code": 0,
+  "stdout": "{\n  \"source_path\": \"cases/linguastep-retention/inputs/cohorts.csv\",\n  \"source_sha256\": \"b6db2059086921629565ed1947b5fa7c91607d8aa19576d3b20efdac7e423ebd\",\n  \"runtime\": \"3.12.14\",\n  \"interpretation\": \"Ratios of supplied counts only; authoritative D30 contract UNKNOWN\",\n  \"monthly\": {\n    \"2026-01\": {\n      \"csv_lines\": [\n        2,\n        3\n      ],\n      \"eligible_users\": 2000,\n      \"returned_d30\": 1100,\n      \"pooled_count_ratio_percent\": 55.0,\n      \"unweighted_mean_reported_percent\": 55.0,\n      \"paid_share_percent\": 50.0\n    },\n    \"2026-02\": {\n      \"csv_lines\": [\n        4,\n        5\n      ],\n      \"eligible_users\": 2000,\n      \"returned_d30\": 1000,\n      \"pooled_count_ratio_percent\": 50.0,\n      \"unweighted_mean_reported_percent\": 60.0,\n      \"paid_share_percent\": 75.0\n    }\n  },\n  \"segments\": {\n    \"paid\": {\n      \"csv_lines\": [\n        2,\n        4\n      ],\n      \"count_ratio_percent\": [\n        35.0,\n        40.0\n      ],\n      \"delta_percentage_points\": 5.0\n    },\n    \"organic\": {\n      \"csv_lines\": [\n        3,\n        5\n      ],\n      \"count_ratio_percent\": [\n        75.0,\n        80.0\n      ],\n      \"delta_percentage_points\": 5.0\n    }\n  },\n  \"excluded\": [\n    {\n      \"csv_line\": 6,\n      \"month\": \"2026-03\",\n      \"segment\": \"paid\",\n      \"eligible_users\": 300,\n      \"reason\": \"immature and outcomes missing; missing is not zero\",\n      \"ratio_percent\": null\n    },\n    {\n      \"csv_line\": 7,\n      \"month\": \"2026-03\",\n      \"segment\": \"organic\",\n      \"eligible_users\": 700,\n      \"reason\": \"immature and outcomes missing; missing is not zero\",\n      \"ratio_percent\": null\n    }\n  ],\n  \"descriptive_january_reference_decomposition\": {\n    \"jan_weights_feb_rates_percent\": 60.0,\n    \"within_segment_term_pp\": 5.0,\n    \"mix_term_at_feb_rates_pp\": -10.0,\n    \"total_delta_pp\": -5.0,\n    \"identity_holds\": true,\n    \"limitations\": \"Sequential January-reference arithmetic identity, not causal attribution; order-dependent\"\n  },\n  \"formulas\": {\n    \"ratio\": \"100 * sum(returned_d30) / sum(eligible_users)\",\n    \"reported_mean\": \"sum(reported_retention_percent)/number_of_rows, shown only to expose weighting difference\",\n    \"fixed_mix\": \"sum(Jan segment eligible / Jan all eligible * Feb segment returned / Feb segment eligible) * 100\",\n    \"within\": \"fixed_mix_percent - Jan pooled_percent\",\n    \"mix\": \"Feb pooled_percent - fixed_mix_percent\"\n  },\n  \"rules\": {\n    \"rounding\": \"Exact Fraction arithmetic, float display for terminating values; units percent and percentage points\",\n    \"missing\": \"Never impute blank outcomes to zero; March has no calculated ratio\",\n    \"maturity\": \"Use only rows explicitly true AND days_observed>=30 AND supplied complete outcomes; this checks supplied flags, not validity of metric contract\",\n    \"duplicate_check\": \"Each month/segment key must be unique\"\n  }\n}\n",
+  "stderr": "",
+  "input_sha256": "b6db2059086921629565ed1947b5fa7c91607d8aa19576d3b20efdac7e423ebd",
+  "script_sha256": "f3bb160c39cd78ec14fc9a5a24565230b35c22244f099367f52ea9669d6c98e3",
+  "matches_saved_export_result": true,
+  "scope": "Actual deterministic replay on exported CSV/script bytes; not a new product/model E2E"
+}

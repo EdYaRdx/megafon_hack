@@ -8,6 +8,17 @@
 
 [**Смотреть видео**](https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view) · [**Открыть результат**](docs/video-e2e.md) · [**Быстрый запуск**](docs/quickstart.md) · [**Архитектура**](docs/architecture.md)
 
+[Описание для жюри](docs/submission-description.md) · [Четыре критерия и проверки релиза](docs/release/final-20261122/README.md)
+
+| Проверяемый результат | Открыть | Граница доказательства |
+|---|---|---|
+| Основной видеокейс МегаФона | [Две стратегии и история D0001–D0003](cases/family-multinumber-video/README.md) | Учебный бриф; видео и новый чат подтверждены владельцем |
+| LinguaStep: бриф, CSV, сайт, пять альтернатив и выбор PO B | [Продуктовая](cases/linguastep-retention/strategy-product.md) · [Коммуникационная](cases/linguastep-retention/strategy-communication.md) · [План](cases/linguastep-retention/test-plan.md) | Privacy-safe D0001 — производная исходного R0001 с новыми hashes |
+| Resume исходного LinguaStep в новом чате | [Ограниченный transcript receipt](docs/release/final-20261122/source-resume-receipt.json) | Подтверждён владельцем; не полный подписанный platform export |
+| Целостность экспортированного D0001 | [Gate, classify и inventory](docs/release/final-20261122/README.md#actual-exported-byte-checks) | Проверка новых байтов, не новый live E2E |
+
+От обычного чата агент отличается сохранением проверяемых оснований, решений и ревизий. [Историческое сравнение F9](research/sol-audit/eval-results/F9-resume-comparison-20261113.md) показывает различие сохранённых артефактов; преимущество точности, скорости или стоимости не доказано. Cursor E2E, реальный retention-эффект и полная стоимость остаются непроверенными/UNKNOWN.
+
 <img src="docs/assets/strategy-result-from-video.png" alt="Настоящий ответ Codex: сохранённые стратегии R0002, гипотеза, проверка, риски и следующее решение">
 
 Кадр реального видео, 06:34: результат **до** критического пересмотра. [Источник и безопасный кроп](docs/assets/README.md); актуальные стратегии — ниже.

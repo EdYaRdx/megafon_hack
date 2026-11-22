@@ -1,0 +1,56 @@
+{
+  "started_at_utc": "2026-11-22T17:18:53.254885+00:00",
+  "finished_at_utc": "2026-11-22T17:19:58.005608+00:00",
+  "elapsed_seconds": 64.750723,
+  "argv_redacted": [
+    "<verified CPython 3.12.14>",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "release checkout root",
+  "environment": {
+    "TEMP": "ASCII temporary directory",
+    "TMP": "same ASCII temporary directory",
+    "PYTHONUTF8": "1"
+  },
+  "exit_code": 0,
+  "summary_lines": [
+    "Ran 121 tests in 64.024s",
+    "OK (skipped=5)"
+  ],
+  "skips": [
+    {
+      "test": "test_candidate_rejects_dependencies_aliasing_mutable_selector (test_case_protocol.CaseProtocolTests.test_candidate_rejects_dependencies_aliasing_mutable_selector) (kind='symlink')",
+      "reason": "WinError 1314: symlink creation privilege unavailable"
+    },
+    {
+      "test": "test_linked_case_or_template_is_rejected (test_case_workspace.CaseWorkspaceTests.test_linked_case_or_template_is_rejected)",
+      "reason": "WinError 1314: symlink creation privilege unavailable"
+    },
+    {
+      "test": "test_classifier_dependency_link_is_rejected_before_read_or_draft_scan (test_resume_context.ResumeContextTests.test_classifier_dependency_link_is_rejected_before_read_or_draft_scan)",
+      "reason": "WinError 1314: symlink creation privilege unavailable"
+    },
+    {
+      "test": "test_linked_drafts_root_is_unknown_not_no_drafts (test_resume_context.ResumeContextTests.test_linked_drafts_root_is_unknown_not_no_drafts)",
+      "reason": "WinError 1314: symlink creation privilege unavailable"
+    },
+    {
+      "test": "test_outside_draft_links_and_dangling_links_are_not_followed (test_resume_context.ResumeContextTests.test_outside_draft_links_and_dangling_links_are_not_followed)",
+      "reason": "WinError 1314: symlink creation privilege unavailable"
+    }
+  ],
+  "raw_log_sha256": "8b25db7c4861b639afd6fc463f9ec165e9e581ab111c80fc50410e3eeed6f195",
+  "redactions": [
+    "interpreter path",
+    "cwd path",
+    "temporary paths in skip reasons"
+  ]
+}
