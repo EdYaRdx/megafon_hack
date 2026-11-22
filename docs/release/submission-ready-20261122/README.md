@@ -1,5 +1,9 @@
 # Финальная готовность к подаче — 22.11.2026
 
+**Опубликованный релиз:** main `3005460fd044d99f712f3798316ff6cf1ba91c5f`, PR34 объединён normal merge, [main CI SUCCESS](https://github.com/EdYaRdx/megafon_hack/actions/runs/45060829339): 116 passed + 5 Windows-only skipped, checker 303 Markdown PASS. PUBLIC подтверждён GitHub metadata. Финальный PDF публично скачан без авторизации 22.11.2026 в 22:27 МСК; SHA-256 совпал с предоставленным оригиналом. Drive metadata подтвердил anyone / reader для видео и папки. Ниже сохранён scope подготовки этого релиза; старые receipts не переименованы в новые проверки.
+
+[МегаФон — вход в демонстрационный проект](../../demos/megafon.md) · [LinguaStep](../../demos/linguastep.md) · [Редакционный аудит текущего маршрута](../jury-docs-audit-20261122.md). Последующие документационные commits проверяются в [main CI](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain).
+
 Срез основной ветки до правки: `385e1d20778d8cfa85a47312a32d3ef8983f5778`, [main CI SUCCESS](https://github.com/EdYaRdx/megafon_hack/actions/runs/45055668569). Текущая работа включает только финальный PDF и документацию; модельный E2E, runtime, Skills и опубликованные дела не менялись. [Актуальные main runs](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain) показывают последующую интеграцию. Сохранённые отчёты 21/22 ноября остаются историческими.
 
 ## Материалы
@@ -19,7 +23,7 @@ PDF скопирован из предоставленного `MGIMO_Romashka_M
 | PDF | [17 страниц A4, 17 успешных рендеров, две встроенные screenshot crops и 73 URI annotations](pdf-check.json); все страницы визуально просмотрены, байты сохранены |
 | Mermaid и относительная навигация | [3 схемы parsed/rendered PASS; 387 relative links/anchors без ошибок](diagrams-navigation.json), Mermaid11.12.0 / установленный Chrome / github-slugger2.0.0. Это не точная версия renderer GitHub |
 | PDF URI / внешние ссылки | [Все41 уникальных URI PDF + main tree/CI/Drive folder: 44 из44 reachable](links.json); pinned/main Git file targets существуют. Исторические permalinks сохранены |
-| Checkpoint / checker / privacy | [Штатные команды с timestamps, exit codes и scoped scan](verification.json): оба дела CHECKPOINTED, checker303 Markdown PASS; первоначальный CRLF diff-check и успешный retry сохранены, actionable findings новых документов нет |
+| Checkpoint / checker / privacy | [Штатные команды с timestamps, exit codes и scoped scan](verification.json): оба дела CHECKPOINTED, checker 303 Markdown PASS; первоначальный CRLF diff-check и успешный retry сохранены, actionable findings новых документов нет |
 
 GitHub metadata подтверждает PUBLIC; Google Drive metadata файла и папки — anyone / reader. Права не менялись. Проверка HTTP/permissions не означает полного просмотра видео от начала до конца.
 

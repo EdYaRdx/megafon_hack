@@ -6,7 +6,7 @@
 
 [README](../README.md) → [реальный видеокейс](video-e2e.md) → [продуктовая](../cases/family-multinumber-video/strategy-product.md) и [коммуникационная](../cases/family-multinumber-video/strategy-communication.md) стратегии.
 
-Для собственной задачи: [Quick Start](quickstart.md). Для жюри: [описание решения](submission-description.md) и [результаты проверок](evaluation.md). Для устройства продукта: [архитектура](architecture.md).
+Для собственной задачи: [Quick Start](quickstart.md). Для жюри: [МегаФон — вход в демонстрационный проект](demos/megafon.md), [LinguaStep](demos/linguastep.md), [PDF](MGIMO_FINAL_REPORT.pdf) и [результаты проверок](evaluation.md). Для устройства продукта: [архитектура](architecture.md).
 
 ## Где что находится
 
@@ -18,6 +18,8 @@
 | `prompts/first-run.md` | NEW / RESUME / REVISE / HELP и выбор точного дела |
 | `cases/_template/` | Шаблон нового дела и checkpoint-протокол |
 | `cases/family-multinumber-video/` | Основной опубликованный видеокейс D0001–D0003 |
+| `cases/linguastep-retention/` | Второй учебный кейс: бриф, CSV, web-методика, выбор PO, две стратегии и план |
+| `docs/demos/` | Короткие входные страницы для жюри вне защищённых данных дел |
 | `cases/README.md` | Каталог примеров и QA-фикстур |
 | `tools/`, `tests/`, `.github/workflows/` | Python helpers, автоматические проверки и CI |
 | `docs/` | Запуск, кейс, архитектура, описание для жюри и оценка |
@@ -46,6 +48,6 @@
 
 Передавайте tracked-репозиторий или согласованную копию с полным делом и его зависимостями, а не весь локальный рабочий каталог. Не включайте `.local/`, исходный персональный R-кейс, raw sessions, credentials, `.env`, caches или пользовательские профили.
 
-Основной D-кейс — самостоятельный обезличенный derivative, не исходная R-история. PDF и кадры распространяются с учётом прав и условий конкурса, без автоматически назначенной лицензии. Доступ жюри к GitHub и видео проверяет владелец; этот документационный release не меняет visibility и не выполняет подачу. [Ручной checklist](submission-checklist.md).
+Основной D-кейс — самостоятельный обезличенный derivative, не исходная R-история. PDF и кадры распространяются с учётом прав и условий конкурса, без автоматически назначенной лицензии. PUBLIC GitHub и Drive anyone / reader подтверждены в [финальной readiness](release/submission-ready-20261122/README.md). Полный просмотр записи, права передачи и форма остаются за владельцем; эта редактура не меняет доступ и не отправляет заявку. [Checklist](submission-checklist.md).
 
 [Документация](README.md) · [Техническая разработка](development.md).

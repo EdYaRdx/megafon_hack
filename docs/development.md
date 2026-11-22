@@ -100,7 +100,7 @@ Unit tests validate consumer compatibility and fail-closed status, not the speed
 | OMP/Docker/provider profiles | Optional operator-specific qualification setup, not product dependencies | Private profiles, sessions, keys and model history must not enter a normal manual test |
 | Time and money | Owner's explicit allowance and actual host telemetry | No fixed product fee or universal monetary hard cap; soft request-stop estimates are not invoice guarantees; absent costs UNKNOWN |
 
-Observed trial-specific model/cost figures and limits belong in [current handoff](current-session-handoff.md), not as a pricing promise or mandatory launcher. Manual testing means a new case with the tester's own permission, not reuse of historical qualification approvals or evaluator answers.
+Observed trial-specific model/cost figures and limits belong in the [historical engineering handoff of 18 November](current-session-handoff.md), not as a pricing promise or mandatory launcher. Current submission readiness is recorded [separately](release/submission-ready-20261122/README.md). Manual testing means a new case with the tester's own permission, not reuse of historical qualification approvals or evaluator answers.
 
 
 

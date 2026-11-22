@@ -4,7 +4,7 @@
 
 Для руководителя цифрового продукта, которому нужно решить, что делать дальше и на каких основаниях. Агент уточняет задачу, читает разрешённые материалы, сравнивает разные направления и сохраняет решение с источниками. Направление выбирает Product Owner.
 
-[Смотреть реальное видео](https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view) · [За минуту для жюри](docs/for-jury.md) · [Карта возможностей](docs/capabilities.md) · [Подробный Quick Start](docs/quickstart.md)
+[**Открыть демонстрационный проект**](docs/demos/megafon.md) · [Смотреть реальное видео](https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view) · [Для жюри](docs/for-jury.md) · [Карта возможностей](docs/capabilities.md) · [Quick Start](docs/quickstart.md)
 
 **MGIMO AI Challenge · команда «Ромашка MISIS» · трек МегаФона.** Два независимых учебных кейса: **11 содержательных альтернатив, четыре стратегии и два плана проверки**, 6 Skills, PDF / CSV / Web, evidence / claims / UNKNOWN и Human-in-the-loop. [Финальное описание со скриншотами — PDF, 17 страниц](docs/MGIMO_FINAL_REPORT.pdf) · [Подробности и источники](docs/submission-description.md). Реальные клиентские данные не использованы.
 
@@ -48,6 +48,8 @@ flowchart TD
 Сначала подтверждаются источники и неизвестное, затем формируется рекомендация. Только CHECKPOINTED позволяет восстановить выбранную ревизию и отдельно проверить незавершённое; FRESH возвращается в Intake, LEGACY продолжается по историческим ограничениям, ошибка означает STOP. Resume продолжает сохранённый этап; Revise затрагивает только нужную работу, а смена направления снова требует PO. Gate без выбора и успешного classify не означает CHECKPOINTED. Выбор направления и checkpoint не разрешают бюджет, пилот или контакт с людьми. [Полная схема и границы](docs/architecture.md#поток-работы).
 
 ## Два проверяемых кейса
+
+Начните с короткой продуктовой истории: [МегаФон — задача, входы, выбор и результаты](docs/demos/megafon.md) · [LinguaStep — CSV, диагностика и Resume](docs/demos/linguastep.md). Ниже — прямые ссылки на сохранённые материалы дел.
 
 | Кейс / исходная задача | Материалы | Две стратегии и проверка | Как проверить процесс |
 |---|---|---|---|
@@ -93,9 +95,9 @@ LinguaStep прошёл модельный workflow на новой синтет
 |---|---|
 | Windows / Python3.12.14 | [121 тест, 0 failures/errors, 5 symlink-privilege skips](docs/release/final-20261122/unit-tests.json) |
 | Ubuntu / Python3.12.16 | [121 тест, 0 failures/errors, 5 Windows-only skips](https://github.com/EdYaRdx/megafon_hack/actions/runs/45050094992); Windows symlink-проверки прошли на Ubuntu |
-| Основной main до финального PDF | [CI SUCCESS на 385e1d2](https://github.com/EdYaRdx/megafon_hack/actions/runs/45055668569): 116 passed + 5 Windows-only skipped; [актуальный CI main](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain) |
+| Опубликованный релиз с финальным PDF | [CI SUCCESS на 3005460](https://github.com/EdYaRdx/megafon_hack/actions/runs/45060829339): 116 passed + 5 Windows-only skipped; [последующие запуски main](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain) |
 | Семейный D0003 и LinguaStep D0001 | [Штатные hash/gate/classify receipts](docs/release/final-20261122/README.md); оба экспортированных checkpoint проверены |
-| Ссылки, syntax и текущая навигация | [Новая целевая проверка](docs/main-submission-checks.json) включает repository checker, оба checkpoint и scoped privacy scan; это проверка локальных targets, не доступов жюри |
+| Ссылки, syntax и навигация | [Финальная readiness](docs/release/submission-ready-20261122/README.md) · [редакционный аудит маршрута жюри](docs/release/jury-docs-audit-20261122.md); прежние receipts сохраняют дату и область проверки |
 
 Финальная сверка приложенного PDF и текущей документации: [submission readiness](docs/release/submission-ready-20261122/README.md). Pinned CI выше сохраняет исторический срез; новые запуски основного main доступны по соседней ссылке.
 

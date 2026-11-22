@@ -17,4 +17,4 @@
 
 Product runtime/первое использование определяются корневыми `AGENTS.md`, `.agents/skills/`, `references/`, `cases/_template/` и `prompts/first-run.md`. OMP-настройки и legacy research launcher находятся отдельно в `.omp/` и `start-overnight-product-research-v3.cmd`; не использовать их как пользовательский запуск.
 
-Для текущих acceptance статусов см. [docs/implementation-status.md](../docs/implementation-status.md) и [docs/evaluation.md](../docs/evaluation.md).
+Текущая конкурсная готовность — [финальная readiness](../docs/release/submission-ready-20261122/README.md) и [evaluation](../docs/evaluation.md). [Implementation status 18 ноября](../docs/implementation-status.md) — исторический инженерный срез, не текущий verdict подачи. Исходные research verdicts остаются привязаны к своим датам и scope.

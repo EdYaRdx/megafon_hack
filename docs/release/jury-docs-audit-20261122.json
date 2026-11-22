@@ -1,0 +1,274 @@
+{
+  "started_at_utc": "2026-11-22T20:05:21.662252+00:00",
+  "finished_at_utc": "2026-11-22T20:05:29.051754+00:00",
+  "base_main_sha": "3005460fd044d99f712f3798316ff6cf1ba91c5f",
+  "scope": "Limited editorial audit. No new E2E/research/runtime changes. Original cases, snapshots/manifests/ledgers, old JSON receipts and final PDF unchanged. No access changes or form submission.",
+  "screening": {
+    "scanned_at_utc": "2026-11-22T19:57:12.673643+00:00",
+    "markdown_files": 444,
+    "matching_lines": 920,
+    "matching_files": 262,
+    "scope": "Text screening for review candidates, not an assertion that any status or old hash is stale. Canonical data/receipts protected, historical FAIL kept."
+  },
+  "commands": [
+    {
+      "started_at_utc": "2026-11-22T20:05:21.663251+00:00",
+      "finished_at_utc": "2026-11-22T20:05:21.855955+00:00",
+      "elapsed_seconds": 0.192123,
+      "argv": [
+        "git",
+        "diff",
+        "--quiet",
+        "3005460fd044d99f712f3798316ff6cf1ba91c5f",
+        "--",
+        "cases",
+        "tools",
+        "tests",
+        ".agents",
+        "AGENTS.md",
+        "prompts",
+        "references",
+        ".omp",
+        "docs/MGIMO_FINAL_REPORT.pdf"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T20:05:21.855955+00:00",
+      "finished_at_utc": "2026-11-22T20:05:22.253328+00:00",
+      "elapsed_seconds": 0.397397,
+      "argv": [
+        "<verified CPython3.12.14>",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/case_protocol.py",
+        "classify",
+        "cases/family-multinumber-video"
+      ],
+      "exit_code": 0,
+      "stdout": "CHECKPOINTED\n",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T20:05:22.253328+00:00",
+      "finished_at_utc": "2026-11-22T20:05:22.496668+00:00",
+      "elapsed_seconds": 0.243435,
+      "argv": [
+        "<verified CPython3.12.14>",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/case_protocol.py",
+        "classify",
+        "cases/linguastep-retention"
+      ],
+      "exit_code": 0,
+      "stdout": "CHECKPOINTED\n",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T20:05:22.496668+00:00",
+      "finished_at_utc": "2026-11-22T20:05:23.749984+00:00",
+      "elapsed_seconds": 1.253189,
+      "argv": [
+        "<verified CPython3.12.14>",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/check_repository.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Repository integrity check: PASS (306 Markdown files; indexed case JSON/JSONL syntax)\nScope: file targets only; no schema, hash, fragment, external-link, product, or host validation.\n",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T20:05:23.749984+00:00",
+      "finished_at_utc": "2026-11-22T20:05:23.916365+00:00",
+      "elapsed_seconds": 0.166038,
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/capabilities.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/clean-host-e2e-runbook.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/development.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/evaluation.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/for-jury.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/release/final-20261122/JURY_REVIEW.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/release/final-20261122/PDF_UPDATE.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/release/final-20261122/PRIVACY.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/release/final-20261122/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/release/final-product-docs-20261121.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/release/submission-ready-20261122/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/release/video-family-e2e-20261121.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/repository-guide.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/submission-description.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/video-e2e.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'research/README.md', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "started_at_utc": "2026-11-22T20:05:23.916365+00:00",
+      "finished_at_utc": "2026-11-22T20:05:26.406269+00:00",
+      "elapsed_seconds": 2.489556,
+      "argv": [
+        "node",
+        "C:/Temp/mgimo-jury-docs-nav.cjs"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"checked_at_utc\":\"2026-11-22T20:05:26.163Z\",\"mermaid_version\":\"11.12.0\",\"diagrams\":[],\"page_errors\":[],\"navigation\":{\"root_pages\":[\"README.md\",\"cases/README.md\",\"cases/family-multinumber-video/README.md\",\"cases/linguastep-retention/README.md\",\"docs/README.md\",\"docs/architecture.md\",\"docs/capabilities.md\",\"docs/clean-host-e2e-runbook.md\",\"docs/demos/linguastep.md\",\"docs/demos/megafon.md\",\"docs/development.md\",\"docs/evaluation.md\",\"docs/for-jury.md\",\"docs/publication-safety.md\",\"docs/quickstart.md\",\"docs/release/final-20261122/JURY_REVIEW.md\",\"docs/release/final-20261122/PDF_UPDATE.md\",\"docs/release/final-20261122/PRIVACY.md\",\"docs/release/final-20261122/README.md\",\"docs/release/final-product-docs-20261121.md\",\"docs/release/jury-docs-audit-20261122.md\",\"docs/release/submission-ready-20261122/README.md\",\"docs/release/video-family-e2e-20261121.md\",\"docs/repository-guide.md\",\"docs/submission-checklist.md\",\"docs/submission-description.md\",\"docs/video-e2e.md\",\"research/README.md\"],\"relative_links_checked\":590,\"heading_files_loaded\":35,\"slugger\":\"github-slugger2.0.0\",\"problems\":[]},\"limitations\":[\"Local Chromium Mermaid render, not the exact GitHub renderer.\",\"Current navigation root pages checked; linked historical files loaded only to resolve headings, historical prose not rewritten.\"]}\n",
+      "stderr": ""
+    }
+  ],
+  "navigation": {
+    "root_pages": [
+      "README.md",
+      "cases/README.md",
+      "cases/family-multinumber-video/README.md",
+      "cases/linguastep-retention/README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/capabilities.md",
+      "docs/clean-host-e2e-runbook.md",
+      "docs/demos/linguastep.md",
+      "docs/demos/megafon.md",
+      "docs/development.md",
+      "docs/evaluation.md",
+      "docs/for-jury.md",
+      "docs/publication-safety.md",
+      "docs/quickstart.md",
+      "docs/release/final-20261122/JURY_REVIEW.md",
+      "docs/release/final-20261122/PDF_UPDATE.md",
+      "docs/release/final-20261122/PRIVACY.md",
+      "docs/release/final-20261122/README.md",
+      "docs/release/final-product-docs-20261121.md",
+      "docs/release/jury-docs-audit-20261122.md",
+      "docs/release/submission-ready-20261122/README.md",
+      "docs/release/video-family-e2e-20261121.md",
+      "docs/repository-guide.md",
+      "docs/submission-checklist.md",
+      "docs/submission-description.md",
+      "docs/video-e2e.md",
+      "research/README.md"
+    ],
+    "relative_links_checked": 590,
+    "heading_files_loaded": 35,
+    "slugger": "github-slugger2.0.0",
+    "problems": []
+  },
+  "historical_annotations": [
+    {
+      "file": "docs/release/video-family-e2e-20261121.md",
+      "source_sha256": "b3f320ef8210822bc448a2462e2a7fd8ed6ad958527c95520bc419cd8fd9bc72",
+      "original_body_preserved": true,
+      "annotation_bytes": 865
+    },
+    {
+      "file": "docs/release/final-product-docs-20261121.md",
+      "source_sha256": "0261da5610200d2a510d024a142ed78ad85a4fae8dec4e7bfab8c2bfac68725e",
+      "original_body_preserved": true,
+      "annotation_bytes": 865
+    },
+    {
+      "file": "docs/release/final-20261122/README.md",
+      "source_sha256": "95375f80f80791b44a6452cbaf2a890d472a272b67561fa518e46de0937a620d",
+      "original_body_preserved": true,
+      "annotation_bytes": 925
+    },
+    {
+      "file": "docs/release/final-20261122/PRIVACY.md",
+      "source_sha256": "b1b5dde01aae2b6d42627b5309e6b76b76f290db28eb3be0332517dc42ce4d63",
+      "original_body_preserved": true,
+      "annotation_bytes": 925
+    },
+    {
+      "file": "docs/release/final-20261122/PDF_UPDATE.md",
+      "source_sha256": "d98bba282ba22373603cb5139d8824f2036ff1941596e0953e7937ab88f0c1d9",
+      "original_body_preserved": true,
+      "annotation_bytes": 919
+    },
+    {
+      "file": "docs/release/final-20261122/JURY_REVIEW.md",
+      "source_sha256": "38cddeb8cb25cb2f08d18bd24f0b63c3051644181eae3f8e7738066bf8575f0f",
+      "original_body_preserved": true,
+      "annotation_bytes": 919
+    },
+    {
+      "file": "docs/clean-host-e2e-runbook.md",
+      "source_sha256": "a6e6bd600055475574a90f3ed42cfba528838193066295debf900296f4857773",
+      "original_body_preserved": true,
+      "annotation_bytes": 969
+    }
+  ],
+  "privacy": {
+    "scanned_payload_files": 21,
+    "scope": "Changed/new Markdown only, current text plus preserved historical bodies; receipt excludes itself.",
+    "patterns": [
+      "credential",
+      "private_key",
+      "email",
+      "home_path"
+    ],
+    "findings_without_values": [],
+    "file_sha256": {
+      "README.md": "f74e6caf6b79be312474dba6eab6e4776bd87604581957e73d2c962cef01de2d",
+      "docs/README.md": "88b1d72e3bf5369aa0560f814072d1a1d897f365c1c49b2c10624c5fab6b14f8",
+      "docs/capabilities.md": "10c036b51d6f5e1fc43c7a87d707eb780ed23e49cae019873f7485a156fcae89",
+      "docs/clean-host-e2e-runbook.md": "c5fbb27229937216b32da0f47e851e6501fc3cf55b4ef1ff3b7586d9c9bd1542",
+      "docs/demos/linguastep.md": "8af8d866c96c727687cee57bece25906ca56f48237771516ea32ff397b3cbe60",
+      "docs/demos/megafon.md": "6585efe6fd9bcbbe6bc33be5f2467bc2a62cda47c53367f3aa006fe4a89508ce",
+      "docs/development.md": "b2b332af9ac561a0592e91e6af1d641da9bdac940906784f8cb0147b97a7a573",
+      "docs/evaluation.md": "b187ccc3cbb19ac96f365c6e107fce5a81872123708b9061e4fc34d54e44ec16",
+      "docs/for-jury.md": "5b23caf2dbb709b871ebef209d7ce7fb4c9f05af0bf4aace02127f5f898a9e56",
+      "docs/release/final-20261122/JURY_REVIEW.md": "39ab868e612c1a067be7fd1920de1d0eb5708a747d874bd8f2769771c9b5281d",
+      "docs/release/final-20261122/PDF_UPDATE.md": "0b9270900efcf80386a6ffba4a40e465c596ad0c3a9c28dccd714ac9054cc2e6",
+      "docs/release/final-20261122/PRIVACY.md": "4a615d3a2dcfdb01f1b7a5ebf89bf72467d2e263f99e190c128a9be995a5cec3",
+      "docs/release/final-20261122/README.md": "94d813454afda3d388ce79e7307a85ea39aebd5d05625e7fda2fccd06737125a",
+      "docs/release/final-product-docs-20261121.md": "e2810aeab7f8cf42dc6b9de61b55a5f6f14e3e1b1d7cfd46e891dfe98412c9eb",
+      "docs/release/jury-docs-audit-20261122.md": "8b3bba376f87f5484e2b76f79393550e1cbb9d7b59261316a3e8241de6b884ea",
+      "docs/release/submission-ready-20261122/README.md": "028ad2337f15ad69602f00e688ecf8ba523f4de513e31ab5d2686c9f7ab71ae8",
+      "docs/release/video-family-e2e-20261121.md": "569b7e920ada52cf111ed4078a9dc26584ef84d4c69370f6e061f32ed6686f25",
+      "docs/repository-guide.md": "0532a3274f9c3c5a56d354c9dbe704d7e839bf61e05a4b906862ec916a974f9e",
+      "docs/submission-description.md": "7c0e22c502affbca1f6a317c2f5e6ab97604ba9dee10c68466be68a49683613c",
+      "docs/video-e2e.md": "782aea581a205de2c7c4bcf2870cb2d6606ebbac81aa210a8f7240eb265674b0",
+      "research/README.md": "165f469b6db0998232249bab16d168c4de45288930c73326d43be79f59bbf4a4"
+    },
+    "limits": "Scoped patterns, not full DLP; historical body/results not rewritten."
+  },
+  "external": [
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack",
+      "checked_at_utc": "2026-11-22T20:05:27.319661+00:00",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases/family-multinumber-video",
+      "checked_at_utc": "2026-11-22T20:05:27.321659+00:00",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases/linguastep-retention",
+      "checked_at_utc": "2026-11-22T20:05:27.321659+00:00",
+      "status": 200
+    },
+    {
+      "url": "https://raw.githubusercontent.com/EdYaRdx/megafon_hack/main/docs/MGIMO_FINAL_REPORT.pdf",
+      "checked_at_utc": "2026-11-22T20:05:27.322659+00:00",
+      "status": 200,
+      "sha256": "4a887d5b365d4f34bc2ea7a012a147212275bbe3d0f27fec9ceed430fb30715b",
+      "bytes": 1115186
+    },
+    {
+      "url": "https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view",
+      "checked_at_utc": "2026-11-22T20:05:28.419365+00:00",
+      "status": 200
+    },
+    {
+      "url": "https://drive.google.com/drive/folders/12ZOJFDD96tkRtEe0D5MGdJh69ypJ0irE?usp=sharing",
+      "checked_at_utc": "2026-11-22T20:05:28.476380+00:00",
+      "status": 200
+    }
+  ],
+  "corrections_and_errors": [
+    "Initial multi-file patch rejected an unmatched long table-row anchor; it made no changes and was replaced by scoped patches.",
+    "First inline temporary navigation-helper preparation failed PowerShell quoting; switched to a separate temporary script, no repository files affected.",
+    "Initial navigation check found only the not-yet-written new audit receipt; created IN_PROGRESS receipt, then reran after all referenced files existed.",
+    "Preserved existing development.md line endings outside the one edited paragraph to avoid an unrelated full-file normalization diff. Only own staged paragraph was adjusted; no other local changes affected."
+  ],
+  "test_policy": "No local unit-suite repeat for prose-only changes; normal PR/main CI runs existing suite. No old verdict relabelled PASS.",
+  "limits": [
+    "30-60 second jury timing is a navigation design target, not measured user research.",
+    "Anonymous HTTP reachability and earlier anyone/reader permission checks do not prove full video/audio/privacy playback.",
+    "All required demo-project artifacts linked; no claim all optional contest capabilities or business/billing evidence are complete."
+  ]
+}
