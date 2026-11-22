@@ -1,0 +1,49 @@
+{
+  "started_at_utc": "2026-11-22T19:09:03.046344+00:00",
+  "finished_at_utc": "2026-11-22T19:10:12.666578+00:00",
+  "elapsed_seconds": 69.619918,
+  "runtime": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "argv": [
+    "<verified CPython3.12.14>",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "exit_code": 0,
+  "scope": "Actual current-branch offline unit suite. No model E2E or runtime changes.",
+  "tests_run": 121,
+  "unittest_seconds": 69.096,
+  "passed": 116,
+  "skipped": 5,
+  "failures": 0,
+  "errors": 0,
+  "skip_records": [
+    {
+      "test": "test_candidate_rejects_dependencies_aliasing_mutable_selector (test_case_protocol.CaseProtocolTests.test_candidate_rejects_dependencies_aliasing_mutable_selector) (kind='symlink')",
+      "reason": "Host symlink privilege unavailable (WinError1314); diagnostic temporary paths omitted"
+    },
+    {
+      "test": "test_linked_case_or_template_is_rejected (test_case_workspace.CaseWorkspaceTests.test_linked_case_or_template_is_rejected)",
+      "reason": "Host symlink privilege unavailable (WinError1314); diagnostic temporary paths omitted"
+    },
+    {
+      "test": "test_classifier_dependency_link_is_rejected_before_read_or_draft_scan (test_resume_context.ResumeContextTests.test_classifier_dependency_link_is_rejected_before_read_or_draft_scan)",
+      "reason": "Host symlink privilege unavailable (WinError1314); diagnostic temporary paths omitted"
+    },
+    {
+      "test": "test_linked_drafts_root_is_unknown_not_no_drafts (test_resume_context.ResumeContextTests.test_linked_drafts_root_is_unknown_not_no_drafts)",
+      "reason": "Host symlink privilege unavailable (WinError1314); diagnostic temporary paths omitted"
+    },
+    {
+      "test": "test_outside_draft_links_and_dangling_links_are_not_followed (test_resume_context.ResumeContextTests.test_outside_draft_links_and_dangling_links_are_not_followed)",
+      "reason": "Host symlink privilege unavailable (WinError1314); diagnostic temporary paths omitted"
+    }
+  ],
+  "raw_log_policy": "Raw stdout/stderr retained outside Git because host diagnostic prints personal temporary paths; public summary preserves exact counts, command, timestamps, exit code and five skip test identities/error category. No raw local paths published."
+}

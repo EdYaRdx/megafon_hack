@@ -52,19 +52,24 @@ flowchart TD
   EXIST -->|"FRESH / UNINITIALIZED"| INTAKE
   EXIST -->|"CHECKPOINTED"| RESTORE["Проверенные snapshots<br/>отдельно inventory незавершённого"]
   EXIST -->|"INCOMPLETE / CONFLICT"| STOP["STOP: не смешивать и не чинить историю"]
+  EXIST -->|"LEGACY: только allowlist"| LEGACY["Историческое продолжение по ограничениям<br/>не подтверждённый checkpoint"]
   ROUTE -->|"HELP"| HELP["Объяснение без доступа к делам"]
   INTAKE --> E["evidence-research"]
   E --> O["options-decision<br/>разные направления и возражения"]
   O --> OWNER["Выбор направления Product Owner"]
   OWNER --> STR["strategy-communication<br/>две связанные стратегии"]
   STR --> EXP["experiment-design<br/>план проверки, не разрешение запуска"]
-  EXP --> SAVE["Snapshots + зависимости + manifest<br/>check-candidate → ACTIVE последним → classify"]
-  SAVE -->|"CHECKPOINTED"| RESTORE
+  EXP --> DEC["decision/resume: решение, неизвестное<br/>следующий шаг и состояние для паузы"]
+  DEC -->|"сохранить ревизию"| SAVE["Snapshots + зависимости + manifest<br/>check-candidate → ACTIVE последним → classify"]
+  SAVE -->|"CHECKPOINTED; новый чат"| RESTORE
+  SAVE -->|"до выбора ACTIVE: gate fail / недоступен"| DRAFT["DRAFT / NOT RUN<br/>не выбирать новый ACTIVE"]
+  SAVE -->|"после выбора ACTIVE: classify fail"| STOP
+  SAVE -.->|"CHECKPOINTED; перед исполнением"| APPROVAL["Approval действия/scope/revision/hash<br/>+ host permissions; не auto-run"]
   RESTORE -->|"продолжить / новые данные"| NEXT["Следующий шаг по сохранённому этапу<br/>или пересмотр затронутых оснований"]
   NEXT -->|"если нужно исследование"| E
 ```
 
-Это маршрут работы человека и модели, не встроенный scheduler. Уже завершённые этапы не выполняются заново без причины; Resume сам по себе не запускает исследование. Выбор PO, публикация checkpoint и approval внешнего исполнения — независимые события.
+Это маршрут работы человека и модели, не встроенный scheduler. Уже завершённые этапы не выполняются заново без причины; Resume сам по себе не запускает исследование. REVISE возвращает к затронутому этапу; смена направления снова требует решения PO. Выбор PO, публикация checkpoint и approval внешнего исполнения — независимые события. Стрелка approval означает отдельную проверку действительного разрешения перед действием, а не встроенный исполнитель. До выбора нового ACTIVE неудавшийся gate оставляет прежний selector и DRAFT-кандидат; после переключения ACTIVE неудавшийся classify означает INCOMPLETE/CONFLICT и STOP с ручным восстановлением по Skill, без обещания действующего старого состояния. Краткая схема в [README](../README.md#полный-путь-решения) показывает тот же маршрут без технических ветвей.
 
 ### Цепочка доказательств
 

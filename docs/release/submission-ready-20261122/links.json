@@ -1,0 +1,1022 @@
+{
+  "started_at_utc": "2026-11-22T19:17:21.470921+00:00",
+  "finished_at_utc": "2026-11-22T19:17:34.416961+00:00",
+  "scope": "All41 unique URI annotations from supplied PDF plus current-main CI, main tree and Drive folder; anonymous HTTP reachability and local Git object existence for pinned/main file paths. No external contents used as instructions.",
+  "unique_pdf_uris": 41,
+  "targets": [
+    {
+      "url": "https://drive.google.com/drive/folders/12ZOJFDD96tkRtEe0D5MGdJh69ypJ0irE?usp=sharing",
+      "checked_at_utc": "2026-11-22T19:17:21.472935+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 200,
+          "final_url": "https://drive.google.com/drive/folders/12ZOJFDD96tkRtEe0D5MGdJh69ypJ0irE?usp=sharing",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "status": "REACHABLE",
+      "elapsed_seconds": 1.441817
+    },
+    {
+      "url": "https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view",
+      "checked_at_utc": "2026-11-22T19:17:21.475123+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 200,
+          "final_url": "https://drive.google.com/file/d/1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_/view",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.705644
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack",
+      "checked_at_utc": "2026-11-22T19:17:21.476126+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.89507
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/actions/runs/45050094992",
+      "checked_at_utc": "2026-11-22T19:17:21.477125+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/actions/runs/45050094992",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.911895
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/actions/runs/45055668569",
+      "checked_at_utc": "2026-11-22T19:17:22.180271+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/actions/runs/45055668569",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.810131
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/.agents/skills/intake/SKILL.md",
+      "checked_at_utc": "2026-11-22T19:17:22.371281+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/.agents/skills/intake/SKILL.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:.agents/skills/intake/SKILL.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 1.013077
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/AGENTS.md",
+      "checked_at_utc": "2026-11-22T19:17:22.389281+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/AGENTS.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:AGENTS.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.934352
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/EXPORT.md",
+      "checked_at_utc": "2026-11-22T19:17:22.914871+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/EXPORT.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/EXPORT.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 1.012261
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/activity.jsonl",
+      "checked_at_utc": "2026-11-22T19:17:22.990625+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/activity.jsonl",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/activity.jsonl"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.844551
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/brief.md",
+      "checked_at_utc": "2026-11-22T19:17:23.323840+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/brief.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/brief.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.906585
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/calculations/D0003/results.json",
+      "checked_at_utc": "2026-11-22T19:17:23.384382+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/calculations/D0003/results.json",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/calculations/D0003/results.json"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 1.012124
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/inputs/brief.pdf",
+      "checked_at_utc": "2026-11-22T19:17:23.835356+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/inputs/brief.pdf",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/inputs/brief.pdf"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.930249
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/inputs/user-choice-D0002.md",
+      "checked_at_utc": "2026-11-22T19:17:23.926564+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/inputs/user-choice-D0002.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/inputs/user-choice-D0002.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.898179
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/research/D0003/restore-inventory-receipt.json",
+      "checked_at_utc": "2026-11-22T19:17:24.230094+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/research/D0003/restore-inventory-receipt.json",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/research/D0003/restore-inventory-receipt.json"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.896761
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/research/D0003/review.md",
+      "checked_at_utc": "2026-11-22T19:17:24.396897+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/research/D0003/review.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/research/D0003/review.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.934376
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0001/options.md",
+      "checked_at_utc": "2026-11-22T19:17:24.766059+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0001/options.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/revisions/D0001/options.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.850245
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/decision.md",
+      "checked_at_utc": "2026-11-22T19:17:24.825384+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/decision.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/revisions/D0003/decision.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.856089
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/strategy-communication.md",
+      "checked_at_utc": "2026-11-22T19:17:25.127065+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/strategy-communication.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/revisions/D0003/strategy-communication.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 1.578511
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/strategy-product.md",
+      "checked_at_utc": "2026-11-22T19:17:25.330624+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/strategy-product.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/revisions/D0003/strategy-product.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 1.374936
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/test-plan.md",
+      "checked_at_utc": "2026-11-22T19:17:25.615823+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/revisions/D0003/test-plan.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/revisions/D0003/test-plan.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 1.711839
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/sources/S-001-reading.md",
+      "checked_at_utc": "2026-11-22T19:17:25.681003+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/cases/family-multinumber-video/sources/S-001-reading.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:cases/family-multinumber-video/sources/S-001-reading.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 2.891354
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/architecture.md",
+      "checked_at_utc": "2026-11-22T19:17:26.705552+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/architecture.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:docs/architecture.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 2.671733
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/evaluation.md",
+      "checked_at_utc": "2026-11-22T19:17:26.705552+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/evaluation.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:docs/evaluation.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 2.455049
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/quickstart.md",
+      "checked_at_utc": "2026-11-22T19:17:27.328146+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/quickstart.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:docs/quickstart.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 2.129167
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/release/video-family-e2e-receipt.json",
+      "checked_at_utc": "2026-11-22T19:17:28.572675+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/docs/release/video-family-e2e-receipt.json",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:docs/release/video-family-e2e-receipt.json"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.974919
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/prompts/first-run.md",
+      "checked_at_utc": "2026-11-22T19:17:29.160829+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/prompts/first-run.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:prompts/first-run.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.957569
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/research/sol-audit/eval-results/F9-resume-comparison-20261113.md",
+      "checked_at_utc": "2026-11-22T19:17:29.377614+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/ed42fef67451ba48a5c6827f5f67cfef015996d3/research/sol-audit/eval-results/F9-resume-comparison-20261113.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "ed42fef67451ba48a5c6827f5f67cfef015996d3:research/sol-audit/eval-results/F9-resume-comparison-20261113.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.836846
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/family-multinumber-video/strategy-communication.md",
+      "checked_at_utc": "2026-11-22T19:17:29.456947+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/family-multinumber-video/strategy-communication.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:cases/family-multinumber-video/strategy-communication.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.974131
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/family-multinumber-video/strategy-product.md",
+      "checked_at_utc": "2026-11-22T19:17:29.547997+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/family-multinumber-video/strategy-product.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:cases/family-multinumber-video/strategy-product.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 2.030198
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/linguastep-retention/analysis/cohort-results.json",
+      "checked_at_utc": "2026-11-22T19:17:30.118447+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/linguastep-retention/analysis/cohort-results.json",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:cases/linguastep-retention/analysis/cohort-results.json"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.891442
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/linguastep-retention/strategy-product.md",
+      "checked_at_utc": "2026-11-22T19:17:30.214257+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/cases/linguastep-retention/strategy-product.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:cases/linguastep-retention/strategy-product.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.845044
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/architecture.md",
+      "checked_at_utc": "2026-11-22T19:17:30.431050+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/architecture.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:docs/architecture.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.845513
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/evaluation.md",
+      "checked_at_utc": "2026-11-22T19:17:31.009580+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/evaluation.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:docs/evaluation.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.921163
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/quickstart.md",
+      "checked_at_utc": "2026-11-22T19:17:31.060010+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/quickstart.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:docs/quickstart.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 1.057999
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/CRITERIA.md",
+      "checked_at_utc": "2026-11-22T19:17:31.277188+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/CRITERIA.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:docs/release/final-20261122/CRITERIA.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 1.35797
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/README.md",
+      "checked_at_utc": "2026-11-22T19:17:31.578215+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/README.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:docs/release/final-20261122/README.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.947016
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/RELEASE_RESULTS.md",
+      "checked_at_utc": "2026-11-22T19:17:31.931444+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/RELEASE_RESULTS.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:docs/release/final-20261122/RELEASE_RESULTS.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.764333
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/source-resume-receipt.json",
+      "checked_at_utc": "2026-11-22T19:17:32.117814+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/docs/release/final-20261122/source-resume-receipt.json",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:docs/release/final-20261122/source-resume-receipt.json"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.965259
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/blob/main/research/sol-audit/eval-results/F9-resume-comparison-20261113.md",
+      "checked_at_utc": "2026-11-22T19:17:32.525132+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/blob/main/research/sol-audit/eval-results/F9-resume-comparison-20261113.md",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:research/sol-audit/eval-results/F9-resume-comparison-20261113.md"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.955804
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/tree/main",
+      "checked_at_utc": "2026-11-22T19:17:32.635034+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/tree/main",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.699014
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/tree/main/.agents/skills",
+      "checked_at_utc": "2026-11-22T19:17:32.695726+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/tree/main/.agents/skills",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:.agents/skills"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.93158
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases",
+      "checked_at_utc": "2026-11-22T19:17:33.082956+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:cases"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.847091
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases/family-multinumber-video",
+      "checked_at_utc": "2026-11-22T19:17:33.333425+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases/family-multinumber-video",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:cases/family-multinumber-video"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.880046
+    },
+    {
+      "url": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases/linguastep-retention",
+      "checked_at_utc": "2026-11-22T19:17:33.481335+00:00",
+      "attempts": [
+        {
+          "method": "HEAD",
+          "status": 206,
+          "final_url": "https://github.com/EdYaRdx/megafon_hack/tree/main/cases/linguastep-retention",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "git_target_check": {
+        "argv": [
+          "git",
+          "cat-file",
+          "-e",
+          "origin/main:cases/linguastep-retention"
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "status": "REACHABLE",
+      "elapsed_seconds": 0.935044
+    }
+  ],
+  "drive_permissions": {
+    "checked_with": "Google Drive files.get through connected read-only tool",
+    "file_id": "1kDBIVW_hgRwh2WnttYouUtfnlhtD27P_",
+    "folder_id": "12ZOJFDD96tkRtEe0D5MGdJh69ypJ0irE",
+    "file_permission": {
+      "type": "anyone",
+      "role": "reader"
+    },
+    "folder_permission": {
+      "type": "anyone",
+      "role": "reader"
+    },
+    "metadata_fields_exclude": "owner identity/contact information"
+  },
+  "limitations": [
+    "HTTP200/permissions do not prove full playback, sound/privacy of the complete video.",
+    "Historical pinned GitHub links retained intentionally; final public PDF bytes will be checked after merge."
+  ]
+}

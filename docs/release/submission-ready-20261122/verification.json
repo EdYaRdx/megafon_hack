@@ -1,0 +1,231 @@
+{
+  "started_at_utc": "2026-11-22T19:19:51.950520+00:00",
+  "finished_at_utc": "2026-11-22T19:25:10.620547+00:00",
+  "scan_started_at_utc": "2026-11-22T19:25:09.260858+00:00",
+  "base_main_sha": "385e1d20778d8cfa85a47312a32d3ef8983f5778",
+  "scope": "Current final PDF/documentation checks. No new model E2E, runtime/Skills/tests/cases/.omp changes, visibility changes or form submission. Verification receipt excludes itself from hash scan.",
+  "commands": [
+    {
+      "started_at_utc": "2026-11-22T19:19:51.950520+00:00",
+      "finished_at_utc": "2026-11-22T19:19:52.076081+00:00",
+      "elapsed_seconds": 0.125083,
+      "argv": [
+        "git",
+        "diff",
+        "--quiet",
+        "385e1d20778d8cfa85a47312a32d3ef8983f5778",
+        "--",
+        "cases",
+        "tools",
+        "tests",
+        ".agents",
+        "AGENTS.md",
+        "prompts",
+        "references",
+        ".omp"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T19:19:52.076081+00:00",
+      "finished_at_utc": "2026-11-22T19:19:52.312665+00:00",
+      "elapsed_seconds": 0.236423,
+      "argv": [
+        "<verified CPython3.12.14>",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/case_protocol.py",
+        "classify",
+        "cases/family-multinumber-video"
+      ],
+      "exit_code": 0,
+      "stdout": "CHECKPOINTED\n",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T19:19:52.312665+00:00",
+      "finished_at_utc": "2026-11-22T19:19:52.515607+00:00",
+      "elapsed_seconds": 0.202803,
+      "argv": [
+        "<verified CPython3.12.14>",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/case_protocol.py",
+        "classify",
+        "cases/linguastep-retention"
+      ],
+      "exit_code": 0,
+      "stdout": "CHECKPOINTED\n",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T19:19:52.515607+00:00",
+      "finished_at_utc": "2026-11-22T19:19:53.575174+00:00",
+      "elapsed_seconds": 1.059804,
+      "argv": [
+        "<verified CPython3.12.14>",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/check_repository.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Repository integrity check: PASS (303 Markdown files; indexed case JSON/JSONL syntax)\nScope: file targets only; no schema, hash, fragment, external-link, product, or host validation.\n",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T19:19:53.575174+00:00",
+      "finished_at_utc": "2026-11-22T19:19:53.727910+00:00",
+      "elapsed_seconds": 0.153028,
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 2,
+      "stdout": "docs/architecture.md:55: trailing whitespace.\n+  EXIST -->|\"LEGACY: только allowlist\"| LEGACY[\"Исторический формат с ограничениями<br/>не подтверждённый checkpoint\"]\ndocs/architecture.md:62: trailing whitespace.\n+  EXP --> DEC[\"decision/resume: решение, неизвестное<br/>следующий шаг и состояние для паузы\"]\ndocs/architecture.md:63: trailing whitespace.\n+  DEC -->|\"сохранить ревизию\"| SAVE[\"Snapshots + зависимости + manifest<br/>check-candidate → ACTIVE последним → classify\"]\ndocs/architecture.md:64: trailing whitespace.\n+  SAVE -->|\"CHECKPOINTED; новый чат\"| RESTORE\ndocs/architecture.md:65: trailing whitespace.\n+  SAVE -->|\"ошибка / gate недоступен\"| DRAFT[\"STOP сохранения: DRAFT / NOT RUN<br/>нет новой проверенной ревизии\"]\ndocs/architecture.md:66: trailing whitespace.\n+  SAVE -.->|\"CHECKPOINTED; перед исполнением\"| APPROVAL[\"Approval действия/scope/revision/hash<br/>+ host permissions; не auto-run\"]\ndocs/architecture.md:71: trailing whitespace.\n+Это маршрут работы человека и модели, не встроенный scheduler. Уже завершённые этапы не выполняются заново без причины; Resume сам по себе не запускает исследование. REVISE возвращает к затронутому этапу; смена направления снова требует решения PO. Выбор PO, публикация checkpoint и approval внешнего исполнения — независимые события. Стрелка approval означает отдельную проверку действительного разрешения перед действием, а не встроенный исполнитель. Ошибка классификации останавливает восстановление; ошибка сохранения не отменяет прежний подтверждённый checkpoint. Краткая схема в [README](../README.md#полный-путь-решения) показывает тот же маршрут без технических ветвей.\ndocs/evaluation.md:5: trailing whitespace.\n+## Текущий срез — 2026-11-22\ndocs/evaluation.md:6: trailing whitespace.\n+\ndocs/evaluation.md:7: trailing whitespace.\n+В основном репозитории доступны два независимых учебных кейса: 11 альтернатив, четыре стратегии и два плана проверки. Исходный LinguaStep R0001 прошёл новый чат Resume; публичный D0001 отдельно прошёл файловые проверки. Основной main `385e1d2` до добавления финального PDF имеет [CI SUCCESS](https://github.com/EdYaRdx/megafon_hack/actions/runs/45055668569): 121 тест, **116 passed + 5 Windows-only skipped**, 0 failures/errors; repository checker PASS, 302 Markdown-файла. [Актуальные main runs](https://github.com/EdYaRdx/megafon_hack/actions?query=branch%3Amain) показывают последующие документационные commits.\ndocs/evaluation.md:8: trailing whitespace.\n+\ndocs/evaluation.md:9: trailing whitespace.\n+[Финальная submission readiness](release/submission-ready-20261122/README.md) отдельно фиксирует текущий Windows suite, классификацию обоих checkpoint, проверку приложенного PDF, ссылок/anchors, Mermaid и новых документов. [PDF «Ромашка MISIS»](MGIMO_FINAL_REPORT.pdf) включён без изменения байтов. Ссылки PDF на `ed42fef` и CI релизного `aa4b23f` — намеренные исторические срезы; они не объявляются свежим CI main. Нового E2E, интервью или пилота при этой упаковке не выполнялось.\ndocs/evaluation.md:10: trailing whitespace.\n+\ndocs/evaluation.md:11: trailing whitespace.\n+## Исторический проверенный release — 2026-11-21\n",
+      "stderr": "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/capabilities.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/for-jury.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/publication-safety.md', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "started_at_utc": "2026-11-22T19:20:38.620606+00:00",
+      "finished_at_utc": "2026-11-22T19:20:39.772045+00:00",
+      "elapsed_seconds": 1.151175,
+      "argv": [
+        "<verified CPython3.12.14>",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/check_repository.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Repository integrity check: PASS (303 Markdown files; indexed case JSON/JSONL syntax)\nScope: file targets only; no schema, hash, fragment, external-link, product, or host validation.\n",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T19:20:39.772045+00:00",
+      "finished_at_utc": "2026-11-22T19:20:39.930603+00:00",
+      "elapsed_seconds": 0.158489,
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/architecture.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/capabilities.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/evaluation.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/for-jury.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/publication-safety.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/quickstart.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/submission-checklist.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/submission-description.md', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "started_at_utc": "2026-11-22T19:21:32.486964+00:00",
+      "finished_at_utc": "2026-11-22T19:21:33.485019+00:00",
+      "elapsed_seconds": 0.998328,
+      "argv": [
+        "<verified CPython3.12.14>",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/check_repository.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Repository integrity check: PASS (303 Markdown files; indexed case JSON/JSONL syntax)\nScope: file targets only; no schema, hash, fragment, external-link, product, or host validation.\n",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T19:21:33.485019+00:00",
+      "finished_at_utc": "2026-11-22T19:21:33.646663+00:00",
+      "elapsed_seconds": 0.161664,
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/architecture.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/capabilities.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/evaluation.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/for-jury.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/publication-safety.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/quickstart.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/submission-checklist.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/submission-description.md', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "started_at_utc": "2026-11-22T19:25:09.276067+00:00",
+      "finished_at_utc": "2026-11-22T19:25:10.252585+00:00",
+      "elapsed_seconds": 0.976866,
+      "argv": [
+        "<verified CPython3.12.14>",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/check_repository.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Repository integrity check: PASS (303 Markdown files; indexed case JSON/JSONL syntax)\nScope: file targets only; no schema, hash, fragment, external-link, product, or host validation.\n",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T19:25:10.252585+00:00",
+      "finished_at_utc": "2026-11-22T19:25:10.396419+00:00",
+      "elapsed_seconds": 0.14323,
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/architecture.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/release/final-20261122/RELEASE_RESULTS.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/release/submission-ready-20261122/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/release/submission-ready-20261122/diagrams-navigation.json', LF will be replaced by CRLF the next time Git touches it\n"
+    }
+  ],
+  "retry_notes": [
+    "Initial diff --check returned exit2 for CRLF working-copy carriage returns in changed documentation. Normalized only mutable documentation to LF; no whitespace rule disabled, no protected case or runtime file changed. Original failed receipt retained; later command with same argv is its verification retry.",
+    "Initial current unit summary still contained paths inside skip diagnostics; before staging, replaced only those diagnostic suffixes with WinError1314/category, preserving all five test identities and exact outcomes. Raw logs remain private outside Git."
+  ],
+  "security": {
+    "scanned_files": 17,
+    "text_files": 16,
+    "decoded_json_files": 4,
+    "patterns": {
+      "credential": "\\b(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,}|sk-(?:proj-|svcacct-)?[A-Za-z0-9_-]{35,}|(?:AKIA|ASIA)[A-Z0-9]{16}|AIza[A-Za-z0-9_-]{30,})\\b",
+      "private_key": "-----BEGIN (?:RSA |EC |OPENSSH |DSA |ENCRYPTED )?PRIVATE KEY-----",
+      "email": "(?<![\\w.-])[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}(?![\\w.-])",
+      "user_home_path": "(?i)(?<![\\w/])(?:[A-Z]:[\\\\/]+Users[\\\\/]+|[\\\\/]home[\\\\/]+|[\\\\/]Users[\\\\/]+)[^\\s\\\"\\x27`<>|,;)}\\]]+",
+      "account_quota_value": "(?i)(?:remaining_credits|weekly_limit_remaining|account_balance|billing_api_key)\\s*[\\\"\\x27]?\\s*[:=]\\s*[\\\"\\x27]?[0-9][0-9.]+"
+    },
+    "findings_without_values": [],
+    "placeholder_matches": [
+      {
+        "path": "docs/publication-safety.md",
+        "location": "raw text",
+        "category": "user_home_path"
+      }
+    ],
+    "sha256": {
+      "README.md": "6185383941e60fe3fa8ac759941cb534177b4149eff217976a1c7cf1d065129f",
+      "docs/MGIMO_FINAL_REPORT.pdf": "4a887d5b365d4f34bc2ea7a012a147212275bbe3d0f27fec9ceed430fb30715b",
+      "docs/README.md": "6d06754c9eba8242d345d55e590affe41367351817c8290723c1f4232a71eaa6",
+      "docs/architecture.md": "d02edca624293c10d2240db92bd6c5a78a4636fba8c0bd013d244bd202ae2c84",
+      "docs/capabilities.md": "2a3181609ab8ef228bd003b077a7719335d984dbc2529c23acfa70f3b41c78aa",
+      "docs/evaluation.md": "79b8a17fea477bcd86d9d3785fde3f5d16d338f0f9c62077d2eb1068a134203b",
+      "docs/for-jury.md": "6c73dd982887f8d2c02064ddb72fe4219eadabb776c517a7a861eb60b9a4163d",
+      "docs/publication-safety.md": "96d4a3b96f7d9b3cced3f69ba11a64592e8b033222885029a1ade4f8cf3f5a58",
+      "docs/quickstart.md": "7c80e080089638a4b94d5b3a01b1a513a7f018b37f4edd302c379340c33013c2",
+      "docs/release/final-20261122/RELEASE_RESULTS.md": "731403dc14cdd32ef4833fa84c94269dffb220420db3c85327623e23d8a9a1a0",
+      "docs/release/submission-ready-20261122/README.md": "210ae7117a7965ff1f0ca74bc40236b5a51bc84203535318f369ce14fc9a53c0",
+      "docs/release/submission-ready-20261122/diagrams-navigation.json": "08e18c7cf55eae499b60dcd16965e39fc554582ac04f6aa48839a9a833ce2cca",
+      "docs/release/submission-ready-20261122/links.json": "893207e00ae496ac3d35e81dbc2ced27a0751a99a74f2615bc8b78f9d3f42887",
+      "docs/release/submission-ready-20261122/pdf-check.json": "15cbee4d827ff939bc28bcf6417f5294cc9c64d74fe0e54b20d32f655cdb689d",
+      "docs/release/submission-ready-20261122/unit-tests.json": "4defb9943caf7fb95422dd038190cb3cb46bf77e564aaf75554a6d8d2d92d9df",
+      "docs/submission-checklist.md": "1aa67322e767843171c7e3fc9628cbdf783b3684f28ef9fd66f51cc703c515b1",
+      "docs/submission-description.md": "d1955241e8ebaacdea8bac1db7f298893dfcfafee57b0bbd8fbe61080e6734f7"
+    },
+    "pdf": "Extracted text, metadata, all URI annotations and all17 page renders inspected; binary hashes checked. No new full-video pixel/privacy review.",
+    "limits": "Scoped pattern/visual checks, not universal DLP. Historical author metadata/local paths remain. Public unit receipt intentionally removes host diagnostic temporary paths before staging."
+  },
+  "models_and_cost": {
+    "new_model_e2e": "NOT_RUN",
+    "model_calls": "UNKNOWN",
+    "tokens": "UNKNOWN",
+    "direct_monetary_cost": "UNKNOWN",
+    "human_active_time": "UNKNOWN"
+  },
+  "review": "Separate read-only QA reviewer compares diagrams against canonical instructions and tools; final verdict recorded in readiness page."
+}

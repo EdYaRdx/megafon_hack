@@ -1,0 +1,50 @@
+{
+  "checked_at_utc": "2026-11-22T19:24:36.863Z",
+  "mermaid_version": "11.12.0",
+  "diagrams": [
+    {
+      "file": "README.md",
+      "index": 0,
+      "parse": "PASS",
+      "render": "PASS"
+    },
+    {
+      "file": "docs/architecture.md",
+      "index": 1,
+      "parse": "PASS",
+      "render": "PASS"
+    },
+    {
+      "file": "docs/architecture.md",
+      "index": 2,
+      "parse": "PASS",
+      "render": "PASS"
+    }
+  ],
+  "page_errors": [],
+  "navigation": {
+    "root_pages": [
+      "README.md",
+      "docs/README.md",
+      "docs/for-jury.md",
+      "docs/quickstart.md",
+      "docs/architecture.md",
+      "docs/capabilities.md",
+      "docs/evaluation.md",
+      "docs/submission-checklist.md",
+      "docs/submission-description.md",
+      "docs/publication-safety.md",
+      "cases/README.md",
+      "cases/family-multinumber-video/README.md",
+      "cases/linguastep-retention/README.md"
+    ],
+    "relative_links_checked": 387,
+    "heading_files_loaded": 19,
+    "slugger": "github-slugger2.0.0",
+    "problems": []
+  },
+  "limitations": [
+    "Local Chromium Mermaid render, not the exact GitHub renderer.",
+    "Current navigation root pages checked; linked historical files loaded only to resolve headings, historical prose not rewritten."
+  ]
+}
