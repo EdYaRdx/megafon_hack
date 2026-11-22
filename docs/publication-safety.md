@@ -17,7 +17,7 @@
 
 ## Фактические проверки
 
-Предыдущий expanded scoped scan release aa4b23f:707 tracked файлов,682 text-like,156 parsed JSON/JSONL с nested strings. Паттерн-совпадений email/credential/private-key/current-account/home path в текущем дереве не найдено. PNG metadata проверены, pixels не проходили новый полный визуальный review. Это не универсальная DLP-сертификация.
+Предыдущий expanded scoped scan release aa4b23f:707 tracked файлов,682 text-like,156 parsed JSON/JSONL с nested strings. Actionable findings email/credential/private-key/current-account/конкретного home path не найдено; одно path-совпадение в docs/demo-media-guide.md:49 — проверенный placeholder C:/Users/.... PNG metadata проверены, pixels не проходили новый полный визуальный review. Это не универсальная DLP-сертификация.
 
 Старая история на исходном срезе125 commits:104 вхождения настоящего локального account path в двух исторических файлах; ещё14 совпадений — явные ellipsis placeholders. Значения профиля здесь намеренно не повторяются. Файлы: docs/demo-media-guide.md и .omp/profiles/qualification-supervised.yml. В текущем дереве user-home примеры являются placeholders. История не переписана.
 

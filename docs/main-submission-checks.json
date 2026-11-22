@@ -1,6 +1,7 @@
 {
-  "started_at_utc": "2026-11-22T18:26:58.544007+00:00",
-  "finished_at_utc": "2026-11-22T18:27:01.292855+00:00",
+  "started_at_utc": "2026-11-22T18:25:19.645343+00:00",
+  "finished_at_utc": "2026-11-22T18:31:11.346764+00:00",
+  "scan_started_at_utc": "2026-11-22T18:31:08.101665+00:00",
   "base_main_sha": "fc94ac239a4a19098f1960671f5013a695e09793",
   "scope": "Read-only selected-case gates; current tracked working-tree bytes plus three new navigation documents. Receipt excludes itself; no new model E2E. Binary files hashed, not content-scanned. No history rewrite or visibility change.",
   "runtime": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
@@ -142,6 +143,34 @@
       "exit_code": 0,
       "stdout": "",
       "stderr": "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "started_at_utc": "2026-11-22T18:31:10.188049+00:00",
+      "finished_at_utc": "2026-11-22T18:31:11.172226+00:00",
+      "elapsed_seconds": 0.983374,
+      "argv": [
+        "<verified CPython3.12.14>",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/check_repository.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Repository integrity check: PASS (302 Markdown files; indexed case JSON/JSONL syntax)\nScope: file targets only; no schema, hash, fragment, external-link, product, or host validation.\n",
+      "stderr": ""
+    },
+    {
+      "started_at_utc": "2026-11-22T18:31:11.172226+00:00",
+      "finished_at_utc": "2026-11-22T18:31:11.346764+00:00",
+      "elapsed_seconds": 0.174608,
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/publication-safety.md', LF will be replaced by CRLF the next time Git touches it\n"
     }
   ],
   "scanner_notes": [
@@ -167,6 +196,11 @@
         "category": "user_home_path",
         "path": "docs/demo-media-guide.md",
         "location": "line 49"
+      },
+      {
+        "category": "user_home_path",
+        "path": "docs/publication-safety.md",
+        "location": "line 20"
       }
     ],
     "parse_errors": [],
@@ -669,7 +703,7 @@
       "docs/next-session-handoff.md": "b4fe906f058b902673460565b70e0280dd776933723ac9fea1947b516a2eba06",
       "docs/pantrypath-demo.md": "f1cb65ed3685f9fc35ba03e0926a5b2ed499db8bd3e98c71c9dde9abe46ae3f9",
       "docs/pantrypath-r3-traceability-addendum.md": "538f7054ef1a1de6f6cf3d5a764501d1e53d412fcee153993c2aabf75758b947",
-      "docs/publication-safety.md": "b71db67abed7d97d97f9420aa7963160a0933b027421a359da7f7ff36591d4d9",
+      "docs/publication-safety.md": "8e58b25a9e371a4092aee8998f4f549f6d49d365ebeb0ba1b84dd6ac072baa43",
       "docs/quickstart.md": "c66c37e2abaeadd404fd628e83673fa2f9ac2cf5dee85e743ec0342d9c81783c",
       "docs/release/contest-rc-receipt.json": "9f75e4f203abe6a045f4d784d41d2c76722cfbc33d82cd1e7b08d5ce7607052d",
       "docs/release/contest-rc-verification.md": "88a207bf4589866a74706511022cce7abd123cdf3bb3c50424f02ae361579b51",
